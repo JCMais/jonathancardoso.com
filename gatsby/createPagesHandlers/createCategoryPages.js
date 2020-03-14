@@ -35,16 +35,16 @@ const createCategoryPages = (createPage, edges) => {
       {},
     )
 
-    for (const [categorySlug, edges] of Object.entries(postsByCategory)) {
+    for (const [categorySlug, postsEdges] of Object.entries(postsByCategory)) {
       // group by lang now
       createPaginatedPages(
         createPage,
-        edges,
+        postsEdges,
         `${langKeySlug}/blog/categories/${categorySlug}`,
         path.resolve(__dirname, '../../src/templates/Categories.tsx'),
         {
           activeCategory: categoriesByCategorySlug[categorySlug],
-          postsOnCategory: edges.map(edge => edge.node),
+          postsOnCategory: postsEdges.map(edge => edge.node),
           categories,
           categoriesByCategorySlug,
           langKeySlug,

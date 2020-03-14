@@ -22,30 +22,28 @@ const IndexPage = ({ data }) => {
       <p>Welcome to your new Gatsby site.</p>
       <p>Now go build something great.</p>
       <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-        <Link style={{}} to={'/about'}>
+        <Link style={{}} to="/about">
           <Text color="black" mb={2} fontFamily="sans" fontSize={2}>
             About
           </Text>
         </Link>
         <LogoImage />
       </div>
-      {posts.map(({ node: post }) => {
-        return (
-          <Box mt={5} mb={3} key={post.id}>
-            <Link style={{ textDecoration: 'none', color: 'inherit' }} to={post.slug}>
-              <Text as="h3" color="black" mb={2} fontFamily="sans">
-                {post.title}
-              </Text>
-              <Text color="gray.1" fontSize={2}>
-                {post.date}
-              </Text>
-              <Text color="gray.2">
-                <i>{post.description}</i>
-              </Text>
-            </Link>
-          </Box>
-        )
-      })}
+      {posts.map(({ node: post }) => (
+        <Box mt={5} mb={3} key={post.id}>
+          <Link style={{ textDecoration: 'none', color: 'inherit' }} to={post.slug}>
+            <Text as="h3" color="black" mb={2} fontFamily="sans">
+              {post.title}
+            </Text>
+            <Text color="gray.1" fontSize={2}>
+              {post.date}
+            </Text>
+            <Text color="gray.2">
+              <i>{post.description}</i>
+            </Text>
+          </Link>
+        </Box>
+      ))}
     </MainLayout>
   )
 }

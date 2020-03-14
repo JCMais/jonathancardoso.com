@@ -5,7 +5,6 @@ const slugify = require('@sindresorhus/slugify')
 const { createFilePath } = require('gatsby-source-filesystem')
 
 const { convertLangKeyToEnum, getLangKeyFromFilePath, trim } = require('./utils')
-const { config } = require('./config')
 
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateNode
 exports.onCreateNode = async ({

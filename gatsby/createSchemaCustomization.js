@@ -12,7 +12,7 @@
  *  https://www.gatsbyjs.org/docs/schema-customization/#queryable-interfaces-with-the-nodeinterface-extension
  * Inspiration taken from https://github.com/gatsbyjs/gatsby/blob/f0724e8d6e6/packages/gatsby-theme-blog-core/gatsby-node.js
  */
-exports.createSchemaCustomization = ({ actions, schema }) => {
+exports.createSchemaCustomization = ({ actions }) => {
   const { createFieldExtension, createTypes } = actions
 
   // https://www.gatsbyjs.org/docs/actions/#createFieldExtension

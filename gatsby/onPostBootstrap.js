@@ -1,3 +1,4 @@
+/* eslint-disable no-console,import/no-extraneous-dependencies */
 const { introspectionQuery, graphql, printSchema } = require('gatsby/graphql')
 const write = require('write')
 

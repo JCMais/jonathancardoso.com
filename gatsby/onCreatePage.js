@@ -1,9 +1,10 @@
-const { config } = require('./config')
+/* eslint-disable no-console,no-continue */
+const {
+  siteMetadata: { locale },
+} = require('../gatsby-config')
 const { getLangKeyFromFilePath, trim } = require('./utils')
 
-const { supportedLanguages } = config
-
-const supportedLanguagesKey = Object.keys(supportedLanguages)
+const supportedLanguagesKey = Object.keys(locale.supportedLanguages)
 
 const pagesByPathCache = new Map()
 
@@ -11,7 +12,7 @@ const pagesByPathCache = new Map()
  * https://www.gatsbyjs.org/docs/node-apis/#onCreatePage
  * Adds langKey to pages that do not have one - This is called for pages inside /src/pages/
  */
-const onCreatePage = async ({ page, actions, reporter }) => {
+const onCreatePage = async ({ page, actions }) => {
   if (page.context.langKey) {
     console.log('Skipping page since it already has the langKey context prop')
   }
@@ -29,7 +30,7 @@ const onCreatePage = async ({ page, actions, reporter }) => {
   //  https://github.com/angeloocana/gatsby-plugin-i18n/issues/66
   //  https://github.com/angeloocana/gatsby-plugin-i18n/issues/92#issuecomment-580912666
   if (page.path === '/root/' || page.path === '/dev-404-page/') {
-    return null
+    return
   }
 
   // first verify if the page has lang key extension
@@ -117,7 +118,7 @@ const onCreatePage = async ({ page, actions, reporter }) => {
         // @TODO Should we ignore /dev-404-page/ | ComponentDev404Page
         if (page.path === '/404.html' || page.path === '/404/') {
           // The page is the default 404 page - Only create it for the default language
-          if (langKey !== config.defaultLangKey) {
+          if (langKey !== locale.defaultLangKey) {
             console.log('Skipping creation of root 404 page for non default language')
             continue
           }

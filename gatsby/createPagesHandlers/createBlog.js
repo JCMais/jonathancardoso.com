@@ -15,11 +15,11 @@ const createBlog = (createPage, edges) => {
     }
   }, {})
 
-  for (const [langKey, edges] of Object.entries(postsByLangKey)) {
+  for (const [langKey, postsEdges] of Object.entries(postsByLangKey)) {
     const langKeySlug = convertLangKeyFromEnum(langKey)
     createPaginatedPages(
       createPage,
-      edges,
+      postsEdges,
       `/${langKeySlug}/blog`,
       path.resolve(__dirname, '../../src/templates/Blog.tsx'),
       {

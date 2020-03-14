@@ -1,7 +1,3 @@
-/*
- * This file needs to be .jsx because the netlify-cms must consume it.
- */
-
 import React from 'react'
 import {
   ThemeProvider as StyledThemeProvider,
@@ -15,11 +11,11 @@ export const GlobalStyle = createGlobalStyle`
   ${styledNormalize};
 `
 
-export const ThemeProvider = props => (
+export const ThemeProvider = ({ children }) => (
   <StyledThemeProvider theme={theme}>
     <>
       <GlobalStyle />
-      {props.children}
+      {children}
     </>
   </StyledThemeProvider>
 )

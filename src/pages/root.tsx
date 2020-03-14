@@ -1,9 +1,9 @@
 import React from 'react'
 
-const IndexRootPage = () => {
+const IndexRootPage = () => (
   // do redirect to language
 
-  return <p>Root - Index</p>
-}
+  <p>Root - Index</p>
+)
 
 export default IndexRootPage

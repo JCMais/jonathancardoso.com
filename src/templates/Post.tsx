@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import { MDXRenderer } from 'gatsby-plugin-mdx'
 
 import { MainLayout } from '../layouts/MainLayout'
 import { Link } from '../components/ui/Link'
 import { SEO } from '../components/SEO'
 
 const TagList = ({ list = [] }) => (
-  <Fragment>
+  <>
     Tags:
     <ul>
       {list.map(tag => (
@@ -17,7 +17,7 @@ const TagList = ({ list = [] }) => (
         </li>
       ))}
     </ul>
-  </Fragment>
+  </>
 )
 
 export default function Post({ data: { blogPost }, pageContext: { next, prev } }) {

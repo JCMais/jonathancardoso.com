@@ -3,8 +3,6 @@
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
-const path = require('path')
-
 const {
   createPages,
   createSchemaCustomization,
@@ -20,3 +18,6 @@ exports.createSchemaCustomization = createSchemaCustomization
 exports.onCreateNode = onCreateNode
 exports.onCreatePage = onCreatePage
 exports.onPostBootstrap = onPostBootstrap
+
+// need this?
+// https://github.com/obahareth/awesome-mena-conferences-and-meetups/blob/711aee4f40e2952a5483d31820e7e0a809ef8e3a/gatsby-node.js
