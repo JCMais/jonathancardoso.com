@@ -18,10 +18,10 @@ const Categories = ({ categories }) => (
   </>
 )
 
-const Blog = ({ data: { allMdx }, pageContext: { pagination, categories } }) => {
+const Blog = ({ data: { allBlogPost }, pageContext: { pagination, categories } }) => {
   const { page, nextPagePath, previousPagePath } = pagination
 
-  const posts = page.map(id => allMdx.edges.find(edge => edge.node.id === id))
+  const posts = page.map(id => allBlogPost.edges.find(edge => edge.node.id === id))
 
   return (
     <MainLayout>
@@ -32,17 +32,17 @@ const Blog = ({ data: { allMdx }, pageContext: { pagination, categories } }) => 
 
       {posts.map(({ node: post }) => (
         <div key={post.id}>
-          {post.fields.banner && <Img sizes={post.fields.banner.childImageSharp.sizes} />}
+          {post.banner && <Img sizes={post.banner.childImageSharp.sizes} />}
 
           <h2>
-            <Link to={post.fields.slug}>{post.fields.title}</Link>
+            <Link to={post.slug}>{post.title}</Link>
           </h2>
 
-          <small>{post.fields.date}</small>
+          <small>{post.date}</small>
 
           <p>{post.excerpt}</p>
 
-          <Link to={post.fields.slug}>Continue Reading</Link>
+          <Link to={post.slug}>Continue Reading</Link>
         </div>
       ))}
 
@@ -72,24 +72,22 @@ export default Blog
 
 export const pageQuery = graphql`
   query {
-    allMdx {
+    allBlogPost {
       edges {
         node {
           excerpt(pruneLength: 300)
           id
-          fields {
-            title
-            date(formatString: "MMMM DD, YYYY")
-            banner {
-              childImageSharp {
-                sizes(maxWidth: 720) {
-                  ...GatsbyImageSharpSizes
-                }
+          title
+          date(formatString: "MMMM DD, YYYY")
+          banner {
+            childImageSharp {
+              sizes(maxWidth: 720) {
+                ...GatsbyImageSharpSizes
               }
             }
-            keywords
-            slug
           }
+          keywords
+          slug
         }
       }
     }

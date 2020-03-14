@@ -12,8 +12,8 @@ import { SEO } from '../components/SEO'
 // ]
 
 const IndexPage = ({ data }) => {
-  const { allMdx } = data
-  const { edges: posts } = allMdx
+  const { allBlogPost } = data
+  const { edges: posts } = allBlogPost
 
   return (
     <MainLayout>
@@ -29,32 +29,23 @@ const IndexPage = ({ data }) => {
         </Link>
         <LogoImage />
       </div>
-      {posts
-        .filter(
-          post =>
-            post.node.frontmatter.title.length > 0 &&
-            post.node.parent.sourceInstanceName === 'blog',
+      {posts.map(({ node: post }) => {
+        return (
+          <Box mt={5} mb={3} key={post.id}>
+            <Link style={{ textDecoration: 'none', color: 'inherit' }} to={post.slug}>
+              <Text as="h3" color="black" mb={2} fontFamily="sans">
+                {post.title}
+              </Text>
+              <Text color="gray.1" fontSize={2}>
+                {post.date}
+              </Text>
+              <Text color="gray.2">
+                <i>{post.description}</i>
+              </Text>
+            </Link>
+          </Box>
         )
-        .map(({ node: post }) => {
-          return (
-            <Box mt={5} mb={3} key={post.id}>
-              <Link
-                style={{ textDecoration: 'none', color: 'inherit' }}
-                to={post.fields.slug}
-              >
-                <Text as="h3" color="black" mb={2} fontFamily="sans">
-                  {post.frontmatter.title}
-                </Text>
-                <Text color="gray.1" fontSize={2}>
-                  {post.frontmatter.date}
-                </Text>
-                <Text color="gray.2">
-                  <i>{post.frontmatter.description}</i>
-                </Text>
-              </Link>
-            </Box>
-          )
-        })}
+      })}
     </MainLayout>
   )
 }
@@ -63,25 +54,15 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query IndexQuery {
-    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allBlogPost(sort: { order: DESC, fields: [date] }) {
       edges {
         node {
           id
-          frontmatter {
-            description
-            title
-            date(formatString: "MMMM DD, YYYY")
-            rawDate: date(formatString: "X")
-          }
-          fields {
-            slug
-          }
-          parent {
-            ... on File {
-              id
-              sourceInstanceName
-            }
-          }
+          description
+          title
+          date(formatString: "MMMM DD, YYYY")
+          rawDate: date(formatString: "X")
+          slug
         }
       }
     }

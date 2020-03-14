@@ -49,14 +49,14 @@ module.exports = {
         //  ignore: ['**/.tsx*'],
       },
     },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/content/pages`,
-        name: 'pages',
-        //  ignore: ['**/.tsx*'],
-      },
-    },
+    // {
+    //   resolve: 'gatsby-source-filesystem',
+    //   options: {
+    //     path: `${__dirname}/content/pages`,
+    //     name: 'experiments',
+    //     //  ignore: ['**/.tsx*'],
+    //   },
+    // },
     {
       resolve: 'gatsby-plugin-mdx',
       options: {

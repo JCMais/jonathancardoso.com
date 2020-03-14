@@ -67,10 +67,11 @@ interface BlogPost {
   id: ID!
   title: String!
   body: String!
-  excerpt: String!
+  excerpt(pruneLength: Int): String!
   banner: File
   slug: String!
   langKey: LangKey!
+  globalBlogPostId: ID!
   date(
     """
     Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
@@ -93,248 +94,10 @@ interface BlogPost {
     locale: String
   ): Date!
   tags: [String!]
-  category: BlogPostCategory!
+  category: String!
+  categorySlug: String!
   description: String
   keywords: [String!]
-}
-
-type BlogPostCategory implements Node {
-  name: String!
-  slug: String!
-  blogPosts: [BlogPost]
-  id: ID!
-  parent: Node
-  children: [Node!]!
-  internal: Internal!
-}
-
-type BlogPostCategoryConnection {
-  totalCount: Int!
-  edges: [BlogPostCategoryEdge!]!
-  nodes: [BlogPostCategory!]!
-  pageInfo: PageInfo!
-  distinct(field: BlogPostCategoryFieldsEnum!): [String!]!
-  group(skip: Int, limit: Int, field: BlogPostCategoryFieldsEnum!): [BlogPostCategoryGroupConnection!]!
-}
-
-type BlogPostCategoryEdge {
-  next: BlogPostCategory
-  node: BlogPostCategory!
-  previous: BlogPostCategory
-}
-
-enum BlogPostCategoryFieldsEnum {
-  name
-  slug
-  blogPosts
-  blogPosts___id
-  blogPosts___title
-  blogPosts___body
-  blogPosts___excerpt
-  blogPosts___banner___sourceInstanceName
-  blogPosts___banner___absolutePath
-  blogPosts___banner___relativePath
-  blogPosts___banner___extension
-  blogPosts___banner___size
-  blogPosts___banner___prettySize
-  blogPosts___banner___modifiedTime
-  blogPosts___banner___accessTime
-  blogPosts___banner___changeTime
-  blogPosts___banner___birthTime
-  blogPosts___banner___root
-  blogPosts___banner___dir
-  blogPosts___banner___base
-  blogPosts___banner___ext
-  blogPosts___banner___name
-  blogPosts___banner___relativeDirectory
-  blogPosts___banner___dev
-  blogPosts___banner___mode
-  blogPosts___banner___nlink
-  blogPosts___banner___uid
-  blogPosts___banner___gid
-  blogPosts___banner___rdev
-  blogPosts___banner___ino
-  blogPosts___banner___atimeMs
-  blogPosts___banner___mtimeMs
-  blogPosts___banner___ctimeMs
-  blogPosts___banner___atime
-  blogPosts___banner___mtime
-  blogPosts___banner___ctime
-  blogPosts___banner___birthtime
-  blogPosts___banner___birthtimeMs
-  blogPosts___banner___blksize
-  blogPosts___banner___blocks
-  blogPosts___banner___publicURL
-  blogPosts___banner___childImageSharp___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childImageSharp___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___id
-  blogPosts___banner___parent___id
-  blogPosts___banner___parent___children
-  blogPosts___banner___children
-  blogPosts___banner___children___id
-  blogPosts___banner___children___children
-  blogPosts___banner___internal___content
-  blogPosts___banner___internal___contentDigest
-  blogPosts___banner___internal___description
-  blogPosts___banner___internal___fieldOwners
-  blogPosts___banner___internal___ignoreType
-  blogPosts___banner___internal___mediaType
-  blogPosts___banner___internal___owner
-  blogPosts___banner___internal___type
-  blogPosts___banner___childMdx___rawBody
-  blogPosts___banner___childMdx___fileAbsolutePath
-  blogPosts___banner___childMdx___body
-  blogPosts___banner___childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___html @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___mdxAST @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  blogPosts___slug
-  blogPosts___langKey
-  blogPosts___date
-  blogPosts___tags
-  blogPosts___category___name
-  blogPosts___category___slug
-  blogPosts___category___blogPosts
-  blogPosts___category___blogPosts___id
-  blogPosts___category___blogPosts___title
-  blogPosts___category___blogPosts___body
-  blogPosts___category___blogPosts___excerpt
-  blogPosts___category___blogPosts___slug
-  blogPosts___category___blogPosts___langKey
-  blogPosts___category___blogPosts___date
-  blogPosts___category___blogPosts___tags
-  blogPosts___category___blogPosts___description
-  blogPosts___category___blogPosts___keywords
-  blogPosts___category___id
-  blogPosts___category___parent___id
-  blogPosts___category___parent___children
-  blogPosts___category___children
-  blogPosts___category___children___id
-  blogPosts___category___children___children
-  blogPosts___category___internal___content
-  blogPosts___category___internal___contentDigest
-  blogPosts___category___internal___description
-  blogPosts___category___internal___fieldOwners
-  blogPosts___category___internal___ignoreType
-  blogPosts___category___internal___mediaType
-  blogPosts___category___internal___owner
-  blogPosts___category___internal___type
-  blogPosts___description
-  blogPosts___keywords
-  id
-  parent___id
-  parent___parent___id
-  parent___parent___parent___id
-  parent___parent___parent___children
-  parent___parent___children
-  parent___parent___children___id
-  parent___parent___children___children
-  parent___parent___internal___content
-  parent___parent___internal___contentDigest
-  parent___parent___internal___description
-  parent___parent___internal___fieldOwners
-  parent___parent___internal___ignoreType
-  parent___parent___internal___mediaType
-  parent___parent___internal___owner
-  parent___parent___internal___type
-  parent___children
-  parent___children___id
-  parent___children___parent___id
-  parent___children___parent___children
-  parent___children___children
-  parent___children___children___id
-  parent___children___children___children
-  parent___children___internal___content
-  parent___children___internal___contentDigest
-  parent___children___internal___description
-  parent___children___internal___fieldOwners
-  parent___children___internal___ignoreType
-  parent___children___internal___mediaType
-  parent___children___internal___owner
-  parent___children___internal___type
-  parent___internal___content
-  parent___internal___contentDigest
-  parent___internal___description
-  parent___internal___fieldOwners
-  parent___internal___ignoreType
-  parent___internal___mediaType
-  parent___internal___owner
-  parent___internal___type
-  children
-  children___id
-  children___parent___id
-  children___parent___parent___id
-  children___parent___parent___children
-  children___parent___children
-  children___parent___children___id
-  children___parent___children___children
-  children___parent___internal___content
-  children___parent___internal___contentDigest
-  children___parent___internal___description
-  children___parent___internal___fieldOwners
-  children___parent___internal___ignoreType
-  children___parent___internal___mediaType
-  children___parent___internal___owner
-  children___parent___internal___type
-  children___children
-  children___children___id
-  children___children___parent___id
-  children___children___parent___children
-  children___children___children
-  children___children___children___id
-  children___children___children___children
-  children___children___internal___content
-  children___children___internal___contentDigest
-  children___children___internal___description
-  children___children___internal___fieldOwners
-  children___children___internal___ignoreType
-  children___children___internal___mediaType
-  children___children___internal___owner
-  children___children___internal___type
-  children___internal___content
-  children___internal___contentDigest
-  children___internal___description
-  children___internal___fieldOwners
-  children___internal___ignoreType
-  children___internal___mediaType
-  children___internal___owner
-  children___internal___type
-  internal___content
-  internal___contentDigest
-  internal___description
-  internal___fieldOwners
-  internal___ignoreType
-  internal___mediaType
-  internal___owner
-  internal___type
-}
-
-input BlogPostCategoryFilterInput {
-  name: StringQueryOperatorInput
-  slug: StringQueryOperatorInput
-  blogPosts: BlogPostFilterListInput
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-type BlogPostCategoryGroupConnection {
-  totalCount: Int!
-  edges: [BlogPostCategoryEdge!]!
-  nodes: [BlogPostCategory!]!
-  pageInfo: PageInfo!
-  field: String!
-  fieldValue: String
-}
-
-input BlogPostCategorySortInput {
-  fields: [BlogPostCategoryFieldsEnum]
-  order: [SortOrderEnum] = [ASC]
 }
 
 type BlogPostConnection {
@@ -535,8 +298,11 @@ enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___title
   banner___childMdx___childMdxBlogPost___slug
   banner___childMdx___childMdxBlogPost___langKey
+  banner___childMdx___childMdxBlogPost___globalBlogPostId
   banner___childMdx___childMdxBlogPost___date
   banner___childMdx___childMdxBlogPost___tags
+  banner___childMdx___childMdxBlogPost___category
+  banner___childMdx___childMdxBlogPost___categorySlug
   banner___childMdx___childMdxBlogPost___description
   banner___childMdx___childMdxBlogPost___keywords
   banner___childMdx___childMdxBlogPost___excerpt
@@ -544,100 +310,11 @@ enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___children
   slug
   langKey
+  globalBlogPostId
   date
   tags
-  category___name
-  category___slug
-  category___blogPosts
-  category___blogPosts___id
-  category___blogPosts___title
-  category___blogPosts___body
-  category___blogPosts___excerpt
-  category___blogPosts___banner___sourceInstanceName
-  category___blogPosts___banner___absolutePath
-  category___blogPosts___banner___relativePath
-  category___blogPosts___banner___extension
-  category___blogPosts___banner___size
-  category___blogPosts___banner___prettySize
-  category___blogPosts___banner___modifiedTime
-  category___blogPosts___banner___accessTime
-  category___blogPosts___banner___changeTime
-  category___blogPosts___banner___birthTime
-  category___blogPosts___banner___root
-  category___blogPosts___banner___dir
-  category___blogPosts___banner___base
-  category___blogPosts___banner___ext
-  category___blogPosts___banner___name
-  category___blogPosts___banner___relativeDirectory
-  category___blogPosts___banner___dev
-  category___blogPosts___banner___mode
-  category___blogPosts___banner___nlink
-  category___blogPosts___banner___uid
-  category___blogPosts___banner___gid
-  category___blogPosts___banner___rdev
-  category___blogPosts___banner___ino
-  category___blogPosts___banner___atimeMs
-  category___blogPosts___banner___mtimeMs
-  category___blogPosts___banner___ctimeMs
-  category___blogPosts___banner___atime
-  category___blogPosts___banner___mtime
-  category___blogPosts___banner___ctime
-  category___blogPosts___banner___birthtime
-  category___blogPosts___banner___birthtimeMs
-  category___blogPosts___banner___blksize
-  category___blogPosts___banner___blocks
-  category___blogPosts___banner___publicURL
-  category___blogPosts___banner___id
-  category___blogPosts___banner___children
-  category___blogPosts___slug
-  category___blogPosts___langKey
-  category___blogPosts___date
-  category___blogPosts___tags
-  category___blogPosts___category___name
-  category___blogPosts___category___slug
-  category___blogPosts___category___blogPosts
-  category___blogPosts___category___id
-  category___blogPosts___category___children
-  category___blogPosts___description
-  category___blogPosts___keywords
-  category___id
-  category___parent___id
-  category___parent___parent___id
-  category___parent___parent___children
-  category___parent___children
-  category___parent___children___id
-  category___parent___children___children
-  category___parent___internal___content
-  category___parent___internal___contentDigest
-  category___parent___internal___description
-  category___parent___internal___fieldOwners
-  category___parent___internal___ignoreType
-  category___parent___internal___mediaType
-  category___parent___internal___owner
-  category___parent___internal___type
-  category___children
-  category___children___id
-  category___children___parent___id
-  category___children___parent___children
-  category___children___children
-  category___children___children___id
-  category___children___children___children
-  category___children___internal___content
-  category___children___internal___contentDigest
-  category___children___internal___description
-  category___children___internal___fieldOwners
-  category___children___internal___ignoreType
-  category___children___internal___mediaType
-  category___children___internal___owner
-  category___children___internal___type
-  category___internal___content
-  category___internal___contentDigest
-  category___internal___description
-  category___internal___fieldOwners
-  category___internal___ignoreType
-  category___internal___mediaType
-  category___internal___owner
-  category___internal___type
+  category
+  categorySlug
   description
   keywords
 }
@@ -650,15 +327,13 @@ input BlogPostFilterInput {
   banner: FileFilterInput
   slug: StringQueryOperatorInput
   langKey: LangKeyQueryOperatorInput
+  globalBlogPostId: IDQueryOperatorInput
   date: DateQueryOperatorInput
   tags: StringQueryOperatorInput
-  category: BlogPostCategoryFilterInput
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
-}
-
-input BlogPostFilterListInput {
-  elemMatch: BlogPostFilterInput
 }
 
 type BlogPostGroupConnection {
@@ -1623,13 +1298,11 @@ enum FileFieldsEnum {
   childMdx___childMdxBlogPost___banner___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___globalBlogPostId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdx___childMdxBlogPost___category___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdx___childMdxBlogPost___category___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdx___childMdxBlogPost___category___blogPosts @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdx___childMdxBlogPost___category___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdx___childMdxBlogPost___category___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___keywords @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1724,6 +1397,13 @@ enum HeadingsMdx {
   h4
   h5
   h6
+}
+
+input IDQueryOperatorInput {
+  eq: ID
+  ne: ID
+  in: [ID]
+  nin: [ID]
 }
 
 enum ImageCropFocus {
@@ -2228,6 +1908,7 @@ type MdxBlogPost implements BlogPost & Node {
   banner: File
   slug: String!
   langKey: LangKey!
+  globalBlogPostId: ID!
   date(
     """
     Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
@@ -2250,7 +1931,8 @@ type MdxBlogPost implements BlogPost & Node {
     locale: String
   ): Date!
   tags: [String!]
-  category: BlogPostCategory!
+  category: String!
+  categorySlug: String!
   description: String
   keywords: [String!]
   excerpt(pruneLength: Int = 140): String!
@@ -2456,8 +2138,11 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___globalBlogPostId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___keywords @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2465,100 +2150,11 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   slug
   langKey
+  globalBlogPostId
   date
   tags
-  category___name
-  category___slug
-  category___blogPosts
-  category___blogPosts___id
-  category___blogPosts___title
-  category___blogPosts___body
-  category___blogPosts___excerpt
-  category___blogPosts___banner___sourceInstanceName
-  category___blogPosts___banner___absolutePath
-  category___blogPosts___banner___relativePath
-  category___blogPosts___banner___extension
-  category___blogPosts___banner___size
-  category___blogPosts___banner___prettySize
-  category___blogPosts___banner___modifiedTime
-  category___blogPosts___banner___accessTime
-  category___blogPosts___banner___changeTime
-  category___blogPosts___banner___birthTime
-  category___blogPosts___banner___root
-  category___blogPosts___banner___dir
-  category___blogPosts___banner___base
-  category___blogPosts___banner___ext
-  category___blogPosts___banner___name
-  category___blogPosts___banner___relativeDirectory
-  category___blogPosts___banner___dev
-  category___blogPosts___banner___mode
-  category___blogPosts___banner___nlink
-  category___blogPosts___banner___uid
-  category___blogPosts___banner___gid
-  category___blogPosts___banner___rdev
-  category___blogPosts___banner___ino
-  category___blogPosts___banner___atimeMs
-  category___blogPosts___banner___mtimeMs
-  category___blogPosts___banner___ctimeMs
-  category___blogPosts___banner___atime
-  category___blogPosts___banner___mtime
-  category___blogPosts___banner___ctime
-  category___blogPosts___banner___birthtime
-  category___blogPosts___banner___birthtimeMs
-  category___blogPosts___banner___blksize
-  category___blogPosts___banner___blocks
-  category___blogPosts___banner___publicURL
-  category___blogPosts___banner___id
-  category___blogPosts___banner___children
-  category___blogPosts___slug
-  category___blogPosts___langKey
-  category___blogPosts___date
-  category___blogPosts___tags
-  category___blogPosts___category___name
-  category___blogPosts___category___slug
-  category___blogPosts___category___blogPosts
-  category___blogPosts___category___id
-  category___blogPosts___category___children
-  category___blogPosts___description
-  category___blogPosts___keywords
-  category___id
-  category___parent___id
-  category___parent___parent___id
-  category___parent___parent___children
-  category___parent___children
-  category___parent___children___id
-  category___parent___children___children
-  category___parent___internal___content
-  category___parent___internal___contentDigest
-  category___parent___internal___description
-  category___parent___internal___fieldOwners
-  category___parent___internal___ignoreType
-  category___parent___internal___mediaType
-  category___parent___internal___owner
-  category___parent___internal___type
-  category___children
-  category___children___id
-  category___children___parent___id
-  category___children___parent___children
-  category___children___children
-  category___children___children___id
-  category___children___children___children
-  category___children___internal___content
-  category___children___internal___contentDigest
-  category___children___internal___description
-  category___children___internal___fieldOwners
-  category___children___internal___ignoreType
-  category___children___internal___mediaType
-  category___children___internal___owner
-  category___children___internal___type
-  category___internal___content
-  category___internal___contentDigest
-  category___internal___description
-  category___internal___fieldOwners
-  category___internal___ignoreType
-  category___internal___mediaType
-  category___internal___owner
-  category___internal___type
+  category
+  categorySlug
   description
   keywords
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2656,9 +2252,11 @@ input MdxBlogPostFilterInput {
   banner: FileFilterInput
   slug: StringQueryOperatorInput
   langKey: LangKeyQueryOperatorInput
+  globalBlogPostId: IDQueryOperatorInput
   date: DateQueryOperatorInput
   tags: StringQueryOperatorInput
-  category: BlogPostCategoryFilterInput
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
   excerpt: StringQueryOperatorInput
@@ -2931,35 +2529,11 @@ enum MdxFieldsEnum {
   childMdxBlogPost___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___globalBlogPostId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___blogPosts___keywords @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___parent___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___parent___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___children___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___children___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___content @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___contentDigest @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___fieldOwners @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___ignoreType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___mediaType @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  childMdxBlogPost___category___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___description @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___keywords @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -3154,13 +2728,13 @@ enum PotraceTurnPolicy {
 }
 
 type Query {
-  blogPost(id: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: BlogPostCategoryFilterInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
+  blogPost(id: StringQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
   allBlogPost(filter: BlogPostFilterInput, sort: BlogPostSortInput, skip: Int, limit: Int): BlogPostConnection!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdx: MdxFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
+  sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
   site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
@@ -3168,10 +2742,8 @@ type Query {
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
   mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdxBlogPost: MdxBlogPostFilterInput): Mdx
   allMdx(filter: MdxFilterInput, sort: MdxSortInput, skip: Int, limit: Int): MdxConnection!
-  mdxBlogPost(id: StringQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: BlogPostCategoryFilterInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
+  mdxBlogPost(id: StringQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
   allMdxBlogPost(filter: MdxBlogPostFilterInput, sort: MdxBlogPostSortInput, skip: Int, limit: Int): MdxBlogPostConnection!
-  blogPostCategory(name: StringQueryOperatorInput, slug: StringQueryOperatorInput, blogPosts: BlogPostFilterListInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): BlogPostCategory
-  allBlogPostCategory(filter: BlogPostCategoryFilterInput, sort: BlogPostCategorySortInput, skip: Int, limit: Int): BlogPostCategoryConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
   sitePlugin(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, resolve: StringQueryOperatorInput, name: StringQueryOperatorInput, version: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, nodeAPIs: StringQueryOperatorInput, browserAPIs: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, pluginFilepath: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput): SitePlugin
@@ -3513,6 +3085,7 @@ type SitePage implements Node {
   children: [Node!]!
   internal: Internal!
   isCreatedByStatefulCreatePages: Boolean
+  context: SitePageContext
   pluginCreator: SitePlugin
   pluginCreatorId: String
   componentPath: String
@@ -3525,6 +3098,166 @@ type SitePageConnection {
   pageInfo: PageInfo!
   distinct(field: SitePageFieldsEnum!): [String!]!
   group(skip: Int, limit: Int, field: SitePageFieldsEnum!): [SitePageGroupConnection!]!
+}
+
+type SitePageContext {
+  pagination: SitePageContextPagination
+  categories: [SitePageContextCategories]
+  langKey: String
+  langKeySlug: String
+  id: String
+  prev: SitePageContextPrev
+  next: SitePageContextNext
+  activeCategory: SitePageContextActiveCategory
+  postsOnCategory: [SitePageContextPostsOnCategory]
+  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlug
+}
+
+type SitePageContextActiveCategory {
+  category: String
+  categorySlug: String
+}
+
+input SitePageContextActiveCategoryFilterInput {
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+}
+
+type SitePageContextCategories {
+  category: String
+  categorySlug: String
+}
+
+type SitePageContextCategoriesByCategorySlug {
+  programming: SitePageContextCategoriesByCategorySlugProgramming
+}
+
+input SitePageContextCategoriesByCategorySlugFilterInput {
+  programming: SitePageContextCategoriesByCategorySlugProgrammingFilterInput
+}
+
+type SitePageContextCategoriesByCategorySlugProgramming {
+  category: String
+  categorySlug: String
+}
+
+input SitePageContextCategoriesByCategorySlugProgrammingFilterInput {
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+}
+
+input SitePageContextCategoriesFilterInput {
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+}
+
+input SitePageContextCategoriesFilterListInput {
+  elemMatch: SitePageContextCategoriesFilterInput
+}
+
+input SitePageContextFilterInput {
+  pagination: SitePageContextPaginationFilterInput
+  categories: SitePageContextCategoriesFilterListInput
+  langKey: StringQueryOperatorInput
+  langKeySlug: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  prev: SitePageContextPrevFilterInput
+  next: SitePageContextNextFilterInput
+  activeCategory: SitePageContextActiveCategoryFilterInput
+  postsOnCategory: SitePageContextPostsOnCategoryFilterListInput
+  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlugFilterInput
+}
+
+type SitePageContextNext {
+  id: String
+  excerpt: String
+  title: String
+  slug: String
+  langKey: String
+  category: String
+  categorySlug: String
+  tags: [String]
+  body: String
+}
+
+input SitePageContextNextFilterInput {
+  id: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  langKey: StringQueryOperatorInput
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+  tags: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+}
+
+type SitePageContextPagination {
+  page: [String]
+  nextPagePath: String
+  previousPagePath: String
+  pageCount: Int
+  pathPrefix: String
+}
+
+input SitePageContextPaginationFilterInput {
+  page: StringQueryOperatorInput
+  nextPagePath: StringQueryOperatorInput
+  previousPagePath: StringQueryOperatorInput
+  pageCount: IntQueryOperatorInput
+  pathPrefix: StringQueryOperatorInput
+}
+
+type SitePageContextPostsOnCategory {
+  id: String
+  excerpt: String
+  title: String
+  slug: String
+  langKey: String
+  category: String
+  categorySlug: String
+  tags: [String]
+  body: String
+}
+
+input SitePageContextPostsOnCategoryFilterInput {
+  id: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  langKey: StringQueryOperatorInput
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+  tags: StringQueryOperatorInput
+  body: StringQueryOperatorInput
+}
+
+input SitePageContextPostsOnCategoryFilterListInput {
+  elemMatch: SitePageContextPostsOnCategoryFilterInput
+}
+
+type SitePageContextPrev {
+  id: String
+  excerpt: String
+  title: String
+  slug: String
+  langKey: String
+  category: String
+  categorySlug: String
+  tags: [String]
+  body: String
+}
+
+input SitePageContextPrevFilterInput {
+  id: StringQueryOperatorInput
+  excerpt: StringQueryOperatorInput
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+  langKey: StringQueryOperatorInput
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
+  tags: StringQueryOperatorInput
+  body: StringQueryOperatorInput
 }
 
 type SitePageEdge {
@@ -3626,6 +3359,49 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
+  context___pagination___page
+  context___pagination___nextPagePath
+  context___pagination___previousPagePath
+  context___pagination___pageCount
+  context___pagination___pathPrefix
+  context___categories
+  context___categories___category
+  context___categories___categorySlug
+  context___langKey
+  context___langKeySlug
+  context___id
+  context___prev___id
+  context___prev___excerpt
+  context___prev___title
+  context___prev___slug
+  context___prev___langKey
+  context___prev___category
+  context___prev___categorySlug
+  context___prev___tags
+  context___prev___body
+  context___next___id
+  context___next___excerpt
+  context___next___title
+  context___next___slug
+  context___next___langKey
+  context___next___category
+  context___next___categorySlug
+  context___next___tags
+  context___next___body
+  context___activeCategory___category
+  context___activeCategory___categorySlug
+  context___postsOnCategory
+  context___postsOnCategory___id
+  context___postsOnCategory___excerpt
+  context___postsOnCategory___title
+  context___postsOnCategory___slug
+  context___postsOnCategory___langKey
+  context___postsOnCategory___category
+  context___postsOnCategory___categorySlug
+  context___postsOnCategory___tags
+  context___postsOnCategory___body
+  context___categoriesByCategorySlug___programming___category
+  context___categoriesByCategorySlug___programming___categorySlug
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -3717,6 +3493,7 @@ input SitePageFilterInput {
   children: NodeFilterListInput
   internal: InternalFilterInput
   isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  context: SitePageContextFilterInput
   pluginCreator: SitePluginFilterInput
   pluginCreatorId: StringQueryOperatorInput
   componentPath: StringQueryOperatorInput

@@ -51,17 +51,20 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     id: ID!
     title: String!
     body: String!
-    excerpt: String!
+    excerpt(pruneLength: Int): String!
     banner: File
     
     slug: String!
     langKey: LangKey!
+    # Used to group translated content together
+    globalBlogPostId: ID!
 
     date: Date! @dateformat
     tags: [String!]
     # @IDEA If we wanted to link blog posts 
     # category: BlogPostCategory!
     category: String!
+    categorySlug: String!
 
     # SEO
     description: String
@@ -75,12 +78,15 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     
     slug: String!
     langKey: LangKey!
+    # Used to group translated content together
+    globalBlogPostId: ID!
 
     date: Date! @dateformat
     tags: [String!]
     # @IDEA If we wanted to link blog posts 
     # category: BlogPostCategory!
     category: String!
+    categorySlug: String!
 
     # SEO
     description: String

@@ -20,42 +20,40 @@ const TagList = ({ list = [] }) => (
   </Fragment>
 )
 
-export default function Post({ data: { site, mdx }, pageContext: { next, prev } }) {
+export default function Post({ data: { blogPost }, pageContext: { next, prev } }) {
   return (
     <MainLayout>
       <SEO
-        title={mdx.frontmatter.title}
-        description={mdx.frontmatter.description}
-        keywords={mdx.frontmatter.keywords}
+        title={blogPost.title}
+        description={blogPost.description}
+        keywords={blogPost.keywords}
       />
-      <h1>{mdx.frontmatter.title}</h1>
-      <h2>{mdx.frontmatter.date}</h2>
+      <h1>{blogPost.title}</h1>
+      <h2>{blogPost.date}</h2>
 
-      {mdx.frontmatter.banner && (
-        <Img sizes={mdx.frontmatter.banner.childImageSharp.sizes} />
-      )}
+      {blogPost.banner && <Img sizes={blogPost.banner.childImageSharp.sizes} />}
 
-      <MDXRenderer>{mdx.body}</MDXRenderer>
+      <MDXRenderer>{blogPost.body}</MDXRenderer>
 
       <div>
         <p>
           Category:{' '}
-          <Link to={`/blog/categories/${mdx.fields.categorySlug}`}>
-            {mdx.fields.category}
+          <Link to={`/blog/categories/${blogPost.categorySlug}`}>
+            {blogPost.category}
           </Link>
         </p>
-        <TagList list={mdx.frontmatter.tags} />
+        <TagList list={blogPost.tags} />
 
         <hr />
 
         {prev && (
           <span>
-            Previous <Link to={prev.fields.slug}>{prev.fields.title}</Link>
+            Previous <Link to={prev.slug}>{prev.title}</Link>
           </span>
         )}
         {next && (
           <span>
-            Next <Link to={next.fields.slug}>{next.fields.title}</Link>
+            Next <Link to={next.slug}>{next.title}</Link>
           </span>
         )}
       </div>
@@ -65,26 +63,22 @@ export default function Post({ data: { site, mdx }, pageContext: { next, prev } 
 
 export const pageQuery = graphql`
   query($id: String!) {
-    mdx(fields: { id: { eq: $id } }) {
-      frontmatter {
-        title
-        date(formatString: "MMMM DD, YYYY")
-        banner {
-          childImageSharp {
-            sizes(maxWidth: 900) {
-              ...GatsbyImageSharpSizes
-            }
+    blogPost(id: { eq: $id }) {
+      title
+      date(formatString: "MMMM DD, YYYY")
+      banner {
+        childImageSharp {
+          sizes(maxWidth: 900) {
+            ...GatsbyImageSharpSizes
           }
         }
-        keywords
-        description
       }
-      fields {
-        slug
-        category
-        categorySlug
-        tags
-      }
+      keywords
+      description
+      slug
+      category
+      categorySlug
+      tags
       body
     }
   }

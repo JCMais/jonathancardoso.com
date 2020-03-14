@@ -11,18 +11,18 @@ interface CategoryInfo {
 }
 
 const CategoryItem: React.FunctionComponent<{
-  postsByCategory: Object[]
+  postsOnCategory: Object[]
   activeCategory: CategoryInfo
-}> = ({ postsByCategory, activeCategory }) =>
-  console.log(postsByCategory) || (
+}> = ({ postsOnCategory, activeCategory }) =>
+  console.log(postsOnCategory) || (
     <div>
       <h1>
-        {postsByCategory.length} post
-        {postsByCategory.length === 1 ? '' : 's'} on category {activeCategory.category}
+        {postsOnCategory.length} post
+        {postsOnCategory.length === 1 ? '' : 's'} on category {activeCategory.category}
       </h1>
 
       <ul>
-        {postsByCategory.map(({ id, fields, excerpt }) => {
+        {postsOnCategory.map(({ id, fields, excerpt }) => {
           return (
             <li key={id}>
               <h1>
@@ -56,8 +56,7 @@ const CategoryList = ({ categories }) => (
 const Categories: React.FunctionComponent<PageProps<
   {},
   {
-    postsByCategories: Object[]
-    postsByCategory: Object[]
+    postsOnCategory: Object[]
     categories: Object[]
     activeCategory: CategoryInfo
   }

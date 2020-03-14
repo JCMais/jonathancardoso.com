@@ -68,8 +68,10 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
-    "clean": "rimraf .cache && yarn develop",
+    "dev": "gatsby develop",
+    "clean:dev": "yarn clean && yarn dev",
+    "clean:dev:watch": "nodemon --verbose --exec yarn clean:dev",
+    "clean": "rimraf .cache",
     "debug": "nodemon --exec \"node --inspect-brk --no-lazy node_modules/.bin/gatsby develop\"",
     "lint": "eslint . --ext ts --ext tsx",
     "gtd": "graphql-typescript-definitions --schema-path 'graphql/schema.json' --schema-types-path 'src/schema'",
