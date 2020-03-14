@@ -103,8 +103,7 @@
   "lint-staged": {
     "*.@(ts|tsx|js|jsx|mdx)": [
       "yarn lint --fix",
-      "yarn prettier-write",
-      "git add"
+      "yarn prettier-write"
     ]
   },
   "nodemonConfig": {
