@@ -2960,6 +2960,9 @@ enum SiteFieldsEnum {
   siteMetadata___title
   siteMetadata___description
   siteMetadata___keywords
+  siteMetadata___locale___defaultLangKey
+  siteMetadata___locale___supportedLanguages___en
+  siteMetadata___locale___supportedLanguages___pt_br
   port
   host
   pathPrefix
@@ -3108,42 +3111,11 @@ type SitePageContext {
   id: String
   prev: SitePageContextPrev
   next: SitePageContextNext
-  activeCategory: SitePageContextActiveCategory
-  postsOnCategory: [SitePageContextPostsOnCategory]
-  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlug
-}
-
-type SitePageContextActiveCategory {
-  category: String
-  categorySlug: String
-}
-
-input SitePageContextActiveCategoryFilterInput {
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
 }
 
 type SitePageContextCategories {
   category: String
   categorySlug: String
-}
-
-type SitePageContextCategoriesByCategorySlug {
-  programming: SitePageContextCategoriesByCategorySlugProgramming
-}
-
-input SitePageContextCategoriesByCategorySlugFilterInput {
-  programming: SitePageContextCategoriesByCategorySlugProgrammingFilterInput
-}
-
-type SitePageContextCategoriesByCategorySlugProgramming {
-  category: String
-  categorySlug: String
-}
-
-input SitePageContextCategoriesByCategorySlugProgrammingFilterInput {
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
 }
 
 input SitePageContextCategoriesFilterInput {
@@ -3163,9 +3135,6 @@ input SitePageContextFilterInput {
   id: StringQueryOperatorInput
   prev: SitePageContextPrevFilterInput
   next: SitePageContextNextFilterInput
-  activeCategory: SitePageContextActiveCategoryFilterInput
-  postsOnCategory: SitePageContextPostsOnCategoryFilterListInput
-  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlugFilterInput
 }
 
 type SitePageContextNext {
@@ -3206,34 +3175,6 @@ input SitePageContextPaginationFilterInput {
   previousPagePath: StringQueryOperatorInput
   pageCount: IntQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
-}
-
-type SitePageContextPostsOnCategory {
-  id: String
-  excerpt: String
-  title: String
-  slug: String
-  langKey: String
-  category: String
-  categorySlug: String
-  tags: [String]
-  body: String
-}
-
-input SitePageContextPostsOnCategoryFilterInput {
-  id: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  slug: StringQueryOperatorInput
-  langKey: StringQueryOperatorInput
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
-  tags: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-}
-
-input SitePageContextPostsOnCategoryFilterListInput {
-  elemMatch: SitePageContextPostsOnCategoryFilterInput
 }
 
 type SitePageContextPrev {
@@ -3388,20 +3329,6 @@ enum SitePageFieldsEnum {
   context___next___categorySlug
   context___next___tags
   context___next___body
-  context___activeCategory___category
-  context___activeCategory___categorySlug
-  context___postsOnCategory
-  context___postsOnCategory___id
-  context___postsOnCategory___excerpt
-  context___postsOnCategory___title
-  context___postsOnCategory___slug
-  context___postsOnCategory___langKey
-  context___postsOnCategory___category
-  context___postsOnCategory___categorySlug
-  context___postsOnCategory___tags
-  context___postsOnCategory___body
-  context___categoriesByCategorySlug___programming___category
-  context___categoriesByCategorySlug___programming___categorySlug
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -3457,6 +3384,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___display
   pluginCreator___pluginOptions___icon
   pluginCreator___pluginOptions___google___families
+  pluginCreator___pluginOptions___stages
+  pluginCreator___pluginOptions___options___emitWarning
+  pluginCreator___pluginOptions___options___failOnError
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -3662,6 +3592,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___display
   pluginOptions___icon
   pluginOptions___google___families
+  pluginOptions___stages
+  pluginOptions___options___emitWarning
+  pluginOptions___options___failOnError
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -3792,6 +3725,8 @@ type SitePluginPluginOptions {
   display: String
   icon: String
   google: SitePluginPluginOptionsGoogle
+  stages: [String]
+  options: SitePluginPluginOptionsOptions
   pathCheck: Boolean
 }
 
@@ -3809,6 +3744,8 @@ input SitePluginPluginOptionsFilterInput {
   display: StringQueryOperatorInput
   icon: StringQueryOperatorInput
   google: SitePluginPluginOptionsGoogleFilterInput
+  stages: StringQueryOperatorInput
+  options: SitePluginPluginOptionsOptionsFilterInput
   pathCheck: BooleanQueryOperatorInput
 }
 
@@ -3868,6 +3805,16 @@ input SitePluginPluginOptionsGoogleFilterInput {
   families: StringQueryOperatorInput
 }
 
+type SitePluginPluginOptionsOptions {
+  emitWarning: Boolean
+  failOnError: Boolean
+}
+
+input SitePluginPluginOptionsOptionsFilterInput {
+  emitWarning: BooleanQueryOperatorInput
+  failOnError: BooleanQueryOperatorInput
+}
+
 input SitePluginSortInput {
   fields: [SitePluginFieldsEnum]
   order: [SortOrderEnum] = [ASC]
@@ -3879,6 +3826,7 @@ type SiteSiteMetadata {
   title: String
   description: String
   keywords: [String]
+  locale: SiteSiteMetadataLocale
 }
 
 input SiteSiteMetadataFilterInput {
@@ -3887,6 +3835,27 @@ input SiteSiteMetadataFilterInput {
   title: StringQueryOperatorInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
+  locale: SiteSiteMetadataLocaleFilterInput
+}
+
+type SiteSiteMetadataLocale {
+  defaultLangKey: String
+  supportedLanguages: SiteSiteMetadataLocaleSupportedLanguages
+}
+
+input SiteSiteMetadataLocaleFilterInput {
+  defaultLangKey: StringQueryOperatorInput
+  supportedLanguages: SiteSiteMetadataLocaleSupportedLanguagesFilterInput
+}
+
+type SiteSiteMetadataLocaleSupportedLanguages {
+  en: String
+  pt_br: String
+}
+
+input SiteSiteMetadataLocaleSupportedLanguagesFilterInput {
+  en: StringQueryOperatorInput
+  pt_br: StringQueryOperatorInput
 }
 
 input SiteSortInput {

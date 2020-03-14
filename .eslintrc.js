@@ -32,6 +32,37 @@ module.exports = {
       },
     },
     {
+      files: ['*.mdx'],
+      plugins: ['@typescript-eslint'],
+      extends: [
+        'airbnb-typescript',
+        'prettier/@typescript-eslint',
+        'prettier/react',
+        'plugin:mdx/recommended',
+        'plugin:mdx/overrides',
+        'plugin:prettier/recommended',
+      ],
+      globals: {
+        YouTube: true,
+      },
+      settings: {
+        'import/resolver': {
+          'custom-alias': {
+            alias: { $r: './src' },
+            extensions: ['.ts', '.tsx'],
+          },
+        },
+      },
+      rules: {
+        // rule which requires parserServices to be generated.
+        '@typescript-eslint/no-implied-eval': 'off',
+        '@typescript-eslint/no-throw-literal': 'off',
+        '@typescript-eslint/no-unused-expressions': 'off',
+        'react/jsx-filename-extension': 'off',
+        'react/prop-types': 'off',
+      },
+    },
+    {
       files: ['*.tsx', '*.ts'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
@@ -40,9 +71,6 @@ module.exports = {
       },
       plugins: ['@typescript-eslint', 'graphql'],
       extends: [
-        // 'eslint:recommended',
-        // 'plugin:@typescript-eslint/eslint-recommended',
-        // 'plugin:@typescript-eslint/recommended',
         'airbnb-typescript',
         'prettier/@typescript-eslint',
         'prettier/react',
@@ -52,8 +80,6 @@ module.exports = {
       rules: {
         'no-restricted-syntax': 'off',
         'import/prefer-default-export': 'off',
-        // gatsby requires the comp to have a default export
-        // 'import/no-default-export': 'warn',
         'react/prop-types': 'off',
       },
     },

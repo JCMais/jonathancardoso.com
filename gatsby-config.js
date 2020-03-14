@@ -22,18 +22,6 @@ module.exports = {
     },
   },
   plugins: [
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        test: /\.js$|\.jsx$\.ts$|\.tsx$|/,
-        exclude: /(node_modules|.cache|public)/,
-        stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
-      },
-    },
     'gatsby-plugin-parent-resolvers',
     // images
     {
@@ -130,6 +118,18 @@ module.exports = {
       options: {
         google: {
           families: ['Fira Code', 'Quicksand:400,700', 'Karma:400,700', 'Lato:400,700'],
+        },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-eslint',
+      options: {
+        test: /\.js$|\.jsx$\.ts$|\.tsx$|/,
+        exclude: /(node_modules|.cache|public)/,
+        stages: ['develop'],
+        options: {
+          emitWarning: true,
+          failOnError: false,
         },
       },
     },
