@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import { useTranslation } from 'react-i18next'
 
 import { MainLayout } from '../layouts/MainLayout'
 import { Link } from '../components/ui/Link'
@@ -19,13 +20,15 @@ const Categories = ({ categories }) => (
 )
 
 const Blog = ({ data: { allBlogPost }, pageContext: { pagination, categories } }) => {
+  const { t, i18n: _i18n } = useTranslation('common')
+
   const { page, nextPagePath, previousPagePath } = pagination
 
   const posts = page.map(id => allBlogPost.edges.find(edge => edge.node.id === id))
-
   return (
     <MainLayout>
       <SEO title="Blog" />
+      <p>{t('test')}</p>
       <div>
         All categories on the blog: <Categories categories={categories} />
       </div>

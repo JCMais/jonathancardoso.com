@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved,import/extensions,no-console */
+
 /**
  * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
  *
@@ -9,13 +11,44 @@ import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 import 'prismjs/plugins/command-line/prism-command-line.css'
 import './assets/prismjs-theme.css'
 
-// import i18n (needs to be bundled ;))
-// it will be converted to js file, so we can ignore this warning
-// eslint-disable-next-line import/no-unresolved,import/extensions
-import './src/i18n'
+import Backend from 'i18next-sync-fs-backend'
+import { renderToString } from 'react-dom/server'
 
-// eslint-disable-next-line import/no-unresolved,import/extensions
+import { i18n, i18nConfig } from './src/i18n'
 import { Boot } from './src/Boot'
+import { getLangKeyFromPath } from './src/utils'
+
+// gatsby config is needed to grab locales info
+import config from './gatsby-config'
+
+const {
+  siteMetadata: { locale },
+} = config
+
+// heavily inspired on:
+//  https://github.com/onestopjs/gatsby-theme-localization/blob/54f98a960c2a7daae3dc262563f61cc32ae16230/gatsby-theme-localization/src/gatsby/ssr/feedTranslations.ts
+export const replaceRenderer = ({ bodyComponent, pathname, replaceBodyHTMLString }) => {
+  const langFromPathname = getLangKeyFromPath(
+    pathname,
+    Object.keys(locale.supportedLanguages),
+    locale.defaultLangKey,
+  )
+  console.info(`Rendering page ${pathname} - Lang: ${langFromPathname}`)
+  i18n.use(Backend).init({
+    ...i18nConfig,
+    debug: false,
+    lng: langFromPathname,
+    initImmediate: false,
+    backend: {
+      // path where resources get loaded from
+      loadPath: './static/locales/{{lng}}/{{ns}}.json',
+      // path to post missing resources
+      addPath: './static/locales/{{lng}}/{{ns}}.missing.json',
+    },
+  })
+
+  replaceBodyHTMLString(renderToString(bodyComponent))
+}
 
 // eslint-disable-next-line import/prefer-default-export
 export const wrapRootElement = Boot

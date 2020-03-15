@@ -23,6 +23,13 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-parent-resolvers',
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        isTSX: true,
+        allExtensions: true,
+      },
+    },
     // images
     {
       resolve: 'gatsby-source-filesystem',
@@ -40,13 +47,6 @@ module.exports = {
     },
     // pages / blog posts
     {
-      resolve: 'gatsby-plugin-typescript',
-      options: {
-        isTSX: true,
-        allExtensions: true,
-      },
-    },
-    {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/content/blog`,
@@ -57,7 +57,7 @@ module.exports = {
     // {
     //   resolve: 'gatsby-source-filesystem',
     //   options: {
-    //     path: `${__dirname}/content/pages`,
+    //     path: `${__dirname}/content/experiments`,
     //     name: 'experiments',
     //     //  ignore: ['**/.tsx*'],
     //   },
@@ -121,29 +121,19 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: 'gatsby-plugin-eslint',
-      options: {
-        test: /\.js$|\.jsx$\.ts$|\.tsx$|/,
-        exclude: /(node_modules|.cache|public)/,
-        stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: false,
-        },
-      },
-    },
     // {
-    //   resolve: 'gatsby-plugin-i18n',
+    //   resolve: 'gatsby-plugin-eslint',
     //   options: {
-    //     langKeyForNull: 'any',
-    //     langKeyDefault: languages.defaultLangKey,
-    //     // use a different layout for each langKey (src/layouts/en.js, src/layouts/pt.js, ...)
-    //     useLangKeyLayout: true,
-    //     prefixDefault: false,
+    //     test: /\.js$|\.jsx$\.ts$|\.tsx$|/,
+    //     exclude: /(node_modules|.cache|public)/,
+    //     stages: ['develop'],
+    //     options: {
+    //       emitWarning: true,
+    //       failOnError: false,
+    //     },
     //   },
     // },
     // @TODO add https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-feed
-    'gatsby-plugin-offline',
+    // 'gatsby-plugin-offline',
   ],
 }

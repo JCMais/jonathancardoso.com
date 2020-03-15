@@ -81,6 +81,11 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
+        'no-unused-vars': 'off',
+        '@typescript-eslint/no-unused-vars': [
+          'error',
+          { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+        ],
       },
     },
   ],
