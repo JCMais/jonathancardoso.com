@@ -90,7 +90,8 @@
     "release": "auto shipit",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
     "type-check": "tsc --pretty --noEmit",
-    "serve": "gatsby serve"
+    "serve": "gatsby serve",
+    "c:b:s": "yarn clean && gatsby build && gatsby serve"
   },
   "husky": {
     "hooks": {
