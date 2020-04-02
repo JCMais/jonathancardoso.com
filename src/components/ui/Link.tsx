@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
+import { Link as RebassLink } from 'rebass'
 
 export const Link: React.FunctionComponent<{ to: string }> = ({
   children,
@@ -11,15 +12,15 @@ export const Link: React.FunctionComponent<{ to: string }> = ({
 
   if (internal) {
     return (
-      <GatsbyLink to={to} {...props}>
+      <RebassLink to={to} {...props} as={GatsbyLink}>
         {children}
-      </GatsbyLink>
+      </RebassLink>
     )
   }
 
   return (
-    <a href={to} {...props}>
+    <RebassLink href={to} {...props}>
       {children}
-    </a>
+    </RebassLink>
   )
 }

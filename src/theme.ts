@@ -15,14 +15,19 @@ const gray = {
 }
 
 export const theme = {
+  breakpoints: ['40em', '52em', '64em'],
   colors: {
+    backgroundDarker: '#f2f2f2',
     text: '#000',
     background: '#fff',
-    primary: '#07c',
+    // primary: '#07c',
+    primary: '#080808',
     secondary: '#30c',
+    therdiary: '#474747',
     muted: '#f6f6f9',
     highlight: 'hsla(205, 100%, 40%, 0.125)',
     inactiveGray: gray['5'],
+    // 635E69
     gray,
   },
   fonts: {
@@ -30,11 +35,13 @@ export const theme = {
     heading: fonts.serif,
     monospace: fonts.mono,
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+  fontSizes: [12, 14, 16, 20, 24, 32, 36, 40, 48, 64, 96],
   fontWeights: {
     body: 400,
-    heading: 700,
+    semiBold: 600,
     bold: 700,
+    subHeading: 600,
+    heading: 700,
   },
   lineHeights: {
     body: 1.5,
@@ -57,6 +64,15 @@ export const theme = {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
+      color: 'primary',
+      fontSize: 7,
+    },
+    subHeading: {
+      fontFamily: 'heading',
+      lineHeight: 'heading',
+      fontWeight: 'subHeading',
+      color: 'therdiary',
+      fontSize: 6,
     },
     display: {
       fontFamily: 'heading',
@@ -64,9 +80,19 @@ export const theme = {
       lineHeight: 'heading',
       fontSize: [5, 6, 7],
     },
+    body: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
+      fontSize: 3,
+    },
     caps: {
       textTransform: 'uppercase',
       letterSpacing: '0.1em',
+    },
+    footer: {
+      fontFamily: 'body',
+      fontSize: 2,
     },
   },
   variants: {
@@ -82,6 +108,11 @@ export const theme = {
     },
     link: {
       color: 'primary',
+    },
+    linkHeader: {
+      color: 'primary',
+      textDecoration: 'underline',
+      fontFamily: 'body',
     },
     nav: {
       fontSize: 1,

@@ -81,6 +81,8 @@ module.exports = {
         'no-restricted-syntax': 'off',
         'import/prefer-default-export': 'off',
         'react/prop-types': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        'react/jsx-pascal-case': 'off',
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',

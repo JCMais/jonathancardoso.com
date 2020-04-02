@@ -1,5 +1,5 @@
-import styled from 'styled-components'
+import React from 'react'
 
 import { Heading } from './Heading'
 
-export const H2 = styled(Heading.withComponent('h2'))``
+export const H2 = props => <Heading as="h2" variant="subHeading" {...props} />
