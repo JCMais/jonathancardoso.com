@@ -11,6 +11,7 @@ import './assets/prismjs-theme.css'
 
 import Backend from 'i18next-xhr-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import * as moment from 'moment'
 
 // import i18n (needs to be bundled ;))
 // it will be converted to js file, so we can ignore this warning
@@ -28,14 +29,62 @@ i18n
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
   // pass the i18n instance to react-i18next.
-  .init({
-    ...i18nConfig,
+  .init(
+    {
+      ...i18nConfig,
 
-    detection: {
-      lookupFromPathIndex: 0,
-      order: ['path'],
+      detection: {
+        lookupFromPathIndex: 0,
+        order: ['path'],
+      },
     },
-  })
+    () => {
+      moment.locale(i18n.language)
+    },
+  )
 
 // eslint-disable-next-line import/prefer-default-export
 export const wrapRootElement = Boot
+
+// https://www.gatsbyjs.org/docs/browser-apis/#onClientEntry
+// based on comment https://github.com/angeloocana/gatsby-plugin-i18n/issues/92#issuecomment-580912666
+// @TODO Check if this is the best way to do that from a SEO pov
+export const onClientEntry = () => {
+  // @TODO use values from gatsby-config or some other central place
+  const languages = ['en', 'pt-br']
+  const urlStartsWithLangKey = languages.some(langKey =>
+    window.location.pathname.startsWith(`/${langKey}`),
+  )
+
+  if (!urlStartsWithLangKey) {
+    let foundLanguages = []
+
+    if (typeof navigator !== 'undefined') {
+      if (navigator.languages && navigator.languages.length) {
+        for (const langKey of navigator.languages) {
+          foundLanguages = [...foundLanguages, langKey]
+        }
+      }
+
+      if (navigator.userLanguage) {
+        foundLanguages = [...foundLanguages, navigator.userLanguage]
+      }
+
+      if (navigator.language) {
+        foundLanguages = [...foundLanguages, navigator.language]
+      }
+    }
+
+    let langKey = 'en'
+
+    for (const langKeyUser of foundLanguages) {
+      const langKeyUserLowerCase = langKeyUser.toLowerCase()
+      if (languages.includes(langKeyUserLowerCase)) {
+        langKey = langKeyUserLowerCase
+        break
+      }
+    }
+
+    window.location.pathname = `/${langKey}${window.location.pathname}`
+  }
+}

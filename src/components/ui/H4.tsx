@@ -7,7 +7,7 @@ export const H4 = props => (
     as="h4"
     variant="subHeading"
     sx={{
-      fontSize: 4,
+      fontSize: 3,
     }}
     {...props}
   />

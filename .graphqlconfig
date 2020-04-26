@@ -1,6 +1,0 @@
-{
-  "schemaPath": "graphql/schema.json",
-  "extensions": {
-    "schemaTypesPath": "src/schema"
-  }
-}

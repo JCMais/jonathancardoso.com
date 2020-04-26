@@ -13,6 +13,7 @@ import './assets/prismjs-theme.css'
 
 import Backend from 'i18next-sync-fs-backend'
 import { renderToString } from 'react-dom/server'
+import * as moment from 'moment'
 
 import { i18n, i18nConfig } from './src/i18n'
 import { Boot } from './src/Boot'
@@ -46,6 +47,7 @@ export const replaceRenderer = ({ bodyComponent, pathname, replaceBodyHTMLString
       addPath: './static/locales/{{lng}}/{{ns}}.missing.json',
     },
   })
+  moment.locale(langFromPathname)
 
   replaceBodyHTMLString(renderToString(bodyComponent))
 }

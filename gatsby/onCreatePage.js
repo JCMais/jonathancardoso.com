@@ -2,7 +2,7 @@
 const {
   siteMetadata: { locale },
 } = require('../gatsby-config')
-const { getLangKeyFromFilePath, trim } = require('./utils')
+const { getLangKeyFromFilePath, trim, convertLangKeyToEnum } = require('./utils')
 
 const supportedLanguagesKey = Object.keys(locale.supportedLanguages)
 
@@ -38,7 +38,6 @@ const onCreatePage = async ({ page, actions }) => {
   //  and not create any other page.
   // If the page is already on the cache, the one with .lang-key suffix should take precedence
 
-  const langKeyFromComponentPath = getLangKeyFromFilePath(page.componentPath, null)
   const hasLangKeySuffixOnComponentPath = /\.[a-z]{2}(-[a-z]{2})?\.tsx$/.test(
     page.componentPath,
   )
@@ -46,6 +45,8 @@ const onCreatePage = async ({ page, actions }) => {
 
   if (hasLangKeySuffixOnComponentPath) {
     // page has override for given lang key
+    const langKeyFromComponentPath = getLangKeyFromFilePath(page.componentPath, null)
+    const langKeyEnum = convertLangKeyToEnum(langKeyFromComponentPath)
     const pathWithLangKey = `/${langKeyFromComponentPath}${pathWithoutLangKey}`
 
     const cacheKey = pathWithLangKey
@@ -57,7 +58,8 @@ const onCreatePage = async ({ page, actions }) => {
       path: pathWithLangKey,
       context: {
         ...page.context,
-        langKey: langKeyFromComponentPath,
+        langKey: langKeyEnum,
+        langKeySlug: langKeyFromComponentPath,
       },
     }
     deletePage(page)
@@ -90,6 +92,8 @@ const onCreatePage = async ({ page, actions }) => {
     deletePage(page)
 
     for (const langKey of supportedLanguagesKey) {
+      const langKeyEnum = convertLangKeyToEnum(langKey)
+
       const pathWithLangKey = `/${trim(
         `/${langKey}/${trim(pathWithoutLangKey, '/')}/`,
         '/',
@@ -104,7 +108,8 @@ const onCreatePage = async ({ page, actions }) => {
         path: pathWithLangKey,
         context: {
           ...page.context,
-          langKey,
+          langKey: langKeyEnum,
+          langKeySlug: langKey,
         },
       }
 

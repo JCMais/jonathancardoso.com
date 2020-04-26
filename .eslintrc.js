@@ -30,6 +30,14 @@ module.exports = {
       rules: {
         'no-restricted-syntax': 'off',
       },
+      overrides: [
+        {
+          files: ['gatsby-browser.js'],
+          env: {
+            browser: true,
+          },
+        },
+      ],
     },
     {
       files: ['*.mdx'],

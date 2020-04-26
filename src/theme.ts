@@ -17,7 +17,7 @@ const gray = {
 export const theme = {
   breakpoints: ['40em', '52em', '64em'],
   colors: {
-    backgroundDarker: '#f2f2f2',
+    backgroundDarker: '#f5f5f5',
     text: '#000',
     background: '#fff',
     // primary: '#07c',
@@ -47,7 +47,7 @@ export const theme = {
     body: 1.5,
     heading: 1.25,
   },
-  space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  space: [0, 4, 8, 12, 16, 24, 32, 64, 128, 256, 512],
   sizes: {
     avatar: 48,
   },
@@ -84,7 +84,7 @@ export const theme = {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
-      fontSize: 3,
+      fontSize: 2,
     },
     caps: {
       textTransform: 'uppercase',
@@ -92,7 +92,7 @@ export const theme = {
     },
     footer: {
       fontFamily: 'body',
-      fontSize: 2,
+      fontSize: [1, 2],
     },
   },
   variants: {

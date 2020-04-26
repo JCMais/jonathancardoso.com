@@ -1,3 +1,8 @@
-import styled from '@emotion/styled'
+import React from 'react'
 
-export const Paragraph = styled.p``
+// import styled from '@emotion/styled'
+import { Text } from 'rebass'
+
+export const Paragraph = props => {
+  return <Text variant="body" as="p" {...props} />
+}

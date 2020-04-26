@@ -12,6 +12,9 @@
     "plugins": [
       {
         "name": "typescript-styled-plugin"
+      },
+      {
+        "name": "@divyenduz/ts-graphql-plugin"
       }
     ],
     "target": "es2015",

@@ -18,12 +18,15 @@ const PageHeight = styled.div`
 // `
 
 const PageContent = ({ children }) => (
-  <Box py={4} p={5}>
+  <Box py={[3, 4]} p={[4, 5]}>
     {children}
   </Box>
 )
 
-export const MainLayout: React.FunctionComponent = ({ children }) => {
+export const MainLayout: React.FunctionComponent = ({
+  children,
+  headerTitleComponent,
+}) => {
   const data = useStaticQuery(graphql`
     query MainLayoutQuery {
       site {
@@ -36,7 +39,10 @@ export const MainLayout: React.FunctionComponent = ({ children }) => {
 
   return (
     <PageHeight>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header
+        siteTitle={data.site.siteMetadata.title}
+        headerTitleComponent={headerTitleComponent}
+      />
       <PageContent>{children}</PageContent>
       <Footer />
     </PageHeight>

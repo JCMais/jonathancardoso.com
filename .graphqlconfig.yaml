@@ -1,0 +1,9 @@
+projects:
+  app:
+    schema: http://localhost:8000/___graphql
+    include: 'src/pages/**/*.tsx'
+    schemaPath: 'graphql/schema.json'
+    extensions:
+      endpoints:
+        default: http://localhost:8000/___graphql
+      schemaTypesPath: src/schema

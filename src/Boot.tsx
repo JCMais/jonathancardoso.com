@@ -1,14 +1,15 @@
 import React, { Suspense, Fragment } from 'react'
 import { MDXProvider } from '@mdx-js/react'
 
+import { MomentLanguageSwitcher } from './MomentLanguageSwitcher'
 import { ThemeProvider } from './ThemeProvider'
 import { MDXGlobalComponents, MDXLayoutComponents } from './components/mdx'
 
 const MaybeSuspense = typeof document !== 'undefined' ? Suspense : Fragment
 
 export const Boot: React.FunctionComponent<{ element: any }> = ({ element }) => (
-  <ThemeProvider>
-    <>
+  <MomentLanguageSwitcher>
+    <ThemeProvider>
       <MDXProvider
         components={{
           ...MDXLayoutComponents,
@@ -17,6 +18,6 @@ export const Boot: React.FunctionComponent<{ element: any }> = ({ element }) => 
       >
         <MaybeSuspense fallback="Loading...">{element}</MaybeSuspense>
       </MDXProvider>
-    </>
-  </ThemeProvider>
+    </ThemeProvider>
+  </MomentLanguageSwitcher>
 )
