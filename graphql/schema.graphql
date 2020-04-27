@@ -3113,42 +3113,11 @@ type SitePageContext {
   id: String
   prev: SitePageContextPrev
   next: SitePageContextNext
-  activeCategory: SitePageContextActiveCategory
-  postsOnCategory: [SitePageContextPostsOnCategory]
-  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlug
-}
-
-type SitePageContextActiveCategory {
-  category: String
-  categorySlug: String
-}
-
-input SitePageContextActiveCategoryFilterInput {
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
 }
 
 type SitePageContextCategories {
   category: String
   categorySlug: String
-}
-
-type SitePageContextCategoriesByCategorySlug {
-  programming: SitePageContextCategoriesByCategorySlugProgramming
-}
-
-input SitePageContextCategoriesByCategorySlugFilterInput {
-  programming: SitePageContextCategoriesByCategorySlugProgrammingFilterInput
-}
-
-type SitePageContextCategoriesByCategorySlugProgramming {
-  category: String
-  categorySlug: String
-}
-
-input SitePageContextCategoriesByCategorySlugProgrammingFilterInput {
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
 }
 
 input SitePageContextCategoriesFilterInput {
@@ -3168,9 +3137,6 @@ input SitePageContextFilterInput {
   id: StringQueryOperatorInput
   prev: SitePageContextPrevFilterInput
   next: SitePageContextNextFilterInput
-  activeCategory: SitePageContextActiveCategoryFilterInput
-  postsOnCategory: SitePageContextPostsOnCategoryFilterListInput
-  categoriesByCategorySlug: SitePageContextCategoriesByCategorySlugFilterInput
 }
 
 type SitePageContextNext {
@@ -3199,46 +3165,14 @@ input SitePageContextNextFilterInput {
 
 type SitePageContextPagination {
   page: [String]
-  nextPagePath: String
-  previousPagePath: String
   pageCount: Int
   pathPrefix: String
 }
 
 input SitePageContextPaginationFilterInput {
   page: StringQueryOperatorInput
-  nextPagePath: StringQueryOperatorInput
-  previousPagePath: StringQueryOperatorInput
   pageCount: IntQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
-}
-
-type SitePageContextPostsOnCategory {
-  id: String
-  excerpt: String
-  title: String
-  slug: String
-  langKey: String
-  category: String
-  categorySlug: String
-  tags: [String]
-  body: String
-}
-
-input SitePageContextPostsOnCategoryFilterInput {
-  id: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
-  title: StringQueryOperatorInput
-  slug: StringQueryOperatorInput
-  langKey: StringQueryOperatorInput
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
-  tags: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-}
-
-input SitePageContextPostsOnCategoryFilterListInput {
-  elemMatch: SitePageContextPostsOnCategoryFilterInput
 }
 
 type SitePageContextPrev {
@@ -3365,8 +3299,6 @@ enum SitePageFieldsEnum {
   internal___type
   isCreatedByStatefulCreatePages
   context___pagination___page
-  context___pagination___nextPagePath
-  context___pagination___previousPagePath
   context___pagination___pageCount
   context___pagination___pathPrefix
   context___categories
@@ -3393,20 +3325,6 @@ enum SitePageFieldsEnum {
   context___next___categorySlug
   context___next___tags
   context___next___body
-  context___activeCategory___category
-  context___activeCategory___categorySlug
-  context___postsOnCategory
-  context___postsOnCategory___id
-  context___postsOnCategory___excerpt
-  context___postsOnCategory___title
-  context___postsOnCategory___slug
-  context___postsOnCategory___langKey
-  context___postsOnCategory___category
-  context___postsOnCategory___categorySlug
-  context___postsOnCategory___tags
-  context___postsOnCategory___body
-  context___categoriesByCategorySlug___programming___category
-  context___categoriesByCategorySlug___programming___categorySlug
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id

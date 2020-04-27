@@ -1,4 +1,5 @@
 // MDX elements- see https://gatsby-mdx.netlify.com/guides/customizing-components
+import React from 'react'
 import YouTube from 'react-youtube'
 
 import { BlockQuote } from './ui/BlockQuote'
@@ -15,7 +16,7 @@ export const MDXLayoutComponents = {
   h2: H2,
   h3: H3,
   h4: H4,
-  p: Paragraph,
+  p: props => <Paragraph variant="postBody" {...props} />,
   blockquote: BlockQuote,
 }
 

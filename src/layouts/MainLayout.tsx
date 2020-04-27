@@ -1,13 +1,13 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from '@emotion/styled'
-import { Box } from 'rebass'
+import { Box, Flex } from 'rebass'
 
 import { Header } from '../components/Header'
 import { Footer } from '../components/Footer'
 
-const PageHeight = styled.div`
-  flex: 1;
+const PageHeight = styled(Flex)`
+  /* flex: 1; */
   flex-direction: column;
   min-height: 100vh;
   background-color: ${props => props.theme.colors.backgroundDarker};
@@ -26,6 +26,7 @@ const PageContent = ({ children }) => (
 export const MainLayout: React.FunctionComponent = ({
   children,
   headerTitleComponent,
+  ...props
 }) => {
   const data = useStaticQuery(graphql`
     query MainLayoutQuery {
@@ -38,7 +39,7 @@ export const MainLayout: React.FunctionComponent = ({
   `)
 
   return (
-    <PageHeight>
+    <PageHeight {...props}>
       <Header
         siteTitle={data.site.siteMetadata.title}
         headerTitleComponent={headerTitleComponent}

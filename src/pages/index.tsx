@@ -132,6 +132,7 @@ const SocialNetworkIconWrapper = styled(Box)`
 `
 const SocialNetworkUsername = props => <Text ml={2} as="span" variant="body" {...props} />
 
+// @TODO Page Content Wrapper - Duplicated
 const Wrapper = ({ children }) => {
   return (
     <Flex flexDirection="column" alignItems="center">
@@ -156,6 +157,7 @@ export const IndexPage = ({ data }) => {
 
   const postsPerMonth = posts.reduce(
     (acc, { node }) => ({
+      ...acc,
       [node.dateMonth]: [...(acc[node.dateMonth] || []), node],
     }),
     {},
@@ -279,7 +281,9 @@ export const IndexPage = ({ data }) => {
                 </div>
               ))}
             </PostsTimeline>
-            <p>@TODO BUTTON HERE TO SEE ALL POSTS</p>
+            <Link to="/blog" lng>
+              See all posts
+            </Link>
           </ContentBox>
         )}
       </Wrapper>

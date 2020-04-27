@@ -5,6 +5,7 @@ const fonts = {
 }
 
 const gray = {
+  0: 'hsl(0,0%,20%)',
   1: 'hsl(0,0%,32%)',
   2: 'hsl(0,0%,47%)',
   3: 'hsl(0,0%,58%)',
@@ -50,6 +51,9 @@ export const theme = {
   space: [0, 4, 8, 12, 16, 24, 32, 64, 128, 256, 512],
   sizes: {
     avatar: 48,
+    icon: {
+      smaller: 21,
+    },
   },
   radii: {
     default: 4,
@@ -85,6 +89,12 @@ export const theme = {
       fontWeight: 'body',
       lineHeight: 'body',
       fontSize: 2,
+    },
+    postBody: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
+      fontSize: [3],
     },
     caps: {
       textTransform: 'uppercase',
