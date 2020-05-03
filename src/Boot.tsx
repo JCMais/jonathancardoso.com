@@ -7,17 +7,19 @@ import { MDXGlobalComponents, MDXLayoutComponents } from './components/mdx'
 
 const MaybeSuspense = typeof document !== 'undefined' ? Suspense : Fragment
 
-export const Boot: React.FunctionComponent<{ element: any }> = ({ element }) => (
-  <MomentLanguageSwitcher>
-    <ThemeProvider>
-      <MDXProvider
-        components={{
-          ...MDXLayoutComponents,
-          ...MDXGlobalComponents,
-        }}
-      >
-        <MaybeSuspense fallback="Loading...">{element}</MaybeSuspense>
-      </MDXProvider>
-    </ThemeProvider>
-  </MomentLanguageSwitcher>
-)
+export const Boot: React.FunctionComponent<{ element: any }> = ({ element }) => {
+  return (
+    <MomentLanguageSwitcher>
+      <ThemeProvider>
+        <MDXProvider
+          components={{
+            ...MDXLayoutComponents,
+            ...MDXGlobalComponents,
+          }}
+        >
+          <MaybeSuspense fallback="Loading...">{element}</MaybeSuspense>
+        </MDXProvider>
+      </ThemeProvider>
+    </MomentLanguageSwitcher>
+  )
+}

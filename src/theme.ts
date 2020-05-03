@@ -1,5 +1,5 @@
 const fonts = {
-  mono: 'Fira Mono',
+  mono: "'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
   sans: 'Quicksand, Lato, Helvetica, sans-serif',
   serif: 'Karma, Times, serif',
 }
@@ -18,7 +18,8 @@ const gray = {
 export const theme = {
   breakpoints: ['40em', '52em', '64em'],
   colors: {
-    backgroundDarker: '#f5f5f5',
+    // #f7f7f7
+    backgroundDarker: 'hsla(0, 0%, 97%, 1)',
     text: '#000',
     background: '#fff',
     // primary: '#07c',
@@ -36,7 +37,7 @@ export const theme = {
     heading: fonts.serif,
     monospace: fonts.mono,
   },
-  fontSizes: [12, 14, 16, 20, 24, 32, 36, 40, 48, 64, 96],
+  fontSizes: [12, 14, 16, 18, 20, 24, 32, 36, 40, 48, 64, 96],
   fontWeights: {
     body: 400,
     semiBold: 600,
@@ -46,6 +47,8 @@ export const theme = {
   },
   lineHeights: {
     body: 1.5,
+    postBody: 1.65,
+    quote: 1.4,
     heading: 1.25,
   },
   space: [0, 4, 8, 12, 16, 24, 32, 64, 128, 256, 512],
@@ -53,6 +56,7 @@ export const theme = {
     avatar: 48,
     icon: {
       smaller: 21,
+      normal: 32,
     },
   },
   radii: {
@@ -94,8 +98,9 @@ export const theme = {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
-      fontSize: [3],
+      fontSize: [4],
     },
+    quote: {},
     caps: {
       textTransform: 'uppercase',
       letterSpacing: '0.1em',

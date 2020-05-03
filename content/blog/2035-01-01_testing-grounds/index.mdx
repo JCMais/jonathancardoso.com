@@ -1,0 +1,163 @@
+---
+# slug: "mdx-example"
+date: '2035-01-01T00:00:00.000Z'
+title: 'Testing Features of the Blog Here - Part 1'
+description: 'In this article we will be testing all stuff we can do here...'
+category: 'Programming'
+tags: ['react-native', 'ci-cd', 'circle-ci', 'fastlane']
+keywords: ['react', 'react-native', 'ci-cd', 'circle-ci', 'fastlane']
+banner: './images/banner.png'
+---
+
+In this article, we will learn how to deploy React Native apps to the Android Play Store automatically using [fastlane](https://fastlane.tools/) and [CircleCI](https://circleci.com/).  
+
+Our goal is to use specific release tracks on Play Store to give us a fast and reliable environment to test and iterate on our app, be it on the internal tracking branch or the open beta one, before sending the release to production and making it available on the Play Store.
+
+Screenshot #1:
+![Image alt text](./images/screenshot-1.png "This is my image")
+Figure: This is a caption
+
+Each of the three release tracks we are going to use is going to match one of the branches on our repository:
+
+Emojis: 😁😂🤣😃😄😅😆
+
+## Heading 2
+### Heading 3
+#### Heading 4
+
+This is a **strong**, then a *emphasized* text.
+
+<p style="text-align: center">This is a center aligned text</p>
+
+Now some quoted text:
+> Line 1 - Something something something something something something something something something something  
+> Line 2 - Something something something something something something something something something something  
+> Line 3 - Something something something something something something something something something something  
+> Line 4 - Something something something something something something something something something something  
+> > Line 4.1 - Something something something something something something something something something something 
+
+*<p style="text-align: right">We could use right aligned text to give the source</p>*
+
+Some JSX Code running directly from Markdown (🧡 mdx):
+
+import { SampleButton } from './code-example/sample-code'
+
+<SampleButton />
+
+***
+
+This is a footnote[^1].  
+
+This is a topic list:  
+* Topic A
+* Topic B
+* Topic C  
+
+This is a numbered list:
+
+1. This is a numbered list  
+1. there it goes  
+1. so on...  
+     asda
+     * It can be nested
+     * Like this.
+
+This is a table:
+
+| column1 | column2 | column3 |
+| :--     | :-:     | -:      |
+| r1col1  | r1col2  | r1col3  |
+| r2col1  | r2col2  | r2col3  |
+| r3col1  | r3col2  | r3col3  |
+| r4col1  | r4col2  | r4col3  |
+
+    This is a pre
+      formatted text.
+        It will appear exactly like typed.
+
+---
+
+This is a inline code `echo "Hello World"`
+
+This is a highlighted inline code:  `js|>console.log("lol")`
+
+This is a highlighted codeblock with line numbers:  
+```typescript{numberLines: true}
+import React from 'react'
+
+import { Text } from 'rebass'
+
+export const ListItem = props => {
+  return <Text variant="body" as="li" {...props} />
+}
+```
+
+This is a highlighted codeblock with line highlights:  
+```typescript
+import React from 'react'
+
+// highlight-start
+import { Text } from                                                         'rebass'
+// highlight-end
+
+export const ListItem = props => {
+  return <Text variant="body" as="li" {...props} />
+}
+```
+
+This is a highlighted codeblock with both line numbers and line highlights:  
+```typescript{numberLines: true}
+import React from 'react'
+
+// highlight-start
+import { Text } from                                                         'rebass'
+// highlight-end
+
+export const ListItem = props => {
+  return <Text variant="body" as="li" {...props} />
+}
+```
+
+This is a highlighted codeblock with some lines hidden:  
+```typescript
+import React from 'react'
+
+import { Text } from 'rebass'
+
+// hide-next-line
+import { Something } from 'something'
+
+export const ListItem = props => {
+  return <Text variant="body" as="li" {...props} />
+}
+```
+
+This is a highlighted codeblock with a file title:  
+```js:title=example-file.js
+console.log('lol')
+```
+
+This is a highlighted codeblock for an embed file:  
+```embed:code-example/sample-code.tsx```
+
+This is a shell prompt:  
+```bash {promptUser: jcm}{prompHost: dev.localhost}{outputLines: 2}
+echo "stuff" | grep stuff
+stuff
+```
+
+First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+
+This is some HTML
+   
+
+Alpha Track -> develop Branch
+Beta Track -> staging Branch
+Production Track -> master branch
+
+[^1]: Something can be said here.

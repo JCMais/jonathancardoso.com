@@ -79,10 +79,6 @@ const onCreatePage = async ({ page, actions }) => {
         ...newPage,
         matchPath: `/${langKeyFromComponentPath}/*`,
       }
-      console.log('Creating localized 404 page', { newPage, page })
-    } else {
-      // None of above, just create the new page
-      console.log('Creating localized page', { newPage, page })
     }
 
     createPage(newPage)
@@ -131,7 +127,6 @@ const onCreatePage = async ({ page, actions }) => {
             ...newPage,
             path: page.path,
           }
-          console.log('Creating root 404 page', { newPage, page })
         } else if (newPage.path.match(/^\/[a-z]{2}(-[a-z]{2})?\/404\/$/)) {
           // The page is a localized 404
           // Recreate the modified page
@@ -139,10 +134,6 @@ const onCreatePage = async ({ page, actions }) => {
             ...newPage,
             matchPath: `/${langKey}/*`,
           }
-          console.log('Creating localized 404 page', { newPage, page })
-        } else {
-          // None of above, just create the new page
-          console.log('Creating localized page', { newPage, page })
         }
 
         createPage(newPage)

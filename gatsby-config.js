@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
@@ -77,9 +78,18 @@ module.exports = {
               maxWidth: 1035,
             },
           },
+          {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {},
+          },
+          {
+            resolve: 'gatsby-remark-code-titles',
+          },
           // @TODO Investigate using prism-react-renderer instead
           //        See https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/#gatsby-remark-plugins
           //  Or use https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/
+          // https://mdxjs.com/guides/syntax-highlighting#build-a-codeblock-component
+          // https://astexplorer.net/#/gist/192c72d2e03cb6875ec4de12f7bf0028/latest
           {
             resolve: 'gatsby-remark-prismjs',
             options: {
@@ -91,9 +101,44 @@ module.exports = {
           {
             resolve: 'gatsby-remark-copy-linked-files',
             options: {
-              destinationDir: f => `downloads/${f.hash}/${f.name}`,
+              destinationDir: (f) => `downloads/${f.hash}/${f.name}`,
             },
           },
+        ],
+        remarkPlugins: [
+          require('./gatsby/remarkPlugins/definitionLists'),
+          [
+            require('remark-captions'),
+            {
+              external: {
+                table: 'Table:',
+                code: 'Code:',
+              },
+
+              internal: {
+                blockquote: 'Source:',
+                image: 'Figure:',
+              },
+            },
+          ],
+        ],
+        rehypePlugins: [
+          require('rehype-accessible-emojis').rehypeAccessibleEmojis,
+          require('rehype-slug'),
+          [
+            require('rehype-autolink-headings'),
+            {
+              behavior: 'prepend',
+              content: {
+                type: 'element',
+                tagName: 'span',
+                properties: { className: ['link-icon'] },
+                children: [],
+              },
+            },
+          ],
+          // [require('rehype-autolink-headings'), { behavior: 'prepend' }],
+          // require('rehype-toc'),
         ],
       },
     },

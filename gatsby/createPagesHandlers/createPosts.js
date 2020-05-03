@@ -2,10 +2,19 @@ const path = require('path')
 
 const { convertLangKeyFromEnum } = require('../utils')
 
+const hasSameLangKey = (langKey) => (edge) => edge.node.langKey === langKey
+
 const createPosts = (createPage, edges) => {
   edges.forEach(({ node }, i) => {
-    const prev = i === 0 ? null : edges[i - 1].node
-    const next = i === edges.length - 1 ? null : edges[i + 1].node
+    const prevEdges =
+      i !== 0 ? edges.slice(0, i - 1).filter(hasSameLangKey(node.langKey)) : []
+    const nextEdges =
+      i !== edges.length - 1
+        ? edges.slice(i + 1).filter(hasSameLangKey(node.langKey))
+        : []
+
+    const prev = prevEdges.length ? prevEdges[prevEdges.length - 1].node : null
+    const next = nextEdges.length ? nextEdges[0].node : null
 
     createPage({
       // This is the slug we created before

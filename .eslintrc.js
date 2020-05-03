@@ -29,6 +29,10 @@ module.exports = {
       extends: ['airbnb', 'plugin:prettier/recommended'],
       rules: {
         'no-restricted-syntax': 'off',
+        'no-unused-vars': [
+          'error',
+          { ignoreRestSiblings: true, argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+        ],
       },
       overrides: [
         {
@@ -91,7 +95,10 @@ module.exports = {
         'react/prop-types': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-pascal-case': 'off',
-        'no-unused-vars': 'off',
+        'no-unused-vars': [
+          'error',
+          { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
+        ],
         '@typescript-eslint/no-unused-vars': [
           'error',
           { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },

@@ -66,6 +66,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     category: String!
     categorySlug: String!
 
+    tableOfContents(maxDepth: Int): JSON!
+
     # SEO
     description: String
     keywords: [String!]
@@ -91,6 +93,8 @@ exports.createSchemaCustomization = ({ actions }) => {
     # SEO
     description: String
     keywords: [String!]
+
+    tableOfContents(maxDepth: Int): JSON! @parentResolverPassthrough(field: "tableOfContents") @defaultArgValueNumber(argName: "maxDepth", defaultValue: 2)
 
     # not really needed to specify the default value here, since it is already done on remark resolver
     # doing it just to test the extension defaultArgValueNumber extension above
