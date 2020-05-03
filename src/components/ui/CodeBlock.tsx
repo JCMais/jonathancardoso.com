@@ -3,7 +3,6 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 
 export const CodeBlock = ({ children, className }) => {
   const language = className.replace(/language-/, '')
-  console.log(children)
   return (
     <Highlight {...defaultProps} code={children} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

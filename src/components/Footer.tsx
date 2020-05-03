@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { Box, Flex, Text } from 'rebass'
 import { useTheme } from 'emotion-theming'
@@ -13,7 +13,7 @@ import { Link } from './ui/Link'
 
 import { GatsbyIcon as _GatsbyIcon } from './icon/GatsbyIcon'
 
-const FooterIcon = props => {
+const FooterIcon = (props) => {
   const { icon: Icon, to, ...otherProps } = props
   const theme = useTheme()
 

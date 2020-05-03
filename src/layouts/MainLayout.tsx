@@ -10,7 +10,7 @@ const PageHeight = styled(Flex)`
   /* flex: 1; */
   flex-direction: column;
   min-height: 100vh;
-  background-color: ${props => props.theme.colors.backgroundDarker};
+  background-color: ${(props) => props.theme.colors.backgroundDarker};
 `
 
 // const PageContent = styled.main`
@@ -18,7 +18,7 @@ const PageHeight = styled(Flex)`
 // `
 
 const PageContent = ({ children }) => (
-  <Box py={[3, 4]} p={[4, 5]}>
+  <Box py={[3, 4]} p={[4, 5]} flex={1}>
     {children}
   </Box>
 )

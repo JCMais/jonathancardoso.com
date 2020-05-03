@@ -2,13 +2,14 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src.prev",
+    "baseUrl": "src",
     "jsx": "react",
     "lib": ["dom", "esnext", "es2015", "es2016", "es2017"],
     "moduleResolution": "node",
     "noImplicitAny": false,
     "noUnusedLocals": false,
     "noUnusedParameters": false,
+    "esModuleInterop": true,
     "plugins": [
       {
         "name": "typescript-styled-plugin"
@@ -18,7 +19,11 @@
       }
     ],
     "target": "es2015",
-    "types": ["node"]
+    "types": ["node", "./types/helpers.d.ts"],
+    // must also be added to gatsby/onCreateWebpackConfig.ts
+    "paths": {
+      "@shared/*": ["../shared/*"],
+    }
   },
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules/*", "public/*"]

@@ -1,3 +1,7 @@
 {
-  "watch": ["gatsby/**/*"]
+  "watch": ["gatsby/**/*"],
+  "ext": "ts",
+  "events": {
+    "start": "cls || clear"
+  }
 }

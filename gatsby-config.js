@@ -3,6 +3,7 @@ module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     siteUrl: 'https://jonathancardoso.dev/',
+    githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.com/',
     author: 'Jonathan Cardoso Machado',
     title: 'JCM',
     description: "Jonathan Cardoso Developer's Thoughts",
@@ -106,7 +107,7 @@ module.exports = {
           },
         ],
         remarkPlugins: [
-          require('./gatsby/remarkPlugins/definitionLists'),
+          require('./remarkPlugins/definitionLists'),
           [
             require('remark-captions'),
             {
@@ -126,6 +127,7 @@ module.exports = {
           require('rehype-accessible-emojis').rehypeAccessibleEmojis,
           require('rehype-slug'),
           [
+            // using this instead of gatsby-remark-autolink-headers
             require('rehype-autolink-headings'),
             {
               behavior: 'prepend',
@@ -167,6 +169,7 @@ module.exports = {
         },
       },
     },
+    'gatsby-plugin-preload-fonts',
     // {
     //   resolve: 'gatsby-plugin-eslint',
     //   options: {

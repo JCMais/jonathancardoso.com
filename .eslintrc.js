@@ -20,6 +20,7 @@ module.exports = {
         tagName: 'graphql',
       },
     ],
+    'import/named': 'off',
   },
   overrides: [
     {
@@ -29,6 +30,9 @@ module.exports = {
       extends: ['airbnb', 'plugin:prettier/recommended'],
       rules: {
         'no-restricted-syntax': 'off',
+        'react/prop-types': 'off',
+        'react/jsx-props-no-spreading': 'off',
+        'react/jsx-filename-extension': 'off',
         'no-unused-vars': [
           'error',
           { ignoreRestSiblings: true, argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
@@ -70,8 +74,8 @@ module.exports = {
         '@typescript-eslint/no-implied-eval': 'off',
         '@typescript-eslint/no-throw-literal': 'off',
         '@typescript-eslint/no-unused-expressions': 'off',
-        'react/jsx-filename-extension': 'off',
         'react/prop-types': 'off',
+        'react/jsx-filename-extension': 'off',
       },
     },
     {

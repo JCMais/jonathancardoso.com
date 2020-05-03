@@ -1,9 +1,9 @@
 {
-  "Hi!": "Hi!",
+  "Hi!": "Hey! 👋",
   "imjonathan": "I'm Jonathan Cardoso Machado",
-  "description": "I've been working as Software Developer for the past {{years}} years, and this is my own personal place on the Internet.",
-  "welcome": "Make yourself at home",
-  "Social Networks": "Social Networks",
+  "description": "I've been working as Software Developer for the past {{years}} years.\nWhenever possible I'm also the team's DevOps Specialist, responsible for improving the Developer Experience and CI/CD pipeline.\nCurrently in love with Elixir, Typescript e GraphQL.",
+  "discussMail": "Want to discuss something? Send me an email: me [at] jonathancardoso [dot] com",
+  "Social Networks": "Follow Me Elsewhere",
   "More details about myself": "For more details about myself, hit the <2>About page</2>",
   "Latest Thoughts": "Latest Thoughts"
 }

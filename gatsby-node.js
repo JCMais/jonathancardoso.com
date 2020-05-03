@@ -1,8 +1,12 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /**
  * Implement Gatsby's Node APIs in this file.
  *
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
+require('ts-node').register({ files: true })
+require('tsconfig-paths/register')
+
 const {
   createPages,
   createSchemaCustomization,
@@ -10,7 +14,7 @@ const {
   onCreatePage,
   onCreateWebpackConfig,
   onPostBootstrap,
-} = require('./gatsby')
+} = require('./gatsby/index.ts')
 
 exports.createPages = createPages
 exports.onCreateWebpackConfig = onCreateWebpackConfig

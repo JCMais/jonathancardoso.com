@@ -10,33 +10,11 @@ With ideas from:
 - https://github.com/wiziple/gatsby-plugin-intl
 - gatsby-theme-localization
 
-A starter project in [Gatsby.js](https://www.gatsbyjs.org/) with [MDX](https://github.com/mdx-js/mdx) to render React components in Markdown. Used by:
+## Where is gatsby-plugin-typescript?
+https://github.com/gatsbyjs/gatsby/pull/23547
 
-* [Egghead.io](https://github.com/eggheadio/gatsby-starter-egghead-blog)
-* [Kent C. Dodds](https://github.com/kentcdodds/kentcdodds.com)
-* [Robin Wieruch](https://www.robinwieruch.de/)
+## Frontmatter Fields
+If new frontmatter fields are added, they also must be added to the following places:
 
-## Features
-
-* MDX: JavaScript/React in Markdown
-  * see */content/blog/mdx-example*
-* Prism.js: Syntax Highlighting
-* Pagination
-* Categories
-* External Dependencies (e.g. YouTube Player in MDX)
-
-## Setup
-
-* `git clone git@github.com:rwieruch/gatsby-mdx-blog-starter-project.git`
-* `cd gatsby-mdx-blog-starter-project`
-* `npm install`
-* `gatsby develop`
-* visit http://localhost:8000
-
-## Setup via Gatsby CLI
-
-* `gatsby new gatsby-mdx-blog-starter-project git@github.com:rwieruch/gatsby-mdx-blog-starter-project.git`
-* `cd gatsby-mdx-blog-starter-project`
-* `npm install`
-* `gatsby develop`
-* visit http://localhost:8000
+- [gatsby/onCreateNode.js](./gatsby/onCreateNode.js) - Search for `blogFields`
+- [gatsby/createSchemaCustomization.js](./gatsby/createSchemaCustomization.js) - Add to the type definitions of the BlogPost interface and the MdxBlogPost type.

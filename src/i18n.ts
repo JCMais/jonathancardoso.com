@@ -4,19 +4,23 @@
 import _i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+import { locale } from '@shared/config'
+import { convertLangKeyToISO } from '@shared/utils'
+
 // for all options read: https://www.i18next.com/overview/configuration-options
 export const i18nConfig = {
   fallbackLng: 'en',
-
-  // have a common namespace used around the full app
-  ns: ['common'],
+  ns: ['common', 'footer'],
   defaultNS: 'common',
-
+  whitelist: Object.keys(locale.supportedLanguages).map((langKey) =>
+    convertLangKeyToISO(langKey),
+  ),
   interpolation: {
     // not needed for react as it escapes by default
     escapeValue: false,
   },
-  debug: process.env.NODE_ENV && process.env.NODE_ENV === 'development',
+  // debug: process.env.NODE_ENV && process.env.NODE_ENV === 'development',
+  debug: true,
   react: {
     wait: true,
   },

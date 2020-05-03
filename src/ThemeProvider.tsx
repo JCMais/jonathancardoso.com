@@ -19,7 +19,7 @@ import { theme } from './theme'
 export const ThemeProvider = ({ children }) => {
   useEffect(() => {
     // Add temporary box to wrapper
-    let scrollbox = document.createElement('div')
+    const scrollbox = document.createElement('div')
 
     // Make box scrollable
     scrollbox.style.overflow = 'scroll'
@@ -32,8 +32,8 @@ export const ThemeProvider = ({ children }) => {
 
     // Remove box
     document.body.removeChild(scrollbox)
-    document.documentElement.style.setProperty('--scrollbar-width', scrollBarWidth + 'px')
-    console.log('RUNNING RUNNING RUNNING', scrollBarWidth + 'px')
+    document.documentElement.style.setProperty('--scrollbar-width', `${scrollBarWidth}px`)
+    document.body.classList.add('scrollbar-var-ready')
   })
 
   return (
@@ -45,7 +45,17 @@ export const ThemeProvider = ({ children }) => {
             ${normalize};
 
             :root {
-              /* --scrollbar-width: calc(100vw - 100%); */
+              --scrollbar-width: 0px;
+            }
+
+            body {
+              font-family: ${theme.fonts.body};
+              font-size: ${theme.fontSizes[3]}px;
+              font-weight: ${theme.fontWeights.body};
+            }
+
+            .gatsby-resp-image-wrapper {
+              border: 1px solid hsl(0, 0%, 65%);
             }
 
             /**

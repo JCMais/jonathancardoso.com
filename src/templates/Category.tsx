@@ -1,9 +1,14 @@
 import React from 'react'
-import { PageProps } from 'gatsby'
+import { PageProps, graphql } from 'gatsby'
 
 import { MainLayout } from '../layouts/MainLayout'
 import { Link } from '../components/ui/Link'
 import { SEO } from '../components/SEO'
+import { MainContentWrapper } from 'components/MainContentWrapper'
+import { ContentBox } from 'components/ContentBox'
+import { H1 } from 'components/ui/H1'
+import { PostsTimeline } from 'components/PostTimeline'
+import { useTranslation } from 'react-i18next'
 
 interface CategoryInfo {
   category: string
@@ -13,38 +18,56 @@ interface CategoryInfo {
 const Category: React.FunctionComponent<PageProps<
   {},
   {
-    posts: { [key: string]: any }[]
     activeCategory: CategoryInfo
   }
->> = ({ pageContext }) => {
-  const { activeCategory, posts } = pageContext
+>> = ({ pageContext, data }) => {
+  const { activeCategory } = pageContext
+  const { t } = useTranslation('pages')
+
+  const posts = data.allBlogPost.edges
   return (
     <MainLayout>
-      <SEO title={`Blog Category ${activeCategory.category}`} />
-      <div>
-        <h1>
-          {posts.length} post
-          {posts.length === 1 ? '' : 's'} on category
-          {activeCategory.category}
-        </h1>
+      <SEO title={t('Category', { category: activeCategory.category })} />
+      <MainContentWrapper>
+        <ContentBox>
+          <H1>{activeCategory.category}</H1>
 
-        <ul>
-          {posts.map(({ id, fields, excerpt }) => (
-            <li key={id}>
-              <h1>
-                <Link to={fields.slug}>{fields.title}</Link>
-              </h1>
-              <p>{excerpt}</p>
-            </li>
-          ))}
-        </ul>
+          <PostsTimeline posts={posts} />
 
-        <hr />
-
-        <Link to="/blog/categories">All Categories</Link>
-      </div>
+          <Link to="/blog/categories" lng>
+            {t('See all categories')}
+          </Link>
+        </ContentBox>
+      </MainContentWrapper>
     </MainLayout>
   )
 }
 
 export default Category
+
+export const pageQuery = graphql`
+  query CategoryQuery($langKey: LangKey!, $page: [String!]!) {
+    allBlogPost(
+      filter: { langKey: { eq: $langKey }, id: { in: $page } }
+      sort: { fields: date, order: DESC }
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 300)
+          id
+          title
+          date
+          banner {
+            childImageSharp {
+              fluid(maxWidth: 720) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          keywords
+          slug
+        }
+      }
+    }
+  }
+`

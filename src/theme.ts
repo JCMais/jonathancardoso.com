@@ -20,10 +20,12 @@ export const theme = {
   colors: {
     // #f7f7f7
     backgroundDarker: 'hsla(0, 0%, 97%, 1)',
-    text: '#000',
+    textDarker: '#000',
+    textLighter: '#FFF',
     background: '#fff',
     // primary: '#07c',
-    primary: '#080808',
+    text: '#080808',
+    primary: '#00add2',
     secondary: '#30c',
     therdiary: '#474747',
     muted: '#f6f6f9',
@@ -72,20 +74,21 @@ export const theme = {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      color: 'primary',
+      color: 'textDarker',
       fontSize: 7,
     },
     subHeading: {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'subHeading',
-      color: 'therdiary',
+      color: 'textDarker',
       fontSize: 6,
     },
     display: {
       fontFamily: 'heading',
       fontWeight: 'heading',
       lineHeight: 'heading',
+      color: 'textDarker',
       fontSize: [5, 6, 7],
     },
     body: {
@@ -93,12 +96,14 @@ export const theme = {
       fontWeight: 'body',
       lineHeight: 'body',
       fontSize: 2,
+      color: 'text',
     },
     postBody: {
       fontFamily: 'body',
       fontWeight: 'body',
       lineHeight: 'body',
       fontSize: [4],
+      color: 'text',
     },
     quote: {},
     caps: {
@@ -122,12 +127,23 @@ export const theme = {
       boxShadow: 'card',
     },
     link: {
-      color: 'primary',
+      color: 'text',
     },
     linkHeader: {
-      color: 'primary',
+      color: 'text',
       textDecoration: 'underline',
       fontFamily: 'body',
+    },
+    list: {
+      simple: {
+        listStyle: 'none',
+      },
+    },
+    icon: {
+      verticalAlign: 'middle',
+      display: 'inline-block',
+      width: 'icon.normal',
+      height: 'icon.normal',
     },
     nav: {
       fontSize: 1,
@@ -137,7 +153,7 @@ export const theme = {
       color: 'inherit',
       textDecoration: 'none',
       ':hover,:focus,.active': {
-        color: 'primary',
+        color: 'text',
       },
     },
   },

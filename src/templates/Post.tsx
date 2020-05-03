@@ -4,48 +4,22 @@ import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
 import { Box, Flex, Text } from 'rebass'
 import Space from '@rebass/space'
+import styled from '@emotion/styled'
+
+import { convertLangKeyFromGraphQLEnum, getSiteUrl } from '@shared/utils'
 
 import { MainLayout } from '../layouts/MainLayout'
+import { SEO } from '../components/SEO'
+import { ContentBox } from '../components/ContentBox'
+import { FeatherIcons } from '../components/icon/FeatherIcons'
+import { DevToIcon } from '../components/icon/DevToIcon'
 import { Link } from '../components/ui/Link'
 import { H1 } from '../components/ui/H1'
-import FeatherIcons from '../components/icon/FeatherIcons'
-import { SEO } from '../components/SEO'
-import styled from '@emotion/styled'
-import { DevToIcon } from '../components/icon/DevToIcon'
-
-const TagList = ({ list = [] }) => (
-  <>
-    Tags:
-    <ul>
-      {list.map((tag) => (
-        <li key={tag}>
-          <Link to={`/blog/tags/${tag}`}>{tag}</Link>
-        </li>
-      ))}
-    </ul>
-  </>
-)
-
-// @TODO Page Content Wrapper - Duplicated
-const Wrapper = ({ children }) => {
-  return (
-    <Flex flexDirection="column" alignItems="center">
-      {children}
-    </Flex>
-  )
-}
-
-const ContentBox = (props) => {
-  return (
-    <Box
-      width={[1, 4 / 5, 3 / 4, 3 / 5]}
-      mt={props.isFirst ? 0 : 6}
-      mb={2}
-      as="section"
-      {...props}
-    />
-  )
-}
+import { MainContentWrapper } from '../components/MainContentWrapper'
+import { getLanguageName } from '../utils'
+import { ListUnordered } from 'components/ui/ListUnordered'
+import { ListItem } from 'components/ui/ListItem'
+import { useTranslation } from 'react-i18next'
 
 const DiscussionText = (props) => {
   return <Text variant="postBody" fontSize={[2]} ml={[2]} {...props} />
@@ -103,7 +77,19 @@ const PostMetadataText = (props) => {
   )
 }
 
-export default function Post({ data: { blogPost }, pageContext: { next, prev } }) {
+const PostTranslationsWrapper = (props) => {
+  return <Text {...props} />
+}
+
+export default function Post({
+  data: { blogPost, postInOtherLanguages },
+  pageContext: { next, prev },
+}) {
+  const { t } = useTranslation('pages')
+
+  const BannerWrapper =
+    blogPost.bannerStyle === 'FULL_WIDTH' ? PostBannerImageWrapper : Box
+
   return (
     <MainLayout>
       <SEO
@@ -111,7 +97,7 @@ export default function Post({ data: { blogPost }, pageContext: { next, prev } }
         description={blogPost.description}
         keywords={blogPost.keywords}
       />
-      <Wrapper>
+      <MainContentWrapper>
         <ContentBox as="article">
           <H1>{blogPost.title}</H1>
           {/* Article Info */}
@@ -144,32 +130,68 @@ export default function Post({ data: { blogPost }, pageContext: { next, prev } }
               </PostMetadataText>
             </PostMetadata>
           </Flex>
-
           {blogPost.banner && (
-            <PostBannerImageWrapper>
+            <BannerWrapper>
               <Img sizes={blogPost.banner.childImageSharp.sizes} />
-            </PostBannerImageWrapper>
+            </BannerWrapper>
           )}
-
+          {!!postInOtherLanguages?.edges.length && (
+            <PostTranslationsWrapper
+              mt={[4]}
+              p={[3]}
+              sx={{
+                backgroundColor: '#dce5f3',
+                textAlign: 'center',
+              }}
+            >
+              <Text>
+                Translations available for:{' '}
+                {postInOtherLanguages.edges.map(({ node }) => (
+                  <Link key={node.id} to={node.slug} px={[1]}>
+                    {getLanguageName(convertLangKeyFromGraphQLEnum(node.langKey))}
+                  </Link>
+                ))}
+              </Text>
+            </PostTranslationsWrapper>
+          )}
           <MDXRenderer>{blogPost.body}</MDXRenderer>
           <ContentFlowSeparator />
           <Flex justifyContent="space-evenly" flexWrap="wrap">
-            <Flex alignItems="center">
-              <DevToIcon width="icon.normal" height="icon.normal" />
-              <DiscussionText>Discuss on Dev.to</DiscussionText>
-            </Flex>
-            <Flex alignItems="center">
-              <FeatherIcons.Twitter
-                width="icon.normal"
-                height="icon.normal"
-                color="#1DA1F2"
-              />
-              <DiscussionText>Discuss on Twitter</DiscussionText>
-            </Flex>
-            <Flex alignItems="center">
-              <FeatherIcons.GitHub width="icon.normal" height="icon.normal" />
-              <DiscussionText>Edit on GitHub</DiscussionText>
-            </Flex>
+            <Space mx={[2, 3]} my={[3, 2]}>
+              {!!blogPost?.externalLinks?.devTo && (
+                <Flex alignItems="center">
+                  <DevToIcon width="icon.normal" height="icon.normal" />
+                  <DiscussionText>
+                    <Link to={blogPost.externalLinks.devTo}>Discuss on Dev.to</Link>
+                  </DiscussionText>
+                </Flex>
+              )}
+              <Flex alignItems="center">
+                <FeatherIcons.Twitter
+                  width="icon.normal"
+                  height="icon.normal"
+                  color="#1DA1F2"
+                />
+                <DiscussionText>
+                  <Link
+                    to={`https://mobile.twitter.com/search?q=${getSiteUrl(
+                      blogPost.slug,
+                    )}`}
+                    target="_blank"
+                  >
+                    Discuss on Twitter
+                  </Link>
+                </DiscussionText>
+              </Flex>
+              <Flex alignItems="center">
+                <FeatherIcons.GitHub width="icon.normal" height="icon.normal" />
+                <DiscussionText>
+                  <Link to={blogPost.externalLinks.github} target="_blank">
+                    Edit on GitHub
+                  </Link>
+                </DiscussionText>
+              </Flex>
+            </Space>
           </Flex>
           <ContentFlowSeparator />
           <Flex justifyContent="space-evenly" flexWrap="wrap">
@@ -201,13 +223,28 @@ export default function Post({ data: { blogPost }, pageContext: { next, prev } }
             </Space>
           </Flex>
         </ContentBox>
-      </Wrapper>
+      </MainContentWrapper>
     </MainLayout>
   )
 }
 
 export const pageQuery = graphql`
-  query($id: String!, $langKeySlug: String!) {
+  query($id: String!, $globalBlogPostId: ID!, $langKeySlug: String!) {
+    postInOtherLanguages: allBlogPost(
+      filter: { id: { ne: $id }, globalBlogPostId: { eq: $globalBlogPostId } }
+    ) {
+      languages: group(field: langKey) {
+        fieldValue
+      }
+      edges {
+        node {
+          id
+          title
+          slug
+          langKey
+        }
+      }
+    }
     blogPost(id: { eq: $id }) {
       title
       date(formatString: "MMMM DD, YYYY", locale: $langKeySlug)
@@ -219,14 +256,21 @@ export const pageQuery = graphql`
           }
         }
       }
+      bannerStyle
       tableOfContents(maxDepth: 2)
       keywords
       description
       slug
       category
       categorySlug
+      globalBlogPostId
       tags
       body
+      externalLinks {
+        devto
+        github
+        canonical
+      }
     }
   }
 `

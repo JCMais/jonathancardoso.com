@@ -4,13 +4,13 @@ import { Box } from 'rebass'
 import styled from '@emotion/styled'
 import { space, SpaceProps, layout, LayoutProps } from 'styled-system'
 
-interface FeatherIconMap {
-  [iconName: keyof typeof FeatherOriginalIcons]: ComponentType<
+type FeatherIconMap = {
+  [iconName in keyof typeof FeatherOriginalIcons]: ComponentType<
     FeatherOriginalIcons.Props & SpaceProps & LayoutProps
   >
 }
 
-const IconMap: Partial<
+export const FeatherIcons: Partial<
   {
     [iconName in keyof typeof FeatherOriginalIcons]: ComponentType<
       FeatherOriginalIcons.Props & SpaceProps
@@ -20,7 +20,7 @@ const IconMap: Partial<
 
 for (const [iconName, Icon] of Object.entries(FeatherOriginalIcons)) {
   // @ts-ignore
-  IconMap[iconName] = props => (
+  FeatherIcons[iconName] = (props) => (
     <Box
       sx={{
         display: 'inline-block',
@@ -35,5 +35,3 @@ for (const [iconName, Icon] of Object.entries(FeatherOriginalIcons)) {
   //   ${layout};
   // `
 }
-
-export default IconMap

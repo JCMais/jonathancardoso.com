@@ -20,12 +20,57 @@ import { ListUnordered } from './ui/ListUnordered'
 export const MDXLayoutComponents = {
   // @TODO use this instead of gatsby-remark-prismjs and rework plugins styles
   // pre: CodeBlock,
-  h1: H1,
-  h2: H2,
-  h3: H3,
-  h4: H4,
+  h1: (props) => (
+    <H1
+      mt={7}
+      mb={2}
+      sx={{
+        '+ *:not(h2)': {
+          marginTop: 0,
+        },
+      }}
+      {...props}
+    />
+  ),
+  h2: (props) => (
+    <H2
+      mt={7}
+      mb={2}
+      sx={{
+        '+ *:not(h3)': {
+          marginTop: 0,
+        },
+      }}
+      {...props}
+    />
+  ),
+  h3: (props) => (
+    <H3
+      mt={6}
+      mb={2}
+      sx={{
+        '+ *': {
+          marginTop: 0,
+        },
+      }}
+      {...props}
+    />
+  ),
+  h4: (props) => (
+    <H4
+      mt={5}
+      mb={2}
+      sx={{
+        '+ *': {
+          marginTop: 0,
+        },
+      }}
+      {...props}
+    />
+  ),
   ul: ListUnordered,
   ol: ListOrdered,
+  figure: (props) => <Box m={[0]} {...props} />,
   figcaption: (props) => (
     <Text variant="postBody" fontSize={[3]} sx={{ textAlign: 'center' }} {...props} />
   ),

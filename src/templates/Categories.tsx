@@ -4,6 +4,11 @@ import { PageProps } from 'gatsby'
 import { MainLayout } from '../layouts/MainLayout'
 import { Link } from '../components/ui/Link'
 import { SEO } from '../components/SEO'
+import { ContentBox } from 'components/ContentBox'
+import { H1 } from 'components/ui/H1'
+import { MainContentWrapper } from 'components/MainContentWrapper'
+import { ListItem } from 'components/ui/ListItem'
+import { ListUnordered } from 'components/ui/ListUnordered'
 
 interface CategoryInfo {
   category: string
@@ -19,16 +24,20 @@ const Categories: React.FunctionComponent<PageProps<
   return (
     <MainLayout>
       <SEO title="Blog Categories" />
-      <div>
-        <h1>Categories</h1>
-        <ul>
-          {categories.map(({ category, categorySlug }) => (
-            <li key={categorySlug}>
-              <Link to={`/blog/categories/${categorySlug}`}>{category}</Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <MainContentWrapper>
+        <ContentBox>
+          <H1>Categories</H1>
+          <ListUnordered>
+            {categories.map(({ category, categorySlug }) => (
+              <ListItem key={categorySlug}>
+                <Link to={`/blog/categories/${categorySlug}`} lng>
+                  {category}
+                </Link>
+              </ListItem>
+            ))}
+          </ListUnordered>
+        </ContentBox>
+      </MainContentWrapper>
     </MainLayout>
   )
 }
