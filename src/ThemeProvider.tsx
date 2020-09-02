@@ -103,11 +103,16 @@ export const ThemeProvider: React.FC = ({ children }) => {
               background: #f0db4f;
             } */
 
+            pre[class*='language-'] {
+              box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+            }
+
             /* inline code block */
             :not(pre) > code[class*='language-'] {
               border-radius: 0;
-              padding: 0em 0.3em;
+              padding: 0em 0.1em;
               font-size: 0.9em;
+              box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
             }
 
             .gatsby-highlight pre[class*='language-'].line-numbers {
