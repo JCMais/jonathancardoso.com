@@ -139,7 +139,9 @@ export const ThemeProvider: React.FC = ({ children }) => {
               margin-bottom: -0.6rem;
               padding: 0.5em 1em;
               font-family: ${theme.fonts.monospace};
-              background-color: #140085;
+              /* TODO: add to theme */
+              background-color: #004e85;
+              font-size: 0.8em;
               color: white;
               z-index: 0;
             }

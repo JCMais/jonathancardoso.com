@@ -176,7 +176,7 @@ Write the following content on it:
 
 <!-- see how to encode ~ in there so it does not break the editor -->
 
-```yaml:title=˜/kube-general/cicd-service-account.yml
+```yaml:title=⁓/kube-general/cicd-service-account.yml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -258,7 +258,7 @@ nano ~/kube-general/cicd-role.yml
 
 The basic idea is to grant access to do everything related to most Kubernetes resources in the `default` namespace. Your `Role` would look like this:
 
-```yaml:title=˜/kube-general/cicd-role.yml
+```yaml:title=⁓/kube-general/cicd-role.yml
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -286,7 +286,7 @@ nano ~/kube-general/cicd-role-binding.yml
 
 Add the following lines to the file:
 
-```yaml:title=˜/kube-general/cicd-role-binding.yml
+```yaml:title=⁓/kube-general/cicd-role-binding.yml
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -348,7 +348,7 @@ nano ~/do-sample-app/Dockerfile
 
 Write the following on it:
 
-```Dockerfile:title=˜/do-sample-app/Dockerfile
+```Dockerfile:title=⁓/do-sample-app/Dockerfile
 FROM nginx:1.14
 
 COPY index.html /usr/share/nginx/html/index.html
@@ -364,7 +364,7 @@ nano ~/do-sample-app/index.html
 
 Write the following HTML content:
 
-```html:title=˜/do-sample-app/index.html
+```html:title=⁓/do-sample-app/index.html
 <!DOCTYPE html>
 <title>DigitalOcean</title>
 <body>
@@ -430,7 +430,7 @@ nano ~/do-sample-app/kube/do-sample-deployment.yml
 
 Write the following content on the file, making sure to replace `dockerhub-username` with your Docker Hub username:
 
-```yaml:title=˜/do-sample-app/kube/do-sample-deployment.yml
+```yaml:title=⁓/do-sample-app/kube/do-sample-deployment.yml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -470,7 +470,7 @@ nano ~/do-sample-app/kube/do-sample-service.yml
 
 Next, add the following lines to the file:
 
-```yaml:title=˜/do-sample-app/kube/do-sample-service.yml
+```yaml:title=⁓/do-sample-app/kube/do-sample-service.yml
 apiVersion: v1
 kind: Service
 metadata:
@@ -651,7 +651,7 @@ nano ~/do-sample-app/.circleci/config.yml
 
 Add the following content to the file, making sure to replace `dockerhub-username` with your Docker Hub username:
 
-```yaml:title=˜/do-sample-app/.circleci/config.yml
+```yaml:title=⁓/do-sample-app/.circleci/config.yml
 version: 2.1
 jobs:
   build:
@@ -722,7 +722,7 @@ nano ~/do-sample-app/.circleci/config.yml
 
 Then add the highlighted lines to your `Push Docker Image` step:
 
-```yaml:title=˜/do-sample-app/.circleci/config.yml:16-22
+```yaml:title=⁓/do-sample-app/.circleci/config.yml:16-22
 # ...
 - run:
     name: Push Docker Image
@@ -755,7 +755,7 @@ nano ~/do-sample-app/scripts/ci-deploy.sh
 
 Inside it write the following bash script:
 
-```bash:title=˜/do-sample-app/scripts/ci-deploy.sh
+```bash:title=⁓/do-sample-app/scripts/ci-deploy.sh
 #! /bin/bash
 # exit script when any command ran here returns with non-zero exit code
 set -e
@@ -834,7 +834,7 @@ nano ~/do-sample-app/kube/do-sample-deployment.yml
 
 Change the tag of the container image value to look like the following one:
 
-```yaml:title=˜/do-sample-app/kube/do-sample-deployment.yml
+```yaml:title=⁓/do-sample-app/kube/do-sample-deployment.yml
 # ...
 containers:
   - name: do-kubernetes-sample-app
@@ -854,7 +854,7 @@ nano ~/do-sample-app/.circleci/config.yml
 
 Write the following new steps, right below the `Push Docker Image` one you had before:
 
-```yaml:title=˜/do-sample-app/.circleci/config.yml
+```yaml:title=⁓/do-sample-app/.circleci/config.yml
 # ...
 - run:
     name: Install envsubst
@@ -874,7 +874,7 @@ The first two steps are installing some dependencies, first `envsubst`, and then
 
 To make sure the changes are really going to be reflected on your Kubernetes deployment, edit your `index.html`. Change the HTML to something else, like:
 
-```html:title=˜/do-sample-app/index.html
+```html:title=⁓/do-sample-app/index.html
 <!DOCTYPE html>
 <title>DigitalOcean</title>
 <body>
