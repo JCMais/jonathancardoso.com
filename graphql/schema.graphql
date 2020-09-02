@@ -1274,13 +1274,13 @@ enum FileFieldsEnum {
   childMdx___frontmatter___banner___id
   childMdx___frontmatter___banner___children
   childMdx___frontmatter___bannerStyle
-  childMdx___frontmatter___description
-  childMdx___frontmatter___keywords
-  childMdx___frontmatter___isDraft
   childMdx___frontmatter___externalLinks___canonical
   childMdx___frontmatter___publisher___name
   childMdx___frontmatter___publisher___id
   childMdx___frontmatter___publisher___url
+  childMdx___frontmatter___description
+  childMdx___frontmatter___keywords
+  childMdx___frontmatter___isDraft
   childMdx___frontmatter___slug
   childMdx___slug
   childMdx___body
@@ -2494,13 +2494,13 @@ enum MdxFieldsEnum {
   frontmatter___banner___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___bannerStyle
-  frontmatter___description
-  frontmatter___keywords
-  frontmatter___isDraft
   frontmatter___externalLinks___canonical
   frontmatter___publisher___name
   frontmatter___publisher___id
   frontmatter___publisher___url
+  frontmatter___description
+  frontmatter___keywords
+  frontmatter___isDraft
   frontmatter___slug
   slug
   body
@@ -2769,11 +2769,11 @@ type MdxFrontmatter {
   tags: [String]
   banner: File
   bannerStyle: String
+  externalLinks: MdxFrontmatterExternalLinks
+  publisher: MdxFrontmatterPublisher
   description: String
   keywords: [String]
   isDraft: Boolean
-  externalLinks: MdxFrontmatterExternalLinks
-  publisher: MdxFrontmatterPublisher
   slug: String
 }
 
@@ -2792,11 +2792,11 @@ input MdxFrontmatterFilterInput {
   tags: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: StringQueryOperatorInput
+  externalLinks: MdxFrontmatterExternalLinksFilterInput
+  publisher: MdxFrontmatterPublisherFilterInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
   isDraft: BooleanQueryOperatorInput
-  externalLinks: MdxFrontmatterExternalLinksFilterInput
-  publisher: MdxFrontmatterPublisherFilterInput
   slug: StringQueryOperatorInput
 }
 
@@ -2911,7 +2911,7 @@ type Query {
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
   sitePage(path: StringQueryOperatorInput, component: StringQueryOperatorInput, internalComponentName: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, context: SitePageContextFilterInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput, componentPath: StringQueryOperatorInput): SitePage
   allSitePage(filter: SitePageFilterInput, sort: SitePageSortInput, skip: Int, limit: Int): SitePageConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, resolutions: ImageSharpResolutionsFilterInput, fluid: ImageSharpFluidFilterInput, sizes: ImageSharpSizesFilterInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
@@ -2948,6 +2948,8 @@ type Site implements Node {
     locale: String
   ): Date
   siteMetadata: SiteSiteMetadata
+  port: Int
+  host: String
   pathPrefix: String
   polyfill: Boolean
   id: ID!
@@ -3137,6 +3139,8 @@ enum SiteFieldsEnum {
   siteMetadata___locale___defaultLangKey
   siteMetadata___locale___supportedLanguages___en
   siteMetadata___locale___supportedLanguages___pt_br
+  port
+  host
   pathPrefix
   polyfill
   id
@@ -3230,6 +3234,8 @@ enum SiteFieldsEnum {
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
+  port: IntQueryOperatorInput
+  host: StringQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   polyfill: BooleanQueryOperatorInput
   id: StringQueryOperatorInput
@@ -3274,10 +3280,10 @@ type SitePageConnection {
 }
 
 type SitePageContext {
-  langKey: String
-  langKeySlug: String
   id: String
+  langKey: String
   globalBlogPostId: String
+  langKeySlug: String
   prev: SitePageContextPrev
   next: SitePageContextNext
   pageEntries: [String]
@@ -3306,10 +3312,22 @@ type SitePageContextCategories {
 
 type SitePageContextCategoriesByCategorySlug {
   programming: SitePageContextCategoriesByCategorySlugProgramming
+  programacao: SitePageContextCategoriesByCategorySlugProgramacao
 }
 
 input SitePageContextCategoriesByCategorySlugFilterInput {
   programming: SitePageContextCategoriesByCategorySlugProgrammingFilterInput
+  programacao: SitePageContextCategoriesByCategorySlugProgramacaoFilterInput
+}
+
+type SitePageContextCategoriesByCategorySlugProgramacao {
+  category: String
+  categorySlug: String
+}
+
+input SitePageContextCategoriesByCategorySlugProgramacaoFilterInput {
+  category: StringQueryOperatorInput
+  categorySlug: StringQueryOperatorInput
 }
 
 type SitePageContextCategoriesByCategorySlugProgramming {
@@ -3332,10 +3350,10 @@ input SitePageContextCategoriesFilterListInput {
 }
 
 input SitePageContextFilterInput {
-  langKey: StringQueryOperatorInput
-  langKeySlug: StringQueryOperatorInput
   id: StringQueryOperatorInput
+  langKey: StringQueryOperatorInput
   globalBlogPostId: StringQueryOperatorInput
+  langKeySlug: StringQueryOperatorInput
   prev: SitePageContextPrevFilterInput
   next: SitePageContextNextFilterInput
   pageEntries: StringQueryOperatorInput
@@ -3502,10 +3520,10 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
-  context___langKey
-  context___langKeySlug
   context___id
+  context___langKey
   context___globalBlogPostId
+  context___langKeySlug
   context___prev___title
   context___prev___slug
   context___next___title
@@ -3525,6 +3543,8 @@ enum SitePageFieldsEnum {
   context___activeCategory___categorySlug
   context___categoriesByCategorySlug___programming___category
   context___categoriesByCategorySlug___programming___categorySlug
+  context___categoriesByCategorySlug___programacao___category
+  context___categoriesByCategorySlug___programacao___categorySlug
   context___tag
   context___tags
   context___tags___tag
@@ -3591,14 +3611,11 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___legacy
   pluginCreator___pluginOptions___theme_color_in_head
-  pluginCreator___pluginOptions___google___families
   pluginCreator___pluginOptions___trackingId
   pluginCreator___pluginOptions___head
   pluginCreator___pluginOptions___anonymize
   pluginCreator___pluginOptions___respectDNT
   pluginCreator___pluginOptions___defer
-  pluginCreator___pluginOptions___precachePages
-  pluginCreator___pluginOptions___workboxConfig___globPatterns
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -3807,14 +3824,11 @@ enum SitePluginFieldsEnum {
   pluginOptions___include_favicon
   pluginOptions___legacy
   pluginOptions___theme_color_in_head
-  pluginOptions___google___families
   pluginOptions___trackingId
   pluginOptions___head
   pluginOptions___anonymize
   pluginOptions___respectDNT
   pluginOptions___defer
-  pluginOptions___precachePages
-  pluginOptions___workboxConfig___globPatterns
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -3950,14 +3964,11 @@ type SitePluginPluginOptions {
   include_favicon: Boolean
   legacy: Boolean
   theme_color_in_head: Boolean
-  google: SitePluginPluginOptionsGoogle
   trackingId: String
   head: Boolean
   anonymize: Boolean
   respectDNT: Boolean
   defer: Boolean
-  precachePages: [String]
-  workboxConfig: SitePluginPluginOptionsWorkboxConfig
   pathCheck: Boolean
 }
 
@@ -3980,14 +3991,11 @@ input SitePluginPluginOptionsFilterInput {
   include_favicon: BooleanQueryOperatorInput
   legacy: BooleanQueryOperatorInput
   theme_color_in_head: BooleanQueryOperatorInput
-  google: SitePluginPluginOptionsGoogleFilterInput
   trackingId: StringQueryOperatorInput
   head: BooleanQueryOperatorInput
   anonymize: BooleanQueryOperatorInput
   respectDNT: BooleanQueryOperatorInput
   defer: BooleanQueryOperatorInput
-  precachePages: StringQueryOperatorInput
-  workboxConfig: SitePluginPluginOptionsWorkboxConfigFilterInput
   pathCheck: BooleanQueryOperatorInput
 }
 
@@ -4019,14 +4027,6 @@ input SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput {
   quality: IntQueryOperatorInput
   classPrefix: StringQueryOperatorInput
   inlineCodeMarker: StringQueryOperatorInput
-}
-
-type SitePluginPluginOptionsGoogle {
-  families: [String]
-}
-
-input SitePluginPluginOptionsGoogleFilterInput {
-  families: StringQueryOperatorInput
 }
 
 type SitePluginPluginOptionsRehypePlugins {
@@ -4095,14 +4095,6 @@ type SitePluginPluginOptionsRemarkPluginsInternal {
 input SitePluginPluginOptionsRemarkPluginsInternalFilterInput {
   blockquote: StringQueryOperatorInput
   image: StringQueryOperatorInput
-}
-
-type SitePluginPluginOptionsWorkboxConfig {
-  globPatterns: [String]
-}
-
-input SitePluginPluginOptionsWorkboxConfigFilterInput {
-  globPatterns: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {

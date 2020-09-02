@@ -2,6 +2,12 @@
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 // https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/#optional-add-shell-prompt
 import 'prismjs/plugins/command-line/prism-command-line.css'
+// fonts
+import 'typeface-fira-code'
+import 'typeface-karma'
+import 'typeface-lato'
+import 'typeface-quicksand'
+
 import '../assets/prismjs-theme-light.css'
 
 import React, { useEffect } from 'react'

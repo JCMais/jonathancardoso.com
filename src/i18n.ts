@@ -18,8 +18,7 @@ export const i18nConfig = {
     // not needed for react as it escapes by default
     escapeValue: false,
   },
-  // @TODO enable as debug: process.env.NODE_ENV && process.env.NODE_ENV === 'development',
-  debug: true,
+  debug: !process.env.NODE_ENV || process.env.NODE_ENV !== 'production',
   react: {
     wait: true,
   },

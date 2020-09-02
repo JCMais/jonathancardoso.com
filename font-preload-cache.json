@@ -1,6 +1,6 @@
 {
-  "timestamp": 1599054652211,
-  "hash": "04b66d7c00e58c77c3c53e55ae361374",
+  "timestamp": 1599087923819,
+  "hash": "9b31cce1963f312715e99300aed4c3d7",
   "assets": {
     "/en/dev-404-page/": {
       "https://fonts.gstatic.com/s/quicksand/v20/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
@@ -44,7 +44,10 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/pt-br/blog/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -69,7 +72,10 @@
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
       "https://fonts.gstatic.com/s/karma/v11/va9I4kzAzMZRGLBoQeM.woff2": true,
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
-      "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true
+      "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/testing-grounds/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -157,7 +163,10 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/categories/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -193,7 +202,9 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/pt-br/blog/categories/programming/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -237,7 +248,9 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/react-native/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -273,7 +286,10 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/ci-cd/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -309,7 +325,10 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/circle-ci/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -381,7 +400,8 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/blog/tags/react/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -425,7 +445,8 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/pt-br/blog/tags/react/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -526,7 +547,9 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/pt-br/404/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -562,7 +585,9 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/about/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -598,7 +623,8 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/pt-br/about/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -634,7 +660,8 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -670,7 +697,10 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/pt-br/": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -706,7 +736,9 @@
       "https://fonts.gstatic.com/s/karma/v11/va9F4kzAzMZRGLjTZPZ4sK0.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/404.html": {
       "https://fonts.gstatic.com/s/firacode/v8/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2": true,
@@ -1000,7 +1032,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/2/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1021,7 +1056,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/3/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1042,7 +1080,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/4/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1063,7 +1104,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/5/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1105,7 +1149,11 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/fira-code-latin-400-32bcbba0e01191632763d63535ddee39.woff2": true
     },
     "/en/blog/using-circleci-workflows-replicate-docker-hub-automated-builds/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1126,7 +1174,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true
     },
     "/en/blog/introduction-graphql-mongo-helpers/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1147,7 +1198,11 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/client-supplied-custom-sorting-using-graphql/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1168,7 +1223,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/graphql-mutation-arguments-validation-with-yup-using-graphql-middleware/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1189,7 +1247,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true
     },
     "/en/blog/parallel-testing-a-graphql-server-with-jest/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1210,7 +1271,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/using-fastlane-match-existing-certificates-without-revoking/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1231,7 +1295,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/access-control-list-on-graphql-with-loaders/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1252,7 +1319,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/encapsulating-data-on-graphql-using-loaders/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1273,7 +1343,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true
     },
     "/en/blog/re-utilizing-react-native-styles-with-styled-components/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1294,7 +1367,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/categories/programming/1/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1315,7 +1391,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/categories/programming/2/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1336,7 +1415,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/categories/programming/3/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1357,7 +1439,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/categories/programming/4/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1378,7 +1463,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/categories/programming/5/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1441,7 +1529,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/kubernetes/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1462,7 +1553,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/circleci/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1483,7 +1577,8 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/blog/tags/devops/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1504,7 +1599,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/external-technical-writing/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1525,7 +1623,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/docker/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1546,7 +1647,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/graphql/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1567,7 +1671,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/graphql/1/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1588,7 +1695,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/graphql/2/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1609,7 +1719,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/mongodb/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1630,7 +1743,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/node.js/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1651,7 +1767,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/node.js/1/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1672,7 +1791,8 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/blog/tags/backend/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1693,7 +1813,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/library/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1714,7 +1837,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/open-source/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1735,7 +1861,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/sorting/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1756,7 +1885,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/graphql-schema-design/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1777,7 +1909,8 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/blog/tags/validation/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1798,7 +1931,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/yup/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1819,7 +1955,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/middleware/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1840,7 +1979,8 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/en/blog/tags/jest/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1861,7 +2001,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/testing/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1882,7 +2025,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/ios/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1903,7 +2049,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/match/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1924,7 +2073,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/codesign/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1945,7 +2097,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/en/blog/tags/tooling/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1966,7 +2121,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
     },
     "/en/blog/tags/styled-components/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -1987,7 +2145,10 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/dev-404-page/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -2008,7 +2169,9 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true
     },
     "/root/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -2029,7 +2192,8 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
     },
     "/404/": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -2050,7 +2214,9 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     },
     "/404.html": {
       "https://fonts.gstatic.com/s/firacode/v9/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2": true,
@@ -2071,7 +2237,84 @@
       "https://fonts.gstatic.com/s/lato/v16/S6u9w4BMUTPHh6UVSwiPGQ.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJFQNcOM.woff2": true,
       "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hJVQNcOM.woff2": true,
-      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true
+      "https://fonts.gstatic.com/s/quicksand/v21/6xKtdSZaM9iE8KbpRA_hK1QN.woff2": true,
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true
+    },
+    "/en/blog/draft/testing-grounds/": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/fira-code-latin-400-32bcbba0e01191632763d63535ddee39.woff2": true
+    },
+    "/pt-br/blog/draft/terreno-testes/": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/quicksand-latin-700-e84fd014ffd68f5d72d276fbe3ced630.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/fira-code-latin-400-32bcbba0e01191632763d63535ddee39.woff2": true
+    },
+    "/en/blog/5": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/en/blog/categories/programming/5": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
+    },
+    "/pt-br/blog/categories/programacao": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
+    },
+    "/en/blog/tags/ci-cd/1": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/en/blog/tags/circle-ci": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
+    },
+    "/pt-br/blog/tags/react-native": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/pt-br/blog/tags/ci-cd": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/pt-br/blog/tags/circle-ci": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true
+    },
+    "/pt-br/blog/tags/fastlane": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/pt-br/blog/tags/pt-br-lang-specific": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-600-2bc9bc25ae45d5a0b6f18f7912c5b22f.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/pt-br/blog/tags": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/en/privacy/": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
+    },
+    "/pt-br/privacy/": {
+      "/static/quicksand-latin-400-aa06b1e97f0640360f4b7355cdd0e4ab.woff2": true,
+      "/static/karma-latin-700-11a97ed271901388e1c453f07e3c453d.woff2": true
     }
   }
 }

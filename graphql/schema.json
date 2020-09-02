@@ -1354,6 +1354,26 @@
                 "defaultValue": null
               },
               {
+                "name": "port",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "IntQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "host",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "pathPrefix",
                 "description": "",
                 "type": {
@@ -4328,6 +4348,26 @@
             "defaultValue": null
           },
           {
+            "name": "externalLinks",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MdxFrontmatterExternalLinksFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "publisher",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MdxFrontmatterPublisherFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "description",
             "description": "",
             "type": {
@@ -4353,26 +4393,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "externalLinks",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "MdxFrontmatterExternalLinksFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "publisher",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "MdxFrontmatterPublisherFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8032,6 +8052,30 @@
             "deprecationReason": null
           },
           {
+            "name": "externalLinks",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MdxFrontmatterExternalLinks",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MdxFrontmatterPublisher",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "description",
             "description": null,
             "args": [],
@@ -8056,30 +8100,6 @@
             "description": null,
             "args": [],
             "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "externalLinks",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MdxFrontmatterExternalLinks",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "publisher",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MdxFrontmatterPublisher",
-              "ofType": null
-            },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -12155,24 +12175,6 @@
             "deprecationReason": null
           },
           {
-            "name": "childMdx___frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "childMdx___frontmatter___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "childMdx___frontmatter___isDraft",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "childMdx___frontmatter___externalLinks___canonical",
             "description": null,
             "isDeprecated": false,
@@ -12192,6 +12194,24 @@
           },
           {
             "name": "childMdx___frontmatter___publisher___url",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___description",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___keywords",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___isDraft",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -15265,26 +15285,6 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "langKey",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "langKeySlug",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "id",
             "description": "",
             "type": {
@@ -15295,7 +15295,27 @@
             "defaultValue": null
           },
           {
+            "name": "langKey",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "globalBlogPostId",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "langKeySlug",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -15640,6 +15660,16 @@
               "ofType": null
             },
             "defaultValue": null
+          },
+          {
+            "name": "programacao",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "SitePageContextCategoriesByCategorySlugProgramacaoFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
           }
         ],
         "interfaces": null,
@@ -15649,6 +15679,37 @@
       {
         "kind": "INPUT_OBJECT",
         "name": "SitePageContextCategoriesByCategorySlugProgrammingFilterInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "category",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "categorySlug",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "SitePageContextCategoriesByCategorySlugProgramacaoFilterInput",
         "description": null,
         "fields": null,
         "inputFields": [
@@ -16063,16 +16124,6 @@
             "defaultValue": null
           },
           {
-            "name": "google",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "SitePluginPluginOptionsGoogleFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "trackingId",
             "description": "",
             "type": {
@@ -16118,26 +16169,6 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "BooleanQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "precachePages",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "workboxConfig",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "SitePluginPluginOptionsWorkboxConfigFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -16485,48 +16516,6 @@
         "inputFields": [
           {
             "name": "className",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "SitePluginPluginOptionsGoogleFilterInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "families",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          }
-        ],
-        "interfaces": null,
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "INPUT_OBJECT",
-        "name": "SitePluginPluginOptionsWorkboxConfigFilterInput",
-        "description": null,
-        "fields": null,
-        "inputFields": [
-          {
-            "name": "globPatterns",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -16972,22 +16961,6 @@
         "description": null,
         "fields": [
           {
-            "name": "langKey",
-            "description": null,
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "langKeySlug",
-            "description": null,
-            "args": [],
-            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "id",
             "description": null,
             "args": [],
@@ -16996,7 +16969,23 @@
             "deprecationReason": null
           },
           {
+            "name": "langKey",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "globalBlogPostId",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "langKeySlug",
             "description": null,
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
@@ -17308,6 +17297,18 @@
             },
             "isDeprecated": false,
             "deprecationReason": null
+          },
+          {
+            "name": "programacao",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "SitePageContextCategoriesByCategorySlugProgramacao",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
           }
         ],
         "inputFields": null,
@@ -17318,6 +17319,33 @@
       {
         "kind": "OBJECT",
         "name": "SitePageContextCategoriesByCategorySlugProgramming",
+        "description": null,
+        "fields": [
+          {
+            "name": "category",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "categorySlug",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "SitePageContextCategoriesByCategorySlugProgramacao",
         "description": null,
         "fields": [
           {
@@ -17714,18 +17742,6 @@
             "deprecationReason": null
           },
           {
-            "name": "google",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SitePluginPluginOptionsGoogle",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "trackingId",
             "description": null,
             "args": [],
@@ -17762,30 +17778,6 @@
             "description": null,
             "args": [],
             "type": { "kind": "SCALAR", "name": "Boolean", "ofType": null },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "precachePages",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "workboxConfig",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "SitePluginPluginOptionsWorkboxConfig",
-              "ofType": null
-            },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -18051,52 +18043,6 @@
         "fields": [
           {
             "name": "className",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SitePluginPluginOptionsGoogle",
-        "description": null,
-        "fields": [
-          {
-            "name": "families",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          }
-        ],
-        "inputFields": null,
-        "interfaces": [],
-        "enumValues": null,
-        "possibleTypes": null
-      },
-      {
-        "kind": "OBJECT",
-        "name": "SitePluginPluginOptionsWorkboxConfig",
-        "description": null,
-        "fields": [
-          {
-            "name": "globPatterns",
             "description": null,
             "args": [],
             "type": {
@@ -19052,25 +18998,25 @@
             "deprecationReason": null
           },
           {
-            "name": "context___langKey",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "context___langKeySlug",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "context___id",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
           },
           {
+            "name": "context___langKey",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "context___globalBlogPostId",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___langKeySlug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -19185,6 +19131,18 @@
           },
           {
             "name": "context___categoriesByCategorySlug___programming___categorySlug",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___categoriesByCategorySlug___programacao___category",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "context___categoriesByCategorySlug___programacao___categorySlug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -19586,12 +19544,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginCreator___pluginOptions___google___families",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginCreator___pluginOptions___trackingId",
             "description": null,
             "isDeprecated": false,
@@ -19617,18 +19569,6 @@
           },
           {
             "name": "pluginCreator___pluginOptions___defer",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___precachePages",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginCreator___pluginOptions___workboxConfig___globPatterns",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -20259,6 +20199,22 @@
             "deprecationReason": null
           },
           {
+            "name": "port",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "Int", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "host",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "pathPrefix",
             "description": null,
             "args": [],
@@ -20492,6 +20448,26 @@
             "defaultValue": null
           },
           {
+            "name": "port",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IntQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "host",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "pathPrefix",
             "description": "",
             "type": {
@@ -20647,6 +20623,18 @@
           },
           {
             "name": "siteMetadata___locale___supportedLanguages___pt_br",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "port",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "host",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23094,24 +23082,6 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "frontmatter___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "frontmatter___isDraft",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "frontmatter___externalLinks___canonical",
             "description": null,
             "isDeprecated": false,
@@ -23131,6 +23101,24 @@
           },
           {
             "name": "frontmatter___publisher___url",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___description",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___keywords",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___isDraft",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -28680,12 +28668,6 @@
             "deprecationReason": null
           },
           {
-            "name": "pluginOptions___google___families",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "pluginOptions___trackingId",
             "description": null,
             "isDeprecated": false,
@@ -28711,18 +28693,6 @@
           },
           {
             "name": "pluginOptions___defer",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___precachePages",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "pluginOptions___workboxConfig___globPatterns",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

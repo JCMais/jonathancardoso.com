@@ -154,14 +154,6 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-web-font-loader',
-      options: {
-        google: {
-          families: ['Fira Code', 'Quicksand:400,700', 'Karma:400,700', 'Lato:400,700'],
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-11343647-9',
