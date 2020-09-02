@@ -10,7 +10,7 @@ import { MainContentWrapper } from '@r/components/MainContentWrapper'
 import { ContentBox } from '@r/components/ContentBox'
 
 import { Link } from '@r/components/ui/Link'
-import { H1 } from '../components/ui/H1'
+import { H1 } from '@r/components/ui/H1'
 
 type TagInfo = { postsCount: number; tag: string }
 
