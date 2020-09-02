@@ -85,7 +85,6 @@
     "gatsby-plugin-manifest": "^2.4.26",
     "gatsby-plugin-mdx": "^1.2.37",
     "gatsby-plugin-netlify": "^2.3.13",
-    "gatsby-plugin-offline": "^3.2.26",
     "gatsby-plugin-parent-resolvers": "^1.0.2",
     "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-preload-fonts": "^1.2.23",

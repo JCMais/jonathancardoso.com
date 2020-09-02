@@ -150,6 +150,7 @@ module.exports = {
         theme_color: '#525dce',
         display: 'standalone',
         icon: 'assets/images/logo.png',
+        cache_busting_mode: 'none',
       },
     },
     {
@@ -172,6 +173,5 @@ module.exports = {
     },
     'gatsby-plugin-preload-fonts',
     'gatsby-plugin-netlify',
-    'gatsby-plugin-offline',
   ],
 }
