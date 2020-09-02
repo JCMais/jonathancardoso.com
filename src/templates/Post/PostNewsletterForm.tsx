@@ -3,7 +3,7 @@ import { Box, BoxProps, Button, Flex } from 'rebass'
 import { Checkbox, Label, Input } from '@rebass/forms'
 import { useTranslation } from 'react-i18next'
 
-import { SlidingTransitionWrapper } from '../../components/SlidingTransitionWrapper'
+import { SlidingTransitionWrapper } from '@r/components/SlidingTransitionWrapper'
 
 type PostNewsletterFormProps = BoxProps
 
