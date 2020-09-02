@@ -55,6 +55,15 @@ export const ThemeProvider: React.FC = ({ children }) => {
               font-weight: ${theme.fontWeights.body};
             }
 
+            ::-moz-selection {
+              /* TODO: Add to theme */
+              background: #7eb8ff;
+            }
+            ::selection {
+              /* TODO: Add to theme */
+              background: #7eb8ff;
+            }
+
             /*
             .gatsby-resp-image-wrapper {
               border: 1px solid hsl(0, 0%, 65%);
