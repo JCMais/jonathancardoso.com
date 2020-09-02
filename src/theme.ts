@@ -19,7 +19,7 @@ export const theme = {
   breakpoints: ['40em', '52em', '64em'],
   colors: {
     // #f7f7f7
-    backgroundDarker: 'hsla(0, 0%, 97%, 1)',
+    backgroundDarker: 'hsla(120,13%,97%,1)',
     textDarker: '#000',
     textLighter: '#FFF',
     background: '#fff',
