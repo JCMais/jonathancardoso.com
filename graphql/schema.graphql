@@ -1274,13 +1274,13 @@ enum FileFieldsEnum {
   childMdx___frontmatter___banner___id
   childMdx___frontmatter___banner___children
   childMdx___frontmatter___bannerStyle
+  childMdx___frontmatter___description
+  childMdx___frontmatter___keywords
+  childMdx___frontmatter___isDraft
   childMdx___frontmatter___externalLinks___canonical
   childMdx___frontmatter___publisher___name
   childMdx___frontmatter___publisher___id
   childMdx___frontmatter___publisher___url
-  childMdx___frontmatter___description
-  childMdx___frontmatter___keywords
-  childMdx___frontmatter___isDraft
   childMdx___frontmatter___slug
   childMdx___slug
   childMdx___body
@@ -2494,13 +2494,13 @@ enum MdxFieldsEnum {
   frontmatter___banner___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___bannerStyle
+  frontmatter___description
+  frontmatter___keywords
+  frontmatter___isDraft
   frontmatter___externalLinks___canonical
   frontmatter___publisher___name
   frontmatter___publisher___id
   frontmatter___publisher___url
-  frontmatter___description
-  frontmatter___keywords
-  frontmatter___isDraft
   frontmatter___slug
   slug
   body
@@ -2769,11 +2769,11 @@ type MdxFrontmatter {
   tags: [String]
   banner: File
   bannerStyle: String
-  externalLinks: MdxFrontmatterExternalLinks
-  publisher: MdxFrontmatterPublisher
   description: String
   keywords: [String]
   isDraft: Boolean
+  externalLinks: MdxFrontmatterExternalLinks
+  publisher: MdxFrontmatterPublisher
   slug: String
 }
 
@@ -2792,11 +2792,11 @@ input MdxFrontmatterFilterInput {
   tags: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: StringQueryOperatorInput
-  externalLinks: MdxFrontmatterExternalLinksFilterInput
-  publisher: MdxFrontmatterPublisherFilterInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
   isDraft: BooleanQueryOperatorInput
+  externalLinks: MdxFrontmatterExternalLinksFilterInput
+  publisher: MdxFrontmatterPublisherFilterInput
   slug: StringQueryOperatorInput
 }
 
@@ -3613,6 +3613,11 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___theme_color_in_head
   pluginCreator___pluginOptions___cacheDigest
   pluginCreator___pluginOptions___google___families
+  pluginCreator___pluginOptions___trackingId
+  pluginCreator___pluginOptions___head
+  pluginCreator___pluginOptions___anonymize
+  pluginCreator___pluginOptions___respectDNT
+  pluginCreator___pluginOptions___defer
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -3823,6 +3828,11 @@ enum SitePluginFieldsEnum {
   pluginOptions___theme_color_in_head
   pluginOptions___cacheDigest
   pluginOptions___google___families
+  pluginOptions___trackingId
+  pluginOptions___head
+  pluginOptions___anonymize
+  pluginOptions___respectDNT
+  pluginOptions___defer
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -3960,6 +3970,11 @@ type SitePluginPluginOptions {
   theme_color_in_head: Boolean
   cacheDigest: String
   google: SitePluginPluginOptionsGoogle
+  trackingId: String
+  head: Boolean
+  anonymize: Boolean
+  respectDNT: Boolean
+  defer: Boolean
   pathCheck: Boolean
 }
 
@@ -3984,6 +3999,11 @@ input SitePluginPluginOptionsFilterInput {
   theme_color_in_head: BooleanQueryOperatorInput
   cacheDigest: StringQueryOperatorInput
   google: SitePluginPluginOptionsGoogleFilterInput
+  trackingId: StringQueryOperatorInput
+  head: BooleanQueryOperatorInput
+  anonymize: BooleanQueryOperatorInput
+  respectDNT: BooleanQueryOperatorInput
+  defer: BooleanQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
 }
 

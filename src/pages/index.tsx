@@ -136,6 +136,12 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
             </Link>
           </ContentBox>
         )}
+        <ContentBox>
+          This site uses cookies, see the{' '}
+          <Link to="/privacy" lng>
+            Privacy Policy
+          </Link>
+        </ContentBox>
       </MainContentWrapper>
     </MainLayout>
   )
