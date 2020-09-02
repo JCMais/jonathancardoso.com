@@ -160,6 +160,16 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-11343647-9',
+        head: false,
+        anonymize: true,
+        respectDNT: true,
+        defer: false,
+      },
+    },
     'gatsby-plugin-preload-fonts',
     'gatsby-plugin-netlify',
     'gatsby-plugin-offline',
