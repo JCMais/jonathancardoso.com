@@ -2,7 +2,7 @@
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
 // https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/#optional-add-shell-prompt
 import 'prismjs/plugins/command-line/prism-command-line.css'
-import '../assets/prismjs-theme.css'
+import '../assets/prismjs-theme-light.css'
 
 import React, { useEffect } from 'react'
 import { css, Global } from '@emotion/core'
@@ -132,13 +132,16 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
             /* Line Highlight */
             .gatsby-highlight-code-line {
-              background-color: rgba(104, 104, 104, 0.65);
               display: inline-block;
               margin-right: -1em;
               margin-left: -1em;
               padding-right: 1em;
               padding-left: 0.8em;
-              border-left: 0.2em solid #e5e5e5;
+              border-left: 0.2em solid #4b8be2;
+              background-color: rgba(216, 208, 154, 0.25);
+              /*dark*/
+              /*border-left: 0.2em solid #e5e5e5;*/
+              /*background-color: rgba(104, 104, 104, 0.65);*/
             }
           `}
         />

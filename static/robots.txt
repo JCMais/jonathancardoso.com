@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /blog/unpublished/
+Disallow: /blog/draft/
 Disallow: /resume.pdf
 Allow: /

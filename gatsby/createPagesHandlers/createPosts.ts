@@ -27,7 +27,7 @@ export const createPosts = (
     createPage({
       // This is the slug we created before
       // (or `node.frontmatter.slug`)
-      path: node.slug,
+      path: node.isDraft ? node.slug.replace('/blog/', '/blog/draft/') : node.slug,
       // This component will wrap our MDX content
       component: path.resolve(__dirname, '../../src/templates/Post.tsx'),
       // We can use the values in this context in

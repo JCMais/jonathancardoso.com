@@ -113,6 +113,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     categorySlug: slugify(mdxNode.frontmatter.category),
     tags: mdxNode.frontmatter.tags ?? mdxNode.frontmatter.keywords ?? [],
     keywords: mdxNode.frontmatter.keywords ?? mdxNode.frontmatter.tags ?? [],
+    // default is false
+    isDraft: mdxNode.frontmatter.isDraft ?? false,
   }
 
   // https://www.gatsbyjs.org/docs/actions/#createNode

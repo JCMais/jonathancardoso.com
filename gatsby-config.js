@@ -3,8 +3,8 @@
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
-    siteUrl: 'https://jonathancardoso.dev/',
-    githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.dev/',
+    siteUrl: 'https://jonathancardoso.com/',
+    githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.com/',
     author: 'Jonathan Cardoso Machado',
     title: 'JCM',
     description: "Jonathan Cardoso Developer's Thoughts",
@@ -148,7 +148,7 @@ module.exports = {
         name: 'Personal home page with some of my thoughts',
         short_name: 'JCM',
         start_url: '/',
-        background_color: '#fff',
+        background_color: '#f7f7f7',
         theme_color: '#525dce',
         display: 'standalone',
         icon: 'assets/images/logo.png',

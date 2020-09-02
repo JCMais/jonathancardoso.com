@@ -36,6 +36,7 @@ export type BlogPost = {
   excerpt: Scalars['String']
   banner?: Maybe<File>
   bannerStyle?: Maybe<BannerStyle>
+  isDraft: Scalars['Boolean']
   externalLinks: ExternalLinks
   slug: Scalars['String']
   langKey: LangKey
@@ -252,6 +253,7 @@ export enum BlogPostFieldsEnum {
   banner___childMdx___frontmatter___bannerStyle = 'banner___childMdx___frontmatter___bannerStyle',
   banner___childMdx___frontmatter___description = 'banner___childMdx___frontmatter___description',
   banner___childMdx___frontmatter___keywords = 'banner___childMdx___frontmatter___keywords',
+  banner___childMdx___frontmatter___isDraft = 'banner___childMdx___frontmatter___isDraft',
   banner___childMdx___frontmatter___slug = 'banner___childMdx___frontmatter___slug',
   banner___childMdx___slug = 'banner___childMdx___slug',
   banner___childMdx___body = 'banner___childMdx___body',
@@ -284,6 +286,7 @@ export enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId = 'banner___childMdx___childMdxBlogPost___globalBlogPostId',
   banner___childMdx___childMdxBlogPost___title = 'banner___childMdx___childMdxBlogPost___title',
   banner___childMdx___childMdxBlogPost___bannerStyle = 'banner___childMdx___childMdxBlogPost___bannerStyle',
+  banner___childMdx___childMdxBlogPost___isDraft = 'banner___childMdx___childMdxBlogPost___isDraft',
   banner___childMdx___childMdxBlogPost___slug = 'banner___childMdx___childMdxBlogPost___slug',
   banner___childMdx___childMdxBlogPost___langKey = 'banner___childMdx___childMdxBlogPost___langKey',
   banner___childMdx___childMdxBlogPost___date = 'banner___childMdx___childMdxBlogPost___date',
@@ -298,6 +301,7 @@ export enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body = 'banner___childMdx___childMdxBlogPost___body',
   banner___childMdx___childMdxBlogPost___children = 'banner___childMdx___childMdxBlogPost___children',
   bannerStyle = 'bannerStyle',
+  isDraft = 'isDraft',
   externalLinks___devto = 'externalLinks___devto',
   externalLinks___canonical = 'externalLinks___canonical',
   externalLinks___github = 'externalLinks___github',
@@ -321,6 +325,7 @@ export type BlogPostFilterInput = {
   excerpt?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
@@ -1066,6 +1071,7 @@ export enum FileFieldsEnum {
   childMdx___frontmatter___publisher___url = 'childMdx___frontmatter___publisher___url',
   childMdx___frontmatter___description = 'childMdx___frontmatter___description',
   childMdx___frontmatter___keywords = 'childMdx___frontmatter___keywords',
+  childMdx___frontmatter___isDraft = 'childMdx___frontmatter___isDraft',
   childMdx___frontmatter___slug = 'childMdx___frontmatter___slug',
   childMdx___slug = 'childMdx___slug',
   childMdx___body = 'childMdx___body',
@@ -1158,6 +1164,7 @@ export enum FileFieldsEnum {
   childMdx___childMdxBlogPost___banner___id = 'childMdx___childMdxBlogPost___banner___id',
   childMdx___childMdxBlogPost___banner___children = 'childMdx___childMdxBlogPost___banner___children',
   childMdx___childMdxBlogPost___bannerStyle = 'childMdx___childMdxBlogPost___bannerStyle',
+  childMdx___childMdxBlogPost___isDraft = 'childMdx___childMdxBlogPost___isDraft',
   childMdx___childMdxBlogPost___externalLinks___devto = 'childMdx___childMdxBlogPost___externalLinks___devto',
   childMdx___childMdxBlogPost___externalLinks___canonical = 'childMdx___childMdxBlogPost___externalLinks___canonical',
   childMdx___childMdxBlogPost___externalLinks___github = 'childMdx___childMdxBlogPost___externalLinks___github',
@@ -1874,6 +1881,7 @@ export type MdxBlogPost = BlogPost &
     title: Scalars['String']
     banner?: Maybe<File>
     bannerStyle?: Maybe<BannerStyle>
+    isDraft: Scalars['Boolean']
     externalLinks: ExternalLinks
     slug: Scalars['String']
     langKey: LangKey
@@ -2093,6 +2101,7 @@ export enum MdxBlogPostFieldsEnum {
   banner___childMdx___frontmatter___bannerStyle = 'banner___childMdx___frontmatter___bannerStyle',
   banner___childMdx___frontmatter___description = 'banner___childMdx___frontmatter___description',
   banner___childMdx___frontmatter___keywords = 'banner___childMdx___frontmatter___keywords',
+  banner___childMdx___frontmatter___isDraft = 'banner___childMdx___frontmatter___isDraft',
   banner___childMdx___frontmatter___slug = 'banner___childMdx___frontmatter___slug',
   banner___childMdx___slug = 'banner___childMdx___slug',
   banner___childMdx___body = 'banner___childMdx___body',
@@ -2125,6 +2134,7 @@ export enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId = 'banner___childMdx___childMdxBlogPost___globalBlogPostId',
   banner___childMdx___childMdxBlogPost___title = 'banner___childMdx___childMdxBlogPost___title',
   banner___childMdx___childMdxBlogPost___bannerStyle = 'banner___childMdx___childMdxBlogPost___bannerStyle',
+  banner___childMdx___childMdxBlogPost___isDraft = 'banner___childMdx___childMdxBlogPost___isDraft',
   banner___childMdx___childMdxBlogPost___slug = 'banner___childMdx___childMdxBlogPost___slug',
   banner___childMdx___childMdxBlogPost___langKey = 'banner___childMdx___childMdxBlogPost___langKey',
   banner___childMdx___childMdxBlogPost___date = 'banner___childMdx___childMdxBlogPost___date',
@@ -2139,6 +2149,7 @@ export enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body = 'banner___childMdx___childMdxBlogPost___body',
   banner___childMdx___childMdxBlogPost___children = 'banner___childMdx___childMdxBlogPost___children',
   bannerStyle = 'bannerStyle',
+  isDraft = 'isDraft',
   externalLinks___devto = 'externalLinks___devto',
   externalLinks___canonical = 'externalLinks___canonical',
   externalLinks___github = 'externalLinks___github',
@@ -2247,6 +2258,7 @@ export type MdxBlogPostFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
@@ -2383,6 +2395,7 @@ export enum MdxFieldsEnum {
   frontmatter___publisher___url = 'frontmatter___publisher___url',
   frontmatter___description = 'frontmatter___description',
   frontmatter___keywords = 'frontmatter___keywords',
+  frontmatter___isDraft = 'frontmatter___isDraft',
   frontmatter___slug = 'frontmatter___slug',
   slug = 'slug',
   body = 'body',
@@ -2549,6 +2562,7 @@ export enum MdxFieldsEnum {
   childMdxBlogPost___banner___childMdx___id = 'childMdxBlogPost___banner___childMdx___id',
   childMdxBlogPost___banner___childMdx___children = 'childMdxBlogPost___banner___childMdx___children',
   childMdxBlogPost___bannerStyle = 'childMdxBlogPost___bannerStyle',
+  childMdxBlogPost___isDraft = 'childMdxBlogPost___isDraft',
   childMdxBlogPost___externalLinks___devto = 'childMdxBlogPost___externalLinks___devto',
   childMdxBlogPost___externalLinks___canonical = 'childMdxBlogPost___externalLinks___canonical',
   childMdxBlogPost___externalLinks___github = 'childMdxBlogPost___externalLinks___github',
@@ -2635,6 +2649,7 @@ export type MdxFrontmatter = {
   publisher?: Maybe<MdxFrontmatterPublisher>
   description?: Maybe<Scalars['String']>
   keywords?: Maybe<Array<Maybe<Scalars['String']>>>
+  isDraft?: Maybe<Scalars['Boolean']>
   slug?: Maybe<Scalars['String']>
 }
 
@@ -2665,6 +2680,7 @@ export type MdxFrontmatterFilterInput = {
   publisher?: Maybe<MdxFrontmatterPublisherFilterInput>
   description?: Maybe<StringQueryOperatorInput>
   keywords?: Maybe<StringQueryOperatorInput>
+  isDraft?: Maybe<BooleanQueryOperatorInput>
   slug?: Maybe<StringQueryOperatorInput>
 }
 
@@ -2807,6 +2823,7 @@ export type QueryBlogPostArgs = {
   excerpt?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
@@ -3021,6 +3038,7 @@ export type QueryMdxBlogPostArgs = {
   title?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
@@ -3454,15 +3472,15 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   __typename?: 'SitePageContext'
+  id?: Maybe<Scalars['String']>
+  langKey?: Maybe<Scalars['String']>
+  globalBlogPostId?: Maybe<Scalars['String']>
+  langKeySlug?: Maybe<Scalars['String']>
+  prev?: Maybe<SitePageContextPrev>
+  next?: Maybe<SitePageContextNext>
   pageEntries?: Maybe<Array<Maybe<Scalars['String']>>>
   pagination?: Maybe<SitePageContextPagination>
   categories?: Maybe<Array<Maybe<SitePageContextCategories>>>
-  langKey?: Maybe<Scalars['String']>
-  langKeySlug?: Maybe<Scalars['String']>
-  id?: Maybe<Scalars['String']>
-  globalBlogPostId?: Maybe<Scalars['String']>
-  prev?: Maybe<SitePageContextPrev>
-  next?: Maybe<SitePageContextNext>
   activeCategory?: Maybe<SitePageContextActiveCategory>
   categoriesByCategorySlug?: Maybe<SitePageContextCategoriesByCategorySlug>
   tag?: Maybe<Scalars['String']>
@@ -3529,15 +3547,15 @@ export type SitePageContextCategoriesFilterListInput = {
 }
 
 export type SitePageContextFilterInput = {
+  id?: Maybe<StringQueryOperatorInput>
+  langKey?: Maybe<StringQueryOperatorInput>
+  globalBlogPostId?: Maybe<StringQueryOperatorInput>
+  langKeySlug?: Maybe<StringQueryOperatorInput>
+  prev?: Maybe<SitePageContextPrevFilterInput>
+  next?: Maybe<SitePageContextNextFilterInput>
   pageEntries?: Maybe<StringQueryOperatorInput>
   pagination?: Maybe<SitePageContextPaginationFilterInput>
   categories?: Maybe<SitePageContextCategoriesFilterListInput>
-  langKey?: Maybe<StringQueryOperatorInput>
-  langKeySlug?: Maybe<StringQueryOperatorInput>
-  id?: Maybe<StringQueryOperatorInput>
-  globalBlogPostId?: Maybe<StringQueryOperatorInput>
-  prev?: Maybe<SitePageContextPrevFilterInput>
-  next?: Maybe<SitePageContextNextFilterInput>
   activeCategory?: Maybe<SitePageContextActiveCategoryFilterInput>
   categoriesByCategorySlug?: Maybe<SitePageContextCategoriesByCategorySlugFilterInput>
   tag?: Maybe<StringQueryOperatorInput>
@@ -3704,6 +3722,14 @@ export enum SitePageFieldsEnum {
   internal___owner = 'internal___owner',
   internal___type = 'internal___type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
+  context___id = 'context___id',
+  context___langKey = 'context___langKey',
+  context___globalBlogPostId = 'context___globalBlogPostId',
+  context___langKeySlug = 'context___langKeySlug',
+  context___prev___title = 'context___prev___title',
+  context___prev___slug = 'context___prev___slug',
+  context___next___title = 'context___next___title',
+  context___next___slug = 'context___next___slug',
   context___pageEntries = 'context___pageEntries',
   context___pagination___pageEntries = 'context___pagination___pageEntries',
   context___pagination___currentPageIndex = 'context___pagination___currentPageIndex',
@@ -3715,14 +3741,6 @@ export enum SitePageFieldsEnum {
   context___categories = 'context___categories',
   context___categories___category = 'context___categories___category',
   context___categories___categorySlug = 'context___categories___categorySlug',
-  context___langKey = 'context___langKey',
-  context___langKeySlug = 'context___langKeySlug',
-  context___id = 'context___id',
-  context___globalBlogPostId = 'context___globalBlogPostId',
-  context___prev___title = 'context___prev___title',
-  context___prev___slug = 'context___prev___slug',
-  context___next___title = 'context___next___title',
-  context___next___slug = 'context___next___slug',
   context___activeCategory___category = 'context___activeCategory___category',
   context___activeCategory___categorySlug = 'context___activeCategory___categorySlug',
   context___categoriesByCategorySlug___programming___category = 'context___categoriesByCategorySlug___programming___category',
@@ -4385,6 +4403,7 @@ export type GatsbyCreatePagesQuery = { __typename?: 'Query' } & {
           | 'excerpt'
           | 'title'
           | 'slug'
+          | 'isDraft'
           | 'langKey'
           | 'category'
           | 'categorySlug'

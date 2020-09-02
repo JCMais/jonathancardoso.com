@@ -23,6 +23,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
             excerpt(pruneLength: 250)
             title
             slug
+            isDraft
             langKey
             category
             categorySlug
@@ -41,8 +42,15 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const { edges } = result.data!.allBlogPost
 
-  createBlog(actions.createPage, edges)
   createPosts(actions.createPage, edges)
-  createCategoryPages(actions.createPage, edges)
-  createTagsPages(actions.createPage, edges)
+
+  // if on production we need to filter only the published posts for the next pages
+
+  const filteredEdges = edges.filter(
+    ({ node }) => process.env.NODE_ENV !== 'production' || !node.isDraft,
+  )
+
+  createBlog(actions.createPage, filteredEdges)
+  createCategoryPages(actions.createPage, filteredEdges)
+  createTagsPages(actions.createPage, filteredEdges)
 }

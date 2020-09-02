@@ -80,6 +80,8 @@ export const createSchemaCustomization = async ({
     banner: File
     bannerStyle: BannerStyle
 
+    isDraft: Boolean!
+
     externalLinks: ExternalLinks!
     
     slug: String!
@@ -108,6 +110,8 @@ export const createSchemaCustomization = async ({
     title: String!
     banner: File
     bannerStyle: BannerStyle
+
+    isDraft: Boolean!
     
     externalLinks: ExternalLinks!
     

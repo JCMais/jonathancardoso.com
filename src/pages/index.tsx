@@ -141,7 +141,7 @@ export default IndexPage
 export const pageQuery = graphql`
   query IndexQuery($langKey: LangKey!) {
     allBlogPost(
-      filter: { langKey: { eq: $langKey } }
+      filter: { langKey: { eq: $langKey }, isDraft: { eq: false } }
       sort: { order: DESC, fields: [date] }
       limit: 3
     ) {

@@ -1,0 +1,24 @@
+# Global settings applied to the whole site.
+#
+# “base” is the directory to change to before starting build. If you set base:
+#        that is where we will look for package.json/.nvmrc/etc, not repo root!
+# “command” is your build command.
+# “publish” is the directory to publish (relative to the root of your repo).
+
+[build]
+  base    = "."
+  command = "yarn run build"
+  publish = "public"
+
+# Production context: All deploys from the main
+# repository branch will inherit these settings.
+[context.production]
+  [context.production.environment]
+
+# Specific branch context: Deploys from this branch
+# will take these settings and override their
+# current ones.
+[context.develop]
+  [context.develop.environment]
+[context.deploy-preview]
+  [context.deploy-preview.environment]
