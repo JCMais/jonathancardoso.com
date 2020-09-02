@@ -14,7 +14,7 @@ import { ContentBox } from '@r/components/ContentBox'
 import { MainContentWrapper } from '@r/components/MainContentWrapper'
 import { SEO } from '@r/components/SEO'
 
-import { PostsTimeline } from '@r/components/PostTimeline'
+import { PostsTimeline } from '@r/components/PostsTimeline'
 import { FeatherIcons } from '@r/components/icon/FeatherIcons'
 import { StackOverflowIcon } from '@r/components/icon/StackOverflowIcon'
 import { H1 } from '@r/components/ui/H1'
@@ -81,11 +81,11 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
               </ListItem>
               <ListItem>
                 <Link
-                  to="https://stackoverflow.com/users/710693/jcm"
-                  aria-label="StackOverflow Profile for jcm"
+                  to="https://stackoverflow.com/users/710693/jonathancardoso"
+                  aria-label="StackOverflow Profile for jonathancardoso"
                 >
                   <StackOverflowIcon variant="icon" aria-label="StackOverflow Icon" />
-                  <SocialNetworkUsername>jcm</SocialNetworkUsername>
+                  <SocialNetworkUsername>jonathancardoso</SocialNetworkUsername>
                 </Link>
               </ListItem>
               <ListItem>
@@ -125,7 +125,12 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
         {!!posts.length && (
           <ContentBox>
             <H2>{t('Latest Thoughts')}</H2>
-            <PostsTimeline posts={posts} />
+            <PostsTimeline
+              posts={posts}
+              postTitleSx={{
+                fontSize: [4],
+              }}
+            />
             <Link to="/blog" lng>
               {t('common:See all posts')}
             </Link>

@@ -11,7 +11,7 @@ import { MainLayout } from '@r/layouts/MainLayout'
 
 import { MainContentWrapper } from '@r/components/MainContentWrapper'
 import { ContentBox } from '@r/components/ContentBox'
-import { PostsTimeline } from '@r/components/PostTimeline'
+import { PostsTimeline } from '@r/components/PostsTimeline'
 import { Pagination } from '@r/components/Pagination'
 
 import { SEO } from '@r/components/SEO'

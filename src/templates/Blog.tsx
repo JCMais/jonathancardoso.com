@@ -7,7 +7,7 @@ import { BlogQuery } from '@r/generated/graphql'
 
 import { MainLayout } from '@r/layouts/MainLayout'
 import { SEO } from '@r/components/SEO'
-import { PostsTimeline } from '@r/components/PostTimeline'
+import { PostsTimeline } from '@r/components/PostsTimeline'
 import { ContentBox } from '@r/components/ContentBox'
 import { MainContentWrapper } from '@r/components/MainContentWrapper'
 import { Pagination } from '@r/components/Pagination'

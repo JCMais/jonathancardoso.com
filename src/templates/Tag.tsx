@@ -9,7 +9,7 @@ import { MainLayout } from '@r/layouts/MainLayout'
 import { SEO } from '@r/components/SEO'
 import { MainContentWrapper } from '@r/components/MainContentWrapper'
 import { ContentBox } from '@r/components/ContentBox'
-import { PostsTimeline } from '@r/components/PostTimeline'
+import { PostsTimeline } from '@r/components/PostsTimeline'
 
 import { Link } from '@r/components/ui/Link'
 import { H1 } from '@r/components/ui/H1'

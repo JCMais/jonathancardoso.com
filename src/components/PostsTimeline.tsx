@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Text } from 'rebass'
+import { Box, BoxProps, Text } from 'rebass'
 import moment from 'moment'
 
 import { BlogPost } from '@r/generated/graphql'
@@ -29,7 +29,7 @@ const PostsTimelineWrapper = styled(Box)`
   }
 `
 
-const PostTimelineMonth = styled(Box)`
+const PostsTimelineMonth = styled(Box)`
   /* box-sizing: border-box; */
   display: inline-block;
   position: relative;
@@ -48,7 +48,7 @@ const PostTimelineMonth = styled(Box)`
   }
 `
 
-const PostTimelineMonthText = styled(Text)`
+const PostsTimelineMonthText = styled(Text)`
   background-color: #fff;
   border: 1px solid #c4c4c4;
   position: relative;
@@ -91,9 +91,17 @@ const PostBox = styled(Box)`
 type BlogPostOnTimeline = Pick<BlogPost, 'id' | 'slug' | 'title' | 'date' | 'excerpt'>
 type BlogPostEdgeOnTimeline = { node: BlogPostOnTimeline }
 
-export const PostsTimeline: React.FC<{
+type PostsTimelineProps = {
+  postTitleComponent?: React.ComponentType
+  postTitleSx?: BoxProps['sx']
   posts: Array<BlogPostEdgeOnTimeline>
-}> = ({ posts }) => {
+}
+
+export const PostsTimeline = ({
+  posts,
+  postTitleComponent = H3,
+  postTitleSx,
+}: PostsTimelineProps) => {
   const postsPerMonth = posts.reduce<Record<string, Array<BlogPostOnTimeline>>>(
     (acc, { node }) => {
       const dateMonth = moment(node.date).format('MMMM YYYY')
@@ -105,12 +113,14 @@ export const PostsTimeline: React.FC<{
     {},
   )
 
+  const PostTitleComponent = postTitleComponent
+
   return (
     <PostsTimelineWrapper pt={[6]} pb={[0]}>
       {Object.entries(postsPerMonth).map(([month, postsForMonth]) => (
         <div key={`month-${month.replace(/\s+/g, '').toLowerCase()}`}>
-          <PostTimelineMonth mt={4} mb={4} pl={26}>
-            <PostTimelineMonthText
+          <PostsTimelineMonth mt={4} mb={4} pl={26}>
+            <PostsTimelineMonthText
               sx={{
                 textTransform: 'uppercase',
               }}
@@ -119,12 +129,12 @@ export const PostsTimeline: React.FC<{
               as="span"
             >
               {month}
-            </PostTimelineMonthText>
-          </PostTimelineMonth>
+            </PostsTimelineMonthText>
+          </PostsTimelineMonth>
           {postsForMonth.map((post) => (
             <PostBox as="article" mt={6} mb={6} ml={26} px={3} py={4} key={post.id}>
               <Link style={{ textDecoration: 'none', color: 'inherit' }} to={post.slug}>
-                <H3>{post.title}</H3>
+                <PostTitleComponent sx={postTitleSx}>{post.title}</PostTitleComponent>
                 <Text color="gray.1" variant="body" fontSize={1}>
                   {moment(post.date).format('MMMM DD, YYYY')}
                 </Text>
