@@ -13,8 +13,8 @@ import '../assets/prismjs-theme-light.css'
 import React, { useEffect } from 'react'
 import { css, Global } from '@emotion/core'
 import { ThemeProvider as ThemeProviderWrapper } from 'emotion-theming'
-import { normalize } from 'styled-normalize'
 
+import { normalize } from './normalize'
 import { theme } from './theme'
 
 export const ThemeProvider: React.FC = ({ children }) => {
