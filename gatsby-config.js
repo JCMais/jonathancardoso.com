@@ -1,9 +1,10 @@
 /* eslint-disable global-require */
+
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     siteUrl: 'https://jonathancardoso.dev/',
-    githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.com/',
+    githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.dev/',
     author: 'Jonathan Cardoso Machado',
     title: 'JCM',
     description: "Jonathan Cardoso Developer's Thoughts",
@@ -56,27 +57,19 @@ module.exports = {
         //  ignore: ['**/.tsx*'],
       },
     },
-    // {
-    //   resolve: 'gatsby-source-filesystem',
-    //   options: {
-    //     path: `${__dirname}/content/experiments`,
-    //     name: 'experiments',
-    //     //  ignore: ['**/.tsx*'],
-    //   },
-    // },
+    'gatsby-remark-images',
     {
       resolve: 'gatsby-plugin-mdx',
       options: {
         extensions: ['.mdx'],
-        // defaultLayouts: {
-        //   posts: require.resolve("./src/components/posts-layout.js"),
-        //   default: require.resolve("./src/components/default-page-layout.js"),
-        // },
         gatsbyRemarkPlugins: [
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 1035,
+              // see https://github.com/gatsbyjs/gatsby/pull/17154
+              disableBgImageOnAlpha: true,
+              quality: 70,
             },
           },
           {
@@ -87,8 +80,7 @@ module.exports = {
             resolve: 'gatsby-remark-code-titles',
           },
           // @TODO Investigate using prism-react-renderer instead
-          //        See https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/#gatsby-remark-plugins
-          //  Or use https://www.gatsbyjs.org/packages/gatsby-remark-code-titles/
+          // See https://www.gatsbyjs.org/packages/gatsby-plugin-mdx/#gatsby-remark-plugins
           // https://mdxjs.com/guides/syntax-highlighting#build-a-codeblock-component
           // https://astexplorer.net/#/gist/192c72d2e03cb6875ec4de12f7bf0028/latest
           {
@@ -107,7 +99,6 @@ module.exports = {
           },
         ],
         remarkPlugins: [
-          require('./remarkPlugins/definitionLists'),
           [
             require('remark-captions'),
             {
@@ -122,6 +113,8 @@ module.exports = {
               },
             },
           ],
+          require('remark-abbr'),
+          require('./remarkPlugins/definitionLists'),
         ],
         rehypePlugins: [
           require('rehype-accessible-emojis').rehypeAccessibleEmojis,
@@ -170,18 +163,7 @@ module.exports = {
       },
     },
     'gatsby-plugin-preload-fonts',
-    // {
-    //   resolve: 'gatsby-plugin-eslint',
-    //   options: {
-    //     test: /\.js$|\.jsx$\.ts$|\.tsx$|/,
-    //     exclude: /(node_modules|.cache|public)/,
-    //     stages: ['develop'],
-    //     options: {
-    //       emitWarning: true,
-    //       failOnError: false,
-    //     },
-    //   },
-    // },
+    'gatsby-plugin-netlify',
     // @TODO add https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-feed
     // 'gatsby-plugin-offline',
   ],

@@ -10,7 +10,7 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
       modules: [path.resolve(__dirname, '..', 'src'), 'node_modules'],
       // must also be added to tsconfig.json
       alias: {
-        $r: path.resolve(__dirname, '..', 'src/'),
+        '@r': path.resolve(__dirname, '..', 'src/'),
         '@shared': path.resolve(__dirname, '..', 'shared/'),
       },
     },

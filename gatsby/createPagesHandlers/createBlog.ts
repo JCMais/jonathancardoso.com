@@ -3,7 +3,7 @@ import path from 'path'
 import { Actions } from 'gatsby'
 
 import { convertLangKeyFromGraphQLEnum } from '../utils'
-import { GatsbyCreatePagesQuery } from '../types/graphql'
+import { GatsbyCreatePagesQuery } from '../generated/graphql'
 
 import { createPaginatedPages, pluckCategories } from './utils'
 

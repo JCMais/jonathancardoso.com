@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Text } from 'rebass'
+import { Text, TextProps } from 'rebass'
 
-export const Paragraph = props => {
+export const Paragraph = (props: TextProps) => {
   return <Text variant="body" as="p" {...props} />
 }

@@ -3,27 +3,39 @@ import path from 'path'
 import { Actions } from 'gatsby'
 
 import { convertLangKeyFromGraphQLEnum } from '../utils'
-import { GatsbyCreatePagesQuery } from '../types/graphql'
+import { GatsbyCreatePagesQuery, LangKey } from '../generated/graphql'
 
 import { createPaginatedPages, pluckCategories } from './utils'
 
-const groupByLangKeyAndCategory = (edges) =>
-  edges.reduce((acc, edge) => {
-    acc[edge.node.langKey] = acc[edge.node.langKey] || {}
-    acc[edge.node.langKey][edge.node.categorySlug] =
-      acc[edge.node.langKey][edge.node.categorySlug] || []
+const groupByLangKeyAndCategory = (
+  edges: GatsbyCreatePagesQuery['allBlogPost']['edges'],
+) =>
+  edges.reduce(
+    (acc, edge) => {
+      acc[edge.node.langKey] = acc[edge.node.langKey] || {}
+      acc[edge.node.langKey][edge.node.categorySlug] =
+        acc[edge.node.langKey][edge.node.categorySlug] || []
 
-    return {
-      ...acc,
-      [edge.node.langKey]: {
-        ...acc[edge.node.langKey],
-        [edge.node.categorySlug]: [
-          ...acc[edge.node.langKey][edge.node.categorySlug],
-          edge,
-        ],
-      },
-    }
-  }, {})
+      return {
+        ...acc,
+        [edge.node.langKey]: {
+          ...acc[edge.node.langKey],
+          [edge.node.categorySlug]: [
+            ...acc[edge.node.langKey][edge.node.categorySlug],
+            edge,
+          ],
+        },
+      }
+    },
+    {
+      EN: {},
+      PT_BR: {},
+    } as {
+      [langKey in LangKey]: {
+        [key: string]: GatsbyCreatePagesQuery['allBlogPost']['edges']
+      }
+    },
+  )
 
 export const createCategoryPages = (
   createPage: Actions['createPage'],
@@ -39,7 +51,9 @@ export const createCategoryPages = (
         ...acc,
         [c.categorySlug]: c,
       }),
-      {},
+      {} as {
+        [key: string]: typeof categories[0]
+      },
     )
 
     for (const [categorySlug, postsEdges] of Object.entries(postsByCategory)) {
@@ -50,7 +64,6 @@ export const createCategoryPages = (
         path.resolve(__dirname, '../../src/templates/Category.tsx'),
         {
           activeCategory: categoriesByCategorySlug[categorySlug],
-          postsOnCategory: postsEdges.map((edge) => edge.node),
           categories,
           categoriesByCategorySlug,
           langKeySlug,

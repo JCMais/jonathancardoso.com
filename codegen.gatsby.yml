@@ -5,10 +5,12 @@ hooks:
     - prettier --write
 config:
   omitOperationSuffix: true
+  namingConvention:
+    enumValues: keep
 documents:
   - ./node_modules/gatsby-*/**/*.js
 generates:
-  gatsby/types/graphql.ts:
+  gatsby/generated/graphql.ts:
     documents:
       - ./gatsby/**/*.{tsx,ts}
     watch:

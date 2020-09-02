@@ -1,5 +1,4 @@
 // inspired on https://github.com/obahareth/awesome-mena-conferences-and-meetups/blob/711aee4f40e2952a5483d31820e7e0a809ef8e3a/src/components/i18n.js
-//
 
 import _i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
@@ -19,7 +18,7 @@ export const i18nConfig = {
     // not needed for react as it escapes by default
     escapeValue: false,
   },
-  // debug: process.env.NODE_ENV && process.env.NODE_ENV === 'development',
+  // @TODO enable as debug: process.env.NODE_ENV && process.env.NODE_ENV === 'development',
   debug: true,
   react: {
     wait: true,

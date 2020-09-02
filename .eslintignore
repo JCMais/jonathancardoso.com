@@ -8,3 +8,4 @@ public
 static
 # Automatic schema types
 src/schema/*.ts
+src/generated/*

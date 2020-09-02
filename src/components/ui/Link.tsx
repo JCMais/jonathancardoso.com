@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import { Link as GatsbyLink, GatsbyLinkProps } from 'gatsby'
-import { Link as RebassLink } from 'rebass'
+import { Link as RebassLink, LinkProps as RebassLinkProps } from 'rebass'
 import { useTranslation } from 'react-i18next'
-import { getLangKeyFromPath } from '../../../gatsby/utils'
 
-export const Link: React.FunctionComponent<
-  { to: string; lng?: string | boolean } & GatsbyLinkProps
-> = ({ children, to, lng = false, ...props }) => {
+export type LinkProps = { to: string; lng?: string | boolean } & RebassLinkProps &
+  GatsbyLinkProps<{}>
+
+export const Link: React.FC<LinkProps> = ({ children, to, lng = false, ...props }) => {
   const { i18n } = useTranslation()
   const internal = /^\/(?!\/)/.test(to)
 
@@ -25,6 +25,7 @@ export const Link: React.FunctionComponent<
     // const languageLink = getLangKeyFromPath(to)
     // if (languageLink !== )
     return (
+      // @ts-expect-error Property 'to' does not exist on type
       <RebassLink to={urlFinal} {...props} as={GatsbyLink}>
         {children}
       </RebassLink>

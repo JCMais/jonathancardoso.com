@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { Box, BoxProps } from 'rebass'
 
-export const DevToIcon: FunctionComponent<BoxProps> = props => {
+export const DevToIcon: FunctionComponent<BoxProps> = (props) => {
   return (
     <Box
       sx={{

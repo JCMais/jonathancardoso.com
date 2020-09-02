@@ -1,22 +1,14 @@
-import React, { ComponentType } from 'react'
+import React from 'react'
 import * as FeatherOriginalIcons from 'react-feather'
-import { Box } from 'rebass'
-import styled from '@emotion/styled'
-import { space, SpaceProps, layout, LayoutProps } from 'styled-system'
+import { Box, BoxProps } from 'rebass'
 
-type FeatherIconMap = {
-  [iconName in keyof typeof FeatherOriginalIcons]: ComponentType<
-    FeatherOriginalIcons.Props & SpaceProps & LayoutProps
+type FeatherIconsMap = {
+  [iconName in keyof typeof FeatherOriginalIcons]: React.FC<
+    FeatherOriginalIcons.Props & BoxProps
   >
 }
 
-export const FeatherIcons: Partial<
-  {
-    [iconName in keyof typeof FeatherOriginalIcons]: ComponentType<
-      FeatherOriginalIcons.Props & SpaceProps
-    >
-  }
-> = {}
+export const FeatherIcons = {} as FeatherIconsMap
 
 for (const [iconName, Icon] of Object.entries(FeatherOriginalIcons)) {
   // @ts-ignore

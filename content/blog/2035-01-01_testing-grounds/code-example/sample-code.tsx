@@ -6,10 +6,10 @@ import { Button as RebassButton } from 'rebass'
 // Content here will be hidden :)
 // hide-end
 
-export const SampleButton = props => {
+export const SampleButton = () => {
   const [counter, setCounter] = useState(0)
 
-  const changeCounter = evt => {
+  const changeCounter = () => {
     setCounter(counter + 1)
   }
 

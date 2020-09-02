@@ -2,11 +2,11 @@ import path from 'path'
 import { Actions } from 'gatsby'
 
 import { convertLangKeyFromGraphQLEnum } from '../utils'
-import { GatsbyCreatePagesQuery } from '../types/graphql'
+import { GatsbyCreatePagesQuery, LangKey } from '../generated/graphql'
 
 import { createPaginatedPages } from './utils'
 
-const groupByLangKeyAndTag = (edges) =>
+const groupByLangKeyAndTag = (edges: GatsbyCreatePagesQuery['allBlogPost']['edges']) =>
   edges.reduce((acc, edge) => {
     const { node } = edge
     let newAcc = { ...acc }
@@ -25,7 +25,7 @@ const groupByLangKeyAndTag = (edges) =>
     }
 
     return newAcc
-  }, {})
+  }, {} as { [key in LangKey]: { [tag: string]: Array<GatsbyCreatePagesQuery['allBlogPost']['edges'][0]> } })
 
 // We could have used group on allBlogPost like below:
 // https://www.gatsbyjs.org/docs/adding-tags-and-categories-to-blog-posts/#make-a-tags-index-page-tags-that-renders-a-list-of-all-tags
@@ -43,10 +43,10 @@ export const createTagsPages = (
         {
           tag,
           langKey,
-          articlesCount: postsByTag[tag].length,
+          postsCount: postsByTag[tag].length,
         },
       ],
-      [],
+      [] as Array<{ tag: string; langKey: string; postsCount: number }>,
     )
 
     for (const [tag, postsEdges] of Object.entries(postsByTag)) {

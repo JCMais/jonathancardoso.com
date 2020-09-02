@@ -1,22 +1,23 @@
-import * as React from 'react'
+import React from 'react'
 import { PageProps } from 'gatsby'
 import { useTranslation } from 'react-i18next'
 import { Box, BoxProps, Flex, FlexProps } from 'rebass'
 
-import { MainLayout } from '../layouts/MainLayout'
-import { Link } from '../components/ui/Link'
-import { SEO } from '../components/SEO'
-import { MainContentWrapper } from '../components/MainContentWrapper'
-import { ContentBox } from '../components/ContentBox'
+import { MainLayout } from '@r/layouts/MainLayout'
+
+import { SEO } from '@r/components/SEO'
+import { MainContentWrapper } from '@r/components/MainContentWrapper'
+import { ContentBox } from '@r/components/ContentBox'
+
+import { Link } from '@r/components/ui/Link'
 import { H1 } from '../components/ui/H1'
 
-type TagInfo = { articlesCount: number; tag: string }
+type TagInfo = { postsCount: number; tag: string }
 
-const TagGrid: React.FunctionComponent<FlexProps> = (props) => (
+const TagGrid: React.FC<FlexProps> = (props) => (
   <Flex
     as="ul"
     my={3}
-    mx={false}
     flexDirection="row"
     flexWrap="wrap"
     justifyContent="space-evenly"
@@ -28,9 +29,9 @@ const TagGrid: React.FunctionComponent<FlexProps> = (props) => (
   />
 )
 
-const TagItem: React.FunctionComponent<BoxProps> = (props) => <Box {...props} as="li" />
+const TagItem: React.FC<BoxProps> = (props) => <Box {...props} as="li" />
 
-const TagLink: React.FunctionComponent<TagInfo> = ({ tag, articlesCount }) => (
+const TagLink: React.FC<TagInfo> = ({ tag, postsCount }) => (
   <Link
     to={`/blog/tags/${tag}`}
     lng
@@ -42,11 +43,11 @@ const TagLink: React.FunctionComponent<TagInfo> = ({ tag, articlesCount }) => (
       display: 'inline-block',
     }}
   >
-    #{tag} ({articlesCount})
+    #{tag} ({postsCount})
   </Link>
 )
 
-const Tags: React.FunctionComponent<PageProps<
+const Tags: React.FC<PageProps<
   {},
   {
     tags: Array<TagInfo>
@@ -61,9 +62,9 @@ const Tags: React.FunctionComponent<PageProps<
         <ContentBox>
           <H1>{t('Tags')}</H1>
           <TagGrid>
-            {tags.map(({ tag, articlesCount }) => (
+            {tags.map(({ tag, postsCount }) => (
               <TagItem key={tag}>
-                <TagLink tag={tag} articlesCount={articlesCount} />
+                <TagLink tag={tag} postsCount={postsCount} />
               </TagItem>
             ))}
           </TagGrid>

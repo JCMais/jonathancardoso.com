@@ -1,16 +1,16 @@
 import React from 'react'
 
-import { Text } from 'rebass'
+import { Text, TextProps } from 'rebass'
 
-export const BlockQuote = props => {
+export const BlockQuote = (props: TextProps) => {
   return (
     <Text
       variant="quote"
       as="blockquote"
-      ml={['10%']}
-      pl={['5%']}
+      ml={['1%']}
+      pl={['3%']}
       sx={{
-        borderLeft: '2px solid transparent',
+        borderLeft: '3px solid transparent',
         borderLeftColor: 'gray.2',
         '> p': {
           lineHeight: 'quote',

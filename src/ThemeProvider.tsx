@@ -1,23 +1,21 @@
-// @ts-ignore
+// https://github.com/hagnerd/gatsby-starter-blog-mdx/blob/6d007b051d7f4646a7de7f09060a97b986b661b8/gatsby-browser.js#L1
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
+// https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/#optional-add-shell-prompt
+import 'prismjs/plugins/command-line/prism-command-line.css'
+import '../assets/prismjs-theme.css'
+
 import React, { useEffect } from 'react'
-// import {
-//   ThemeProvider as ThemeProviderWrapper,
-//   createGlobalStyle,
-// } from 'styled-components'
 import { css, Global } from '@emotion/core'
 import { ThemeProvider as ThemeProviderWrapper } from 'emotion-theming'
 import { normalize } from 'styled-normalize'
 
 import { theme } from './theme'
 
-// export const GlobalStyle = createGlobalStyle`
-//   ${normalize};
-//   /* Does not work with gatsby-image idk why */
-//   /* * { position: relative; } */
-// `
-
-export const ThemeProvider = ({ children }) => {
+export const ThemeProvider: React.FC = ({ children }) => {
   useEffect(() => {
+    // We are using this to measure the width of the scrollbar
+    // The resulting width is then stored in a CSS variable
+
     // Add temporary box to wrapper
     const scrollbox = document.createElement('div')
 
@@ -40,6 +38,7 @@ export const ThemeProvider = ({ children }) => {
     <ThemeProviderWrapper theme={theme}>
       <>
         <Global
+          // Some global styles - Easier to do them this way.
           // @ts-ignore
           styles={css`
             ${normalize};
@@ -49,14 +48,22 @@ export const ThemeProvider = ({ children }) => {
             }
 
             body {
+              text-rendering: optimizeLegibility;
+              -webkit-font-smoothing: antialiased;
               font-family: ${theme.fonts.body};
               font-size: ${theme.fontSizes[3]}px;
               font-weight: ${theme.fontWeights.body};
             }
 
+            /*
             .gatsby-resp-image-wrapper {
               border: 1px solid hsl(0, 0%, 65%);
             }
+            .gatsby-resp-image-image {
+              object-fit: cover;
+              object-position: center;
+            }
+            */
 
             /**
            * Prism Syntax Highlight with Gatsby
@@ -74,7 +81,7 @@ export const ThemeProvider = ({ children }) => {
             }
 
             /* Language icon on the top right corner of the codeblock */
-            .gatsby-highlight::after {
+            /* .gatsby-highlight::after {
               position: absolute;
               top: 0;
               right: 0;
@@ -94,12 +101,13 @@ export const ThemeProvider = ({ children }) => {
               content: 'JS';
               color: #323330;
               background: #f0db4f;
-            }
+            } */
 
             /* inline code block */
             :not(pre) > code[class*='language-'] {
               border-radius: 0;
-              padding: 0.2em 0.3em;
+              padding: 0em 0.3em;
+              font-size: 0.9em;
             }
 
             .gatsby-highlight pre[class*='language-'].line-numbers {

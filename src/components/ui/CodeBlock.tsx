@@ -1,8 +1,11 @@
 import React from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 
-export const CodeBlock = ({ children, className }) => {
-  const language = className.replace(/language-/, '')
+export const CodeBlock: React.FC<{ children: string; className: string }> = ({
+  children,
+  className,
+}) => {
+  const language = className.replace(/language-/, '') as Language
   return (
     <Highlight {...defaultProps} code={children} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

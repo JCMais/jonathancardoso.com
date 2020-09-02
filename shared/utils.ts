@@ -24,7 +24,9 @@ export const convertLangKeyToISO = (langKey: string) =>
     .join('-')
 
 export const getLanguageName = (langKey: string): string =>
-  locale.supportedLanguages[langKey]
+  // @ts-expect-error
+  locale.supportedLanguages[langKey] || 'Unknown'
+
 export const getLangKeyFromPath = (
   path: string,
   // @TODO use values from gatsby-config or some other central place

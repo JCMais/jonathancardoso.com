@@ -1,7 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import { Flex, FlexProps } from 'rebass'
 
-export const MainContentWrapper: React.FunctionComponent<FlexProps> = ({ children }) => {
+export const MainContentWrapper: React.FC<FlexProps> = ({ children }) => {
   return (
     <Flex flexDirection="column" alignItems="center">
       {children}

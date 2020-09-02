@@ -1,4 +1,4 @@
 import defaultStyled, { CreateStyled } from '@emotion/styled'
-import { theme } from './theme'
+import { Theme } from './theme'
 
-export const styled = defaultStyled as CreateStyled<typeof theme>
+export const styled = defaultStyled as CreateStyled<Theme>

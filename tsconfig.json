@@ -2,13 +2,15 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    "baseUrl": "src",
     "jsx": "react",
-    "lib": ["dom", "esnext", "es2015", "es2016", "es2017"],
+    "baseUrl": "src",
+    // webpack will include polyfills for anything > es2016
+    "lib": ["dom", "es2015", "es2016", "es2017", "esnext"],
     "moduleResolution": "node",
-    "noImplicitAny": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "esModuleInterop": true,
     "plugins": [
       {
@@ -18,13 +20,21 @@
         "name": "@divyenduz/ts-graphql-plugin"
       }
     ],
-    "target": "es2015",
-    "types": ["node", "./types/helpers.d.ts"],
+    "target": "ES2016",
+    "types": [
+      "node",
+      "./types/helpers",
+      // needed for react-youtube
+      "youtube"
+    ],
+    "typeRoots": ["node_modules/@types", "types/external"],
     // must also be added to gatsby/onCreateWebpackConfig.ts
     "paths": {
-      "@shared/*": ["../shared/*"],
-    }
+      "@r/*": ["./*"],
+      "@shared/*": ["../shared/*"]
+    },
+    "outDir": "./dist"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "gatsby-config.ts", "gatsby-node.js"],
   "exclude": ["node_modules/*", "public/*"]
 }

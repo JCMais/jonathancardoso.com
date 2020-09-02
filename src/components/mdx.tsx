@@ -2,6 +2,7 @@
 import React from 'react'
 import YouTube from 'react-youtube'
 import { Box, Text } from 'rebass'
+import { MDXProviderComponentsProp } from '@mdx-js/react'
 
 import { BlockQuote } from './ui/BlockQuote'
 import { Button } from './ui/Button'
@@ -17,13 +18,15 @@ import { ListOrdered } from './ui/ListOrdered'
 import { ListUnordered } from './ui/ListUnordered'
 
 // https://mdxjs.com/table-of-components
-export const MDXLayoutComponents = {
+export const MDXLayoutComponents: MDXProviderComponentsProp = {
   // @TODO use this instead of gatsby-remark-prismjs and rework plugins styles
   // pre: CodeBlock,
   h1: (props) => (
     <H1
       mt={7}
       mb={2}
+      ml={'-30px'}
+      pl={'30px'}
       sx={{
         '+ *:not(h2)': {
           marginTop: 0,
@@ -36,6 +39,8 @@ export const MDXLayoutComponents = {
     <H2
       mt={7}
       mb={2}
+      ml={'-30px'}
+      pl={'30px'}
       sx={{
         '+ *:not(h3)': {
           marginTop: 0,
@@ -48,6 +53,8 @@ export const MDXLayoutComponents = {
     <H3
       mt={6}
       mb={2}
+      ml={'-30px'}
+      pl={'30px'}
       sx={{
         '+ *': {
           marginTop: 0,
@@ -60,6 +67,8 @@ export const MDXLayoutComponents = {
     <H4
       mt={5}
       mb={2}
+      ml={'-30px'}
+      pl={'30px'}
       sx={{
         '+ *': {
           marginTop: 0,
@@ -70,9 +79,15 @@ export const MDXLayoutComponents = {
   ),
   ul: ListUnordered,
   ol: ListOrdered,
-  figure: (props) => <Box m={[0]} {...props} />,
-  figcaption: (props) => (
-    <Text variant="postBody" fontSize={[3]} sx={{ textAlign: 'center' }} {...props} />
+  figure: (props: any) => <Box m={[0]} as="figure" {...props} />,
+  figcaption: (props: any) => (
+    <Text
+      variant="postBody"
+      fontSize={[3]}
+      as="figcaption"
+      sx={{ textAlign: 'center' }}
+      {...props}
+    />
   ),
   li: (props) => <ListItem variant="postBody" my={[2, 3]} {...props} />,
   p: (props) => <Paragraph variant="postBody" my={[4, 5]} {...props} />,
@@ -87,8 +102,8 @@ export const MDXLayoutComponents = {
       {...props}
     />
   ),
-  thead: (props) => <Box as="thead" {...props} />,
-  tbody: (props) => <Box as="thead" {...props} />,
+  thead: (props: any) => <Box as="thead" {...props} />,
+  tbody: (props: any) => <Box as="thead" {...props} />,
   tr: (props) => (
     <Box
       as="tr"
@@ -117,6 +132,7 @@ export const MDXLayoutComponents = {
       {...props}
     />
   ),
+  img: (props) => <Box as="img" maxWidth={'100%'} {...props} />,
   th: (props) => (
     <Box
       as="th"

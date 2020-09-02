@@ -6,41 +6,32 @@
  * See: https://www.gatsbyjs.org/docs/ssr-apis/
  */
 import React from 'react'
-
-// https://github.com/hagnerd/gatsby-starter-blog-mdx/blob/6d007b051d7f4646a7de7f09060a97b986b661b8/gatsby-browser.js#L1
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
-// https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/#optional-add-shell-prompt
-import 'prismjs/plugins/command-line/prism-command-line.css'
-import './assets/prismjs-theme.css'
-
 import Backend from 'i18next-sync-fs-backend'
 import { renderToString } from 'react-dom/server'
-import { I18nextProvider, useSSR } from 'react-i18next'
-import * as moment from 'moment'
+import moment from 'moment'
+import { GatsbySSR, ReplaceRendererArgs } from 'gatsby'
+
+import { locale } from '@shared/config'
+import { convertLangKeyToISO, getLangKeyFromPath } from '@shared/utils'
 
 import { i18n, i18nConfig } from './src/i18n'
-import { Boot } from './src/Boot'
-import { getLangKeyFromPath } from './src/utils'
+import { GatsbyRootComponent } from './src/GatsbyRootComponent'
 
-// gatsby config is needed to grab locales info
-import config from './gatsby-config'
-import { convertLangKeyToISO } from './shared/utils'
-
-const {
-  siteMetadata: { locale },
-} = config
-
-// let initialI18nStore = {}
-// let initialLanguage = null
+export const wrapRootElement = GatsbyRootComponent
 
 // heavily inspired on:
 //  https://github.com/onestopjs/gatsby-theme-localization/blob/54f98a960c2a7daae3dc262563f61cc32ae16230/gatsby-theme-localization/src/gatsby/ssr/feedTranslations.ts
-export const replaceRenderer = ({
+type GatsbyReplaceRendererArgsFixed = {
+  bodyComponent: React.ReactHTMLElement<HTMLBodyElement>
+  pathname: string
+} & ReplaceRendererArgs
+
+export const replaceRenderer: GatsbySSR['replaceRenderer'] = async ({
   bodyComponent,
   pathname,
-  replaceBodyHTMLString,
   setHeadComponents,
-}) => {
+  replaceBodyHTMLString,
+}: GatsbyReplaceRendererArgsFixed) => {
   // i18n handling
   const supportedLanguages = Object.keys(locale.supportedLanguages)
   const langFromPathname = getLangKeyFromPath(
@@ -50,7 +41,7 @@ export const replaceRenderer = ({
   )
   let initialI18nStore = {}
   let initialLanguage = null
-  i18n.use(Backend).init({
+  void i18n.use(Backend).init({
     ...i18nConfig,
     debug: false,
     preload: supportedLanguages,
@@ -94,7 +85,6 @@ export const replaceRenderer = ({
   const scrollToHashScript = `
   document.addEventListener("DOMContentLoaded", function(event) {
     var hash = window.decodeURI(location.hash.replace('#', ''))
-    console.log('Hash is', hash)
     if (hash !== '') {
       var element = document.getElementById(hash)
       if (element) {
@@ -119,16 +109,3 @@ export const replaceRenderer = ({
 
   replaceBodyHTMLString(renderToString(bodyComponent))
 }
-
-// eslint-disable-next-line import/prefer-default-export
-export const wrapRootElement = Boot
-
-// const InitSSR = ({ children }) => {
-//   useSSR(initialI18nStore, initialLanguage)
-//   // return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
-//   return children
-// }
-
-// export const wrapPageElement = ({ props: _props, element }) => {
-//   return <InitSSR>{element}</InitSSR>
-// }

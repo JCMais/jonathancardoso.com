@@ -1,6 +1,6 @@
 const fonts = {
   mono: "'Fira Code', Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
-  sans: 'Quicksand, Lato, Helvetica, sans-serif',
+  sans: 'Quicksand, Helvetica, sans-serif',
   serif: 'Karma, Times, serif',
 }
 
@@ -184,4 +184,6 @@ export const theme = {
       lineHeight: 'body',
     },
   },
-}
+} as const
+
+export type Theme = typeof theme

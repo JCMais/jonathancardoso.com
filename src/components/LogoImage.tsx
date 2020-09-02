@@ -2,7 +2,10 @@ import React from 'react'
 import { StaticQuery, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 
+import { LogoImageQuery } from '@r/generated/graphql'
+
 /*
+ * TODO: Remove this later
  * This component is built using `gatsby-image` to automatically serve optimized
  * images with lazy loading and reduced file sizes. The image is loaded using a
  * `StaticQuery`, which allows us to load the image from directly within this
@@ -14,9 +17,9 @@ import Img from 'gatsby-image'
  */
 
 export const LogoImage = () => (
-  <StaticQuery
+  <StaticQuery<LogoImageQuery>
     query={graphql`
-      query {
+      query LogoImageQuery {
         logoImage: file(relativePath: { eq: "gatsby-astronaut.png" }) {
           childImageSharp {
             fluid(maxWidth: 300) {
@@ -26,6 +29,7 @@ export const LogoImage = () => (
         }
       }
     `}
-    render={data => <Img fluid={data.logoImage.childImageSharp.fluid} />}
+    // @ts-ignore
+    render={(data) => <Img fluid={data.logoImage.childImageSharp.fluid} />}
   />
 )

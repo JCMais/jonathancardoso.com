@@ -3,7 +3,7 @@ import crypto from 'crypto'
 
 import slugify from '@sindresorhus/slugify'
 import { GatsbyNode } from 'gatsby'
-import { createFilePath, FileSystemNode } from 'gatsby-source-filesystem'
+import { FileSystemNode } from 'gatsby-source-filesystem'
 
 import { githubRepoUrl } from '@shared/config'
 
@@ -14,7 +14,7 @@ interface MdxNode extends FileSystemNode {
   frontmatter: Record<string, any>
 }
 
-const convertToPosixPath = (path: string) => path.replace(/\\/g, '/')
+const convertToPosixPath = (nonPosixPath: string) => nonPosixPath.replace(/\\/g, '/')
 
 // https://www.gatsbyjs.org/docs/node-apis/#onCreateNode
 export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
@@ -24,6 +24,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   getNode,
   actions,
 }) => {
+  // eslint-disable-next-line @typescript-eslint/unbound-method
   const { createNode, createParentChildLink } = actions
 
   // We only care for Mdx nodes here.
@@ -33,7 +34,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
 
   const mdxNode = (node as unknown) as MdxNode
 
-  const fileNode: FileSystemNode = getNode(mdxNode.parent)
+  const fileNode = getNode(mdxNode.parent) as FileSystemNode
   const { fileAbsolutePath } = mdxNode
   const { sourceInstanceName } = fileNode
 
@@ -78,9 +79,15 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   // End of special handling
   // ***************************
 
+  const date = mdxNode.frontmatter.date
+
+  if (!date) {
+    throw new Error('All mdx content must have a date field on the frontmatter')
+  }
+
   const blogFields = {
     title: mdxNode.frontmatter.title,
-    description: mdxNode.frontmatter.description,
+    description: mdxNode.frontmatter.description || '',
     slug,
     langKey: convertLangKeyToGraphQLEnum(langKey),
     globalBlogPostId,
@@ -91,7 +98,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
       )}`,
       ...(mdxNode.frontmatter.externalLinks || {}),
     },
-    date: mdxNode.frontmatter.date || '',
+    date,
+    dateModified: mdxNode.frontmatter.dateModified || fileNode.modifiedTime || date,
     banner: mdxNode.frontmatter.banner,
     bannerStyle:
       mdxNode.frontmatter.banner && (mdxNode.frontmatter.bannerStyle || 'FULL_WIDTH'),
@@ -103,8 +111,8 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     // },
     category: mdxNode.frontmatter.category,
     categorySlug: slugify(mdxNode.frontmatter.category),
-    tags: mdxNode.frontmatter.tags || [],
-    keywords: mdxNode.frontmatter.keywords || [],
+    tags: mdxNode.frontmatter.tags ?? mdxNode.frontmatter.keywords ?? [],
+    keywords: mdxNode.frontmatter.keywords ?? mdxNode.frontmatter.tags ?? [],
   }
 
   // https://www.gatsbyjs.org/docs/actions/#createNode

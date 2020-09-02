@@ -7,7 +7,7 @@ import {
   createCategoryPages,
   createTagsPages,
 } from './createPagesHandlers'
-import { GatsbyCreatePagesQuery } from './types/graphql'
+import { GatsbyCreatePagesQuery } from './generated/graphql'
 
 export const createPages: GatsbyNode['createPages'] = async ({
   actions,
@@ -39,7 +39,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
     reporter.panic(result.errors)
   }
 
-  const { edges } = result.data.allBlogPost
+  const { edges } = result.data!.allBlogPost
 
   createBlog(actions.createPage, edges)
   createPosts(actions.createPage, edges)

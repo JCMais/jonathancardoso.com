@@ -1,16 +1,14 @@
 import React from 'react'
 
-export const Counter: React.FunctionComponent<{ initialCounter: number }> = ({
-  initialCounter,
-}) => {
+export const Counter: React.FC<{ initialCounter: number }> = ({ initialCounter }) => {
   const [counter, setCounter] = React.useState(initialCounter)
 
   const onIncrement = () => {
-    setCounter(c => c + 1)
+    setCounter((c) => c + 1)
   }
 
   const onDecrement = () => {
-    setCounter(c => c - 1)
+    setCounter((c) => c - 1)
   }
 
   return (

@@ -1,12 +1,14 @@
-import React, { Suspense, Fragment } from 'react'
+import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
+import { WrapRootElementBrowserArgs } from 'gatsby'
 
 import { ThemeProvider } from './ThemeProvider'
 import { MDXGlobalComponents, MDXLayoutComponents } from './components/mdx'
+import { MaybeSuspense } from './components/MaybeSuspense'
 
-const MaybeSuspense = typeof document !== 'undefined' ? Suspense : Fragment
+type GatsbyRootComponentProps = WrapRootElementBrowserArgs
 
-export const Boot: React.FunctionComponent<{ element: any }> = ({ element }) => {
+export const GatsbyRootComponent = ({ element }: GatsbyRootComponentProps) => {
   return (
     <ThemeProvider>
       <MDXProvider

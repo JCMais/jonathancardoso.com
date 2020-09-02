@@ -1,91 +1,77 @@
-import React, { useEffect } from 'react'
-import { graphql } from 'gatsby'
+import React from 'react'
+import { graphql, PageProps } from 'gatsby'
 import Img from 'gatsby-image'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { Box, Flex, Text } from 'rebass'
+import { Box, Flex, FlexProps, Text, TextProps } from 'rebass'
 import Space from '@rebass/space'
-import styled from '@emotion/styled'
-
-import { convertLangKeyFromGraphQLEnum, getSiteUrl } from '@shared/utils'
-
-import { MainLayout } from '../layouts/MainLayout'
-import { SEO } from '../components/SEO'
-import { ContentBox } from '../components/ContentBox'
-import { FeatherIcons } from '../components/icon/FeatherIcons'
-import { DevToIcon } from '../components/icon/DevToIcon'
-import { Link } from '../components/ui/Link'
-import { H1 } from '../components/ui/H1'
-import { MainContentWrapper } from '../components/MainContentWrapper'
-import { getLanguageName } from '../utils'
-import { ListUnordered } from 'components/ui/ListUnordered'
-import { ListItem } from 'components/ui/ListItem'
 import { useTranslation } from 'react-i18next'
 
-const DiscussionText = (props) => {
+import { convertLangKeyFromGraphQLEnum, getLanguageName, getSiteUrl } from '@shared/utils'
+
+import { PostQuery, MdxBlogPost } from '@r/generated/graphql'
+
+import { SEO } from '@r/components/SEO'
+import { ContentBox } from '@r/components/ContentBox'
+import { MainContentWrapper } from '@r/components/MainContentWrapper'
+
+import { DevToIcon } from '@r/components/icon/DevToIcon'
+import { FeatherIcons } from '@r/components/icon/FeatherIcons'
+
+import { H1 } from '@r/components/ui/H1'
+import { Link } from '@r/components/ui/Link'
+import { ContentFlowSeparator } from '@r/components/ui/ContentFlowSeparator'
+
+import { MainLayout } from '@r/layouts/MainLayout'
+
+import { PostNewsletterForm } from './Post/PostNewsletterForm'
+import { PostBannerImageWrapper } from './Post/PostBannerImageWrapper'
+import { PostMetadataText } from './Post/PostMetadataText'
+import { PostInfoWrapper } from './Post/PostInfoWrapper'
+import { locale } from '@shared/config'
+
+const DiscussionText = (props: TextProps) => {
   return <Text variant="postBody" fontSize={[2]} ml={[2]} {...props} />
 }
 
-const ContentFlowSeparator = styled.hr`
-  /* could have been this way: */
-  /* background-image: linear-gradient(to right,#B5B5B5 50%,rgba(255,255,255,0) 0%);
-  background-position: bottom;
-  background-size: 26px 4px;
-  background-repeat: repeat-x; */
-  /* but we are using svg: */
-  background-image: url('data:image/svg+xml;utf-8, <svg width="13" height="4" viewBox="0 0 13 4" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="13" height="4" rx="2" fill="%23B5B5B5"/></svg>');
-  background-size: 26px 4px;
-  background-repeat: repeat-x;
-  border-style: none;
-  height: 4px;
-  margin: ${(p) => p.theme.space[6]}px 0;
-`
-
-const PostMetadata = (props) => {
+const PostMetadata = (props: FlexProps) => {
   return <Flex color="gray.0" alignItems="center" mr={['0px', 5]} my={[1]} {...props} />
 }
 
-const PostBannerImageWrapper = (props) => {
-  return (
-    <Box
-      sx={{
-        width: 'calc(100vw)',
-        margin: [
-          '0 0 0 calc(-16px)',
-          //  - (100vw - 100%) is needed to remove the scrollbar width
-          '0 0 0 calc((100vw - 48px) * -0.2 / 2 - 24px - var(--scrollbar-width))',
-          '0 0 0 calc((100vw - 48px) * -0.25 / 2 - 24px - var(--scrollbar-width))',
-          '0 0 0 calc((100vw - 48px) * -0.4 / 2 - 24px - var(--scrollbar-width))',
-        ],
-      }}
-      {...props}
-    />
-  )
+type PostPageContext = {
+  prev?: MdxBlogPost
+  next?: MdxBlogPost
 }
 
-const PostMetadataText = (props) => {
-  return (
-    <Text
-      variant="body"
-      fontSize={[1, 2]}
-      ml={[1]}
-      fontWeight="bold"
-      sx={{
-        overflowWrap: ['break-word', 'normal'],
-      }}
-      {...props}
-    />
-  )
-}
+type PostProps = PageProps<PostQuery, PostPageContext>
 
-const PostTranslationsWrapper = (props) => {
-  return <Text {...props} />
-}
+export default function Post({ data, pageContext: { next, prev } }: PostProps) {
+  const { t, i18n } = useTranslation()
 
-export default function Post({
-  data: { blogPost, postInOtherLanguages },
-  pageContext: { next, prev },
-}) {
-  const { t } = useTranslation('pages')
+  const { blogPost, postInOtherLanguages } = data
+
+  // never really going to happen
+  if (!blogPost) {
+    return null
+  }
+
+  let linkLanguages = [
+    {
+      rel: 'alternate',
+      href: getSiteUrl(`/${locale.defaultLangKey}/blog`),
+      hreflang: 'x-default',
+    },
+  ]
+
+  for (const { node } of postInOtherLanguages.edges) {
+    linkLanguages = [
+      ...linkLanguages,
+      {
+        rel: 'alternate',
+        hreflang: convertLangKeyFromGraphQLEnum(node.langKey),
+        href: getSiteUrl(node.slug),
+      },
+    ]
+  }
 
   const BannerWrapper =
     blogPost.bannerStyle === 'FULL_WIDTH' ? PostBannerImageWrapper : Box
@@ -94,8 +80,34 @@ export default function Post({
     <MainLayout>
       <SEO
         title={blogPost.title}
-        description={blogPost.description}
+        description={blogPost.description ?? blogPost.excerpt}
         keywords={blogPost.keywords}
+        link={linkLanguages}
+        jsonLd={[
+          {
+            '@context': 'http://schema.org',
+            '@type': 'BlogPosting',
+            headline: blogPost.title,
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+            image: blogPost.banner?.childImageSharp?.fluid?.src,
+            url: getSiteUrl(blogPost.slug),
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id':
+                blogPost.externalLinks?.canonical || getSiteUrl(`/${i18n.language}/blog`),
+            },
+            datePublished: blogPost.dateISOString,
+            dateModified: blogPost.dateModifiedISOString,
+            description: blogPost.excerpt,
+            inLanguage: convertLangKeyFromGraphQLEnum(blogPost.langKey),
+            author: {
+              '@type': 'Person',
+              '@id': 'jonathancardoso',
+            },
+            // TODO: Add publisher to external blog posts?
+            // publisher: blogPost.publisher
+          },
+        ]}
       />
       <MainContentWrapper>
         <ContentBox as="article">
@@ -130,39 +142,45 @@ export default function Post({
               </PostMetadataText>
             </PostMetadata>
           </Flex>
-          {blogPost.banner && (
+          {!!blogPost.banner?.childImageSharp?.fluid && (
             <BannerWrapper>
-              <Img sizes={blogPost.banner.childImageSharp.sizes} />
+              {/* @ts-expect-error This is complaining about the base64 prop, not under our control */}
+              <Img fluid={blogPost.banner.childImageSharp.fluid} />
             </BannerWrapper>
           )}
           {!!postInOtherLanguages?.edges.length && (
-            <PostTranslationsWrapper
-              mt={[4]}
-              p={[3]}
-              sx={{
-                backgroundColor: '#dce5f3',
-                textAlign: 'center',
-              }}
-            >
-              <Text>
-                Translations available for:{' '}
-                {postInOtherLanguages.edges.map(({ node }) => (
-                  <Link key={node.id} to={node.slug} px={[1]}>
-                    {getLanguageName(convertLangKeyFromGraphQLEnum(node.langKey))}
-                  </Link>
-                ))}
-              </Text>
-            </PostTranslationsWrapper>
+            <PostInfoWrapper>
+              Translations available for:{' '}
+              {postInOtherLanguages.edges.map(({ node }) => (
+                <Link key={node.id} to={node.slug} px={[1]}>
+                  {getLanguageName(convertLangKeyFromGraphQLEnum(node.langKey))}
+                </Link>
+              ))}
+            </PostInfoWrapper>
+          )}
+          {!!blogPost.externalLinks?.canonical && (
+            <PostInfoWrapper>
+              This post is originally available at:{' '}
+              <Link to={blogPost.externalLinks.canonical}>
+                {blogPost.externalLinks.canonical}
+              </Link>
+            </PostInfoWrapper>
           )}
           <MDXRenderer>{blogPost.body}</MDXRenderer>
+          <Flex justifyContent="space-evenly" flexWrap="wrap" mt={[-5]} mb={[5]}>
+            <Text fontSize={[8]}>…</Text>
+          </Flex>
+          <PostNewsletterForm />
           <ContentFlowSeparator />
           <Flex justifyContent="space-evenly" flexWrap="wrap">
             <Space mx={[2, 3]} my={[3, 2]}>
-              {!!blogPost?.externalLinks?.devTo && (
+              {!!blogPost?.externalLinks?.devto && (
                 <Flex alignItems="center">
                   <DevToIcon width="icon.normal" height="icon.normal" />
                   <DiscussionText>
-                    <Link to={blogPost.externalLinks.devTo}>Discuss on Dev.to</Link>
+                    <Link to={blogPost.externalLinks.devto}>
+                      {t('Discuss on Dev.to')}
+                    </Link>
                   </DiscussionText>
                 </Flex>
               )}
@@ -179,7 +197,7 @@ export default function Post({
                     )}`}
                     target="_blank"
                   >
-                    Discuss on Twitter
+                    {t('Discuss on Twitter')}
                   </Link>
                 </DiscussionText>
               </Flex>
@@ -187,7 +205,7 @@ export default function Post({
                 <FeatherIcons.GitHub width="icon.normal" height="icon.normal" />
                 <DiscussionText>
                   <Link to={blogPost.externalLinks.github} target="_blank">
-                    Edit on GitHub
+                    {t('Edit on GitHub')}
                   </Link>
                 </DiscussionText>
               </Flex>
@@ -229,7 +247,7 @@ export default function Post({
 }
 
 export const pageQuery = graphql`
-  query($id: String!, $globalBlogPostId: ID!, $langKeySlug: String!) {
+  query PostQuery($id: String!, $globalBlogPostId: ID!, $langKeySlug: String!) {
     postInOtherLanguages: allBlogPost(
       filter: { id: { ne: $id }, globalBlogPostId: { eq: $globalBlogPostId } }
     ) {
@@ -249,17 +267,19 @@ export const pageQuery = graphql`
       title
       date(formatString: "MMMM DD, YYYY", locale: $langKeySlug)
       dateISOString: date
+      dateModifiedISOString: dateModified
       banner {
         childImageSharp {
-          sizes(maxWidth: 2000) {
-            ...GatsbyImageSharpSizes
+          fluid(maxWidth: 2000) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
+      langKey
       bannerStyle
-      tableOfContents(maxDepth: 2)
       keywords
       description
+      excerpt(pruneLength: 300)
       slug
       category
       categorySlug

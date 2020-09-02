@@ -1,4 +1,15 @@
 {
-  "test": "Testing i18n rendering",
-  "See all posts": "See all posts"
+  "See all posts": "See all posts",
+  "Discuss on Dev.to": "Discuss on Dev.to",
+  "Discuss on Twitter": "Discuss on Twitter",
+  "Edit on GitHub": "Edit on GitHub",
+  "Name": "Name",
+  "Categories": "Categories",
+  "Programming": "Programming",
+  "All newer ones": "All newer ones",
+  "Subscribe": "Subscribe",
+  "Liked what you just read? Subscribe to my newsletter": "Liked what you just read? Subscribe to my newsletter",
+  "Newer Thoughts": "Newer Thoughts",
+  "Older Thoughts": "Older Thoughts",
+  "empty": "empty"
 }

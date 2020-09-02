@@ -1,21 +1,23 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { Box, Flex, Text } from 'rebass'
-import { useTheme } from 'emotion-theming'
-import styled from '@emotion/styled'
-import { layout } from 'styled-system'
 import Space from '@rebass/space'
+import { useTheme } from 'emotion-theming'
 import { GitHub, Heart, Linkedin, Twitter } from 'react-feather'
-
 import { useTranslation, Trans } from 'react-i18next'
 
-import { Link } from './ui/Link'
+import { Theme } from '@r/theme'
 
+import { Link, LinkProps } from './ui/Link'
 import { GatsbyIcon as _GatsbyIcon } from './icon/GatsbyIcon'
 
-const FooterIcon = (props) => {
+type FooterIconProps = {
+  icon: React.ElementType
+} & Partial<LinkProps>
+
+const FooterIcon = (props: FooterIconProps) => {
   const { icon: Icon, to, ...otherProps } = props
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
 
   const icon = (
     <Box width={[22, 24]} sx={{ display: 'inline-block' }}>
@@ -33,13 +35,13 @@ const FooterIcon = (props) => {
 }
 
 const GatsbyIcon = () => {
-  const theme = useTheme()
+  const theme = useTheme<Theme>()
   const color = theme.colors.gray[1]
 
   return <_GatsbyIcon textColor={color} logoColor={color} />
 }
 
-export const Footer: React.FunctionComponent = () => {
+export const Footer: React.FC = () => {
   const { t } = useTranslation('footer')
 
   return (
@@ -56,9 +58,17 @@ export const Footer: React.FunctionComponent = () => {
     >
       <Box>
         <Space px={[1, 2]}>
-          <FooterIcon icon={GitHub} to="https://github.com/JCMais" />
-          <FooterIcon icon={Linkedin} to="https://linkedin.com/in/jonathancardoso" />
-          <FooterIcon icon={Twitter} to="https://twitter.com/_jonathancardos" />
+          <FooterIcon icon={GitHub} title="GitHub" to="https://github.com/JCMais" />
+          <FooterIcon
+            icon={Linkedin}
+            title="Linkedin"
+            to="https://linkedin.com/in/jonathancardoso"
+          />
+          <FooterIcon
+            icon={Twitter}
+            title="Twitter"
+            to="https://twitter.com/_jonathancardos"
+          />
         </Space>
       </Box>
       <Text variant="footer">

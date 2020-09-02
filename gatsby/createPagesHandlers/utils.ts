@@ -14,8 +14,8 @@ export const createPaginatedPages = (
   componentPath: string,
   context: Record<string, any>,
 ) => {
-  // CHECK THIS TO MAKE SURE THE DATA IS LOADED ON THE COMPONENT, AND NOT PASSED VIA CONTEXT
-  const pages = edges.reduce((acc, value, index) => {
+  // @TODO CHECK THIS TO MAKE SURE THE DATA IS LOADED ON THE COMPONENT, AND NOT PASSED VIA CONTEXT
+  const pages = edges.reduce<string[][]>((acc, value, index) => {
     const pageIndex = Math.floor(index / PAGINATION_OFFSET)
 
     if (!acc[pageIndex]) {
@@ -27,7 +27,7 @@ export const createPaginatedPages = (
     return acc
   }, [])
 
-  pages.forEach((page, index) => {
+  pages.forEach((pageEntries, index) => {
     const previousPagePath = `${pathPrefix}/${index + 1}`
     const nextPagePath = index === 1 ? pathPrefix : `${pathPrefix}/${index - 1}`
 
@@ -35,9 +35,10 @@ export const createPaginatedPages = (
       path: index > 0 ? `${pathPrefix}/${index}` : `${pathPrefix}`,
       component: componentPath,
       context: {
-        page,
+        pageEntries,
         pagination: {
-          page,
+          pageEntries,
+          currentPageIndex: index,
           nextPagePath: index === 0 ? null : nextPagePath,
           previousPagePath: index === pages.length - 1 ? null : previousPagePath,
           pageCount: pages.length,

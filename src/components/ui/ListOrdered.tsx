@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from 'rebass'
+import { Box, BoxProps } from 'rebass'
 
-export const ListOrdered = props => {
+export const ListOrdered = (props: BoxProps) => {
   return <Box as="ol" pl={[5]} {...props} />
 }

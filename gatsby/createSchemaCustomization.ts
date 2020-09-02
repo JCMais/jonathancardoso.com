@@ -1,5 +1,7 @@
-/* eslint-disable @typescript-eslint/require-await */
-import { GatsbyNode } from 'gatsby'
+/* eslint-disable @typescript-eslint/unbound-method */
+import { CreateSchemaCustomizationArgs } from 'gatsby'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { GraphQLFieldConfig, GraphQLFieldConfigArgumentMap } from 'graphql'
 
 /**
  * This would be great to create separated graphql types for multiple types, example:
@@ -15,9 +17,9 @@ import { GatsbyNode } from 'gatsby'
  *  https://www.gatsbyjs.org/docs/schema-customization/#queryable-interfaces-with-the-nodeinterface-extension
  * Inspiration taken from https://github.com/gatsbyjs/gatsby/blob/f0724e8d6e6/packages/gatsby-theme-blog-core/gatsby-node.js
  */
-export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async ({
+export const createSchemaCustomization = async ({
   actions,
-}) => {
+}: CreateSchemaCustomizationArgs) => {
   const { createFieldExtension, createTypes } = actions
 
   // https://www.gatsbyjs.org/docs/actions/#createFieldExtension
@@ -27,8 +29,12 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
       argName: 'String!',
       defaultValue: 'Int!',
     },
-    extend(options, prevFieldConfig) {
-      if (!prevFieldConfig.args[options.argName]) {
+    extend(
+      options: GraphQLFieldConfigArgumentMap,
+      prevFieldConfig: GraphQLFieldConfig<any, any>,
+    ) {
+      const argName = (options.argName as unknown) as string
+      if (!prevFieldConfig.args || !prevFieldConfig.args[argName]) {
         throw new Error(
           `Argument with name ${options.argName} not found on field configs`,
         )
@@ -36,8 +42,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
 
       return {
         args: {
-          [options.argName]: {
-            ...prevFieldConfig.args[options.argName],
+          [argName]: {
+            ...prevFieldConfig.args[argName],
             defaultValue: options.defaultValue,
           },
         },
@@ -80,7 +86,8 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     langKey: LangKey!
 
     date: Date! @dateformat
-    tags: [String!]
+    dateModified: Date! @dateformat
+    tags: [String!]!
     # @IDEA If we wanted to link blog posts 
     # category: BlogPostCategory!
     category: String!
@@ -89,7 +96,7 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     tableOfContents(maxDepth: Int): JSON!
 
     # SEO
-    description: String
+    description: String!
     keywords: [String!]
   }
 
@@ -108,15 +115,16 @@ export const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] 
     langKey: LangKey!
 
     date: Date! @dateformat
-    tags: [String!]
+    dateModified: Date! @dateformat
+    tags: [String!]!
     # @IDEA If we wanted to link blog posts 
     # category: BlogPostCategory!
     category: String!
     categorySlug: String!
 
     # SEO
-    description: String
-    keywords: [String!]
+    description: String!
+    keywords: [String!]!
 
     tableOfContents(maxDepth: Int): JSON! @parentResolverPassthrough(field: "tableOfContents") @defaultArgValueNumber(argName: "maxDepth", defaultValue: 2)
 

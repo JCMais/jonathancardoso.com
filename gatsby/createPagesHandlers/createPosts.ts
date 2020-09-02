@@ -3,9 +3,11 @@ import path from 'path'
 import { Actions } from 'gatsby'
 
 import { convertLangKeyFromGraphQLEnum } from '../utils'
-import { GatsbyCreatePagesQuery } from '../types/graphql'
+import { GatsbyCreatePagesQuery, LangKey } from '../generated/graphql'
 
-const hasSameLangKey = (langKey) => (edge) => edge.node.langKey === langKey
+const hasSameLangKey = (langKey: LangKey) => (
+  edge: GatsbyCreatePagesQuery['allBlogPost']['edges'][0],
+) => edge.node.langKey === langKey
 
 export const createPosts = (
   createPage: Actions['createPage'],
@@ -13,7 +15,7 @@ export const createPosts = (
 ) => {
   edges.forEach(({ node }, i) => {
     const prevEdges =
-      i !== 0 ? edges.slice(0, i - 1).filter(hasSameLangKey(node.langKey)) : []
+      i !== 0 ? edges.slice(0, i).filter(hasSameLangKey(node.langKey)) : []
     const nextEdges =
       i !== edges.length - 1
         ? edges.slice(i + 1).filter(hasSameLangKey(node.langKey))
@@ -35,8 +37,14 @@ export const createPosts = (
         langKey: node.langKey,
         globalBlogPostId: node.globalBlogPostId,
         langKeySlug: convertLangKeyFromGraphQLEnum(node.langKey),
-        prev,
-        next,
+        prev: prev && {
+          title: prev.title,
+          slug: prev.slug,
+        },
+        next: next && {
+          title: next.title,
+          slug: next.slug,
+        },
       },
     })
   })

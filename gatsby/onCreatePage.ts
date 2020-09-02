@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/unbound-method */
 /* eslint-disable @typescript-eslint/require-await */
 /* eslint-disable no-console,no-continue */
 import { GatsbyNode, Page as GatsbyPage } from 'gatsby'
@@ -17,6 +18,8 @@ interface Page<Context> extends GatsbyPage<Context> {
   componentPath: string
 }
 
+const isEnvDevelopment = process.env.NODE_ENV === 'development'
+
 const regExp404 = /^\/[a-z]{2}(-[a-z]{2})?\/404\/$/
 
 /**
@@ -26,13 +29,14 @@ const regExp404 = /^\/[a-z]{2}(-[a-z]{2})?\/404\/$/
 export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
   page: _page,
   actions,
+  reporter,
 }) => {
   const page = _page as Page<PageContext>
   if (page.context.langKey) {
-    console.log('Skipping page since it already has the langKey context prop')
+    reporter.log('Skipping page since it already has the langKey context prop')
   }
 
-  const { createPage, deletePage } = actions
+  const { createPage, createRedirect, deletePage } = actions
 
   // @TODO Should we ignore /dev-404-page/ | ComponentDev404Page
 
@@ -60,7 +64,10 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
 
   if (hasLangKeySuffixOnComponentPath) {
     // page has override for given lang key
-    const langKeyFromComponentPath = getLangKeyFromFilePath(page.componentPath, null)
+    // no need for redirects as we are probably creating separated pages for each language that we want to support
+    // @TODO This was commented due to the null as second param, check if this was really important
+    // const langKeyFromComponentPath = getLangKeyFromFilePath(page.componentPath, null)
+    const langKeyFromComponentPath = getLangKeyFromFilePath(page.componentPath)
     const langKeyEnum = convertLangKeyToGraphQLEnum(langKeyFromComponentPath)
     const pathWithLangKey = `/${langKeyFromComponentPath}${pathWithoutLangKey}`
 
@@ -80,7 +87,7 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
     deletePage(page)
 
     if (isPathOnCache) {
-      console.log(
+      reporter.log(
         `Deleting previously created page ${pageOnCache.path} (${pageOnCache.componentPath}), a page override for it was found`,
       )
       deletePage(pageOnCache)
@@ -99,8 +106,12 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
     createPage(newPage)
     pagesByPathCache.set(cacheKey, newPage)
   } else {
-    // this is a page without the lang key suffix, create new pages for each supported language
+    // This is a page without the lang key suffix
+    //  let's create new pages for each supported language
+    //  and also create redirects for them
     deletePage(page)
+
+    const is404Page = page.path === '/404.html' || page.path === '/404/'
 
     for (const langKey of supportedLanguagesKey) {
       const langKeyEnum = convertLangKeyToGraphQLEnum(langKey)
@@ -124,25 +135,42 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
         },
       }
 
+      const isLocalized404Page = regExp404.test(newPage.path)
+
+      // create a redirect based on the accept-language header
+      if (!is404Page) {
+        createRedirect({
+          fromPath: page.path,
+          toPath: newPage.path,
+          Language: langKey
+            .split('-')
+            .map((val, idx) => (idx > 0 ? val.toUpperCase() : val))
+            .join('-'),
+          isPermanent: false,
+          redirectInBrowser: isEnvDevelopment,
+          statusCode: 301,
+        })
+      }
+
       if (isPathOnCache && page.path !== '/404/') {
         // Do not recreate the page, another page for this component already exists and should take precende
-        console.log(
+        reporter.log(
           `Not recreating page ${page.path} (${page.componentPath}) for lang ${langKey} | Page override for given lang key already exists`,
         )
         continue
       } else {
         // @TODO Should we ignore /dev-404-page/ | ComponentDev404Page
-        if (page.path === '/404.html' || page.path === '/404/') {
+        if (is404Page) {
           // The page is the default 404 page - Only create it for the default language
           if (langKey !== locale.defaultLangKey) {
-            console.log('Skipping creation of root 404 page for non default language')
+            reporter.log('Skipping creation of root 404 page for non default language')
             continue
           }
           newPage = {
             ...newPage,
             path: page.path,
           }
-        } else if (regExp404.test(newPage.path)) {
+        } else if (isLocalized404Page) {
           // The page is a localized 404
           // Recreate the modified page
           newPage = {
@@ -154,6 +182,18 @@ export const onCreatePage: GatsbyNode['onCreatePage'] = async ({
         createPage(newPage)
         pagesByPathCache.set(cacheKey, newPage)
       }
+    }
+
+    // Create a fallback redirect if the language is not supported or the
+    // Accept-Language header is missing for some reason
+    if (!is404Page) {
+      createRedirect({
+        fromPath: page.path,
+        toPath: `/${locale.defaultLangKey}${page.path}`,
+        isPermanent: false,
+        redirectInBrowser: isEnvDevelopment,
+        statusCode: 301,
+      })
     }
   }
 }

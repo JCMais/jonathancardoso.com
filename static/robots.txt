@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /blog/unpublished/
+Disallow: /resume.pdf
+Allow: /

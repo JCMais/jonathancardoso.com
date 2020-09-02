@@ -1,55 +1,18 @@
-import * as React from 'react'
+import React from 'react'
 import { graphql, PageProps } from 'gatsby'
 import { useTranslation } from 'react-i18next'
-import { Box, BoxProps, Flex, FlexProps } from 'rebass'
 
-import { MainLayout } from '../layouts/MainLayout'
-import { Link } from '../components/ui/Link'
-import { SEO } from '../components/SEO'
-import { MainContentWrapper } from '../components/MainContentWrapper'
-import { ContentBox } from '../components/ContentBox'
-import { H1 } from '../components/ui/H1'
-import { TagQuery } from '../types/graphql'
-import { PostsTimeline } from '../components/PostTimeline'
+import { TagQuery } from '@r/generated/graphql'
 
-type TagInfo = { articlesCount: number; tag: string }
+import { MainLayout } from '@r/layouts/MainLayout'
 
-const TagGrid: React.FunctionComponent<FlexProps> = (props) => (
-  <Flex
-    as="ul"
-    my={3}
-    mx={false}
-    flexDirection="row"
-    flexWrap="wrap"
-    justifyContent="space-evenly"
-    alignItems="center"
-    {...props}
-    sx={{
-      listStyle: 'none',
-    }}
-  />
-)
+import { SEO } from '@r/components/SEO'
+import { MainContentWrapper } from '@r/components/MainContentWrapper'
+import { ContentBox } from '@r/components/ContentBox'
+import { PostsTimeline } from '@r/components/PostTimeline'
 
-const TagItem: React.FunctionComponent<BoxProps> = (props) => <Box {...props} as="li" />
-
-const TagLink: React.FunctionComponent<TagInfo> = ({ tag, articlesCount }) => (
-  <Link
-    to={`/blog/tag/${tag}`}
-    lng
-    py={[3]}
-    px={[4]}
-    my={3}
-    mx={2}
-    color="textLighter"
-    sx={{
-      display: 'inline-block',
-      textDecoration: 'none',
-      backgroundColor: 'primary',
-    }}
-  >
-    {tag} ({articlesCount})
-  </Link>
-)
+import { Link } from '@r/components/ui/Link'
+import { H1 } from '@r/components/ui/H1'
 
 const Tag: React.FC<PageProps<
   TagQuery,
@@ -80,12 +43,16 @@ export default Tag
 
 export const pageQuery = graphql`
   query TagQuery($langKey: LangKey!, $tag: String!) {
-    allBlogPost(filter: { langKey: { eq: $langKey }, tags: { in: [$tag] } }) {
+    allBlogPost(
+      filter: { langKey: { eq: $langKey }, tags: { in: [$tag] } }
+      sort: { fields: date, order: DESC }
+    ) {
       edges {
         node {
-          excerpt(pruneLength: 300)
           id
           title
+          description
+          excerpt(pruneLength: 300)
           date
           banner {
             childImageSharp {

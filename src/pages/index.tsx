@@ -1,39 +1,38 @@
 import styled from '@emotion/styled'
 import Space from '@rebass/space'
-import { graphql } from 'gatsby'
+import { graphql, PageProps } from 'gatsby'
 import moment from 'moment'
 import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { Box, Flex, Text } from 'rebass'
-import { space } from 'styled-system'
-import { ContentBox } from '../components/ContentBox'
-import { FeatherIcons } from '../components/icon/FeatherIcons'
-import { StackOverflowIcon } from '../components/icon/StackOverflowIcon'
-import { MainContentWrapper } from '../components/MainContentWrapper'
-import { SEO } from '../components/SEO'
-import { H1 } from '../components/ui/H1'
-import { H2 } from '../components/ui/H2'
-import { H3 } from '../components/ui/H3'
-import { Link } from '../components/ui/Link'
-import { Paragraph } from '../components/ui/Paragraph'
-import { MainLayout } from '../layouts/MainLayout'
-import { PostsTimeline } from '../components/PostTimeline'
+import { useTranslation } from 'react-i18next'
+import { Text } from 'rebass'
 
-// @TODO Create a separated list component?
-const BoxUnorderedList = (props) => <Box as="ul" {...props} />
-const SocialNetworksList = styled(BoxUnorderedList)`
+import { IndexQuery } from '@r/generated/graphql'
+
+import { MainLayout } from '@r/layouts/MainLayout'
+
+import { ContentBox } from '@r/components/ContentBox'
+import { MainContentWrapper } from '@r/components/MainContentWrapper'
+import { SEO } from '@r/components/SEO'
+
+import { PostsTimeline } from '@r/components/PostTimeline'
+import { FeatherIcons } from '@r/components/icon/FeatherIcons'
+import { StackOverflowIcon } from '@r/components/icon/StackOverflowIcon'
+import { H1 } from '@r/components/ui/H1'
+import { H2 } from '@r/components/ui/H2'
+import { Link } from '@r/components/ui/Link'
+import { Paragraph } from '@r/components/ui/Paragraph'
+import { ListUnordered } from '@r/components/ui/ListUnordered'
+import { ListItem } from '@r/components/ui/ListItem'
+
+const SocialNetworksList = styled(ListUnordered)`
   list-style: none;
   padding-left: 0;
 `
-const SocialNetworkListItem = styled.li`
-  ${space};
-`
-
-const SocialNetworkUsername = (props) => (
+const SocialNetworkUsername = (props: { children: string }) => (
   <Text ml={2} as="span" variant="body" {...props} />
 )
 
-export const IndexPage = ({ data }) => {
+export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
   const { allBlogPost } = data
   const { edges: posts } = allBlogPost
   const { t } = useTranslation('home')
@@ -62,7 +61,7 @@ export const IndexPage = ({ data }) => {
           <H2>{t('Social Networks')}</H2>
           <SocialNetworksList>
             <Space my={1}>
-              <SocialNetworkListItem>
+              <ListItem>
                 <Link
                   to="https://github.com/JCMais"
                   aria-label="GitHub Profile for JCMais"
@@ -70,8 +69,8 @@ export const IndexPage = ({ data }) => {
                   <FeatherIcons.GitHub variant="icon" aria-label="GitHub Icon" />
                   <SocialNetworkUsername>JCMais</SocialNetworkUsername>
                 </Link>
-              </SocialNetworkListItem>
-              <SocialNetworkListItem>
+              </ListItem>
+              <ListItem>
                 <Link
                   to="https://twitter.com/_jonathancardos"
                   aria-label="Twitter Profile for _jonathancardos"
@@ -79,8 +78,8 @@ export const IndexPage = ({ data }) => {
                   <FeatherIcons.Twitter variant="icon" aria-label="Twitter Icon" />
                   <SocialNetworkUsername>_jonathancardos</SocialNetworkUsername>
                 </Link>
-              </SocialNetworkListItem>
-              <SocialNetworkListItem>
+              </ListItem>
+              <ListItem>
                 <Link
                   to="https://stackoverflow.com/users/710693/jcm"
                   aria-label="StackOverflow Profile for jcm"
@@ -88,8 +87,8 @@ export const IndexPage = ({ data }) => {
                   <StackOverflowIcon variant="icon" aria-label="StackOverflow Icon" />
                   <SocialNetworkUsername>jcm</SocialNetworkUsername>
                 </Link>
-              </SocialNetworkListItem>
-              <SocialNetworkListItem>
+              </ListItem>
+              <ListItem>
                 <Link
                   to="https://www.linkedin.com/in/jonathancardoso/"
                   aria-label="Linkedin Profile for jonathancardoso"
@@ -97,8 +96,8 @@ export const IndexPage = ({ data }) => {
                   <FeatherIcons.Linkedin variant="icon" aria-label="Linkedin Icon" />
                   <SocialNetworkUsername>jonathancardoso</SocialNetworkUsername>
                 </Link>
-              </SocialNetworkListItem>
-              <SocialNetworkListItem>
+              </ListItem>
+              <ListItem>
                 <Link
                   to="https://www.instagram.com/jcm_dev"
                   aria-label="Instagram Profile for jcm_dev"
@@ -106,10 +105,11 @@ export const IndexPage = ({ data }) => {
                   <FeatherIcons.Instagram variant="icon" aria-label="Instagram Icon" />
                   <SocialNetworkUsername>jcm_dev</SocialNetworkUsername>
                 </Link>
-              </SocialNetworkListItem>
+              </ListItem>
             </Space>
           </SocialNetworksList>
-          <Paragraph>
+          {/* TODO: Create about page */}
+          {/* <Paragraph>
             <Trans i18nKey="More details about myself" t={t}>
               For more details about myself, hit the{' '}
               <Link
@@ -120,7 +120,7 @@ export const IndexPage = ({ data }) => {
                 about page
               </Link>
             </Trans>
-          </Paragraph>
+          </Paragraph> */}
         </ContentBox>
         {!!posts.length && (
           <ContentBox>
@@ -148,7 +148,7 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          description
+          excerpt(pruneLength: 300)
           title
           date
           slug

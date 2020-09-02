@@ -1,7 +1,9 @@
-/* eslint-disable no-console,import/no-extraneous-dependencies */
+/* eslint-disable no-console */
+import fs from 'fs'
+
 import { GatsbyNode } from 'gatsby'
-import { introspectionQuery, graphql, printSchema } from 'gatsby/graphql'
-import write from 'write'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { graphql, printSchema, getIntrospectionQuery } from 'graphql'
 
 /**
  * Generate GraphQL schema.json file to be read by tslint
@@ -10,11 +12,11 @@ import write from 'write'
 export const onPostBootstrap: GatsbyNode['onPostBootstrap'] = async ({ store }) => {
   try {
     const { schema } = store.getState()
-    const jsonSchema = await graphql(schema, introspectionQuery)
+    const jsonSchema = await graphql(schema, getIntrospectionQuery())
     const sdlSchema = printSchema(schema)
 
-    write.sync('graphql/schema.json', JSON.stringify(jsonSchema.data), {})
-    write.sync('graphql/schema.graphql', sdlSchema, {})
+    fs.writeFileSync('graphql/schema.json', JSON.stringify(jsonSchema.data))
+    fs.writeFileSync('graphql/schema.graphql', sdlSchema)
 
     console.log('\n\n[gatsby-plugin-extract-schema] Wrote schema\n') // eslint-disable-line
   } catch (error) {

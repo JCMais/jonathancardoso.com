@@ -1,9 +1,9 @@
 import React, { FunctionComponent } from 'react'
 
 export const GatsbyIcon: FunctionComponent<{
-  textColor: string
-  logoColor: string
-  size: number
+  textColor?: string
+  logoColor?: string
+  size?: number
 }> = ({ textColor = '#000', logoColor = '#639', size = 24 }) => {
   return (
     <svg

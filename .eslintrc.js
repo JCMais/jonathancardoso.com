@@ -1,5 +1,3 @@
-const { printSchema } = require('graphql')
-
 const schemaJson = require('./graphql/schema.json')
 // Based on:
 //  https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/README.md
@@ -26,8 +24,30 @@ module.exports = {
     {
       files: ['*.js'],
       parser: 'babel-eslint',
+      parserOptions: {
+        ecmaVersion: 2018,
+        sourceType: 'module',
+      },
+      env: {
+        node: true,
+      },
       plugins: ['graphql'],
-      extends: ['airbnb', 'plugin:prettier/recommended'],
+      extends: [
+        'eslint:recommended',
+        'plugin:prettier/recommended',
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+        'prettier',
+        'prettier/react',
+      ],
+      settings: {
+        react: {
+          version: 'detect',
+        },
+      },
       rules: {
         'no-restricted-syntax': 'off',
         'react/prop-types': 'off',
@@ -49,31 +69,34 @@ module.exports = {
     },
     {
       files: ['*.mdx'],
-      plugins: ['@typescript-eslint'],
       extends: [
-        'airbnb-typescript',
-        'prettier/@typescript-eslint',
-        'prettier/react',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
         'plugin:mdx/recommended',
-        'plugin:mdx/overrides',
-        'plugin:prettier/recommended',
       ],
+      parserOptions: {
+        ecmaVersion: 6,
+        sourceType: 'module',
+        ecmaFeatures: {
+          modules: true,
+        },
+      },
       globals: {
         YouTube: true,
       },
       settings: {
         'import/resolver': {
           'custom-alias': {
-            alias: { $r: './src' },
+            alias: { '@r': './src', '@shared': './shared' },
             extensions: ['.ts', '.tsx'],
           },
         },
+        react: {
+          version: 'detect',
+        },
       },
       rules: {
-        // rule which requires parserServices to be generated.
-        '@typescript-eslint/no-implied-eval': 'off',
-        '@typescript-eslint/no-throw-literal': 'off',
-        '@typescript-eslint/no-unused-expressions': 'off',
         'react/prop-types': 'off',
         'react/jsx-filename-extension': 'off',
       },
@@ -85,24 +108,54 @@ module.exports = {
         tsconfigRootDir: __dirname,
         project: './tsconfig.json',
       },
-      plugins: ['@typescript-eslint', 'graphql'],
+      plugins: ['graphql'],
       extends: [
-        'airbnb-typescript',
+        'eslint:recommended',
+        'plugin:prettier/recommended',
+        'plugin:react/recommended',
+        'plugin:jsx-a11y/recommended',
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+        'prettier',
         'prettier/@typescript-eslint',
         'prettier/react',
-        'plugin:@typescript-eslint/recommended-requiring-type-checking',
-        'plugin:prettier/recommended',
       ],
+      settings: {
+        'import/resolver': {
+          'custom-alias': {
+            alias: { '@r': './src', '@shared': './shared' },
+            extensions: ['.ts', '.tsx'],
+          },
+        },
+        react: {
+          version: 'detect',
+        },
+      },
       rules: {
+        'import/named': 'off',
+        'no-nested-ternary': 'off',
         'no-restricted-syntax': 'off',
         'import/prefer-default-export': 'off',
+        'react/display-name': 'off',
         'react/prop-types': 'off',
         'react/jsx-props-no-spreading': 'off',
         'react/jsx-pascal-case': 'off',
-        'no-unused-vars': [
-          'error',
-          { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },
-        ],
+        '@typescript-eslint/no-unnecessary-type-assertion': 'off',
+        '@typescript-eslint/require-await': 'off',
+        '@typescript-eslint/ban-types': 'off',
+        '@typescript-eslint/ban-ts-comment': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-unsafe-assignment': 'off',
+        '@typescript-eslint/no-unsafe-return': 'off',
+        '@typescript-eslint/no-unsafe-member-access': 'off',
+        '@typescript-eslint/no-unsafe-call': 'off',
+        '@typescript-eslint/restrict-template-expressions': 'off',
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': [
           'error',
           { ignoreRestSiblings: true, varsIgnorePattern: '^_', argsIgnorePattern: '^_' },

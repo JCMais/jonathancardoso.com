@@ -4,24 +4,27 @@
  *
  * See: https://www.gatsbyjs.org/docs/browser-apis/
  */
-// https://github.com/hagnerd/gatsby-starter-blog-mdx/blob/6d007b051d7f4646a7de7f09060a97b986b661b8/gatsby-browser.js#L1
-import 'prismjs/plugins/line-numbers/prism-line-numbers.css'
-// https://www.gatsbyjs.org/packages/gatsby-remark-prismjs/#optional-add-shell-prompt
-import 'prismjs/plugins/command-line/prism-command-line.css'
-import './assets/prismjs-theme.css'
+import { GatsbyBrowser } from 'gatsby'
 
-import React from 'react'
 import Backend from 'i18next-xhr-backend'
 import LanguageDetector from 'i18next-browser-languagedetector'
-import * as moment from 'moment'
+import moment from 'moment'
 
-import { locale } from './shared/config'
 import { getLangKeyFromPath } from './shared/utils'
 import { i18n, i18nConfig } from './src/i18n'
-import { Boot } from './src/Boot'
-import { LanguageSwitcher } from './src/LanguageSwitcher'
 
-i18n
+import { GatsbyPageComponent } from './src/GatsbyPageComponent'
+import { GatsbyRootComponent } from './src/GatsbyRootComponent'
+
+// initial language is set inside a script tag when the page is first loaded
+//  code for that is on replaceRenderer inside the gatsby-ssr.ts file
+declare global {
+  interface Window {
+    initialLanguage: string
+  }
+}
+
+void i18n
   // load translation using xhr -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
   // learn more: https://github.com/i18next/i18next-xhr-backend
   .use(Backend)
@@ -44,12 +47,21 @@ i18n
     },
   )
 
-export const wrapRootElement = Boot
+// https://www.gatsbyjs.org/docs/browser-apis/#wrapRootElement
+export const wrapRootElement = GatsbyRootComponent
+// @TODO we can avoid re-render of the reader if we move the layout code to this hook.
+// https://www.gatsbyjs.org/docs/browser-apis/#wrapPageElement
+export const wrapPageElement = GatsbyPageComponent
 
-// Based on Dan's blog, see: https://github.com/gaearon/overreacted.io/blob/94bcb38c3c6a3a961f5eb2bc9d9cf4bf95dfb097/gatsby-browser.js#L6
+// Based on Dan's blog, see:
+//  https://github.com/gaearon/overreacted.io/blob/94bcb38c3c6a3a961f5eb2bc9d9cf4bf95dfb097/gatsby-browser.js#L6
 // This will avoid the page to re-render when clicking on something
 // @TODO Does not seems to be needed, here just for reference - Remove later
-// export function replaceComponentRenderer({ props }) {
+// export const replaceComponentRenderer: GatsbyBrowser['replaceComponentRenderer'] = ({
+//   props,
+// }) => {
+//   // @ts-expect-error
+//   // eslint-disable-next-line react/destructuring-assignment
 //   return React.createElement(props.pageResources.component, {
 //     ...props,
 
@@ -59,11 +71,14 @@ export const wrapRootElement = Boot
 //     // But we're happy with letting React do its thing.
 //   })
 // }
+
+/// ///////////////////////////////////
 // Automatic Scroll to Hash Handling
 // Proudly copied from:
 // https://github.com/gatsbyjs/gatsby/blob/fbf7abc68bfa3ac7a70ff/packages/gatsby-remark-autolink-headers/src/gatsby-browser.js#L37
+/// ///////////////////////////////////
 const SCROLL_OFFSET_Y = 0
-const getTargetOffset = (hash) => {
+const getTargetOffset = (hash: string) => {
   const id = window.decodeURI(hash.replace('#', ''))
   if (id !== ``) {
     const element = document.getElementById(id)
@@ -91,18 +106,27 @@ const getTargetOffset = (hash) => {
   return null
 }
 
-export const onInitialClientRender = () => {
+// https://www.gatsbyjs.org/docs/browser-apis/#onInitialClientRender
+export const onInitialClientRender: GatsbyBrowser['onInitialClientRender'] = () => {
   requestAnimationFrame(() => {
     const offset = getTargetOffset(window.location.hash)
-    console.log('onInitialClientRender - offset', offset, window.location.hash)
     if (offset !== null) {
       window.scrollTo(0, offset)
     }
   })
 }
 
-const blogRegExp = /^\/[a-z-]+\/blog\/([^\/]*)\/$/
-const shouldUpdateScrollBetween = (routerProps, prevRouterProps) => {
+const blogRegExp = /^\/[a-z-]+\/blog\/([^/]*)\/$/
+
+// https://www.gatsbyjs.org/docs/browser-apis/#shouldUpdateScroll
+export const shouldUpdateScroll: GatsbyBrowser['shouldUpdateScroll'] = ({
+  prevRouterProps,
+  routerProps,
+}) => {
+  if (!prevRouterProps) {
+    return [0, 0]
+  }
+
   const { hash: nextHash, pathname: nextPathname } = routerProps.location
   const {
     location: { hash: prevHash, pathname: prevPathname },
@@ -110,8 +134,6 @@ const shouldUpdateScrollBetween = (routerProps, prevRouterProps) => {
 
   const prevLang = getLangKeyFromPath(prevPathname)
   const nextLang = getLangKeyFromPath(nextPathname)
-
-  console.log({ prevLang, nextLang, prevHash, nextHash, nextPathname, prevPathname })
 
   // it's not a language change
   if (prevLang === nextLang) {
@@ -141,61 +163,34 @@ const shouldUpdateScrollBetween = (routerProps, prevRouterProps) => {
   return false
 }
 
-export function shouldUpdateScroll({ prevRouterProps, routerProps }) {
-  console.log('shouldUpdateScroll({ prevRouterProps, routerProps })', {
-    prevRouterProps,
-    routerProps,
-  })
-
-  if (!prevRouterProps) {
-    return [0, 0]
-  }
-
-  return shouldUpdateScrollBetween(routerProps, prevRouterProps)
-}
-
-export const wrapPageElement = ({ props, element }) => {
-  return <LanguageSwitcher {...props}>{element}</LanguageSwitcher>
-}
-
 // https://www.gatsbyjs.org/docs/browser-apis/#onClientEntry
 // based on comment https://github.com/angeloocana/gatsby-plugin-i18n/issues/92#issuecomment-580912666
 // @TODO Check if this is the best way to do that from a SEO pov
-export const onClientEntry = () => {
-  const languages = Object.keys(locale.supportedLanguages)
-  const urlStartsWithLangKey = languages.some((langKey) =>
-    window.location.pathname.startsWith(`/${langKey}`),
-  )
-
-  if (!urlStartsWithLangKey) {
-    let foundLanguages = []
-
-    if (typeof navigator !== 'undefined') {
-      if (navigator.languages && navigator.languages.length) {
-        for (const langKey of navigator.languages) {
-          foundLanguages = [...foundLanguages, langKey]
-        }
-      }
-
-      if (navigator.userLanguage) {
-        foundLanguages = [...foundLanguages, navigator.userLanguage]
-      }
-
-      if (navigator.language) {
-        foundLanguages = [...foundLanguages, navigator.language]
-      }
-    }
-
-    let langKey = locale.defaultLangKey
-
-    for (const langKeyUser of foundLanguages) {
-      const langKeyUserLowerCase = langKeyUser.toLowerCase()
-      if (languages.includes(langKeyUserLowerCase)) {
-        langKey = langKeyUserLowerCase
-        break
-      }
-    }
-
-    window.location.pathname = `/${langKey}${window.location.pathname}`
-  }
+export const onClientEntry: GatsbyBrowser['onClientEntry'] = () => {
+  // const languages = Object.keys(locale.supportedLanguages)
+  // const urlStartsWithLangKey = languages.some((langKey) =>
+  //   window.location.pathname.startsWith(`/${langKey}`),
+  // )
+  // if (!urlStartsWithLangKey) {
+  //   let foundLanguages: string[] = []
+  //   if (typeof navigator !== 'undefined') {
+  //     if (navigator.languages && navigator.languages.length) {
+  //       for (const langKey of navigator.languages) {
+  //         foundLanguages = [...foundLanguages, langKey]
+  //       }
+  //     }
+  //     if (navigator.language) {
+  //       foundLanguages = [...foundLanguages, navigator.language]
+  //     }
+  //   }
+  //   let langKey = locale.defaultLangKey
+  //   for (const langKeyUser of foundLanguages) {
+  //     const langKeyUserLowerCase = langKeyUser.toLowerCase()
+  //     if (languages.includes(langKeyUserLowerCase)) {
+  //       langKey = langKeyUserLowerCase
+  //       break
+  //     }
+  //   }
+  //   window.location.pathname = `/${langKey}${window.location.pathname}`
+  // }
 }

@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from 'react'
+import React from 'react'
 import { Box, BoxProps } from 'rebass'
 
-export const ContentBox: FunctionComponent<BoxProps> = (props) => {
+export const ContentBox: React.FC<BoxProps> = (props) => {
   return (
     <Box
       width={[1, 4 / 5, 3 / 4, 3 / 5]}
@@ -10,7 +10,7 @@ export const ContentBox: FunctionComponent<BoxProps> = (props) => {
       as="section"
       {...props}
       sx={{
-        whiteSpace: 'pre-line',
+        // whiteSpace: 'pre-line',
         ...props.sx,
       }}
     />

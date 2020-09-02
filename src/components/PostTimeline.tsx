@@ -1,10 +1,11 @@
-import * as React from 'react'
-import { Box, Flex, Text } from 'rebass'
+import React from 'react'
+import { Box, Text } from 'rebass'
 import moment from 'moment'
 
-import { styled } from '../styled'
+import { BlogPost } from '@r/generated/graphql'
 
-import { MdxBlogPost, MdxBlogPostEdge, BlogPostEdge, BlogPost } from '../types/graphql'
+import { styled } from '@r/styled'
+
 import { Link } from './ui/Link'
 import { H3 } from './ui/H3'
 
@@ -87,10 +88,10 @@ const PostBox = styled(Box)`
   }
 `
 
-type BlogPostOnTimeline = Pick<BlogPost, 'id' | 'slug' | 'title' | 'date' | 'description'>
+type BlogPostOnTimeline = Pick<BlogPost, 'id' | 'slug' | 'title' | 'date' | 'excerpt'>
 type BlogPostEdgeOnTimeline = { node: BlogPostOnTimeline }
 
-export const PostsTimeline: React.FunctionComponent<{
+export const PostsTimeline: React.FC<{
   posts: Array<BlogPostEdgeOnTimeline>
 }> = ({ posts }) => {
   const postsPerMonth = posts.reduce<Record<string, Array<BlogPostOnTimeline>>>(

@@ -7,7 +7,7 @@ directive @parentResolverPassthrough(field: String, parentType: String) on FIELD
 
 directive @defaultArgValueNumber(argName: String!, defaultValue: Int!) on FIELD_DEFINITION
 
-"""Add date formating options."""
+"""Add date formatting options."""
 directive @dateformat(formatString: String, locale: String, fromNow: Boolean, difference: String) on FIELD_DEFINITION
 
 """Link to node by foreign-key relation."""
@@ -107,11 +107,32 @@ interface BlogPost {
     """Configures the locale Moment.js will use to format the date."""
     locale: String
   ): Date!
-  tags: [String!]
+  dateModified(
+    """
+    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    documentation for different tokens.
+    """
+    formatString: String
+
+    """Returns a string generated with Moment.js' `fromNow` function"""
+    fromNow: Boolean
+
+    """
+    Returns the difference between this date and the current time. Defaults to
+    "milliseconds" but you can also pass in as the measurement "years",
+    "months", "weeks", "days", "hours", "minutes", and "seconds".
+    """
+    difference: String
+
+    """Configures the locale Moment.js will use to format the date."""
+    locale: String
+  ): Date!
+  tags: [String!]!
   category: String!
   categorySlug: String!
   tableOfContents(maxDepth: Int): JSON!
-  description: String
+  description: String!
   keywords: [String!]
 }
 
@@ -279,12 +300,13 @@ enum BlogPostFieldsEnum {
   banner___childMdx___fileAbsolutePath
   banner___childMdx___frontmatter___title
   banner___childMdx___frontmatter___date
-  banner___childMdx___frontmatter___description
   banner___childMdx___frontmatter___category
   banner___childMdx___frontmatter___tags
-  banner___childMdx___frontmatter___keywords
   banner___childMdx___frontmatter___bannerStyle
+  banner___childMdx___frontmatter___description
+  banner___childMdx___frontmatter___keywords
   banner___childMdx___frontmatter___slug
+  banner___childMdx___slug
   banner___childMdx___body
   banner___childMdx___excerpt
   banner___childMdx___headings
@@ -318,6 +340,7 @@ enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___slug
   banner___childMdx___childMdxBlogPost___langKey
   banner___childMdx___childMdxBlogPost___date
+  banner___childMdx___childMdxBlogPost___dateModified
   banner___childMdx___childMdxBlogPost___tags
   banner___childMdx___childMdxBlogPost___category
   banner___childMdx___childMdxBlogPost___categorySlug
@@ -334,6 +357,7 @@ enum BlogPostFieldsEnum {
   slug
   langKey
   date
+  dateModified
   tags
   category
   categorySlug
@@ -354,6 +378,7 @@ input BlogPostFilterInput {
   slug: StringQueryOperatorInput
   langKey: LangKeyQueryOperatorInput
   date: DateQueryOperatorInput
+  dateModified: DateQueryOperatorInput
   tags: StringQueryOperatorInput
   category: StringQueryOperatorInput
   categorySlug: StringQueryOperatorInput
@@ -1205,10 +1230,8 @@ enum FileFieldsEnum {
   childMdx___fileAbsolutePath
   childMdx___frontmatter___title
   childMdx___frontmatter___date
-  childMdx___frontmatter___description
   childMdx___frontmatter___category
   childMdx___frontmatter___tags
-  childMdx___frontmatter___keywords
   childMdx___frontmatter___banner___sourceInstanceName
   childMdx___frontmatter___banner___absolutePath
   childMdx___frontmatter___banner___relativePath
@@ -1247,7 +1270,13 @@ enum FileFieldsEnum {
   childMdx___frontmatter___banner___children
   childMdx___frontmatter___bannerStyle
   childMdx___frontmatter___externalLinks___canonical
+  childMdx___frontmatter___publisher___name
+  childMdx___frontmatter___publisher___id
+  childMdx___frontmatter___publisher___url
+  childMdx___frontmatter___description
+  childMdx___frontmatter___keywords
   childMdx___frontmatter___slug
+  childMdx___slug
   childMdx___body
   childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1344,6 +1373,7 @@ enum FileFieldsEnum {
   childMdx___childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___dateModified @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1934,6 +1964,7 @@ type Mdx implements Node {
   rawBody: String!
   fileAbsolutePath: String!
   frontmatter: MdxFrontmatter
+  slug: String
   body: String!
   excerpt(pruneLength: Int = 140, truncate: Boolean = false): String!
   headings(depth: HeadingsMdx): [MdxHeadingMdx]
@@ -1979,11 +2010,32 @@ type MdxBlogPost implements BlogPost & Node {
     """Configures the locale Moment.js will use to format the date."""
     locale: String
   ): Date!
-  tags: [String!]
+  dateModified(
+    """
+    Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    documentation for different tokens.
+    """
+    formatString: String
+
+    """Returns a string generated with Moment.js' `fromNow` function"""
+    fromNow: Boolean
+
+    """
+    Returns the difference between this date and the current time. Defaults to
+    "milliseconds" but you can also pass in as the measurement "years",
+    "months", "weeks", "days", "hours", "minutes", and "seconds".
+    """
+    difference: String
+
+    """Configures the locale Moment.js will use to format the date."""
+    locale: String
+  ): Date!
+  tags: [String!]!
   category: String!
   categorySlug: String!
-  description: String
-  keywords: [String!]
+  description: String!
+  keywords: [String!]!
   tableOfContents(maxDepth: Int = 2): JSON!
   excerpt(pruneLength: Int = 140): String!
   body: String!
@@ -2154,12 +2206,13 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___fileAbsolutePath
   banner___childMdx___frontmatter___title
   banner___childMdx___frontmatter___date
-  banner___childMdx___frontmatter___description
   banner___childMdx___frontmatter___category
   banner___childMdx___frontmatter___tags
-  banner___childMdx___frontmatter___keywords
   banner___childMdx___frontmatter___bannerStyle
+  banner___childMdx___frontmatter___description
+  banner___childMdx___frontmatter___keywords
   banner___childMdx___frontmatter___slug
+  banner___childMdx___slug
   banner___childMdx___body
   banner___childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2193,6 +2246,7 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___dateModified @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2209,6 +2263,7 @@ enum MdxBlogPostFieldsEnum {
   slug
   langKey
   date
+  dateModified
   tags
   category
   categorySlug
@@ -2314,6 +2369,7 @@ input MdxBlogPostFilterInput {
   slug: StringQueryOperatorInput
   langKey: LangKeyQueryOperatorInput
   date: DateQueryOperatorInput
+  dateModified: DateQueryOperatorInput
   tags: StringQueryOperatorInput
   category: StringQueryOperatorInput
   categorySlug: StringQueryOperatorInput
@@ -2361,10 +2417,8 @@ enum MdxFieldsEnum {
   fileAbsolutePath
   frontmatter___title
   frontmatter___date
-  frontmatter___description
   frontmatter___category
   frontmatter___tags
-  frontmatter___keywords
   frontmatter___banner___sourceInstanceName
   frontmatter___banner___absolutePath
   frontmatter___banner___relativePath
@@ -2417,6 +2471,7 @@ enum MdxFieldsEnum {
   frontmatter___banner___internal___type
   frontmatter___banner___childMdx___rawBody
   frontmatter___banner___childMdx___fileAbsolutePath
+  frontmatter___banner___childMdx___slug
   frontmatter___banner___childMdx___body
   frontmatter___banner___childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___banner___childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2428,7 +2483,13 @@ enum MdxFieldsEnum {
   frontmatter___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___bannerStyle
   frontmatter___externalLinks___canonical
+  frontmatter___publisher___name
+  frontmatter___publisher___id
+  frontmatter___publisher___url
+  frontmatter___description
+  frontmatter___keywords
   frontmatter___slug
+  slug
   body
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2582,6 +2643,7 @@ enum MdxFieldsEnum {
   childMdxBlogPost___banner___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___rawBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___banner___childMdx___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___headings @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2598,6 +2660,7 @@ enum MdxFieldsEnum {
   childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___dateModified @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___category @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___categorySlug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2649,6 +2712,7 @@ input MdxFilterInput {
   rawBody: StringQueryOperatorInput
   fileAbsolutePath: StringQueryOperatorInput
   frontmatter: MdxFrontmatterFilterInput
+  slug: StringQueryOperatorInput
   body: StringQueryOperatorInput
   excerpt: StringQueryOperatorInput
   headings: MdxHeadingMdxFilterListInput
@@ -2687,13 +2751,14 @@ type MdxFrontmatter {
     """Configures the locale Moment.js will use to format the date."""
     locale: String
   ): Date
-  description: String
   category: String
   tags: [String]
-  keywords: [String]
   banner: File
   bannerStyle: String
   externalLinks: MdxFrontmatterExternalLinks
+  publisher: MdxFrontmatterPublisher
+  description: String
+  keywords: [String]
   slug: String
 }
 
@@ -2708,14 +2773,27 @@ input MdxFrontmatterExternalLinksFilterInput {
 input MdxFrontmatterFilterInput {
   title: StringQueryOperatorInput
   date: DateQueryOperatorInput
-  description: StringQueryOperatorInput
   category: StringQueryOperatorInput
   tags: StringQueryOperatorInput
-  keywords: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: StringQueryOperatorInput
   externalLinks: MdxFrontmatterExternalLinksFilterInput
+  publisher: MdxFrontmatterPublisherFilterInput
+  description: StringQueryOperatorInput
+  keywords: StringQueryOperatorInput
   slug: StringQueryOperatorInput
+}
+
+type MdxFrontmatterPublisher {
+  name: String
+  id: String
+  url: String
+}
+
+input MdxFrontmatterPublisherFilterInput {
+  name: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  url: StringQueryOperatorInput
 }
 
 type MdxGroupConnection {
@@ -2809,7 +2887,7 @@ enum PotraceTurnPolicy {
 }
 
 type Query {
-  blogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
+  blogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
   allBlogPost(filter: BlogPostFilterInput, sort: BlogPostSortInput, skip: Int, limit: Int): BlogPostConnection!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdx: MdxFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
@@ -2821,9 +2899,9 @@ type Query {
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, resolutions: ImageSharpResolutionsFilterInput, fluid: ImageSharpFluidFilterInput, sizes: ImageSharpSizesFilterInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
-  mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdxBlogPost: MdxBlogPostFilterInput): Mdx
+  mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, slug: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdxBlogPost: MdxBlogPostFilterInput): Mdx
   allMdx(filter: MdxFilterInput, sort: MdxSortInput, skip: Int, limit: Int): MdxConnection!
-  mdxBlogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
+  mdxBlogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
   allMdxBlogPost(filter: MdxBlogPostFilterInput, sort: MdxBlogPostSortInput, skip: Int, limit: Int): MdxBlogPostConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
@@ -3186,15 +3264,16 @@ type SitePageConnection {
 }
 
 type SitePageContext {
-  page: [String]
+  pageEntries: [String]
   pagination: SitePageContextPagination
   categories: [SitePageContextCategories]
   langKey: String
   langKeySlug: String
   id: String
   globalBlogPostId: String
+  prev: SitePageContextPrev
+  next: SitePageContextNext
   activeCategory: SitePageContextActiveCategory
-  postsOnCategory: [SitePageContextPostsOnCategory]
   categoriesByCategorySlug: SitePageContextCategoriesByCategorySlug
   tag: String
   tags: [SitePageContextTags]
@@ -3255,74 +3334,71 @@ input SitePageContextCategoriesFilterListInput {
 }
 
 input SitePageContextFilterInput {
-  page: StringQueryOperatorInput
+  pageEntries: StringQueryOperatorInput
   pagination: SitePageContextPaginationFilterInput
   categories: SitePageContextCategoriesFilterListInput
   langKey: StringQueryOperatorInput
   langKeySlug: StringQueryOperatorInput
   id: StringQueryOperatorInput
   globalBlogPostId: StringQueryOperatorInput
+  prev: SitePageContextPrevFilterInput
+  next: SitePageContextNextFilterInput
   activeCategory: SitePageContextActiveCategoryFilterInput
-  postsOnCategory: SitePageContextPostsOnCategoryFilterListInput
   categoriesByCategorySlug: SitePageContextCategoriesByCategorySlugFilterInput
   tag: StringQueryOperatorInput
   tags: SitePageContextTagsFilterListInput
 }
 
+type SitePageContextNext {
+  title: String
+  slug: String
+}
+
+input SitePageContextNextFilterInput {
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+}
+
 type SitePageContextPagination {
-  page: [String]
+  pageEntries: [String]
+  currentPageIndex: Int
+  nextPagePath: String
+  previousPagePath: String
   pageCount: Int
   pathPrefix: String
   totalCount: Int
 }
 
 input SitePageContextPaginationFilterInput {
-  page: StringQueryOperatorInput
+  pageEntries: StringQueryOperatorInput
+  currentPageIndex: IntQueryOperatorInput
+  nextPagePath: StringQueryOperatorInput
+  previousPagePath: StringQueryOperatorInput
   pageCount: IntQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   totalCount: IntQueryOperatorInput
 }
 
-type SitePageContextPostsOnCategory {
-  id: String
-  excerpt: String
+type SitePageContextPrev {
   title: String
   slug: String
-  langKey: String
-  category: String
-  categorySlug: String
-  globalBlogPostId: String
-  tags: [String]
-  body: String
 }
 
-input SitePageContextPostsOnCategoryFilterInput {
-  id: StringQueryOperatorInput
-  excerpt: StringQueryOperatorInput
+input SitePageContextPrevFilterInput {
   title: StringQueryOperatorInput
   slug: StringQueryOperatorInput
-  langKey: StringQueryOperatorInput
-  category: StringQueryOperatorInput
-  categorySlug: StringQueryOperatorInput
-  globalBlogPostId: StringQueryOperatorInput
-  tags: StringQueryOperatorInput
-  body: StringQueryOperatorInput
-}
-
-input SitePageContextPostsOnCategoryFilterListInput {
-  elemMatch: SitePageContextPostsOnCategoryFilterInput
 }
 
 type SitePageContextTags {
   tag: String
   langKey: String
-  articlesCount: Int
+  postsCount: Int
 }
 
 input SitePageContextTagsFilterInput {
   tag: StringQueryOperatorInput
   langKey: StringQueryOperatorInput
-  articlesCount: IntQueryOperatorInput
+  postsCount: IntQueryOperatorInput
 }
 
 input SitePageContextTagsFilterListInput {
@@ -3428,8 +3504,11 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
-  context___page
-  context___pagination___page
+  context___pageEntries
+  context___pagination___pageEntries
+  context___pagination___currentPageIndex
+  context___pagination___nextPagePath
+  context___pagination___previousPagePath
   context___pagination___pageCount
   context___pagination___pathPrefix
   context___pagination___totalCount
@@ -3440,19 +3519,12 @@ enum SitePageFieldsEnum {
   context___langKeySlug
   context___id
   context___globalBlogPostId
+  context___prev___title
+  context___prev___slug
+  context___next___title
+  context___next___slug
   context___activeCategory___category
   context___activeCategory___categorySlug
-  context___postsOnCategory
-  context___postsOnCategory___id
-  context___postsOnCategory___excerpt
-  context___postsOnCategory___title
-  context___postsOnCategory___slug
-  context___postsOnCategory___langKey
-  context___postsOnCategory___category
-  context___postsOnCategory___categorySlug
-  context___postsOnCategory___globalBlogPostId
-  context___postsOnCategory___tags
-  context___postsOnCategory___body
   context___categoriesByCategorySlug___programming___category
   context___categoriesByCategorySlug___programming___categorySlug
   context___categoriesByCategorySlug___programacao___category
@@ -3461,7 +3533,7 @@ enum SitePageFieldsEnum {
   context___tags
   context___tags___tag
   context___tags___langKey
-  context___tags___articlesCount
+  context___tags___postsCount
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id
@@ -3710,17 +3782,8 @@ enum SitePluginFieldsEnum {
   pluginOptions___gatsbyRemarkPlugins
   pluginOptions___gatsbyRemarkPlugins___resolve
   pluginOptions___gatsbyRemarkPlugins___options___maxWidth
-  pluginOptions___gatsbyRemarkPlugins___options___pathPrefix
-  pluginOptions___gatsbyRemarkPlugins___options___wrapperStyle
-  pluginOptions___gatsbyRemarkPlugins___options___backgroundColor
-  pluginOptions___gatsbyRemarkPlugins___options___linkImagesToOriginal
-  pluginOptions___gatsbyRemarkPlugins___options___showCaptions
-  pluginOptions___gatsbyRemarkPlugins___options___markdownCaptions
-  pluginOptions___gatsbyRemarkPlugins___options___withWebp
-  pluginOptions___gatsbyRemarkPlugins___options___tracedSVG
-  pluginOptions___gatsbyRemarkPlugins___options___loading
   pluginOptions___gatsbyRemarkPlugins___options___disableBgImageOnAlpha
-  pluginOptions___gatsbyRemarkPlugins___options___disableBgImage
+  pluginOptions___gatsbyRemarkPlugins___options___quality
   pluginOptions___gatsbyRemarkPlugins___options___classPrefix
   pluginOptions___gatsbyRemarkPlugins___options___inlineCodeMarker
   pluginOptions___remarkPlugins
@@ -3924,34 +3987,16 @@ input SitePluginPluginOptionsGatsbyRemarkPluginsFilterListInput {
 
 type SitePluginPluginOptionsGatsbyRemarkPluginsOptions {
   maxWidth: Int
-  pathPrefix: String
-  wrapperStyle: String
-  backgroundColor: String
-  linkImagesToOriginal: Boolean
-  showCaptions: Boolean
-  markdownCaptions: Boolean
-  withWebp: Boolean
-  tracedSVG: Boolean
-  loading: String
   disableBgImageOnAlpha: Boolean
-  disableBgImage: Boolean
+  quality: Int
   classPrefix: String
   inlineCodeMarker: String
 }
 
 input SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput {
   maxWidth: IntQueryOperatorInput
-  pathPrefix: StringQueryOperatorInput
-  wrapperStyle: StringQueryOperatorInput
-  backgroundColor: StringQueryOperatorInput
-  linkImagesToOriginal: BooleanQueryOperatorInput
-  showCaptions: BooleanQueryOperatorInput
-  markdownCaptions: BooleanQueryOperatorInput
-  withWebp: BooleanQueryOperatorInput
-  tracedSVG: BooleanQueryOperatorInput
-  loading: StringQueryOperatorInput
   disableBgImageOnAlpha: BooleanQueryOperatorInput
-  disableBgImage: BooleanQueryOperatorInput
+  quality: IntQueryOperatorInput
   classPrefix: StringQueryOperatorInput
   inlineCodeMarker: StringQueryOperatorInput
 }
@@ -3982,7 +4027,7 @@ input SitePluginPluginOptionsRehypePluginsContentFilterInput {
 }
 
 type SitePluginPluginOptionsRehypePluginsContentProperties {
-  className: String
+  className: [String]
 }
 
 input SitePluginPluginOptionsRehypePluginsContentPropertiesFilterInput {
