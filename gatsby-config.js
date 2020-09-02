@@ -132,14 +132,12 @@ module.exports = {
               },
             },
           ],
-          // [require('rehype-autolink-headings'), { behavior: 'prepend' }],
           // require('rehype-toc'),
         ],
       },
     },
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    // 'gatsby-plugin-styled-components',
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
@@ -164,7 +162,6 @@ module.exports = {
     },
     'gatsby-plugin-preload-fonts',
     'gatsby-plugin-netlify',
-    // @TODO add https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-feed
-    // 'gatsby-plugin-offline',
+    'gatsby-plugin-offline',
   ],
 }
