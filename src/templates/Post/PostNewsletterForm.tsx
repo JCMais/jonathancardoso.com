@@ -77,7 +77,7 @@ export const PostNewsletterForm = (props: PostNewsletterFormProps) => {
         <Flex flexDirection="column" justifyContent="space-evenly">
           <Box p={[2]}>
             <Label htmlFor="name">{t('Name')}</Label>
-            <Input id="name" name="MERGE1" type="text" placeholder="Fulano" />
+            <Input id="name" name="MERGE1" type="text" placeholder={t('Someone')} />
           </Box>
           <Box p={[2]}>
             <Label>{t('Categories')}</Label>
