@@ -83,6 +83,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
         description={blogPost.description ?? blogPost.excerpt}
         keywords={blogPost.keywords}
         link={linkLanguages}
+        canonical={blogPost.externalLinks?.canonical}
         jsonLd={[
           {
             '@context': 'http://schema.org',
