@@ -1,18 +1,25 @@
 import React from 'react'
 
-import { MainLayout } from '../layouts/MainLayout'
-import { SEO } from '../components/SEO'
+import { MainLayout } from '@r/layouts/MainLayout'
+import { ContentBox } from '@r/components/ContentBox'
+import { MainContentWrapper } from '@r/components/MainContentWrapper'
+
+import { SEO } from '@r/components/SEO'
+import { H1 } from '@r/components/ui/H1'
+import { Paragraph } from '@r/components/ui/Paragraph'
 
 const NotFoundPage = () => {
-  const onClick = () => alert('Pressed')
   return (
     <MainLayout>
       <SEO title="404: Not found" />
-      <h1>NOT FOUND</h1>
-      <button type="button" onClick={onClick}>
-        PRESS ME
-      </button>
-      <p>You just hit a route that doesn&#39;t exist... the sadness. - DEFAULT</p>
+      <MainContentWrapper>
+        <ContentBox>
+          <H1>404</H1>
+          <Paragraph>
+            You just hit a route that doesn&#39;t exist... the sadness.
+          </Paragraph>
+        </ContentBox>
+      </MainContentWrapper>
     </MainLayout>
   )
 }
