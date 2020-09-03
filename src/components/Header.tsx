@@ -179,7 +179,7 @@ export const Header: React.FC<HeaderProps> = ({ headerTitleComponent = Text }) =
         boxShadow: 'rgba(0,0,0,0.25) 3px 2px 42px',
       }}
     >
-      <Link to="/" lng sx={{ textDecoration: 'none' }} width={[0.2, 0.4, 0.5]}>
+      <Link to="/" lng sx={{ textDecoration: 'none' }} width={[0.18, 0.4, 0.5]}>
         <HeaderTitle
           fontFamily="heading"
           fontSize={4}
