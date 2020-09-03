@@ -40,6 +40,7 @@ export type BlogPost = {
   externalLinks: ExternalLinks
   slug: Scalars['String']
   langKey: LangKey
+  publisher?: Maybe<Publisher>
   date: Scalars['Date']
   dateModified: Scalars['Date']
   tags: Array<Scalars['String']>
@@ -307,6 +308,9 @@ export enum BlogPostFieldsEnum {
   externalLinks___github = 'externalLinks___github',
   slug = 'slug',
   langKey = 'langKey',
+  publisher___id = 'publisher___id',
+  publisher___url = 'publisher___url',
+  publisher___name = 'publisher___name',
   date = 'date',
   dateModified = 'dateModified',
   tags = 'tags',
@@ -329,6 +333,7 @@ export type BlogPostFilterInput = {
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
+  publisher?: Maybe<PublisherFilterInput>
   date?: Maybe<DateQueryOperatorInput>
   dateModified?: Maybe<DateQueryOperatorInput>
   tags?: Maybe<StringQueryOperatorInput>
@@ -1170,6 +1175,9 @@ export enum FileFieldsEnum {
   childMdx___childMdxBlogPost___externalLinks___github = 'childMdx___childMdxBlogPost___externalLinks___github',
   childMdx___childMdxBlogPost___slug = 'childMdx___childMdxBlogPost___slug',
   childMdx___childMdxBlogPost___langKey = 'childMdx___childMdxBlogPost___langKey',
+  childMdx___childMdxBlogPost___publisher___id = 'childMdx___childMdxBlogPost___publisher___id',
+  childMdx___childMdxBlogPost___publisher___url = 'childMdx___childMdxBlogPost___publisher___url',
+  childMdx___childMdxBlogPost___publisher___name = 'childMdx___childMdxBlogPost___publisher___name',
   childMdx___childMdxBlogPost___date = 'childMdx___childMdxBlogPost___date',
   childMdx___childMdxBlogPost___dateModified = 'childMdx___childMdxBlogPost___dateModified',
   childMdx___childMdxBlogPost___tags = 'childMdx___childMdxBlogPost___tags',
@@ -1885,6 +1893,7 @@ export type MdxBlogPost = BlogPost &
     externalLinks: ExternalLinks
     slug: Scalars['String']
     langKey: LangKey
+    publisher?: Maybe<Publisher>
     date: Scalars['Date']
     dateModified: Scalars['Date']
     tags: Array<Scalars['String']>
@@ -2155,6 +2164,9 @@ export enum MdxBlogPostFieldsEnum {
   externalLinks___github = 'externalLinks___github',
   slug = 'slug',
   langKey = 'langKey',
+  publisher___id = 'publisher___id',
+  publisher___url = 'publisher___url',
+  publisher___name = 'publisher___name',
   date = 'date',
   dateModified = 'dateModified',
   tags = 'tags',
@@ -2262,6 +2274,7 @@ export type MdxBlogPostFilterInput = {
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
+  publisher?: Maybe<PublisherFilterInput>
   date?: Maybe<DateQueryOperatorInput>
   dateModified?: Maybe<DateQueryOperatorInput>
   tags?: Maybe<StringQueryOperatorInput>
@@ -2568,6 +2581,9 @@ export enum MdxFieldsEnum {
   childMdxBlogPost___externalLinks___github = 'childMdxBlogPost___externalLinks___github',
   childMdxBlogPost___slug = 'childMdxBlogPost___slug',
   childMdxBlogPost___langKey = 'childMdxBlogPost___langKey',
+  childMdxBlogPost___publisher___id = 'childMdxBlogPost___publisher___id',
+  childMdxBlogPost___publisher___url = 'childMdxBlogPost___publisher___url',
+  childMdxBlogPost___publisher___name = 'childMdxBlogPost___publisher___name',
   childMdxBlogPost___date = 'childMdxBlogPost___date',
   childMdxBlogPost___dateModified = 'childMdxBlogPost___dateModified',
   childMdxBlogPost___tags = 'childMdxBlogPost___tags',
@@ -2791,6 +2807,19 @@ export enum PotraceTurnPolicy {
   TURNPOLICY_MAJORITY = 'TURNPOLICY_MAJORITY',
 }
 
+export type Publisher = {
+  __typename?: 'Publisher'
+  id: Scalars['ID']
+  url: Scalars['String']
+  name: Scalars['String']
+}
+
+export type PublisherFilterInput = {
+  id?: Maybe<IdQueryOperatorInput>
+  url?: Maybe<StringQueryOperatorInput>
+  name?: Maybe<StringQueryOperatorInput>
+}
+
 export type Query = {
   __typename?: 'Query'
   blogPost?: Maybe<BlogPost>
@@ -2827,6 +2856,7 @@ export type QueryBlogPostArgs = {
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
+  publisher?: Maybe<PublisherFilterInput>
   date?: Maybe<DateQueryOperatorInput>
   dateModified?: Maybe<DateQueryOperatorInput>
   tags?: Maybe<StringQueryOperatorInput>
@@ -3042,6 +3072,7 @@ export type QueryMdxBlogPostArgs = {
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
   langKey?: Maybe<LangKeyQueryOperatorInput>
+  publisher?: Maybe<PublisherFilterInput>
   date?: Maybe<DateQueryOperatorInput>
   dateModified?: Maybe<DateQueryOperatorInput>
   tags?: Maybe<StringQueryOperatorInput>
@@ -3813,8 +3844,11 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator___pluginOptions___include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator___pluginOptions___legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator___pluginOptions___theme_color_in_head',
-  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator___pluginOptions___cacheDigest',
-  pluginCreator___pluginOptions___google___families = 'pluginCreator___pluginOptions___google___families',
+  pluginCreator___pluginOptions___trackingId = 'pluginCreator___pluginOptions___trackingId',
+  pluginCreator___pluginOptions___head = 'pluginCreator___pluginOptions___head',
+  pluginCreator___pluginOptions___anonymize = 'pluginCreator___pluginOptions___anonymize',
+  pluginCreator___pluginOptions___respectDNT = 'pluginCreator___pluginOptions___respectDNT',
+  pluginCreator___pluginOptions___defer = 'pluginCreator___pluginOptions___defer',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -4037,8 +4071,11 @@ export enum SitePluginFieldsEnum {
   pluginOptions___include_favicon = 'pluginOptions___include_favicon',
   pluginOptions___legacy = 'pluginOptions___legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions___theme_color_in_head',
-  pluginOptions___cacheDigest = 'pluginOptions___cacheDigest',
-  pluginOptions___google___families = 'pluginOptions___google___families',
+  pluginOptions___trackingId = 'pluginOptions___trackingId',
+  pluginOptions___head = 'pluginOptions___head',
+  pluginOptions___anonymize = 'pluginOptions___anonymize',
+  pluginOptions___respectDNT = 'pluginOptions___respectDNT',
+  pluginOptions___defer = 'pluginOptions___defer',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -4180,8 +4217,11 @@ export type SitePluginPluginOptions = {
   include_favicon?: Maybe<Scalars['Boolean']>
   legacy?: Maybe<Scalars['Boolean']>
   theme_color_in_head?: Maybe<Scalars['Boolean']>
-  cacheDigest?: Maybe<Scalars['String']>
-  google?: Maybe<SitePluginPluginOptionsGoogle>
+  trackingId?: Maybe<Scalars['String']>
+  head?: Maybe<Scalars['Boolean']>
+  anonymize?: Maybe<Scalars['Boolean']>
+  respectDNT?: Maybe<Scalars['Boolean']>
+  defer?: Maybe<Scalars['Boolean']>
   pathCheck?: Maybe<Scalars['Boolean']>
 }
 
@@ -4204,8 +4244,11 @@ export type SitePluginPluginOptionsFilterInput = {
   include_favicon?: Maybe<BooleanQueryOperatorInput>
   legacy?: Maybe<BooleanQueryOperatorInput>
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>
-  cacheDigest?: Maybe<StringQueryOperatorInput>
-  google?: Maybe<SitePluginPluginOptionsGoogleFilterInput>
+  trackingId?: Maybe<StringQueryOperatorInput>
+  head?: Maybe<BooleanQueryOperatorInput>
+  anonymize?: Maybe<BooleanQueryOperatorInput>
+  respectDNT?: Maybe<BooleanQueryOperatorInput>
+  defer?: Maybe<BooleanQueryOperatorInput>
   pathCheck?: Maybe<BooleanQueryOperatorInput>
 }
 
@@ -4239,15 +4282,6 @@ export type SitePluginPluginOptionsGatsbyRemarkPluginsOptionsFilterInput = {
   quality?: Maybe<IntQueryOperatorInput>
   classPrefix?: Maybe<StringQueryOperatorInput>
   inlineCodeMarker?: Maybe<StringQueryOperatorInput>
-}
-
-export type SitePluginPluginOptionsGoogle = {
-  __typename?: 'SitePluginPluginOptionsGoogle'
-  families?: Maybe<Array<Maybe<Scalars['String']>>>
-}
-
-export type SitePluginPluginOptionsGoogleFilterInput = {
-  families?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePluginPluginOptionsRehypePlugins = {
@@ -4690,6 +4724,9 @@ export type PostQuery = { __typename?: 'Query' } & {
               }
             >
           }
+        >
+        publisher?: Maybe<
+          { __typename?: 'Publisher' } & Pick<Publisher, 'id' | 'name' | 'url'>
         >
         externalLinks: { __typename?: 'ExternalLinks' } & Pick<
           ExternalLinks,

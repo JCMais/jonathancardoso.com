@@ -91,6 +91,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     slug,
     langKey: convertLangKeyToGraphQLEnum(langKey),
     globalBlogPostId,
+    publisher: mdxNode.frontmatter.publisher,
     externalLinks: {
       github: `${trim(githubRepoUrl, '/')}/blob/master/content/${fileRelativePath.replace(
         /\\/g,

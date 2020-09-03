@@ -106,7 +106,17 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
               '@id': 'jonathancardoso',
             },
             // TODO: Add publisher to external blog posts?
-            // publisher: blogPost.publisher
+            publisher: blogPost.publisher
+              ? {
+                  '@type': 'Organization',
+                  '@id': blogPost.publisher.id,
+                  name: blogPost.publisher.name,
+                  url: blogPost.publisher.url,
+                }
+              : {
+                  '@type': 'Person',
+                  '@id': 'jonathancardoso',
+                },
           },
         ]}
       />
@@ -275,6 +285,11 @@ export const pageQuery = graphql`
             ...GatsbyImageSharpFluid
           }
         }
+      }
+      publisher {
+        id
+        name
+        url
       }
       langKey
       bannerStyle

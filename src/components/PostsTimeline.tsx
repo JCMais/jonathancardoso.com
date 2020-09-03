@@ -92,7 +92,7 @@ type BlogPostOnTimeline = Pick<BlogPost, 'id' | 'slug' | 'title' | 'date' | 'exc
 type BlogPostEdgeOnTimeline = { node: BlogPostOnTimeline }
 
 type PostsTimelineProps = {
-  postTitleComponent?: React.ComponentType
+  postTitleComponent?: typeof H3
   postTitleSx?: BoxProps['sx']
   posts: Array<BlogPostEdgeOnTimeline>
 }

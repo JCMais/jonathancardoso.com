@@ -69,6 +69,13 @@ export const createSchemaCustomization = async ({
     github: String!
   }
 
+  # TODO: should use @nodeInterface?
+  type Publisher {
+    id: ID!
+    url: String!
+    name: String!
+  }
+
   interface BlogPost @nodeInterface {
     id: ID!
     # Used to group translated content together
@@ -86,6 +93,8 @@ export const createSchemaCustomization = async ({
     
     slug: String!
     langKey: LangKey!
+
+    publisher: Publisher
 
     date: Date! @dateformat
     dateModified: Date! @dateformat
@@ -118,6 +127,8 @@ export const createSchemaCustomization = async ({
     slug: String!
     langKey: LangKey!
 
+    publisher: Publisher
+
     date: Date! @dateformat
     dateModified: Date! @dateformat
     tags: [String!]!
@@ -138,7 +149,7 @@ export const createSchemaCustomization = async ({
     body: String! @parentResolverPassthrough(field: "body")
   }
 
-  # @IDEA If we wanted to link blog posts 
+  # IDEA: If we wanted to link blog posts 
   # type BlogPostCategory implements Node {
   #   name: String!
   #   slug: String!

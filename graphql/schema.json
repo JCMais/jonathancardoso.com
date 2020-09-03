@@ -124,6 +124,16 @@
                 "defaultValue": null
               },
               {
+                "name": "publisher",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PublisherFilterInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "date",
                 "description": "",
                 "type": {
@@ -1955,6 +1965,16 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "LangKeyQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "publisher",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "PublisherFilterInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4725,6 +4745,16 @@
             "defaultValue": null
           },
           {
+            "name": "publisher",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "PublisherFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "date",
             "description": "",
             "type": {
@@ -5029,6 +5059,47 @@
         "possibleTypes": null
       },
       {
+        "kind": "INPUT_OBJECT",
+        "name": "PublisherFilterInput",
+        "description": null,
+        "fields": null,
+        "inputFields": [
+          {
+            "name": "id",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "IDQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "url",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "name",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          }
+        ],
+        "interfaces": null,
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INTERFACE",
         "name": "BlogPost",
         "description": null,
@@ -5161,6 +5232,14 @@
               "name": null,
               "ofType": { "kind": "ENUM", "name": "LangKey", "ofType": null }
             },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher",
+            "description": null,
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Publisher", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -8386,6 +8465,14 @@
             "deprecationReason": null
           },
           {
+            "name": "publisher",
+            "description": null,
+            "args": [],
+            "type": { "kind": "OBJECT", "name": "Publisher", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "date",
             "description": null,
             "args": [
@@ -8674,6 +8761,53 @@
         "possibleTypes": null
       },
       {
+        "kind": "OBJECT",
+        "name": "Publisher",
+        "description": null,
+        "fields": [
+          {
+            "name": "id",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "ID", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "url",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
         "kind": "INPUT_OBJECT",
         "name": "BlogPostFilterInput",
         "description": null,
@@ -8781,6 +8915,16 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "LangKeyQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "publisher",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "PublisherFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -10147,6 +10291,24 @@
           },
           {
             "name": "langKey",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___id",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___url",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___name",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -12800,6 +12962,24 @@
           },
           {
             "name": "childMdx___childMdxBlogPost___langKey",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___publisher___id",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___publisher___url",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___publisher___name",
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
@@ -24156,6 +24336,24 @@
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
           },
           {
+            "name": "childMdxBlogPost___publisher___id",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdxBlogPost___publisher___url",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdxBlogPost___publisher___name",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
             "name": "childMdxBlogPost___date",
             "description": null,
             "isDeprecated": true,
@@ -25996,6 +26194,24 @@
           },
           {
             "name": "langKey",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___id",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___url",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___name",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
