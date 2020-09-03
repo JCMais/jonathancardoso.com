@@ -53,7 +53,7 @@ export const createTagsPages = (
       createPaginatedPages(
         createPage,
         postsEdges,
-        `${langKeySlug}/blog/tags/${tag}`,
+        `${langKeySlug}/blog/tags/${tag}/`,
         path.resolve(__dirname, '../../src/templates/Tag.tsx'),
         {
           tag,

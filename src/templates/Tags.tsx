@@ -33,7 +33,7 @@ const TagItem: React.FC<BoxProps> = (props) => <Box {...props} as="li" />
 
 const TagLink: React.FC<TagInfo> = ({ tag, postsCount }) => (
   <Link
-    to={`/blog/tags/${tag}`}
+    to={`/blog/tags/${tag}/`}
     lng
     py={[3]}
     px={[4]}

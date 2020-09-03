@@ -43,7 +43,7 @@ const Category: React.FC<PageProps<CategoryQuery, CategoryPageContext>> = ({
       <MainContentWrapper>
         <ContentBox>
           <H1>{activeCategory.category}</H1>
-          <Link to="/blog/categories" lng>
+          <Link to="/blog/categories/" lng>
             {t('See all categories')}
           </Link>
 

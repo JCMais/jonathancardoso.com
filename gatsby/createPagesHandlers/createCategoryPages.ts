@@ -60,7 +60,7 @@ export const createCategoryPages = (
       createPaginatedPages(
         createPage,
         postsEdges,
-        `${langKeySlug}/blog/categories/${categorySlug}`,
+        `${langKeySlug}/blog/categories/${categorySlug}/`,
         path.resolve(__dirname, '../../src/templates/Category.tsx'),
         {
           activeCategory: categoriesByCategorySlug[categorySlug],

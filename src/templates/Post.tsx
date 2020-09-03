@@ -137,7 +137,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
               <PostMetadataText>
                 <Space mr={[1]}>
                   {blogPost.tags.map((tag) => (
-                    <Link key={tag} to={`/blog/tags/${tag}`} lng>
+                    <Link key={tag} to={`/blog/tags/${tag}/`} lng>
                       {tag}
                     </Link>
                   ))}
@@ -147,7 +147,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
             <PostMetadata aria-label="article category">
               <FeatherIcons.Folder width="icon.smaller" height="icon.smaller" />
               <PostMetadataText>
-                <Link to={`/blog/categories/${blogPost.categorySlug}`} lng>
+                <Link to={`/blog/categories/${blogPost.categorySlug}/`} lng>
                   {blogPost.category}
                 </Link>
               </PostMetadataText>

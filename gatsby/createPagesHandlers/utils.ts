@@ -1,5 +1,7 @@
 import { Actions } from 'gatsby'
 
+import { trim } from '@shared/utils'
+
 const PAGINATION_OFFSET = 6
 
 type EdgesIDNode = Array<{ node: { id: string } }>
@@ -27,12 +29,15 @@ export const createPaginatedPages = (
     return acc
   }, [])
 
+  const trimmedPathPrefix = trim(pathPrefix, '/')
+
   pages.forEach((pageEntries, index) => {
-    const previousPagePath = `${pathPrefix}/${index + 1}`
-    const nextPagePath = index === 1 ? pathPrefix : `${pathPrefix}/${index - 1}`
+    const previousPagePath = `/${trimmedPathPrefix}/${index + 1}/`
+    const nextPagePath =
+      index === 1 ? `/${trimmedPathPrefix}/` : `${pathPrefix}/${index - 1}/`
 
     createPage({
-      path: index > 0 ? `${pathPrefix}/${index}` : `${pathPrefix}`,
+      path: index > 0 ? `/${trimmedPathPrefix}/${index}/` : `/${trimmedPathPrefix}/`,
       component: componentPath,
       context: {
         pageEntries,

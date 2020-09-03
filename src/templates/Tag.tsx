@@ -30,7 +30,7 @@ const Tag: React.FC<PageProps<
         <ContentBox>
           <H1>{title}</H1>
           <PostsTimeline posts={data.allBlogPost.edges} />
-          <Link to="/blog/tags" lng>
+          <Link to="/blog/tags/" lng>
             Back to list of Tags
           </Link>
         </ContentBox>

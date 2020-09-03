@@ -5,6 +5,7 @@ import Space from '@rebass/space'
 import { useTranslation } from 'react-i18next'
 
 import { PaginationAwarePageContext } from '@shared/types'
+import { trim } from '@shared/utils'
 
 import { Link } from './ui/Link'
 
@@ -47,7 +48,11 @@ export const Pagination = (props: PaginationProps) => {
           </Text>
         )}
         {new Array(pageCount).fill(null).map((_val, pageIndex) => {
-          const pageLink = pageIndex === 0 ? pathPrefix : `${pathPrefix}/${pageIndex}`
+          const trimmedPathPrefix = trim(pathPrefix, '/')
+          const pageLink =
+            pageIndex === 0
+              ? `/${trimmedPathPrefix}/`
+              : `/${trimmedPathPrefix}/${pageIndex}/`
           const isCurrentPage = currentPageIndex === pageIndex
 
           const pageElement = isCurrentPage ? (

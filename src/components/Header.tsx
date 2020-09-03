@@ -141,11 +141,13 @@ const getLanguageSwitchAddressForCurrentPage = ({
   //   to know the url of the current page on the other language here, if one exists
   //  else go to the translated page
   // else go to the home of the language
-  return startsWithLanguage
+  const url = startsWithLanguage
     ? isBlog
       ? `/${nextLanguage}/blog/`
-      : `/${nextLanguage}/${piecesAfterLang.join('/')}`
+      : `/${nextLanguage}/${piecesAfterLang.join('/')}/`
     : `/${nextLanguage}/`
+
+  return `/${trim(url, '/')}/`
 }
 
 type HeaderProps = {

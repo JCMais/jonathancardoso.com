@@ -36,7 +36,7 @@ const Categories: React.FC<PageProps<
           <ListUnordered>
             {categories.map(({ category, categorySlug }) => (
               <ListItem key={categorySlug}>
-                <Link to={`/blog/categories/${categorySlug}`} lng>
+                <Link to={`/blog/categories/${categorySlug}/`} lng>
                   {category}
                 </Link>
               </ListItem>

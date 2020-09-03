@@ -126,14 +126,14 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
           <ContentBox>
             <H2>{t('Latest Thoughts')}</H2>
             <PostsTimeline posts={posts} />
-            <Link to="/blog" lng>
+            <Link to="/blog/" lng>
               {t('common:See all posts')}
             </Link>
           </ContentBox>
         )}
         <ContentBox>
           This site uses cookies, see the{' '}
-          <Link to="/privacy" lng>
+          <Link to="/privacy/" lng>
             Privacy Policy
           </Link>
         </ContentBox>

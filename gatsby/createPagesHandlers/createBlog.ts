@@ -27,7 +27,7 @@ export const createBlog = (createPage: Actions['createPage'], edges: BlogPostEdg
     createPaginatedPages(
       createPage,
       postsEdges,
-      `/${langKeySlug}/blog`,
+      `/${langKeySlug}/blog/`,
       path.resolve(__dirname, '../../src/templates/Blog.tsx'),
       {
         categories,
