@@ -100,7 +100,9 @@ type PostsTimelineProps = {
 export const PostsTimeline = ({
   posts,
   postTitleComponent = H3,
-  postTitleSx,
+  postTitleSx = {
+    fontSize: [4],
+  },
 }: PostsTimelineProps) => {
   const postsPerMonth = posts.reduce<Record<string, Array<BlogPostOnTimeline>>>(
     (acc, { node }) => {

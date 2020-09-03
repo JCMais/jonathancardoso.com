@@ -125,12 +125,7 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
         {!!posts.length && (
           <ContentBox>
             <H2>{t('Latest Thoughts')}</H2>
-            <PostsTimeline
-              posts={posts}
-              postTitleSx={{
-                fontSize: [4],
-              }}
-            />
+            <PostsTimeline posts={posts} />
             <Link to="/blog" lng>
               {t('common:See all posts')}
             </Link>
