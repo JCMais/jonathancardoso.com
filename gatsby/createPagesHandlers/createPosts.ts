@@ -9,6 +9,22 @@ const hasSameLangKey = (langKey: LangKey) => (
   edge: GatsbyCreatePagesQuery['allBlogPost']['edges'][0],
 ) => edge.node.langKey === langKey
 
+const getPrevOrNext = (
+  edges: GatsbyCreatePagesQuery['allBlogPost']['edges'],
+  dir: 1 | -1,
+  currIteration = 1,
+): GatsbyCreatePagesQuery['allBlogPost']['edges'][0]['node'] | null => {
+  const allowDraft = !process.env.NODE_ENV || process.env.NODE_ENV !== 'production'
+
+  const index = (dir > 0 ? 0 : edges.length) + currIteration * dir
+
+  const node = edges.length && edges[index] ? edges[index].node : null
+
+  return !node || !node.isDraft || allowDraft
+    ? node
+    : getPrevOrNext(edges, dir, currIteration + 1)
+}
+
 export const createPosts = (
   createPage: Actions['createPage'],
   edges: GatsbyCreatePagesQuery['allBlogPost']['edges'],
@@ -21,8 +37,8 @@ export const createPosts = (
         ? edges.slice(i + 1).filter(hasSameLangKey(node.langKey))
         : []
 
-    const prev = prevEdges.length ? prevEdges[prevEdges.length - 1].node : null
-    const next = nextEdges.length ? nextEdges[0].node : null
+    const prev = getPrevOrNext(prevEdges, -1)
+    const next = getPrevOrNext(nextEdges, 1, 0)
 
     createPage({
       // This is the slug we created before

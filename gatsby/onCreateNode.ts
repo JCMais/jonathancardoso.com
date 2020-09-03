@@ -54,7 +54,14 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   )
 
   // Using the source instance name (we have multiple filesystem sources)
-  const pageLocation = sourceInstanceName === 'pages' ? '/' : `/${sourceInstanceName}/`
+  let pageLocation = sourceInstanceName === 'pages' ? '/' : `/${sourceInstanceName}/`
+
+  // default is false
+  const isDraft = mdxNode.frontmatter.isDraft ?? false
+
+  if (isDraft) {
+    pageLocation = `${pageLocation}draft/`
+  }
 
   // remove date from path
   const filePathWithoutDate = relativePath.replace(/[0-9]{4}-[0-9]{2}-[0-9]{2}_/, '')
@@ -114,8 +121,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     categorySlug: slugify(mdxNode.frontmatter.category),
     tags: mdxNode.frontmatter.tags ?? mdxNode.frontmatter.keywords ?? [],
     keywords: mdxNode.frontmatter.keywords ?? mdxNode.frontmatter.tags ?? [],
-    // default is false
-    isDraft: mdxNode.frontmatter.isDraft ?? false,
+    isDraft,
   }
 
   // https://www.gatsbyjs.org/docs/actions/#createNode
