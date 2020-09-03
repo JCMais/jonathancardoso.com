@@ -10,6 +10,8 @@ export const PostInfoWrapper = (props: TextProps) => {
       sx={{
         backgroundColor: 'highlight',
         textAlign: 'center',
+        whiteSpace: 'pre-wrap',
+        wordWrap: 'break-word',
       }}
       {...props}
     />

@@ -128,6 +128,9 @@ export const ThemeProvider: React.FC = ({ children }) => {
               padding: 0em 0.1em;
               font-size: 0.9em;
               box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+
+              white-space: pre-wrap;
+              word-wrap: break-word;
             }
 
             .gatsby-highlight pre[class*='language-'].line-numbers {
