@@ -1,6 +1,6 @@
 import { Actions } from 'gatsby'
 
-const PAGINATION_OFFSET = 10
+const PAGINATION_OFFSET = 6
 
 type EdgesIDNode = Array<{ node: { id: string } }>
 type CategoryNode = { category: string; categorySlug: string }
