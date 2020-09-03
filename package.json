@@ -87,6 +87,7 @@
     "gatsby-plugin-parent-resolvers": "^1.0.2",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sharp": "^2.6.30",
+    "gatsby-plugin-sitemap": "^2.4.12",
     "gatsby-plugin-typescript": "^2.4.18",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.12",
     "gatsby-remark-code-titles": "^1.1.0",

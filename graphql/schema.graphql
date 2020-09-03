@@ -3624,7 +3624,9 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___anonymize
   pluginCreator___pluginOptions___respectDNT
   pluginCreator___pluginOptions___defer
-  pluginCreator___pluginOptions___disable
+  pluginCreator___pluginOptions___output
+  pluginCreator___pluginOptions___exclude
+  pluginCreator___pluginOptions___query
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -3838,7 +3840,9 @@ enum SitePluginFieldsEnum {
   pluginOptions___anonymize
   pluginOptions___respectDNT
   pluginOptions___defer
-  pluginOptions___disable
+  pluginOptions___output
+  pluginOptions___exclude
+  pluginOptions___query
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -3979,7 +3983,9 @@ type SitePluginPluginOptions {
   anonymize: Boolean
   respectDNT: Boolean
   defer: Boolean
-  disable: Boolean
+  output: String
+  exclude: [String]
+  query: String
   pathCheck: Boolean
 }
 
@@ -4007,7 +4013,9 @@ input SitePluginPluginOptionsFilterInput {
   anonymize: BooleanQueryOperatorInput
   respectDNT: BooleanQueryOperatorInput
   defer: BooleanQueryOperatorInput
-  disable: BooleanQueryOperatorInput
+  output: StringQueryOperatorInput
+  exclude: StringQueryOperatorInput
+  query: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
 }
 
