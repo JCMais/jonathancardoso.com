@@ -23,9 +23,9 @@
     "target": "ES2016",
     "types": [
       "node",
-      "./types/helpers",
-      // needed for react-youtube
-      "youtube"
+      "./types/helpers"
+      // needed for react-youtube if we ever add it back
+      // "youtube"
     ],
     "typeRoots": ["node_modules/@types", "types/external"],
     // must also be added to gatsby/onCreateWebpackConfig.ts

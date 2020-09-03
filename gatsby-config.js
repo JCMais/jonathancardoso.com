@@ -160,10 +160,16 @@ module.exports = {
         head: false,
         anonymize: true,
         respectDNT: true,
-        defer: false,
+        defer: true,
       },
     },
-    'gatsby-plugin-preload-fonts',
+    // 'gatsby-plugin-preload-fonts',
     'gatsby-plugin-netlify',
+    // {
+    //   resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+    //   options: {
+    //     disable: false,
+    //   },
+    // },
   ],
 }

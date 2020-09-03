@@ -1,6 +1,5 @@
 // MDX elements- see https://gatsby-mdx.netlify.com/guides/customizing-components
 import React from 'react'
-import YouTube from 'react-youtube'
 import { Box, Text } from 'rebass'
 import { MDXProviderComponentsProp } from '@mdx-js/react'
 
@@ -154,6 +153,5 @@ export const MDXLayoutComponents: MDXProviderComponentsProp = {
 
 export const MDXGlobalComponents = {
   Link,
-  YouTube,
   Button,
 }
