@@ -63,8 +63,11 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     pageLocation = `${pageLocation}draft/`
   }
 
-  // remove date from path
-  const filePathWithoutDate = relativePath.replace(/[0-9]{4}-[0-9]{2}-[0-9]{2}_/, '')
+  // remove date from path and add draft if it's a draft
+  const filePathWithoutDate = relativePath.replace(
+    /[0-9]{4}-[0-9]{2}-[0-9]{2}_/,
+    isDraft ? 'draft/' : '',
+  )
 
   let slug = mdxNode.frontmatter.slug
     ? `${pageLocation}${trim(mdxNode.frontmatter.slug, '/')}`

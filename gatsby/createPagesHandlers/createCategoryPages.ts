@@ -73,7 +73,7 @@ export const createCategoryPages = (
     }
 
     createPage({
-      path: `${langKeySlug}/blog/categories`,
+      path: `${langKeySlug}/blog/categories/`,
       component: path.resolve(__dirname, '../../src/templates/Categories.tsx'),
       // We can use the values in this context in
       // our page layout component
