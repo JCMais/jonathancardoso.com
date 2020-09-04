@@ -317,6 +317,7 @@ export enum BlogPostFieldsEnum {
   publisher___id = 'publisher___id',
   publisher___url = 'publisher___url',
   publisher___name = 'publisher___name',
+  publisher___logoUrl = 'publisher___logoUrl',
   date = 'date',
   dateModified = 'dateModified',
   tags = 'tags',
@@ -1078,14 +1079,15 @@ export enum FileFieldsEnum {
   childMdx___frontmatter___banner___id = 'childMdx___frontmatter___banner___id',
   childMdx___frontmatter___banner___children = 'childMdx___frontmatter___banner___children',
   childMdx___frontmatter___bannerStyle = 'childMdx___frontmatter___bannerStyle',
-  childMdx___frontmatter___externalLinks___canonical = 'childMdx___frontmatter___externalLinks___canonical',
-  childMdx___frontmatter___publisher___name = 'childMdx___frontmatter___publisher___name',
-  childMdx___frontmatter___publisher___id = 'childMdx___frontmatter___publisher___id',
-  childMdx___frontmatter___publisher___url = 'childMdx___frontmatter___publisher___url',
   childMdx___frontmatter___description = 'childMdx___frontmatter___description',
   childMdx___frontmatter___keywords = 'childMdx___frontmatter___keywords',
   childMdx___frontmatter___isDraft = 'childMdx___frontmatter___isDraft',
+  childMdx___frontmatter___externalLinks___canonical = 'childMdx___frontmatter___externalLinks___canonical',
   childMdx___frontmatter___slug = 'childMdx___frontmatter___slug',
+  childMdx___frontmatter___publisher___name = 'childMdx___frontmatter___publisher___name',
+  childMdx___frontmatter___publisher___id = 'childMdx___frontmatter___publisher___id',
+  childMdx___frontmatter___publisher___url = 'childMdx___frontmatter___publisher___url',
+  childMdx___frontmatter___publisher___logoUrl = 'childMdx___frontmatter___publisher___logoUrl',
   childMdx___slug = 'childMdx___slug',
   childMdx___body = 'childMdx___body',
   childMdx___excerpt = 'childMdx___excerpt',
@@ -1188,6 +1190,7 @@ export enum FileFieldsEnum {
   childMdx___childMdxBlogPost___publisher___id = 'childMdx___childMdxBlogPost___publisher___id',
   childMdx___childMdxBlogPost___publisher___url = 'childMdx___childMdxBlogPost___publisher___url',
   childMdx___childMdxBlogPost___publisher___name = 'childMdx___childMdxBlogPost___publisher___name',
+  childMdx___childMdxBlogPost___publisher___logoUrl = 'childMdx___childMdxBlogPost___publisher___logoUrl',
   childMdx___childMdxBlogPost___date = 'childMdx___childMdxBlogPost___date',
   childMdx___childMdxBlogPost___dateModified = 'childMdx___childMdxBlogPost___dateModified',
   childMdx___childMdxBlogPost___tags = 'childMdx___childMdxBlogPost___tags',
@@ -2183,6 +2186,7 @@ export enum MdxBlogPostFieldsEnum {
   publisher___id = 'publisher___id',
   publisher___url = 'publisher___url',
   publisher___name = 'publisher___name',
+  publisher___logoUrl = 'publisher___logoUrl',
   date = 'date',
   dateModified = 'dateModified',
   tags = 'tags',
@@ -2420,14 +2424,15 @@ export enum MdxFieldsEnum {
   frontmatter___banner___childMdx___id = 'frontmatter___banner___childMdx___id',
   frontmatter___banner___childMdx___children = 'frontmatter___banner___childMdx___children',
   frontmatter___bannerStyle = 'frontmatter___bannerStyle',
-  frontmatter___externalLinks___canonical = 'frontmatter___externalLinks___canonical',
-  frontmatter___publisher___name = 'frontmatter___publisher___name',
-  frontmatter___publisher___id = 'frontmatter___publisher___id',
-  frontmatter___publisher___url = 'frontmatter___publisher___url',
   frontmatter___description = 'frontmatter___description',
   frontmatter___keywords = 'frontmatter___keywords',
   frontmatter___isDraft = 'frontmatter___isDraft',
+  frontmatter___externalLinks___canonical = 'frontmatter___externalLinks___canonical',
   frontmatter___slug = 'frontmatter___slug',
+  frontmatter___publisher___name = 'frontmatter___publisher___name',
+  frontmatter___publisher___id = 'frontmatter___publisher___id',
+  frontmatter___publisher___url = 'frontmatter___publisher___url',
+  frontmatter___publisher___logoUrl = 'frontmatter___publisher___logoUrl',
   slug = 'slug',
   body = 'body',
   excerpt = 'excerpt',
@@ -2604,6 +2609,7 @@ export enum MdxFieldsEnum {
   childMdxBlogPost___publisher___id = 'childMdxBlogPost___publisher___id',
   childMdxBlogPost___publisher___url = 'childMdxBlogPost___publisher___url',
   childMdxBlogPost___publisher___name = 'childMdxBlogPost___publisher___name',
+  childMdxBlogPost___publisher___logoUrl = 'childMdxBlogPost___publisher___logoUrl',
   childMdxBlogPost___date = 'childMdxBlogPost___date',
   childMdxBlogPost___dateModified = 'childMdxBlogPost___dateModified',
   childMdxBlogPost___tags = 'childMdxBlogPost___tags',
@@ -2681,12 +2687,12 @@ export type MdxFrontmatter = {
   tags?: Maybe<Array<Maybe<Scalars['String']>>>
   banner?: Maybe<File>
   bannerStyle?: Maybe<Scalars['String']>
-  externalLinks?: Maybe<MdxFrontmatterExternalLinks>
-  publisher?: Maybe<MdxFrontmatterPublisher>
   description?: Maybe<Scalars['String']>
   keywords?: Maybe<Array<Maybe<Scalars['String']>>>
   isDraft?: Maybe<Scalars['Boolean']>
+  externalLinks?: Maybe<MdxFrontmatterExternalLinks>
   slug?: Maybe<Scalars['String']>
+  publisher?: Maybe<MdxFrontmatterPublisher>
 }
 
 export type MdxFrontmatterDateArgs = {
@@ -2712,12 +2718,12 @@ export type MdxFrontmatterFilterInput = {
   tags?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<StringQueryOperatorInput>
-  externalLinks?: Maybe<MdxFrontmatterExternalLinksFilterInput>
-  publisher?: Maybe<MdxFrontmatterPublisherFilterInput>
   description?: Maybe<StringQueryOperatorInput>
   keywords?: Maybe<StringQueryOperatorInput>
   isDraft?: Maybe<BooleanQueryOperatorInput>
+  externalLinks?: Maybe<MdxFrontmatterExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
+  publisher?: Maybe<MdxFrontmatterPublisherFilterInput>
 }
 
 export type MdxFrontmatterPublisher = {
@@ -2725,12 +2731,14 @@ export type MdxFrontmatterPublisher = {
   name?: Maybe<Scalars['String']>
   id?: Maybe<Scalars['String']>
   url?: Maybe<Scalars['String']>
+  logoUrl?: Maybe<Scalars['String']>
 }
 
 export type MdxFrontmatterPublisherFilterInput = {
   name?: Maybe<StringQueryOperatorInput>
   id?: Maybe<StringQueryOperatorInput>
   url?: Maybe<StringQueryOperatorInput>
+  logoUrl?: Maybe<StringQueryOperatorInput>
 }
 
 export type MdxGroupConnection = {
@@ -2832,12 +2840,14 @@ export type Publisher = {
   id: Scalars['ID']
   url: Scalars['String']
   name: Scalars['String']
+  logoUrl: Scalars['String']
 }
 
 export type PublisherFilterInput = {
   id?: Maybe<IdQueryOperatorInput>
   url?: Maybe<StringQueryOperatorInput>
   name?: Maybe<StringQueryOperatorInput>
+  logoUrl?: Maybe<StringQueryOperatorInput>
 }
 
 export type Query = {
@@ -4751,7 +4761,10 @@ export type PostQuery = { __typename?: 'Query' } & {
           }
         >
         publisher?: Maybe<
-          { __typename?: 'Publisher' } & Pick<Publisher, 'id' | 'name' | 'url'>
+          { __typename?: 'Publisher' } & Pick<
+            Publisher,
+            'id' | 'name' | 'url' | 'logoUrl'
+          >
         >
         externalLinks: { __typename?: 'ExternalLinks' } & Pick<
           ExternalLinks,

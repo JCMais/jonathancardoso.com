@@ -4388,26 +4388,6 @@
             "defaultValue": null
           },
           {
-            "name": "externalLinks",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "MdxFrontmatterExternalLinksFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
-            "name": "publisher",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "MdxFrontmatterPublisherFilterInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "description",
             "description": "",
             "type": {
@@ -4438,11 +4418,31 @@
             "defaultValue": null
           },
           {
+            "name": "externalLinks",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MdxFrontmatterExternalLinksFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "slug",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "publisher",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "MdxFrontmatterPublisherFilterInput",
               "ofType": null
             },
             "defaultValue": null
@@ -4501,6 +4501,16 @@
           },
           {
             "name": "url",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "logoUrl",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -5126,6 +5136,16 @@
           },
           {
             "name": "name",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "logoUrl",
             "description": "",
             "type": {
               "kind": "INPUT_OBJECT",
@@ -8191,30 +8211,6 @@
             "deprecationReason": null
           },
           {
-            "name": "externalLinks",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MdxFrontmatterExternalLinks",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "publisher",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "OBJECT",
-              "name": "MdxFrontmatterPublisher",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "description",
             "description": null,
             "args": [],
@@ -8243,10 +8239,34 @@
             "deprecationReason": null
           },
           {
+            "name": "externalLinks",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MdxFrontmatterExternalLinks",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "slug",
             "description": null,
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "MdxFrontmatterPublisher",
+              "ofType": null
+            },
             "isDeprecated": false,
             "deprecationReason": null
           }
@@ -8298,6 +8318,14 @@
           },
           {
             "name": "url",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "logoUrl",
             "description": null,
             "args": [],
             "type": { "kind": "SCALAR", "name": "String", "ofType": null },
@@ -8871,6 +8899,18 @@
           },
           {
             "name": "name",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "logoUrl",
             "description": null,
             "args": [],
             "type": {
@@ -10433,6 +10473,12 @@
           },
           {
             "name": "publisher___name",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___logoUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -12461,7 +12507,31 @@
             "deprecationReason": null
           },
           {
+            "name": "childMdx___frontmatter___description",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___keywords",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___isDraft",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "childMdx___frontmatter___externalLinks___canonical",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMdx___frontmatter___slug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -12485,25 +12555,7 @@
             "deprecationReason": null
           },
           {
-            "name": "childMdx___frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "childMdx___frontmatter___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "childMdx___frontmatter___isDraft",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "childMdx___frontmatter___slug",
+            "name": "childMdx___frontmatter___publisher___logoUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -13116,6 +13168,12 @@
           },
           {
             "name": "childMdx___childMdxBlogPost___publisher___name",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___publisher___logoUrl",
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
@@ -23358,7 +23416,31 @@
             "deprecationReason": null
           },
           {
+            "name": "frontmatter___description",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___keywords",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___isDraft",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "frontmatter___externalLinks___canonical",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "frontmatter___slug",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -23382,25 +23464,7 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "frontmatter___keywords",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "frontmatter___isDraft",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
-            "name": "frontmatter___slug",
+            "name": "frontmatter___publisher___logoUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24457,6 +24521,12 @@
           },
           {
             "name": "childMdxBlogPost___publisher___name",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdxBlogPost___publisher___logoUrl",
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
@@ -26344,6 +26414,12 @@
           },
           {
             "name": "publisher___name",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "publisher___logoUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

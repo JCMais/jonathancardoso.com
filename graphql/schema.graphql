@@ -370,6 +370,7 @@ enum BlogPostFieldsEnum {
   publisher___id
   publisher___url
   publisher___name
+  publisher___logoUrl
   date
   dateModified
   tags
@@ -1287,14 +1288,15 @@ enum FileFieldsEnum {
   childMdx___frontmatter___banner___id
   childMdx___frontmatter___banner___children
   childMdx___frontmatter___bannerStyle
-  childMdx___frontmatter___externalLinks___canonical
-  childMdx___frontmatter___publisher___name
-  childMdx___frontmatter___publisher___id
-  childMdx___frontmatter___publisher___url
   childMdx___frontmatter___description
   childMdx___frontmatter___keywords
   childMdx___frontmatter___isDraft
+  childMdx___frontmatter___externalLinks___canonical
   childMdx___frontmatter___slug
+  childMdx___frontmatter___publisher___name
+  childMdx___frontmatter___publisher___id
+  childMdx___frontmatter___publisher___url
+  childMdx___frontmatter___publisher___logoUrl
   childMdx___slug
   childMdx___body
   childMdx___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1397,6 +1399,7 @@ enum FileFieldsEnum {
   childMdx___childMdxBlogPost___publisher___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___publisher___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___publisher___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___publisher___logoUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___dateModified @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2301,6 +2304,7 @@ enum MdxBlogPostFieldsEnum {
   publisher___id
   publisher___url
   publisher___name
+  publisher___logoUrl
   date
   dateModified
   tags
@@ -2525,14 +2529,15 @@ enum MdxFieldsEnum {
   frontmatter___banner___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___bannerStyle
-  frontmatter___externalLinks___canonical
-  frontmatter___publisher___name
-  frontmatter___publisher___id
-  frontmatter___publisher___url
   frontmatter___description
   frontmatter___keywords
   frontmatter___isDraft
+  frontmatter___externalLinks___canonical
   frontmatter___slug
+  frontmatter___publisher___name
+  frontmatter___publisher___id
+  frontmatter___publisher___url
+  frontmatter___publisher___logoUrl
   slug
   body
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2709,6 +2714,7 @@ enum MdxFieldsEnum {
   childMdxBlogPost___publisher___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___publisher___url @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___publisher___name @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___publisher___logoUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___date @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___dateModified @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___tags @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2805,12 +2811,12 @@ type MdxFrontmatter {
   tags: [String]
   banner: File
   bannerStyle: String
-  externalLinks: MdxFrontmatterExternalLinks
-  publisher: MdxFrontmatterPublisher
   description: String
   keywords: [String]
   isDraft: Boolean
+  externalLinks: MdxFrontmatterExternalLinks
   slug: String
+  publisher: MdxFrontmatterPublisher
 }
 
 type MdxFrontmatterExternalLinks {
@@ -2828,24 +2834,26 @@ input MdxFrontmatterFilterInput {
   tags: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: StringQueryOperatorInput
-  externalLinks: MdxFrontmatterExternalLinksFilterInput
-  publisher: MdxFrontmatterPublisherFilterInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput
   isDraft: BooleanQueryOperatorInput
+  externalLinks: MdxFrontmatterExternalLinksFilterInput
   slug: StringQueryOperatorInput
+  publisher: MdxFrontmatterPublisherFilterInput
 }
 
 type MdxFrontmatterPublisher {
   name: String
   id: String
   url: String
+  logoUrl: String
 }
 
 input MdxFrontmatterPublisherFilterInput {
   name: StringQueryOperatorInput
   id: StringQueryOperatorInput
   url: StringQueryOperatorInput
+  logoUrl: StringQueryOperatorInput
 }
 
 type MdxGroupConnection {
@@ -2942,12 +2950,14 @@ type Publisher {
   id: ID!
   url: String!
   name: String!
+  logoUrl: String!
 }
 
 input PublisherFilterInput {
   id: IDQueryOperatorInput
   url: StringQueryOperatorInput
   name: StringQueryOperatorInput
+  logoUrl: StringQueryOperatorInput
 }
 
 type Query {
