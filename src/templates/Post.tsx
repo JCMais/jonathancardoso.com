@@ -128,7 +128,10 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
                   '@id': blogPost.publisher.id,
                   name: blogPost.publisher.name,
                   url: blogPost.publisher.url,
-                  logo: blogPost.publisher.logoUrl,
+                  logo: {
+                    '@type': 'ImageObject',
+                    url: blogPost.publisher.logoUrl,
+                  },
                 }
               : {
                   '@type': 'Person',
