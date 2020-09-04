@@ -74,6 +74,7 @@ export const createSchemaCustomization = async ({
     id: ID!
     url: String!
     name: String!
+    logoUrl: String!
   }
 
   interface BlogPost @nodeInterface {
