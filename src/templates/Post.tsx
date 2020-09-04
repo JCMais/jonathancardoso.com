@@ -76,6 +76,8 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
   const BannerWrapper =
     blogPost.bannerStyle === 'FULL_WIDTH' ? PostBannerImageWrapper : Box
 
+  const blogPostUrl = getSiteUrl(blogPost.slug)
+
   return (
     <MainLayout>
       <SEO
@@ -86,6 +88,16 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
         canonical={blogPost.externalLinks?.canonical ?? ''}
         ogType="article"
         ogImage={blogPost.socialImageUrl}
+        meta={[
+          {
+            name: 'og:image:width',
+            content: '1320',
+          },
+          {
+            name: 'og:image:height',
+            content: '750',
+          },
+        ]}
         twitterCard="summary_large_image"
         jsonLd={[
           {
@@ -93,13 +105,14 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
             '@type': 'BlogPosting',
             headline: blogPost.title,
             // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-            image: blogPost.banner?.childImageSharp?.fluid?.src,
-            url: getSiteUrl(blogPost.slug),
+            url: blogPostUrl,
             mainEntityOfPage: {
               '@type': 'WebPage',
               '@id':
                 blogPost.externalLinks?.canonical || getSiteUrl(`/${i18n.language}/blog`),
             },
+            image:
+              blogPost.banner?.childImageSharp?.fluid?.src ?? blogPost.socialImageUrl,
             datePublished: blogPost.dateISOString,
             dateModified: blogPost.dateModifiedISOString,
             description: blogPost.excerpt,
@@ -115,6 +128,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
                   '@id': blogPost.publisher.id,
                   name: blogPost.publisher.name,
                   url: blogPost.publisher.url,
+                  logo: blogPost.publisher.logoUrl,
                 }
               : {
                   '@type': 'Person',
@@ -206,9 +220,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
                 />
                 <DiscussionText>
                   <Link
-                    to={`https://mobile.twitter.com/search?q=${getSiteUrl(
-                      blogPost.slug,
-                    )}`}
+                    to={`https://mobile.twitter.com/search?q=${blogPostUrl}`}
                     target="_blank"
                   >
                     {t('Discuss on Twitter')}
@@ -293,6 +305,7 @@ export const pageQuery = graphql`
         id
         name
         url
+        logoUrl
       }
       langKey
       bannerStyle

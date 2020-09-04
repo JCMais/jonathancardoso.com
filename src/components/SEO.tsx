@@ -1,6 +1,9 @@
 import React from 'react'
 import { Helmet, HelmetProps } from 'react-helmet'
 import { graphql, useStaticQuery } from 'gatsby'
+import { useLocation } from '@reach/router'
+
+import { getSiteUrl } from '@shared/utils'
 
 import { DefaultSeoQuery } from '@r/generated/graphql'
 
@@ -12,6 +15,7 @@ type SEOProps = {
   description?: string
   lang?: string
   canonical?: string
+  url?: string
   ogType?: 'website' | 'article'
   ogImage?: string
   twitterCard?: 'summary_large_image' | 'summary'
@@ -27,6 +31,7 @@ const emptyKeywords: string[] = []
 export const SEO: React.FC<SEOProps> = ({
   description = null,
   canonical,
+  url,
   lang = 'en',
   ogType = 'website',
   ogImage,
@@ -37,6 +42,10 @@ export const SEO: React.FC<SEOProps> = ({
   title,
   jsonLd = [],
 }) => {
+  const { pathname } = useLocation()
+
+  const pageUrl = url ?? getSiteUrl(pathname)
+
   const data = useStaticQuery<DefaultSeoQuery>(graphql`
     query DefaultSEOQuery {
       site {
@@ -52,6 +61,7 @@ export const SEO: React.FC<SEOProps> = ({
   `)
 
   const jsonLdData = [
+    // TODO: Move this to site metadata?
     {
       '@context': 'http://schema.org',
       '@type': 'Person',
@@ -88,51 +98,53 @@ export const SEO: React.FC<SEOProps> = ({
 
   const metaSeo: HelmetProps['meta'] = [
     {
-      name: `description`,
+      name: 'description',
       content: metaDescription,
     },
     {
-      property: `og:title`,
+      property: 'og:url',
+      content: pageUrl,
+    },
+    {
+      property: 'og:title',
       content: title,
     },
     {
-      property: `og:description`,
+      property: 'og:description',
       content: metaDescription,
     },
     {
-      property: `og:type`,
+      property: 'og:type',
       content: ogType,
     },
     {
-      property: `og:image`,
+      property: 'og:image',
       content: ogImage,
     },
     {
-      name: `twitter:card`,
+      name: 'twitter:card',
       content: twitterCard,
     },
     {
-      name: `twitter:creator`,
+      name: 'twitter:creator',
       content: data?.site?.siteMetadata?.twitterUrl || '',
     },
     {
-      name: `twitter:title`,
+      name: 'twitter:title',
       content: title,
     },
     {
-      name: `twitter:description`,
+      name: 'twitter:description',
       content: metaDescription,
     },
-  ]
-    .concat(
-      keywordsFinal && keywordsFinal.length > 0
-        ? {
-            name: `keywords`,
-            content: keywordsFinal.join(`, `),
-          }
-        : [],
-    )
-    .filter((v) => !!v.content)
+  ].concat(
+    keywordsFinal && keywordsFinal.length > 0
+      ? {
+          name: 'keywords',
+          content: keywordsFinal.join(', '),
+        }
+      : [],
+  )
 
   return (
     <Helmet
@@ -149,8 +161,8 @@ export const SEO: React.FC<SEOProps> = ({
           innerHTML: JSON.stringify(jsonLdData),
         },
       ]}
-      link={linkCanonical.concat(link)}
-      meta={metaSeo.concat(meta)}
+      link={linkCanonical.concat(link).filter((v) => !!v.href)}
+      meta={metaSeo.concat(meta).filter((v) => !!v.content)}
     />
   )
 }
