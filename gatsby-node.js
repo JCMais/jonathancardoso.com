@@ -4,6 +4,7 @@
  */
 require('ts-node').register()
 require('tsconfig-paths/register')
+require('dotenv').config()
 
 const {
   createPages,

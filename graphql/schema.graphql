@@ -83,6 +83,8 @@ interface BlogPost {
   excerpt(pruneLength: Int): String!
   banner: File
   bannerStyle: BannerStyle
+  hasNonDefaultSocialImageUrl: Boolean!
+  socialImageUrl: String!
   isDraft: Boolean!
   externalLinks: ExternalLinks!
   slug: String!
@@ -134,7 +136,7 @@ interface BlogPost {
   category: String!
   categorySlug: String!
   tableOfContents(maxDepth: Int): JSON!
-  description: String!
+  description: String
   keywords: [String!]
 }
 
@@ -340,6 +342,8 @@ enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId
   banner___childMdx___childMdxBlogPost___title
   banner___childMdx___childMdxBlogPost___bannerStyle
+  banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl
+  banner___childMdx___childMdxBlogPost___socialImageUrl
   banner___childMdx___childMdxBlogPost___isDraft
   banner___childMdx___childMdxBlogPost___slug
   banner___childMdx___childMdxBlogPost___langKey
@@ -355,6 +359,8 @@ enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body
   banner___childMdx___childMdxBlogPost___children
   bannerStyle
+  hasNonDefaultSocialImageUrl
+  socialImageUrl
   isDraft
   externalLinks___devto
   externalLinks___canonical
@@ -382,6 +388,8 @@ input BlogPostFilterInput {
   excerpt: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: BannerStyleQueryOperatorInput
+  hasNonDefaultSocialImageUrl: BooleanQueryOperatorInput
+  socialImageUrl: StringQueryOperatorInput
   isDraft: BooleanQueryOperatorInput
   externalLinks: ExternalLinksFilterInput
   slug: StringQueryOperatorInput
@@ -1378,6 +1386,8 @@ enum FileFieldsEnum {
   childMdx___childMdxBlogPost___banner___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___banner___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___bannerStyle @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdx___childMdxBlogPost___socialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___isDraft @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___externalLinks___devto @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdx___childMdxBlogPost___externalLinks___canonical @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2001,6 +2011,8 @@ type MdxBlogPost implements BlogPost & Node {
   title: String!
   banner: File
   bannerStyle: BannerStyle
+  hasNonDefaultSocialImageUrl: Boolean!
+  socialImageUrl: String!
   isDraft: Boolean!
   externalLinks: ExternalLinks!
   slug: String!
@@ -2051,7 +2063,7 @@ type MdxBlogPost implements BlogPost & Node {
   tags: [String!]!
   category: String!
   categorySlug: String!
-  description: String!
+  description: String
   keywords: [String!]!
   tableOfContents(maxDepth: Int = 2): JSON!
   excerpt(pruneLength: Int = 140): String!
@@ -2261,6 +2273,8 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___title @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___bannerStyle @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  banner___childMdx___childMdxBlogPost___socialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___isDraft @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___slug @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___langKey @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2276,6 +2290,8 @@ enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   banner___childMdx___childMdxBlogPost___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   bannerStyle
+  hasNonDefaultSocialImageUrl
+  socialImageUrl
   isDraft
   externalLinks___devto
   externalLinks___canonical
@@ -2388,6 +2404,8 @@ input MdxBlogPostFilterInput {
   title: StringQueryOperatorInput
   banner: FileFilterInput
   bannerStyle: BannerStyleQueryOperatorInput
+  hasNonDefaultSocialImageUrl: BooleanQueryOperatorInput
+  socialImageUrl: StringQueryOperatorInput
   isDraft: BooleanQueryOperatorInput
   externalLinks: ExternalLinksFilterInput
   slug: StringQueryOperatorInput
@@ -2680,6 +2698,8 @@ enum MdxFieldsEnum {
   childMdxBlogPost___banner___childMdx___id @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___banner___childMdx___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___bannerStyle @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___hasNonDefaultSocialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  childMdxBlogPost___socialImageUrl @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___isDraft @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___externalLinks___devto @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMdxBlogPost___externalLinks___canonical @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -2931,7 +2951,7 @@ input PublisherFilterInput {
 }
 
 type Query {
-  blogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, isDraft: BooleanQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, publisher: PublisherFilterInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
+  blogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, hasNonDefaultSocialImageUrl: BooleanQueryOperatorInput, socialImageUrl: StringQueryOperatorInput, isDraft: BooleanQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, publisher: PublisherFilterInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput): BlogPost
   allBlogPost(filter: BlogPostFilterInput, sort: BlogPostSortInput, skip: Int, limit: Int): BlogPostConnection!
   file(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, publicURL: StringQueryOperatorInput, childImageSharp: ImageSharpFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdx: MdxFilterInput): File
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
@@ -2945,7 +2965,7 @@ type Query {
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
   mdx(rawBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MdxFrontmatterFilterInput, slug: StringQueryOperatorInput, body: StringQueryOperatorInput, excerpt: StringQueryOperatorInput, headings: MdxHeadingMdxFilterListInput, html: StringQueryOperatorInput, mdxAST: JSONQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MdxWordCountFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, childMdxBlogPost: MdxBlogPostFilterInput): Mdx
   allMdx(filter: MdxFilterInput, sort: MdxSortInput, skip: Int, limit: Int): MdxConnection!
-  mdxBlogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, isDraft: BooleanQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, publisher: PublisherFilterInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
+  mdxBlogPost(id: StringQueryOperatorInput, globalBlogPostId: IDQueryOperatorInput, title: StringQueryOperatorInput, banner: FileFilterInput, bannerStyle: BannerStyleQueryOperatorInput, hasNonDefaultSocialImageUrl: BooleanQueryOperatorInput, socialImageUrl: StringQueryOperatorInput, isDraft: BooleanQueryOperatorInput, externalLinks: ExternalLinksFilterInput, slug: StringQueryOperatorInput, langKey: LangKeyQueryOperatorInput, publisher: PublisherFilterInput, date: DateQueryOperatorInput, dateModified: DateQueryOperatorInput, tags: StringQueryOperatorInput, category: StringQueryOperatorInput, categorySlug: StringQueryOperatorInput, description: StringQueryOperatorInput, keywords: StringQueryOperatorInput, tableOfContents: JSONQueryOperatorInput, excerpt: StringQueryOperatorInput, body: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MdxBlogPost
   allMdxBlogPost(filter: MdxBlogPostFilterInput, sort: MdxBlogPostSortInput, skip: Int, limit: Int): MdxBlogPostConnection!
   siteBuildMetadata(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, buildTime: DateQueryOperatorInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
@@ -3159,6 +3179,7 @@ enum SiteFieldsEnum {
   siteMetadata___siteUrl
   siteMetadata___githubRepoUrl
   siteMetadata___author
+  siteMetadata___twitterUrl
   siteMetadata___title
   siteMetadata___description
   siteMetadata___keywords
@@ -4126,6 +4147,7 @@ type SiteSiteMetadata {
   siteUrl: String
   githubRepoUrl: String
   author: String
+  twitterUrl: String
   title: String
   description: String
   keywords: [String]
@@ -4136,6 +4158,7 @@ input SiteSiteMetadataFilterInput {
   siteUrl: StringQueryOperatorInput
   githubRepoUrl: StringQueryOperatorInput
   author: StringQueryOperatorInput
+  twitterUrl: StringQueryOperatorInput
   title: StringQueryOperatorInput
   description: StringQueryOperatorInput
   keywords: StringQueryOperatorInput

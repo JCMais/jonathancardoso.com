@@ -84,6 +84,26 @@
                 "defaultValue": null
               },
               {
+                "name": "hasNonDefaultSocialImageUrl",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BooleanQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "socialImageUrl",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
                 "name": "isDraft",
                 "description": "",
                 "type": {
@@ -1905,6 +1925,26 @@
                 "type": {
                   "kind": "INPUT_OBJECT",
                   "name": "BannerStyleQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "hasNonDefaultSocialImageUrl",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "BooleanQueryOperatorInput",
+                  "ofType": null
+                },
+                "defaultValue": null
+              },
+              {
+                "name": "socialImageUrl",
+                "description": "",
+                "type": {
+                  "kind": "INPUT_OBJECT",
+                  "name": "StringQueryOperatorInput",
                   "ofType": null
                 },
                 "defaultValue": null
@@ -4685,6 +4725,26 @@
             "defaultValue": null
           },
           {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "socialImageUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "isDraft",
             "description": "",
             "type": {
@@ -5168,6 +5228,30 @@
             "deprecationReason": null
           },
           {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "socialImageUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isDraft",
             "description": null,
             "args": [],
@@ -5364,11 +5448,7 @@
             "name": "description",
             "description": null,
             "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -8397,6 +8477,30 @@
             "deprecationReason": null
           },
           {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "Boolean", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "socialImageUrl",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "name": null,
+              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "isDraft",
             "description": null,
             "args": [],
@@ -8574,11 +8678,7 @@
             "name": "description",
             "description": null,
             "args": [],
-            "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": { "kind": "SCALAR", "name": "String", "ofType": null }
-            },
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
             "isDeprecated": false,
             "deprecationReason": null
           },
@@ -8855,6 +8955,26 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "BannerStyleQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "BooleanQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "socialImageUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null
@@ -10150,6 +10270,18 @@
             "deprecationReason": null
           },
           {
+            "name": "banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "banner___childMdx___childMdxBlogPost___socialImageUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "banner___childMdx___childMdxBlogPost___isDraft",
             "description": null,
             "isDeprecated": false,
@@ -10235,6 +10367,18 @@
           },
           {
             "name": "bannerStyle",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "socialImageUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -12906,6 +13050,18 @@
           },
           {
             "name": "childMdx___childMdxBlogPost___bannerStyle",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdx___childMdxBlogPost___socialImageUrl",
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
@@ -20190,6 +20346,16 @@
             "defaultValue": null
           },
           {
+            "name": "twitterUrl",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
             "name": "title",
             "description": "",
             "type": {
@@ -20446,6 +20612,14 @@
             "deprecationReason": null
           },
           {
+            "name": "twitterUrl",
+            "description": null,
+            "args": [],
+            "type": { "kind": "SCALAR", "name": "String", "ofType": null },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "title",
             "description": null,
             "args": [],
@@ -20695,6 +20869,12 @@
           },
           {
             "name": "siteMetadata___author",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "siteMetadata___twitterUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -24216,6 +24396,18 @@
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
           },
           {
+            "name": "childMdxBlogPost___hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "childMdxBlogPost___socialImageUrl",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
             "name": "childMdxBlogPost___isDraft",
             "description": null,
             "isDeprecated": true,
@@ -25989,6 +26181,18 @@
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
           },
           {
+            "name": "banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "banner___childMdx___childMdxBlogPost___socialImageUrl",
+            "description": null,
+            "isDeprecated": true,
+            "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
             "name": "banner___childMdx___childMdxBlogPost___isDraft",
             "description": null,
             "isDeprecated": true,
@@ -26074,6 +26278,18 @@
           },
           {
             "name": "bannerStyle",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "hasNonDefaultSocialImageUrl",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "socialImageUrl",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null

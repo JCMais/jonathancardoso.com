@@ -5,7 +5,7 @@ import slugify from '@sindresorhus/slugify'
 import { GatsbyNode } from 'gatsby'
 import { FileSystemNode } from 'gatsby-source-filesystem'
 
-import { githubRepoUrl } from '@shared/config'
+import { siteUrl, githubRepoUrl } from '@shared/config'
 
 import { convertLangKeyToGraphQLEnum, getLangKeyFromFilePath, trim } from './utils'
 
@@ -81,7 +81,10 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
   // ***************************
   // This is heavily inspired on the https://github.com/angeloocana/gatsby-plugin-i18n plugin
   const langKey = getLangKeyFromFilePath(fileAbsolutePath)
-  slug = `/${langKey}/${trim(slug, '/')}/`
+  const trimmedSlug = trim(slug, '/')
+  slug = `/${langKey}/${trimmedSlug}/`
+
+  const slugLastPart = trimmedSlug.split('/').pop()
 
   const globalBlogPostId = crypto.createHash('sha1').update(relativePath).digest('base64')
 
@@ -97,7 +100,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
 
   const blogFields = {
     title: mdxNode.frontmatter.title,
-    description: mdxNode.frontmatter.description || '',
+    description: mdxNode.frontmatter.description,
     slug,
     langKey: convertLangKeyToGraphQLEnum(langKey),
     globalBlogPostId,
@@ -114,6 +117,10 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     banner: mdxNode.frontmatter.banner,
     bannerStyle:
       mdxNode.frontmatter.banner && (mdxNode.frontmatter.bannerStyle || 'FULL_WIDTH'),
+    hasNonDefaultSocialImageUrl: !!mdxNode.frontmatter.socialImageUrl,
+    socialImageUrl:
+      mdxNode.frontmatter.socialImageUrl ??
+      `${trim(siteUrl, '/')}/og-images/${sourceInstanceName}/${slugLastPart}.png`,
     // If we wanted to have a separated class for categories
     //  Same could be done for tags
     // category: {

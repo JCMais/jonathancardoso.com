@@ -20,7 +20,7 @@ export const theme = {
   colors: {
     // #f7f7f7
     backgroundDarker: 'hsla(120,13%,97%,1)',
-    textDarker: '#000',
+    textDarker: '#383838',
     textLighter: '#FFF',
     background: '#fff',
     // primary: '#07c',

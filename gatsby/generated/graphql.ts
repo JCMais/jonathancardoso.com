@@ -36,6 +36,8 @@ export type BlogPost = {
   excerpt: Scalars['String']
   banner?: Maybe<File>
   bannerStyle?: Maybe<BannerStyle>
+  hasNonDefaultSocialImageUrl: Scalars['Boolean']
+  socialImageUrl: Scalars['String']
   isDraft: Scalars['Boolean']
   externalLinks: ExternalLinks
   slug: Scalars['String']
@@ -47,7 +49,7 @@ export type BlogPost = {
   category: Scalars['String']
   categorySlug: Scalars['String']
   tableOfContents: Scalars['JSON']
-  description: Scalars['String']
+  description?: Maybe<Scalars['String']>
   keywords?: Maybe<Array<Scalars['String']>>
 }
 
@@ -287,6 +289,8 @@ export enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId = 'banner___childMdx___childMdxBlogPost___globalBlogPostId',
   banner___childMdx___childMdxBlogPost___title = 'banner___childMdx___childMdxBlogPost___title',
   banner___childMdx___childMdxBlogPost___bannerStyle = 'banner___childMdx___childMdxBlogPost___bannerStyle',
+  banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl = 'banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl',
+  banner___childMdx___childMdxBlogPost___socialImageUrl = 'banner___childMdx___childMdxBlogPost___socialImageUrl',
   banner___childMdx___childMdxBlogPost___isDraft = 'banner___childMdx___childMdxBlogPost___isDraft',
   banner___childMdx___childMdxBlogPost___slug = 'banner___childMdx___childMdxBlogPost___slug',
   banner___childMdx___childMdxBlogPost___langKey = 'banner___childMdx___childMdxBlogPost___langKey',
@@ -302,6 +306,8 @@ export enum BlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body = 'banner___childMdx___childMdxBlogPost___body',
   banner___childMdx___childMdxBlogPost___children = 'banner___childMdx___childMdxBlogPost___children',
   bannerStyle = 'bannerStyle',
+  hasNonDefaultSocialImageUrl = 'hasNonDefaultSocialImageUrl',
+  socialImageUrl = 'socialImageUrl',
   isDraft = 'isDraft',
   externalLinks___devto = 'externalLinks___devto',
   externalLinks___canonical = 'externalLinks___canonical',
@@ -329,6 +335,8 @@ export type BlogPostFilterInput = {
   excerpt?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  hasNonDefaultSocialImageUrl?: Maybe<BooleanQueryOperatorInput>
+  socialImageUrl?: Maybe<StringQueryOperatorInput>
   isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
@@ -1169,6 +1177,8 @@ export enum FileFieldsEnum {
   childMdx___childMdxBlogPost___banner___id = 'childMdx___childMdxBlogPost___banner___id',
   childMdx___childMdxBlogPost___banner___children = 'childMdx___childMdxBlogPost___banner___children',
   childMdx___childMdxBlogPost___bannerStyle = 'childMdx___childMdxBlogPost___bannerStyle',
+  childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl = 'childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl',
+  childMdx___childMdxBlogPost___socialImageUrl = 'childMdx___childMdxBlogPost___socialImageUrl',
   childMdx___childMdxBlogPost___isDraft = 'childMdx___childMdxBlogPost___isDraft',
   childMdx___childMdxBlogPost___externalLinks___devto = 'childMdx___childMdxBlogPost___externalLinks___devto',
   childMdx___childMdxBlogPost___externalLinks___canonical = 'childMdx___childMdxBlogPost___externalLinks___canonical',
@@ -1889,6 +1899,8 @@ export type MdxBlogPost = BlogPost &
     title: Scalars['String']
     banner?: Maybe<File>
     bannerStyle?: Maybe<BannerStyle>
+    hasNonDefaultSocialImageUrl: Scalars['Boolean']
+    socialImageUrl: Scalars['String']
     isDraft: Scalars['Boolean']
     externalLinks: ExternalLinks
     slug: Scalars['String']
@@ -1899,7 +1911,7 @@ export type MdxBlogPost = BlogPost &
     tags: Array<Scalars['String']>
     category: Scalars['String']
     categorySlug: Scalars['String']
-    description: Scalars['String']
+    description?: Maybe<Scalars['String']>
     keywords: Array<Scalars['String']>
     tableOfContents: Scalars['JSON']
     excerpt: Scalars['String']
@@ -2143,6 +2155,8 @@ export enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___globalBlogPostId = 'banner___childMdx___childMdxBlogPost___globalBlogPostId',
   banner___childMdx___childMdxBlogPost___title = 'banner___childMdx___childMdxBlogPost___title',
   banner___childMdx___childMdxBlogPost___bannerStyle = 'banner___childMdx___childMdxBlogPost___bannerStyle',
+  banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl = 'banner___childMdx___childMdxBlogPost___hasNonDefaultSocialImageUrl',
+  banner___childMdx___childMdxBlogPost___socialImageUrl = 'banner___childMdx___childMdxBlogPost___socialImageUrl',
   banner___childMdx___childMdxBlogPost___isDraft = 'banner___childMdx___childMdxBlogPost___isDraft',
   banner___childMdx___childMdxBlogPost___slug = 'banner___childMdx___childMdxBlogPost___slug',
   banner___childMdx___childMdxBlogPost___langKey = 'banner___childMdx___childMdxBlogPost___langKey',
@@ -2158,6 +2172,8 @@ export enum MdxBlogPostFieldsEnum {
   banner___childMdx___childMdxBlogPost___body = 'banner___childMdx___childMdxBlogPost___body',
   banner___childMdx___childMdxBlogPost___children = 'banner___childMdx___childMdxBlogPost___children',
   bannerStyle = 'bannerStyle',
+  hasNonDefaultSocialImageUrl = 'hasNonDefaultSocialImageUrl',
+  socialImageUrl = 'socialImageUrl',
   isDraft = 'isDraft',
   externalLinks___devto = 'externalLinks___devto',
   externalLinks___canonical = 'externalLinks___canonical',
@@ -2270,6 +2286,8 @@ export type MdxBlogPostFilterInput = {
   title?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  hasNonDefaultSocialImageUrl?: Maybe<BooleanQueryOperatorInput>
+  socialImageUrl?: Maybe<StringQueryOperatorInput>
   isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
@@ -2575,6 +2593,8 @@ export enum MdxFieldsEnum {
   childMdxBlogPost___banner___childMdx___id = 'childMdxBlogPost___banner___childMdx___id',
   childMdxBlogPost___banner___childMdx___children = 'childMdxBlogPost___banner___childMdx___children',
   childMdxBlogPost___bannerStyle = 'childMdxBlogPost___bannerStyle',
+  childMdxBlogPost___hasNonDefaultSocialImageUrl = 'childMdxBlogPost___hasNonDefaultSocialImageUrl',
+  childMdxBlogPost___socialImageUrl = 'childMdxBlogPost___socialImageUrl',
   childMdxBlogPost___isDraft = 'childMdxBlogPost___isDraft',
   childMdxBlogPost___externalLinks___devto = 'childMdxBlogPost___externalLinks___devto',
   childMdxBlogPost___externalLinks___canonical = 'childMdxBlogPost___externalLinks___canonical',
@@ -2852,6 +2872,8 @@ export type QueryBlogPostArgs = {
   excerpt?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  hasNonDefaultSocialImageUrl?: Maybe<BooleanQueryOperatorInput>
+  socialImageUrl?: Maybe<StringQueryOperatorInput>
   isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
@@ -2998,8 +3020,6 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<IntQueryOperatorInput>
-  host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
   id?: Maybe<StringQueryOperatorInput>
@@ -3068,6 +3088,8 @@ export type QueryMdxBlogPostArgs = {
   title?: Maybe<StringQueryOperatorInput>
   banner?: Maybe<FileFilterInput>
   bannerStyle?: Maybe<BannerStyleQueryOperatorInput>
+  hasNonDefaultSocialImageUrl?: Maybe<BooleanQueryOperatorInput>
+  socialImageUrl?: Maybe<StringQueryOperatorInput>
   isDraft?: Maybe<BooleanQueryOperatorInput>
   externalLinks?: Maybe<ExternalLinksFilterInput>
   slug?: Maybe<StringQueryOperatorInput>
@@ -3137,8 +3159,6 @@ export type Site = Node & {
   __typename?: 'Site'
   buildTime?: Maybe<Scalars['Date']>
   siteMetadata?: Maybe<SiteSiteMetadata>
-  port?: Maybe<Scalars['Int']>
-  host?: Maybe<Scalars['String']>
   pathPrefix?: Maybe<Scalars['String']>
   polyfill?: Maybe<Scalars['Boolean']>
   id: Scalars['ID']
@@ -3342,14 +3362,13 @@ export enum SiteFieldsEnum {
   siteMetadata___siteUrl = 'siteMetadata___siteUrl',
   siteMetadata___githubRepoUrl = 'siteMetadata___githubRepoUrl',
   siteMetadata___author = 'siteMetadata___author',
+  siteMetadata___twitterUrl = 'siteMetadata___twitterUrl',
   siteMetadata___title = 'siteMetadata___title',
   siteMetadata___description = 'siteMetadata___description',
   siteMetadata___keywords = 'siteMetadata___keywords',
   siteMetadata___locale___defaultLangKey = 'siteMetadata___locale___defaultLangKey',
   siteMetadata___locale___supportedLanguages___en = 'siteMetadata___locale___supportedLanguages___en',
   siteMetadata___locale___supportedLanguages___pt_br = 'siteMetadata___locale___supportedLanguages___pt_br',
-  port = 'port',
-  host = 'host',
   pathPrefix = 'pathPrefix',
   polyfill = 'polyfill',
   id = 'id',
@@ -3443,8 +3462,6 @@ export enum SiteFieldsEnum {
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>
-  port?: Maybe<IntQueryOperatorInput>
-  host?: Maybe<StringQueryOperatorInput>
   pathPrefix?: Maybe<StringQueryOperatorInput>
   polyfill?: Maybe<BooleanQueryOperatorInput>
   id?: Maybe<StringQueryOperatorInput>
@@ -3538,23 +3555,10 @@ export type SitePageContextCategories = {
 export type SitePageContextCategoriesByCategorySlug = {
   __typename?: 'SitePageContextCategoriesByCategorySlug'
   programming?: Maybe<SitePageContextCategoriesByCategorySlugProgramming>
-  programacao?: Maybe<SitePageContextCategoriesByCategorySlugProgramacao>
 }
 
 export type SitePageContextCategoriesByCategorySlugFilterInput = {
   programming?: Maybe<SitePageContextCategoriesByCategorySlugProgrammingFilterInput>
-  programacao?: Maybe<SitePageContextCategoriesByCategorySlugProgramacaoFilterInput>
-}
-
-export type SitePageContextCategoriesByCategorySlugProgramacao = {
-  __typename?: 'SitePageContextCategoriesByCategorySlugProgramacao'
-  category?: Maybe<Scalars['String']>
-  categorySlug?: Maybe<Scalars['String']>
-}
-
-export type SitePageContextCategoriesByCategorySlugProgramacaoFilterInput = {
-  category?: Maybe<StringQueryOperatorInput>
-  categorySlug?: Maybe<StringQueryOperatorInput>
 }
 
 export type SitePageContextCategoriesByCategorySlugProgramming = {
@@ -3776,8 +3780,6 @@ export enum SitePageFieldsEnum {
   context___activeCategory___categorySlug = 'context___activeCategory___categorySlug',
   context___categoriesByCategorySlug___programming___category = 'context___categoriesByCategorySlug___programming___category',
   context___categoriesByCategorySlug___programming___categorySlug = 'context___categoriesByCategorySlug___programming___categorySlug',
-  context___categoriesByCategorySlug___programacao___category = 'context___categoriesByCategorySlug___programacao___category',
-  context___categoriesByCategorySlug___programacao___categorySlug = 'context___categoriesByCategorySlug___programacao___categorySlug',
   context___tag = 'context___tag',
   context___tags = 'context___tags',
   context___tags___tag = 'context___tags___tag',
@@ -3849,6 +3851,9 @@ export enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___anonymize = 'pluginCreator___pluginOptions___anonymize',
   pluginCreator___pluginOptions___respectDNT = 'pluginCreator___pluginOptions___respectDNT',
   pluginCreator___pluginOptions___defer = 'pluginCreator___pluginOptions___defer',
+  pluginCreator___pluginOptions___output = 'pluginCreator___pluginOptions___output',
+  pluginCreator___pluginOptions___exclude = 'pluginCreator___pluginOptions___exclude',
+  pluginCreator___pluginOptions___query = 'pluginCreator___pluginOptions___query',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -4076,6 +4081,9 @@ export enum SitePluginFieldsEnum {
   pluginOptions___anonymize = 'pluginOptions___anonymize',
   pluginOptions___respectDNT = 'pluginOptions___respectDNT',
   pluginOptions___defer = 'pluginOptions___defer',
+  pluginOptions___output = 'pluginOptions___output',
+  pluginOptions___exclude = 'pluginOptions___exclude',
+  pluginOptions___query = 'pluginOptions___query',
   pluginOptions___pathCheck = 'pluginOptions___pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -4222,6 +4230,9 @@ export type SitePluginPluginOptions = {
   anonymize?: Maybe<Scalars['Boolean']>
   respectDNT?: Maybe<Scalars['Boolean']>
   defer?: Maybe<Scalars['Boolean']>
+  output?: Maybe<Scalars['String']>
+  exclude?: Maybe<Array<Maybe<Scalars['String']>>>
+  query?: Maybe<Scalars['String']>
   pathCheck?: Maybe<Scalars['Boolean']>
 }
 
@@ -4249,6 +4260,9 @@ export type SitePluginPluginOptionsFilterInput = {
   anonymize?: Maybe<BooleanQueryOperatorInput>
   respectDNT?: Maybe<BooleanQueryOperatorInput>
   defer?: Maybe<BooleanQueryOperatorInput>
+  output?: Maybe<StringQueryOperatorInput>
+  exclude?: Maybe<StringQueryOperatorInput>
+  query?: Maybe<StringQueryOperatorInput>
   pathCheck?: Maybe<BooleanQueryOperatorInput>
 }
 
@@ -4368,6 +4382,7 @@ export type SiteSiteMetadata = {
   siteUrl?: Maybe<Scalars['String']>
   githubRepoUrl?: Maybe<Scalars['String']>
   author?: Maybe<Scalars['String']>
+  twitterUrl?: Maybe<Scalars['String']>
   title?: Maybe<Scalars['String']>
   description?: Maybe<Scalars['String']>
   keywords?: Maybe<Array<Maybe<Scalars['String']>>>
@@ -4378,6 +4393,7 @@ export type SiteSiteMetadataFilterInput = {
   siteUrl?: Maybe<StringQueryOperatorInput>
   githubRepoUrl?: Maybe<StringQueryOperatorInput>
   author?: Maybe<StringQueryOperatorInput>
+  twitterUrl?: Maybe<StringQueryOperatorInput>
   title?: Maybe<StringQueryOperatorInput>
   description?: Maybe<StringQueryOperatorInput>
   keywords?: Maybe<StringQueryOperatorInput>
@@ -4435,6 +4451,9 @@ export type GatsbyCreatePagesQuery = { __typename?: 'Query' } & {
           MdxBlogPost,
           | 'id'
           | 'excerpt'
+          | 'description'
+          | 'date'
+          | 'hasNonDefaultSocialImageUrl'
           | 'title'
           | 'slug'
           | 'isDraft'
@@ -4592,3 +4611,11 @@ export type GatsbyImageSharpSizes_WithWebp_NoBase64 = {
   ImageSharpSizes,
   'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
 >
+
+export type PagesQueryVariables = Exact<{ [key: string]: never }>
+
+export type PagesQuery = { __typename?: 'Query' } & {
+  allSitePage: { __typename?: 'SitePageConnection' } & {
+    nodes: Array<{ __typename?: 'SitePage' } & Pick<SitePage, 'path'>>
+  }
+}

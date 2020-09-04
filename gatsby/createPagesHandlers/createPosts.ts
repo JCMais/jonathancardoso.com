@@ -5,6 +5,8 @@ import { Actions } from 'gatsby'
 import { convertLangKeyFromGraphQLEnum } from '../utils'
 import { GatsbyCreatePagesQuery, LangKey } from '../generated/graphql'
 
+import { createImageIfNeeded } from './createSocialImage'
+
 const hasSameLangKey = (langKey: LangKey) => (
   edge: GatsbyCreatePagesQuery['allBlogPost']['edges'][0],
 ) => edge.node.langKey === langKey
@@ -25,11 +27,11 @@ const getPrevOrNext = (
     : getPrevOrNext(edges, dir, currIteration + 1)
 }
 
-export const createPosts = (
+export const createPosts = async (
   createPage: Actions['createPage'],
   edges: GatsbyCreatePagesQuery['allBlogPost']['edges'],
 ) => {
-  edges.forEach(({ node }, i) => {
+  for (const [i, { node }] of edges.entries()) {
     const prevEdges =
       i !== 0 ? edges.slice(0, i).filter(hasSameLangKey(node.langKey)) : []
     const nextEdges =
@@ -39,6 +41,8 @@ export const createPosts = (
 
     const prev = getPrevOrNext(prevEdges, -1)
     const next = getPrevOrNext(nextEdges, 1, 0)
+
+    await createImageIfNeeded(node)
 
     createPage({
       // This is the slug we created before
@@ -63,5 +67,5 @@ export const createPosts = (
         },
       },
     })
-  })
+  }
 }

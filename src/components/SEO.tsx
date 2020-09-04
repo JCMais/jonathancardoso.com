@@ -12,6 +12,9 @@ type SEOProps = {
   description?: string
   lang?: string
   canonical?: string
+  ogType?: 'website' | 'article'
+  ogImage?: string
+  twitterCard?: 'summary_large_image' | 'summary'
   meta?: HelmetProps['meta']
   link?: HelmetProps['link']
   keywords?: string[]
@@ -25,6 +28,9 @@ export const SEO: React.FC<SEOProps> = ({
   description = null,
   canonical,
   lang = 'en',
+  ogType = 'website',
+  ogImage,
+  twitterCard = 'summary',
   meta = [],
   link = [],
   keywords = emptyKeywords,
@@ -38,6 +44,7 @@ export const SEO: React.FC<SEOProps> = ({
           title
           description
           author
+          twitterUrl
           keywords
         }
       }
@@ -94,15 +101,19 @@ export const SEO: React.FC<SEOProps> = ({
     },
     {
       property: `og:type`,
-      content: `website`,
+      content: ogType,
+    },
+    {
+      property: `og:image`,
+      content: ogImage,
     },
     {
       name: `twitter:card`,
-      content: `summary`,
+      content: twitterCard,
     },
     {
       name: `twitter:creator`,
-      content: data?.site?.siteMetadata?.author || '',
+      content: data?.site?.siteMetadata?.twitterUrl || '',
     },
     {
       name: `twitter:title`,
@@ -112,14 +123,16 @@ export const SEO: React.FC<SEOProps> = ({
       name: `twitter:description`,
       content: metaDescription,
     },
-  ].concat(
-    keywordsFinal && keywordsFinal.length > 0
-      ? {
-          name: `keywords`,
-          content: keywordsFinal.join(`, `),
-        }
-      : [],
-  )
+  ]
+    .concat(
+      keywordsFinal && keywordsFinal.length > 0
+        ? {
+            name: `keywords`,
+            content: keywordsFinal.join(`, `),
+          }
+        : [],
+    )
+    .filter((v) => !!v.content)
 
   return (
     <Helmet

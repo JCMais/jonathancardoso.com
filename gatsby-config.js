@@ -1,11 +1,10 @@
-/* eslint-disable global-require */
-
 module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     siteUrl: 'https://jonathancardoso.com/',
     githubRepoUrl: 'https://github.com/JCMais/jonathancardoso.com/',
     author: 'Jonathan Cardoso Machado',
+    twitterUrl: 'https://twitter.com/_jonathancardos',
     title: 'JCM',
     description: "Jonathan Cardoso Developer's Thoughts",
     keywords: [

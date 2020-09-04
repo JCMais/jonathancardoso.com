@@ -80,10 +80,13 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
     <MainLayout>
       <SEO
         title={blogPost.title}
-        description={blogPost.description ?? blogPost.excerpt}
+        description={blogPost.description || blogPost.excerpt}
         keywords={blogPost.keywords}
         link={linkLanguages}
         canonical={blogPost.externalLinks?.canonical ?? ''}
+        ogType="article"
+        ogImage={blogPost.socialImageUrl}
+        twitterCard="summary_large_image"
         jsonLd={[
           {
             '@context': 'http://schema.org',
@@ -293,9 +296,10 @@ export const pageQuery = graphql`
       }
       langKey
       bannerStyle
+      socialImageUrl
       keywords
       description
-      excerpt(pruneLength: 300)
+      excerpt(pruneLength: 100)
       slug
       category
       categorySlug

@@ -20,7 +20,10 @@ export const createPages: GatsbyNode['createPages'] = async ({
         edges {
           node {
             id
-            excerpt(pruneLength: 250)
+            excerpt(pruneLength: 100)
+            description
+            date(formatString: "YYYY-MM-DD")
+            hasNonDefaultSocialImageUrl
             title
             slug
             isDraft
@@ -42,7 +45,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
 
   const { edges } = result.data!.allBlogPost
 
-  createPosts(actions.createPage, edges)
+  await createPosts(actions.createPage, edges)
 
   // if on production we need to filter only the published posts for the next pages
 

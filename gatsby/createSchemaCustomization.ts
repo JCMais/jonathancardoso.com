@@ -87,6 +87,9 @@ export const createSchemaCustomization = async ({
     banner: File
     bannerStyle: BannerStyle
 
+    hasNonDefaultSocialImageUrl: Boolean!
+    socialImageUrl: String!
+
     isDraft: Boolean!
 
     externalLinks: ExternalLinks!
@@ -107,7 +110,7 @@ export const createSchemaCustomization = async ({
     tableOfContents(maxDepth: Int): JSON!
 
     # SEO
-    description: String!
+    description: String
     keywords: [String!]
   }
 
@@ -119,6 +122,9 @@ export const createSchemaCustomization = async ({
     title: String!
     banner: File
     bannerStyle: BannerStyle
+
+    hasNonDefaultSocialImageUrl: Boolean!
+    socialImageUrl: String!
 
     isDraft: Boolean!
     
@@ -138,7 +144,7 @@ export const createSchemaCustomization = async ({
     categorySlug: String!
 
     # SEO
-    description: String!
+    description: String
     keywords: [String!]!
 
     tableOfContents(maxDepth: Int): JSON! @parentResolverPassthrough(field: "tableOfContents") @defaultArgValueNumber(argName: "maxDepth", defaultValue: 2)
