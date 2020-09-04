@@ -61,14 +61,6 @@ const getCardPreviewTemplate = (post: Post) => {
 }
 
 const createCard = async (post: Post) => {
-  // TODO: Remove later
-  if (
-    post.slug !==
-    '/en/blog/using-circleci-workflows-replicate-docker-hub-automated-builds/'
-  ) {
-    return
-  }
-
   const { HTML_CSS_TO_IMG_API_ID, HTML_CSS_TO_IMG_API_KEY } = process.env
 
   const template = getCardPreviewTemplate(post)
