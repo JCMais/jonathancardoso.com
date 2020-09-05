@@ -29,7 +29,6 @@
     "gen:src": "graphql-codegen --config codegen.src.yml",
     "gtd": "graphql-typescript-definitions --schema-path 'graphql/schema.graphql' --schema-types-path 'src/schema'",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx,.mdx",
-    "preload-fonts": "gatsby-preload-fonts",
     "prettier-write": "prettier --write \"src/**/*.js\"",
     "refresh": "curl -X POST http://localhost:8000/__refresh",
     "release": "auto shipit",
