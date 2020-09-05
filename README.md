@@ -1,4 +1,4 @@
-# Gatsby.js MDX Blog Starter Project
+# https://jonathancardoso.com
 
 With ideas from:
 - https://github.com/erikdstock/gatsby-starter-ts-mdx
