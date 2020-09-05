@@ -13,6 +13,3 @@ If new frontmatter fields are added, they also must be added to the following pl
 ## Development
 
 Development is as easy as running `yarn d:w`, this will basically start `gatsby develop` with `nodemon`, so that changes to the files inside `./gatsby` correctly reloads the dev server.
-
-### Preloading Fonts
-After adding / changing routes, re-run the command `yarn preload-fonts` to update the font cache.
