@@ -78,7 +78,18 @@ export const MDXLayoutComponents: MDXProviderComponentsProp = {
   ),
   ul: ListUnordered,
   ol: ListOrdered,
-  figure: (props: any) => <Box m={[0]} as="figure" {...props} />,
+  figure: (props: any) => (
+    <Box
+      m={[0]}
+      as="figure"
+      sx={{
+        '+ figure': {
+          my: [4, 5],
+        },
+      }}
+      {...props}
+    />
+  ),
   figcaption: (props: any) => (
     <Text
       variant="postBody"
@@ -89,7 +100,24 @@ export const MDXLayoutComponents: MDXProviderComponentsProp = {
     />
   ),
   li: (props) => <ListItem variant="postBody" my={[2, 3]} {...props} />,
-  p: (props) => <Paragraph variant="postBody" my={[4, 5]} {...props} />,
+  p: (props) => (
+    <Paragraph
+      variant="postBody"
+      my={[4, 5]}
+      sx={{
+        // https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/
+        overflowWrap: 'break-word',
+        wordWrap: 'break-word',
+        '-ms-word-break': 'break-all',
+        wordBreak: 'break-word',
+        '-ms-hyphens': 'auto',
+        '-moz-hyphens': 'auto',
+        '-webkit-hyphens': 'auto',
+        hyphens: 'auto',
+      }}
+      {...props}
+    />
+  ),
   blockquote: BlockQuote,
   table: (props) => (
     <Text
@@ -131,7 +159,11 @@ export const MDXLayoutComponents: MDXProviderComponentsProp = {
       {...props}
     />
   ),
-  img: (props) => <Box as="img" maxWidth={'100%'} {...props} />,
+  img: (props) => (
+    <Box maxWidth="1035px" ml="auto" mr="auto" sx={{ textAlign: 'center' }}>
+      <Box as="img" maxWidth={'100%'} {...props} />
+    </Box>
+  ),
   th: (props) => (
     <Box
       as="th"
