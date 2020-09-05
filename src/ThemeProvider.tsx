@@ -80,6 +80,18 @@ export const ThemeProvider: React.FC = ({ children }) => {
             }
             */
 
+            /*
+              we need to do that because we are wrapping images
+              rendered on mdx with a div to make sure it has the
+              correct size and positioning, but the position
+              relative set on the mdx-img-wrapper is only needed
+              for the blurred version of the image crreated by
+              gatsby-image, the loaded version does not need it
+            */
+            .gatsby-resp-image-wrapper .mdx-img-wrapper {
+              position: static;
+            }
+
             /**
              * Prism Syntax Highlight with Gatsby
              * Style Changes

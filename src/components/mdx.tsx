@@ -160,7 +160,13 @@ export const MDXLayoutComponents: MDXProviderComponentsProp = {
     />
   ),
   img: (props) => (
-    <Box maxWidth="1035px" ml="auto" mr="auto" sx={{ textAlign: 'center' }}>
+    <Box
+      className="mdx-img-wrapper"
+      maxWidth="1035px"
+      ml="auto"
+      mr="auto"
+      sx={{ position: 'relative', textAlign: 'center' }}
+    >
       <Box as="img" maxWidth={'100%'} {...props} />
     </Box>
   ),
