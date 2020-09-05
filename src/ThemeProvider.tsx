@@ -81,9 +81,9 @@ export const ThemeProvider: React.FC = ({ children }) => {
             */
 
             /**
-           * Prism Syntax Highlight with Gatsby
-           * Style Changes
-           */
+             * Prism Syntax Highlight with Gatsby
+             * Style Changes
+             */
             .gatsby-highlight {
               font-family: ${theme.fonts.monospace};
               position: relative;
@@ -96,7 +96,8 @@ export const ThemeProvider: React.FC = ({ children }) => {
             }
 
             /* Language icon on the top right corner of the codeblock */
-            /* .gatsby-highlight::after {
+            /*
+            .gatsby-highlight::after {
               position: absolute;
               top: 0;
               right: 0;
@@ -116,7 +117,8 @@ export const ThemeProvider: React.FC = ({ children }) => {
               content: 'JS';
               color: #323330;
               background: #f0db4f;
-            } */
+            }
+            */
 
             pre[class*='language-'] {
               box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
@@ -157,7 +159,10 @@ export const ThemeProvider: React.FC = ({ children }) => {
 
             /* Line Highlight */
             .gatsby-highlight-code-line {
-              display: inline-block;
+              /* display: inline-block; */
+              display: block;
+              min-height: 1em;
+              min-width: 1em;
               margin-right: -1em;
               margin-left: -1em;
               padding-right: 1em;
@@ -167,6 +172,25 @@ export const ThemeProvider: React.FC = ({ children }) => {
               /*dark*/
               /*border-left: 0.2em solid #e5e5e5;*/
               /*background-color: rgba(104, 104, 104, 0.65);*/
+            }
+
+            /* These are for highlight to work */
+            .gatsby-highlight {
+              /* must be the same color of the theme */
+              background-color: #fbfbfb;
+              box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.2);
+              margin: 0.5em 0;
+              padding: 1em;
+              overflow: auto;
+            }
+            .gatsby-highlight pre[class*='language-'] {
+              box-shadow: none;
+              background-color: transparent;
+              margin: 0;
+              padding: 0;
+              overflow: initial;
+              float: left; /* 1 */
+              min-width: 100%; /* 2 */
             }
           `}
         />
