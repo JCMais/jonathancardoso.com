@@ -144,7 +144,7 @@ Make sure to remember the passwords and the alias you use here, this information
 
 The fields on the `Certificate` section are the info that will be used to create the key store file, you can fill then with your own/company info.
 
-Click `Ok` after you fill in the info, and it should create the Key store file, the previous modal will be filled with the new info. For now, you can close this dialog and Android Studio itself, as we are done creating the key store.
+Click `Ok` after you fill in the info, and it should create the key store file, the previous modal will be filled with the new info. For now, you can close this dialog and Android Studio itself, as we are done creating the key store.
 
 <!-- The `Export encrypted key for enrolling published apps in Google Play App signing` option is not needed, so you can uncheck it. This Key store is going to be our upload key. Google will use the upload key of the first app bundle uploaded to make sure that all subsequent uploads are coming from a trusted source. Keep it safe! -->
 <!-- For more details read: [https://support.google.com/googleplay/android-developer/answer/7384423](https://support.google.com/googleplay/android-developer/answer/7384423) -->
@@ -153,7 +153,7 @@ Click `Ok` after you fill in the info, and it should create the Key store file, 
 
 ## Using our Key Store File
 
-Now we need to configure our project to use the signing key when building, first let's create the .properties file to store our credentials, create the file `android/keystore.properties` with the following contents:
+Now we need to configure our project to use the signing key when building, first, let's create the .properties file to store our credentials, create the file `android/keystore.properties` with the following contents:
 
 ```properties
 storePassword=::store_password::
@@ -494,7 +494,7 @@ Right after that we are creating another local variable called `ruby|>params`, w
   }
 ```
 
-This variable is going to be used later when we call the plugin method to increment the build number, it's needed because we want to pass an extra param to this method depending if we called our lane with a certain option or not:
+This variable is going to be used later when we call the plugin method to increment the build number, it's needed because we want to pass an extra param to this method depending on if we called our lane with a certain option or not:
 
 ```ruby
   if options[:build_number]
@@ -519,7 +519,7 @@ After calling the action, we are able to retrieve the new version code and displ
   UI.important("Incremented android version code to #{new_version_code}")
 ```
 
-`Actions.lane_context` is a special hash used by Fatlane that contains values shared from actions that were run previously, in our case we are retrieving the value for the key `Actions::SharedValues::ANDROID_VERSION_CODE`.
+`Actions.lane_context` is a special hash used by fastlane that contains values shared from actions that were run previously, in our case we are retrieving the value for the key `Actions::SharedValues::ANDROID_VERSION_CODE`.
 
 This is the field that the `android_increment_version_code` action uses to store the new version code. How do we know that?
 
@@ -622,7 +622,7 @@ lane :ivn do |options|
 end
 ```
 
-This lane follows the same idea than the previous one. But it accepts a few more options. The most important ones being `increment_type` and `version`.
+This lane follows the same idea as the previous one. But it accepts a few more options. The most important ones being `increment_type` and `version`.
 
 We can pass either of them. `version` allows us to specify the new version number directly, while `increment_type` gives us the option to just say the increment type, which can be one of: `patch`, `minor`, and `major`.
 
@@ -631,7 +631,7 @@ We can pass either of them. `version` allows us to specify the new version numbe
   new_version_params = options[:version]
 ```
 
-If we don't pass anything, the default will be an `patch` increment of the current version.
+If we don't pass anything, the default will be a `patch` increment of the current version.
 
 After we handle the lane options, we call the `android_increment_version_name` action, provided by the `android_version_manager` plugin we have been using.
 
@@ -750,7 +750,7 @@ bundle exec fastlane android alpha
 
 ![](./images/image-23-fastlane-alpha.png)
 
-From the above output we can see that Fastlane calls into our `build` lane and after that goes back to the `alpha` lane, which then calls the `supply` action.
+From the above output, we can see that fastlane calls into our `build` lane and after that goes back to the `alpha` lane, which then calls the `supply` action.
 
 After fastlane uploads the new alpha release it should output something similar to this:
 
@@ -956,7 +956,7 @@ Figure: Alpha version was promoted to the Beta track
 Commit everything we have done so far to the git repository:
 
 ```bash
-git add --all && git commit -m "add fastlane and lanes to publish app to play store"
+git add --all && git commit -m "add fastlane and lanes to publish the app to play store"
 ```
 
 If you don't have created one yet, now is the time to create the GitHub repository for your app. After you have done that, and added the remote to your local repository, push the changes:
@@ -973,7 +973,7 @@ There are a few points that can be improved here.
 
 We are promoting from one track to the next one, but this is not going to work for everyone. Example: Each track should consume a different API, and the API is set via `.env` files.
 
-You can change each lane to rebuild the app the way that would make more sense for your use case. Remember, the Fastfile is just a Ruby file, you can do whatever you want to customize the build process.
+You can change each lane to rebuild the app the way that would make more sense for your use case. Remember, the `Fastfile` is just a Ruby file, you can do whatever you want to customize the build process.
 
 ### Rollouts
 
@@ -991,7 +991,7 @@ The main advantage of doing that is that Internal test releases are processed fa
 
 That is it! We can now upload our app to the Play Store by running a single command using fastlane.
 
-In the next part, we will see how to use multiple CI providers to do that automatically on each change being pushed to the `develop`, `staging` and `master` branches.
+In the next part, we will see how to use multiple CI providers to do that automatically on each change being pushed to the `develop`, `staging`, and `master` branches.
 
 <!-- prettier-ignore-start -->
 *[DSL]: Domain-Specific Language
