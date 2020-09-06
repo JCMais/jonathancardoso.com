@@ -60,7 +60,8 @@ git add --all && git commit -m "initial code"
 
 ## Creating our Play Store Developer Account
 
-Next, we are going to sign up for a developer account on Play Store, this requires a one-time payment of \$25 registration fee, in case you have not done so already.
+<!-- prettier-ignore -->
+Next, we are going to sign up for a developer account on Play Store, this requires a one-time payment of $25 registration fee, in case you have not done so already.
 
 After you have created your account, go to the [play store console dashboard](https://play.google.com/apps/publish) and click `CREATE APPLICATION`:
 
@@ -623,7 +624,7 @@ end
 
 This lane follows the same idea than the previous one. But it accepts a few more options. The most important ones being `increment_type` and `version`.
 
-We can pass either of them. `version` allow us to specify the new version number directly, while `increment_type` give us the option to just say the increment type, which can be one of: `patch`, `minor`, and `major`.
+We can pass either of them. `version` allows us to specify the new version number directly, while `increment_type` gives us the option to just say the increment type, which can be one of: `patch`, `minor`, and `major`.
 
 ```ruby
   increment_type = options.fetch(:increment_type, "patch")
@@ -668,7 +669,7 @@ bundle exec fastlane android ivn should_commit:false
 
 The output should look similar to this:
 
-![](./images/image-21-fastlane-ivn.png)
+![](./images/image-22-fastlane-ivn.png)
 
 The version was correctly bumped from `1` to `1.0.1`. 🎉
 
@@ -722,7 +723,7 @@ It accepts two options:
 - `build_task`: which can be either `assemble` or `bundle`
 - `build_type`: the variant we are building
 
-And then passes those to the [`gradle` action](https://docs.fastlane.tools/actions/gradle/).
+And then passes those to the [`gradle`](https://docs.fastlane.tools/actions/gradle/) action.
 
 After the `build` lane finishes, the execution context goes back to our `alpha` lane:
 
@@ -735,7 +736,7 @@ After the `build` lane finishes, the execution context goes back to our `alpha` 
   supply(supply_params)
 ```
 
-We then call the [`supply` action](https://docs.fastlane.tools/actions/supply/) passing two option:
+We then call the [`supply`](https://docs.fastlane.tools/actions/supply/) action passing two option:
 
 - `track` with the value `alpha`
 - `release_status` with the value `draft`
