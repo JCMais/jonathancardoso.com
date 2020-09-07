@@ -132,6 +132,7 @@ export const onCreateNode: GatsbyNode['onCreateNode'] = async ({
     tags: mdxNode.frontmatter.tags ?? mdxNode.frontmatter.keywords ?? [],
     keywords: mdxNode.frontmatter.keywords ?? mdxNode.frontmatter.tags ?? [],
     isDraft,
+    reviewers: mdxNode.frontmatter.reviewers ?? [],
   }
 
   // https://www.gatsbyjs.org/docs/actions/#createNode

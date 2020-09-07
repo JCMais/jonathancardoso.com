@@ -77,6 +77,11 @@ export const createSchemaCustomization = async ({
     logoUrl: String!
   }
 
+  type Person {
+    url: String!
+    name: String!
+  }
+
   interface BlogPost @nodeInterface {
     id: ID!
     # Used to group translated content together
@@ -92,6 +97,8 @@ export const createSchemaCustomization = async ({
     socialImageUrl: String!
 
     isDraft: Boolean!
+
+    reviewers: [Person!]!
 
     externalLinks: ExternalLinks!
     
@@ -129,6 +136,8 @@ export const createSchemaCustomization = async ({
 
     isDraft: Boolean!
     
+    reviewers: [Person!]!
+
     externalLinks: ExternalLinks!
     
     slug: String!
