@@ -8,7 +8,7 @@ import { SlidingTransitionWrapper } from '@r/components/SlidingTransitionWrapper
 type PostNewsletterFormProps = BoxProps
 
 export const PostNewsletterForm = (props: PostNewsletterFormProps) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [shouldShowExtraNewsletterFields, setShouldShowExtraNewsletterFields] = useState(
@@ -47,6 +47,7 @@ export const PostNewsletterForm = (props: PostNewsletterFormProps) => {
     >
       <input type="hidden" name="u" value="27e5ddadb6630ceca714dd8fa" />
       <input type="hidden" name="id" value="08b4b87af2" />
+      <input type="hidden" name="MERGE2" id="MERGE2" value={i18n.language} />
       <Flex alignItems="center" justifyContent="space-between" flexDirection="row">
         <Label htmlFor="email">
           <span>
