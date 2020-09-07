@@ -20,6 +20,7 @@ import { FeatherIcons } from '@r/components/icon/FeatherIcons'
 import { H1 } from '@r/components/ui/H1'
 import { Link } from '@r/components/ui/Link'
 import { ContentFlowSeparator } from '@r/components/ui/ContentFlowSeparator'
+import { Paragraph } from '@r/components/ui/Paragraph'
 
 import { MainLayout } from '@r/layouts/MainLayout'
 
@@ -35,6 +36,10 @@ const DiscussionText = (props: TextProps) => {
 
 const PostMetadata = (props: FlexProps) => {
   return <Flex color="gray.0" alignItems="center" mr={['0px', 5]} my={[1]} {...props} />
+}
+
+const PostFeedbackWrapper: React.FC = (props) => {
+  return <Paragraph my={[2, 3]}>{props.children}</Paragraph>
 }
 
 type PostPageContext = {
@@ -173,6 +178,14 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
               </PostMetadataText>
             </PostMetadata>
           </Flex>
+          {blogPost.isDraft && (
+            <PostInfoWrapper>
+              This is a draft post - Please do not share{' '}
+              <span role="img" aria-label="emoji with a smiley winking face">
+                😉
+              </span>
+            </PostInfoWrapper>
+          )}
           {!!blogPost.banner?.childImageSharp?.fluid && (
             <BannerWrapper>
               {/* @ts-expect-error This is complaining about the base64 prop, not under our control */}
@@ -198,6 +211,23 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
             </PostInfoWrapper>
           )}
           <MDXRenderer>{blogPost.body}</MDXRenderer>
+          {blogPost.isDraft && blogPost.reviewers.length > 0 && (
+            <PostFeedbackWrapper>
+              The draft of this post received feedback from these amazing people:{' '}
+              {blogPost.reviewers
+                .sort((a, b) => (a.name > b.name ? 1 : a.name < b.name ? -1 : 0))
+                .map((person) => (
+                  <Link key={person.name} to={person.url} target="_blank">
+                    {person.name}
+                  </Link>
+                ))
+                .reduce((previousPersons, person, idx) => {
+                  const comma = <span key={`review-person-comma-${idx}`}>, </span>
+
+                  return [previousPersons, comma, person]
+                })}
+            </PostFeedbackWrapper>
+          )}
           <Flex justifyContent="space-evenly" flexWrap="wrap" mt={[-5]} mb={[5]}>
             <Text fontSize={[8]}>…</Text>
           </Flex>
@@ -309,6 +339,11 @@ export const pageQuery = graphql`
         name
         url
         logoUrl
+      }
+      isDraft
+      reviewers {
+        name
+        url
       }
       langKey
       bannerStyle
