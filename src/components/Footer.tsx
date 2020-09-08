@@ -28,7 +28,7 @@ const FooterIcon = (props: FooterIconProps) => {
   if (!to) return icon
 
   return (
-    <Link to={to} {...otherProps}>
+    <Link to={to} noBg {...otherProps}>
       {icon}
     </Link>
   )

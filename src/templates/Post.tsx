@@ -221,7 +221,8 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
                     {person.name}
                   </Link>
                 ))
-                .reduce((previousPersons, person, idx) => {
+                // @ts-expect-error An argument for 'initialValue' was not provided
+                .reduce<JSX.Element[]>((previousPersons, person, idx) => {
                   const comma = <span key={`review-person-comma-${idx}`}>, </span>
 
                   return [previousPersons, comma, person]
@@ -276,24 +277,16 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
               {prev && (
                 <Text variant="postBody">
                   <Link to={prev.slug}>
-                    <Flex flexDirection="row" alignItems="center">
-                      <Space px={2}>
-                        <Box>{'<<'}</Box>
-                        <Box>{prev.title}</Box>
-                      </Space>
-                    </Flex>
+                    {' << '}
+                    {prev.title}
                   </Link>
                 </Text>
               )}
               {next && (
                 <Text variant="postBody">
                   <Link to={next.slug}>
-                    <Flex flexDirection="row" alignItems="center">
-                      <Space px={2}>
-                        <Box>{next.title}</Box>
-                        <Box>{'>>'}</Box>
-                      </Space>
-                    </Flex>
+                    {next.title}
+                    {' >> '}
                   </Link>
                 </Text>
               )}

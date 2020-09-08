@@ -49,7 +49,7 @@ export const PostNewsletterForm = (props: PostNewsletterFormProps) => {
       <input type="hidden" name="id" value="08b4b87af2" />
       <input type="hidden" name="MERGE2" id="MERGE2" value={i18n.language} />
       <Flex alignItems="center" justifyContent="space-between" flexDirection="row">
-        <Label htmlFor="email">
+        <Label htmlFor="email" width={[1, 0.5, 0.5, 0.7]}>
           <span>
             <span role="img" aria-label="emoji acenando com a mão">
               👋{' '}
@@ -70,7 +70,8 @@ export const PostNewsletterForm = (props: PostNewsletterFormProps) => {
           onFocus={onNewsletterEmailFocus}
           onBlur={onNewsletterEmailBlur}
           onChange={onNewsletterEmailChange}
-          width={[0.5]}
+          my={[4, 0]}
+          width={[1, 0.5, 0.5, 0.3]}
         />
       </Flex>
       {/* useChain or useTrail later to have each input coming down */}

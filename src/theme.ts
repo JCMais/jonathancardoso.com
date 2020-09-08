@@ -25,10 +25,18 @@ export const theme = {
     background: '#fff',
     // primary: '#07c',
     text: '#080808',
-    primary: '#00add2',
-    secondary: '#30c',
+
+    primary: '#0336f1',
+    secondary: '#004fb1',
+
+    linkBg: '#82c2f9',
+    linkBgActive: '#3e9ff5',
+
+    // primary: '#00add2',
+    // secondary: '#30c',
     therdiary: '#474747',
     muted: '#f6f6f9',
+
     highlight: 'hsla(205, 100%, 40%, 0.125)',
     inactiveGray: gray['5'],
     // 635E69
@@ -125,9 +133,6 @@ export const theme = {
       p: 2,
       bg: 'background',
       boxShadow: 'card',
-    },
-    link: {
-      color: 'text',
     },
     linkHeader: {
       color: 'text',

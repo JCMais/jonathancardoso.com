@@ -20,6 +20,7 @@ import { ListUnordered } from './ui/ListUnordered'
 export const MDXLayoutComponents: MDXProviderComponentsProp = {
   // @TODO use this instead of gatsby-remark-prismjs and rework plugins styles
   // pre: CodeBlock,
+  a: (props) => <Link to={props.href}>{props.children}</Link>,
   h1: (props) => (
     <H1
       mt={7}
