@@ -211,7 +211,7 @@ export default function Post({ data, pageContext: { next, prev } }: PostProps) {
             </PostInfoWrapper>
           )}
           <MDXRenderer>{blogPost.body}</MDXRenderer>
-          {blogPost.isDraft && blogPost.reviewers.length > 0 && (
+          {!blogPost.isDraft && blogPost.reviewers.length > 0 && (
             <PostFeedbackWrapper>
               The draft of this post received feedback from these amazing people:{' '}
               {blogPost.reviewers
