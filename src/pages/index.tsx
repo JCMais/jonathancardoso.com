@@ -49,7 +49,7 @@ const SocialNetworkLink = ({
 }: SocialNetworkLinkProps) => {
   return (
     <>
-      <Link tabIndex={-1} to={to} aria-label={label} noBg>
+      <Link tabIndex={-1} to={to} aria-label={label} pr={[1]} noBg>
         {iconComponent}
       </Link>
       <Link to={to} aria-label={label}>
