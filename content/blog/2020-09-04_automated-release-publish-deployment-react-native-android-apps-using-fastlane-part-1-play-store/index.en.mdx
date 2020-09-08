@@ -219,7 +219,7 @@ android {
 
 This will load our properties file inside the `keystoreProperties` variable. If the `android/keystore.properties` file does not exists and the environment variables are not set, an error will be thrown.
 
-> You may have noted that the enviornment variables have a common prefix, `MYRNAPP_RELEASE_`, you can change this to anything that would make more sense for your project.
+> You may have noted that the enviornment variables have a common prefix, `MYRNAPP_RELEASE_`, you can change this to anything that would make more sense for your project.  
 > The idea of having a prefix is to avoid collisions when you are setting these environment variables for multiple apps on the settings of your CI/CD provider.
 
 Inside the same file, `android/app/build.gradle`, look for the `signingConfigs` block. It should be around line 165 and look like this:
@@ -1014,4 +1014,5 @@ In the next part, we will see how to use multiple CI providers to do that automa
 *[CLI]: Command Line Interface
 *[AAB]: Android App Bundle
 *[CI]: Continuous Integration
+*[CD]: Continuous Delivery
 <!-- prettier-ignore-end -->
