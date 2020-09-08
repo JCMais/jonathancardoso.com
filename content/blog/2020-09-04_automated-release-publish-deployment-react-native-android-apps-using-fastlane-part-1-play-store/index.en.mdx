@@ -9,9 +9,20 @@ tags:
   - fastlane
   - devops
   - android
+reviewers:
+  - name: Júlio Xavier
+    url: https://twitter.com/julioxavierr
+  - name: Lucas Besen
+    url: https://twitter.com/lucasbesen
+  - name: Felippe Puhle
+    url: https://twitter.com/felippepuhle
 ---
 
 In this article, we will learn how to deploy React Native apps to the Android Play Store using [fastlane](https://fastlane.tools/). This is the first part of a series about automated deployment of React Native apps using fastlane.
+
+Everyone that has been releasing apps manually knows how tiresome and time consuming the process is, the main idea behind this series is to, by the end of it, have full knowledge about how to automate these tasks, letting a CI/CD provider run them. Freeing developers' time and machine processing power.
+
+The first two parts will be focused on the Android Play Store, and then later we will see how to the same for the IOS App Store.
 
 Our main goal is to use specific release tracks on Play Store to give us a fast and reliable environment to test and iterate on our app, be it on the closed alpha track or the open beta track, before sending the release to production and making it available on the Play Store.
 
@@ -28,10 +39,12 @@ Each of the three release tracks we are going to use is going to match one of th
 To follow this guide it's needed to have the following:
 
 - git CLI and basic git knowledge
-- Node.js
-- Android Studio
-- Code Editor
-- Ruby basics would be great but not required
+- [Ruby](https://www.ruby-lang.org/en/) and [Bundler](https://bundler.io/) installed
+- [Node.js](https://nodejs.org/en/)
+- [Android Studio](https://developer.android.com/studio)
+- [Code Editor](https://code.visualstudio.com/)
+
+Ruby basics are nice to have but not required.
 
 ## Initializing the Project
 
