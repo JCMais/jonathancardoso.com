@@ -75,7 +75,7 @@ export const IndexPage = ({ data }: PageProps<IndexQuery>) => {
   const { edges: posts } = allBlogPost
   const { t } = useTranslation('home')
 
-  const date = moment('2012-06-01', 'YYYY-MM-DD')
+  const date = moment('2011-09-01', 'YYYY-MM-DD')
   const years = moment().diff(date, 'years')
 
   const [emailHref, setEmailHref] = useState('')
