@@ -22,3 +22,6 @@
   [context.develop.environment]
 [context.deploy-preview]
   [context.deploy-preview.environment]
+
+[[plugins]]
+  package = "netlify-plugin-gatsby-cache"
