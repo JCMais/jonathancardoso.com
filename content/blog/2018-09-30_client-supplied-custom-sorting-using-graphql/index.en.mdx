@@ -8,7 +8,7 @@ banner: './images/banner-graphql-sorting.png'
 
 <!-- This was originally posted to: https://itnext.io/client-supplied-custom-sorting-using-graphql-54e4b87f6011 -->
 
-It’s not uncommon the need to sort data returned from an API, based on arguments sent by the client. With REST we could just use query-strings, but how to do it in GraphQL?
+It’s not uncommon the need to sort/order data returned from an API, based on arguments sent by the client. With REST we could just use query-strings, but how to do it in GraphQL?
 
 Most databases allow to sort on multiple fields at the same time, and the sorting order can differ from one to another, one way to translate this into GraphQL, and that I’ve been using, is to use enums and object input arguments.
 
@@ -142,10 +142,37 @@ It’s called `buildSortArg`, using it on our `getUser` resolver would look like
 // ...
 
 import { buildSortFromArg } from '@entria/graphql-mongo-helpers'
-\
 
 // ... inside getUser resolver:
 const users = await ctx.db.users.find().sort(buildSortFromArg(args.sort))
 ```
 
 The library also exports a SDL definition and `GraphQLObject` for the `Direction` enum, `DirectionEnum` and `DirectionEnumType` respectively.
+
+## Remarks
+
+This same idea can be used with any other database library, `knex` for example has the `orderBy` method which accepts an argument in the format:
+
+```typescript
+{
+  column: string,
+  order: 'asc' | 'desc'
+}
+```
+
+and for that, a function called `buildOrderByFromArg` can be as simple as:
+
+```js
+export default function buildOrderByFromArg(orderByArg) {
+  return orderByArg.reduce(
+    (acc, item) => [
+      ...acc,
+      {
+        column: item.field,
+        order: item.direction === -1 ? 'desc' : 'asc',
+      },
+    ],
+    [],
+  )
+}
+```
