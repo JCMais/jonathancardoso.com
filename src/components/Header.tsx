@@ -4,11 +4,13 @@ import { Box, Flex, Text } from 'rebass'
 import Space from '@rebass/space'
 import { WindowLocation, useLocation } from '@reach/router'
 import { useTranslation } from 'react-i18next'
-//
+import { useStaticQuery, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 
 import { locale } from '@shared/config'
-import { trim } from '@shared/utils'
+import { convertLangKeyToGraphQLEnum, trim } from '@shared/utils'
+
+import { HeaderQuery } from '@r/generated/graphql'
 
 import { Theme } from '@r/theme'
 
@@ -121,11 +123,16 @@ const wrapIfCurrent = (currentLanguage: string, language: string) => {
   return [isSame ? '[' : '', `${language}`, isSame ? ']' : ''].join('')
 }
 
-type CurrentPageInfo = { nextLanguage: string; location: WindowLocation }
+type CurrentPageInfo = {
+  nextLanguage: string
+  location: WindowLocation
+  hasBlogPostsForLang: boolean
+}
 
 const getLanguageSwitchAddressForCurrentPage = ({
   nextLanguage,
   location,
+  hasBlogPostsForLang,
 }: CurrentPageInfo) => {
   const pieces = trim(location.pathname, '/').split('/')
 
@@ -141,11 +148,18 @@ const getLanguageSwitchAddressForCurrentPage = ({
   //   to know the url of the current page on the other language here, if one exists
   //  else go to the translated page
   // else go to the home of the language
-  const url = startsWithLanguage
-    ? isBlog
-      ? `/${nextLanguage}/blog/`
-      : `/${nextLanguage}/${piecesAfterLang.join('/')}/`
-    : `/${nextLanguage}/`
+  let url = `/${nextLanguage}/`
+
+  // localized page
+  if (startsWithLanguage) {
+    if (isBlog) {
+      if (hasBlogPostsForLang) {
+        url = `/${nextLanguage}/blog/`
+      }
+    } else {
+      url = `/${nextLanguage}/${piecesAfterLang.join('/')}/`
+    }
+  }
 
   return `/${trim(url, '/')}/`
 }
@@ -157,15 +171,38 @@ type HeaderProps = {
 export const Header: React.FC<HeaderProps> = ({ headerTitleComponent = Text }) => {
   const { i18n } = useTranslation()
   const location = useLocation()
+  const data = useStaticQuery<HeaderQuery>(
+    graphql`
+      query HeaderQuery {
+        allBlogPost(filter: { isDraft: { eq: false } }) {
+          group(field: langKey) {
+            field
+            fieldValue
+            nodes {
+              id
+              title
+            }
+          }
+        }
+      }
+    `,
+  )
+
+  const hasPostsForLang = (lang) =>
+    !!data.allBlogPost.group.find(
+      (g) => g.fieldValue === convertLangKeyToGraphQLEnum(lang),
+    )
 
   const enLngUrl = getLanguageSwitchAddressForCurrentPage({
     nextLanguage: 'en',
     location,
+    hasBlogPostsForLang: hasPostsForLang('en'),
   })
 
   const ptBrLngUrl = getLanguageSwitchAddressForCurrentPage({
     nextLanguage: 'pt-br',
     location,
+    hasBlogPostsForLang: hasPostsForLang('pt-br'),
   })
 
   return (

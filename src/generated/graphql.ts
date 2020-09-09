@@ -1087,6 +1087,7 @@ export enum FileFieldsEnum {
   childMdx___frontmatter___banner___children = 'childMdx___frontmatter___banner___children',
   childMdx___frontmatter___bannerStyle = 'childMdx___frontmatter___bannerStyle',
   childMdx___frontmatter___externalLinks___canonical = 'childMdx___frontmatter___externalLinks___canonical',
+  childMdx___frontmatter___externalLinks___devto = 'childMdx___frontmatter___externalLinks___devto',
   childMdx___frontmatter___publisher___name = 'childMdx___frontmatter___publisher___name',
   childMdx___frontmatter___publisher___id = 'childMdx___frontmatter___publisher___id',
   childMdx___frontmatter___publisher___url = 'childMdx___frontmatter___publisher___url',
@@ -2445,6 +2446,7 @@ export enum MdxFieldsEnum {
   frontmatter___banner___childMdx___children = 'frontmatter___banner___childMdx___children',
   frontmatter___bannerStyle = 'frontmatter___bannerStyle',
   frontmatter___externalLinks___canonical = 'frontmatter___externalLinks___canonical',
+  frontmatter___externalLinks___devto = 'frontmatter___externalLinks___devto',
   frontmatter___publisher___name = 'frontmatter___publisher___name',
   frontmatter___publisher___id = 'frontmatter___publisher___id',
   frontmatter___publisher___url = 'frontmatter___publisher___url',
@@ -2732,10 +2734,12 @@ export type MdxFrontmatterDateArgs = {
 export type MdxFrontmatterExternalLinks = {
   __typename?: 'MdxFrontmatterExternalLinks'
   canonical?: Maybe<Scalars['String']>
+  devto?: Maybe<Scalars['String']>
 }
 
 export type MdxFrontmatterExternalLinksFilterInput = {
   canonical?: Maybe<StringQueryOperatorInput>
+  devto?: Maybe<StringQueryOperatorInput>
 }
 
 export type MdxFrontmatterFilterInput = {
@@ -4682,6 +4686,21 @@ export type PagesQueryVariables = Exact<{ [key: string]: never }>
 export type PagesQuery = { __typename?: 'Query' } & {
   allSitePage: { __typename?: 'SitePageConnection' } & {
     nodes: Array<{ __typename?: 'SitePage' } & Pick<SitePage, 'path'>>
+  }
+}
+
+export type HeaderQueryVariables = Exact<{ [key: string]: never }>
+
+export type HeaderQuery = { __typename?: 'Query' } & {
+  allBlogPost: { __typename?: 'BlogPostConnection' } & {
+    group: Array<
+      { __typename?: 'BlogPostGroupConnection' } & Pick<
+        BlogPostGroupConnection,
+        'field' | 'fieldValue'
+      > & {
+          nodes: Array<{ __typename?: 'MdxBlogPost' } & Pick<MdxBlogPost, 'id' | 'title'>>
+        }
+    >
   }
 }
 
