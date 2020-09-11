@@ -7,8 +7,8 @@ With ideas from:
 ## Frontmatter Fields
 If new frontmatter fields are added, they also must be added to the following places:
 
-- [gatsby/onCreateNode.js](./gatsby/onCreateNode.js) - Search for `blogFields`
-- [gatsby/createSchemaCustomization.js](./gatsby/createSchemaCustomization.js) - Add to the type definitions of the BlogPost interface and the MdxBlogPost type.
+- [gatsby/onCreateNode.ts](./gatsby/onCreateNode.ts) - Search for `blogFields`
+- [gatsby/createSchemaCustomization.ts](./gatsby/createSchemaCustomization.ts) - Add to the type definitions of the BlogPost interface and the MdxBlogPost type.
 
 ## Development
 
