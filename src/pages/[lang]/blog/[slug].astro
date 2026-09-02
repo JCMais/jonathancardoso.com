@@ -1,0 +1,32 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import PostLayout from '@/layouts/PostLayout.astro'
+import { LOCALES, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale } from '@/lib/posts'
+import type { Post } from '@/lib/posts'
+
+interface Props {
+  post: Post
+  newer?: Post
+  older?: Post
+}
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = []
+  for (const lang of LOCALES) {
+    const posts = await getPublishedPostsForLocale(lang)
+    posts.forEach((post, i) => {
+      paths.push({
+        params: { lang, slug: post.slug },
+        props: { post, newer: posts[i - 1], older: posts[i + 1] },
+      })
+    })
+  }
+  return paths
+}
+
+const locale = Astro.params.lang as Locale
+const { post, newer, older } = Astro.props
+---
+
+<PostLayout post={post} locale={locale} newer={newer} older={older} />

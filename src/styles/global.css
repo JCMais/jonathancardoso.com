@@ -1,0 +1,842 @@
+/* ---------------------------------------------------------------------------
+   Tokens. Dark is the primary scene (a developer reading pipeline articles at a
+   desk in the evening); light is fully designed, not derived.
+   --------------------------------------------------------------------------- */
+:root {
+  color-scheme: dark;
+
+  --bg: #0f1014;
+  --bg-elev: #131418;
+  --surface: #16181d;
+  --surface-2: #1c1e25;
+  --surface-3: #23262f;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --line-top: rgba(255, 255, 255, 0.05);
+  --text: #ececf1;
+  --text-2: #9a9da8;
+  --text-3: #8b8e9a;
+  --accent: #7c8cff;
+  --accent-strong: #9ba7ff;
+  --accent-ink: #0b0d1c;
+  --accent-soft: rgba(124, 140, 255, 0.14);
+  --accent-line: rgba(124, 140, 255, 0.45);
+  --glow: rgba(124, 140, 255, 0.32);
+  --glow-2: rgba(124, 140, 255, 0.1);
+  --ok: #4ade80;
+  --code-bg: #121317;
+  --selection: rgba(124, 140, 255, 0.35);
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6);
+  --shadow-2: 0 2px 6px rgba(0, 0, 0, 0.45), 0 24px 48px -16px rgba(0, 0, 0, 0.7);
+  --header-bg: rgba(15, 16, 20, 0.72);
+
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-s: 6px;
+  --radius: 10px;
+  --radius-l: 14px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-fast: 140ms;
+  --t-base: 240ms;
+  --t-slow: 480ms;
+
+  --measure: 68ch;
+  --content-w: 44rem;
+  --page-w: 72rem;
+  --header-h: 3.5rem;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: #fafafa;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f3f3f5;
+  --surface-3: #ebebef;
+  --line: rgba(20, 21, 24, 0.08);
+  --line-strong: rgba(20, 21, 24, 0.14);
+  --line-top: rgba(255, 255, 255, 0.9);
+  --text: #141518;
+  --text-2: #5c5f6b;
+  --text-3: #6b6e7a;
+  --accent: #4f5fe8;
+  --accent-strong: #3d4ddb;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(79, 95, 232, 0.1);
+  --accent-line: rgba(79, 95, 232, 0.4);
+  --glow: rgba(91, 108, 255, 0.28);
+  --glow-2: rgba(91, 108, 255, 0.08);
+  --ok: #16a34a;
+  --code-bg: #f6f6f8;
+  --selection: rgba(79, 95, 232, 0.22);
+  --shadow-1: 0 1px 2px rgba(20, 21, 24, 0.06), 0 8px 24px -12px rgba(20, 21, 24, 0.16);
+  --shadow-2: 0 2px 6px rgba(20, 21, 24, 0.08), 0 24px 48px -16px rgba(20, 21, 24, 0.22);
+  --header-bg: rgba(250, 250, 250, 0.78);
+}
+
+/* ---------------------------------------------------------------------------
+   Reset and base
+   --------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: calc(var(--header-h) + 1.5rem);
+  scrollbar-color: var(--surface-3) transparent;
+  caret-color: var(--accent);
+  accent-color: var(--accent);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+::selection {
+  background: var(--selection);
+  color: var(--text);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--surface-3);
+  border: 3px solid var(--bg);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-s);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color var(--t-fast) var(--ease-out);
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.5rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transform: translateY(-200%);
+  transition: transform var(--t-base) var(--ease-out);
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.wrap {
+  width: min(100% - 2.5rem, var(--page-w));
+  margin-inline: auto;
+}
+.wrap-content {
+  width: min(100% - 2.5rem, var(--content-w));
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------------------
+   Shared components
+   --------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  height: 2.25rem;
+  padding: 0 0.875rem;
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: inset 0 1px 0 var(--line-top);
+  transition:
+    background var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-fast) var(--ease-out);
+}
+.btn:hover {
+  background: var(--surface-2);
+  border-color: var(--line-strong);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+}
+.btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-ink);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.btn-primary:hover {
+  background: var(--accent-strong);
+  border-color: transparent;
+}
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+.btn-ghost:hover {
+  background: var(--surface-2);
+  border-color: transparent;
+}
+.btn-icon {
+  width: 2.25rem;
+  padding: 0;
+  justify-content: center;
+}
+.btn-sm {
+  height: 2rem;
+  padding: 0 0.75rem;
+  font-size: 0.875rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: var(--radius-s);
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  transition:
+    color var(--t-fast) var(--ease-out),
+    border-color var(--t-fast) var(--ease-out),
+    background var(--t-fast) var(--ease-out);
+}
+a.chip:hover {
+  color: var(--text);
+  border-color: var(--line-strong);
+  background: var(--surface-3);
+}
+.chip-accent {
+  color: var(--accent-strong);
+  background: var(--accent-soft);
+  border-color: var(--accent-line);
+}
+
+.kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding: 0 0.3rem;
+  border-radius: 4px;
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-l);
+  box-shadow:
+    inset 0 1px 0 var(--line-top),
+    var(--shadow-1);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+.status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok) 22%, transparent);
+  animation: pulse 2.4s var(--ease-in-out) infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok) 22%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--ok) 8%, transparent);
+  }
+}
+
+.section-title {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-2);
+}
+
+/* ---------------------------------------------------------------------------
+   Prose (articles and text pages)
+   --------------------------------------------------------------------------- */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+.prose > * {
+  max-width: var(--measure);
+}
+.prose > :first-child {
+  margin-top: 0;
+}
+.prose p,
+.prose ul,
+.prose ol,
+.prose dl,
+.prose blockquote,
+.prose table {
+  margin: 0 0 1.25em;
+}
+.prose h2,
+.prose h3,
+.prose h4 {
+  margin: 2.4em 0 0.7em;
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  position: relative;
+}
+.prose h2 {
+  font-size: 1.5rem;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+}
+.prose h3 {
+  font-size: 1.1875rem;
+}
+.prose h4 {
+  font-size: 1rem;
+}
+.prose > h2:first-child {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0;
+}
+.prose h2 + h3 {
+  margin-top: 1.2em;
+}
+.heading-anchor {
+  position: absolute;
+  left: -1.35em;
+  top: 50%;
+  translate: 0 -50%;
+  width: 1.2em;
+  text-align: center;
+  color: var(--text-3);
+  font-weight: 400;
+  opacity: 0;
+  transition: opacity var(--t-fast) var(--ease-out);
+}
+.heading-anchor-glyph::before {
+  content: '#';
+}
+.prose h2 .heading-anchor {
+  top: auto;
+  translate: none;
+  bottom: 0.1em;
+}
+@media (max-width: 900px) {
+  .heading-anchor {
+    position: static;
+    translate: none;
+    margin-left: 0.4em;
+    width: auto;
+  }
+}
+.prose h2:hover .heading-anchor,
+.prose h3:hover .heading-anchor,
+.prose h4:hover .heading-anchor,
+.heading-anchor:focus-visible {
+  opacity: 1;
+}
+.prose a:not(.heading-anchor) {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-decoration-color: var(--accent-line);
+  transition:
+    color var(--t-fast) var(--ease-out),
+    text-decoration-color var(--t-fast) var(--ease-out);
+}
+.prose a:not(.heading-anchor):hover {
+  text-decoration-color: currentColor;
+}
+.prose strong {
+  font-weight: 600;
+}
+.prose em {
+  font-style: italic;
+}
+.prose ul,
+.prose ol {
+  padding-left: 1.4em;
+}
+.prose li {
+  margin: 0.35em 0;
+  padding-left: 0.2em;
+}
+.prose li::marker {
+  color: var(--text-3);
+}
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.5em 0;
+}
+.prose :not(pre) > code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  padding: 0.12em 0.4em;
+  border-radius: var(--radius-s);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--text);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.prose {
+  overflow-wrap: anywhere;
+}
+.prose blockquote {
+  padding: 0.25em 0 0.25em 1.25em;
+  border-left: 1px solid var(--line-strong);
+  color: var(--text-2);
+}
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+.prose abbr[title] {
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: help;
+}
+.prose dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35em 1.25em;
+}
+.prose dt {
+  font-weight: 500;
+}
+.prose dd {
+  margin: 0;
+  color: var(--text-2);
+}
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  display: block;
+  overflow-x: auto;
+}
+.prose th,
+.prose td {
+  text-align: left;
+  padding: 0.55em 0.75em;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+.prose th {
+  font-weight: 500;
+  color: var(--text-2);
+  font-size: 0.8125rem;
+}
+.prose img {
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.prose figure,
+.prose .expressive-code {
+  margin: 1.75em 0;
+}
+.prose figure > p {
+  margin: 0;
+}
+.prose figure figcaption {
+  margin-top: 0.6em;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-2);
+  text-align: center;
+}
+.prose figure.figure-code figcaption {
+  text-align: left;
+}
+.prose figure.figure-code .expressive-code {
+  margin: 0;
+}
+.prose .expressive-code figcaption {
+  text-align: left;
+  margin: 0;
+  font-size: inherit;
+  color: inherit;
+}
+.prose .expressive-code .frame {
+  box-shadow: inset 0 1px 0 var(--line-top);
+}
+.prose .expressive-code pre {
+  scrollbar-width: thin;
+}
+.prose iframe {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+/* Draft / callout notices */
+.notice {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text-2);
+  font-size: 0.9375rem;
+}
+.notice svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex: none;
+  margin-top: 0.1rem;
+  color: var(--accent-strong);
+}
+.notice a {
+  color: var(--text);
+  text-decoration: underline;
+  text-decoration-color: var(--line-strong);
+}
+
+/* ---------------------------------------------------------------------------
+   The light (home only). One source at --mx/--my in viewport pixels. Every
+   [data-spot] element receives --sx/--sy (the light in its own coordinates),
+   --dx/--dy (unit direction from the light to the element) and --near (0..1).
+   --------------------------------------------------------------------------- */
+/* The lantern: a warm, near-white desk-lamp light. The accent stays in links and the
+   mark; the light itself is just light. Colour comes from what it falls on. */
+:root {
+  --light-r1: 620px;
+  --light-r2: 1400px;
+  --light-c1: rgba(255, 226, 170, 0.34);
+  --light-c2: rgba(255, 226, 170, 0.09);
+  --light-edge: rgba(255, 236, 200, 0.85);
+  --light-edge-2: rgba(255, 236, 200, 0.2);
+  --light-edge-r: 460px;
+  --light-wash: rgba(255, 226, 170, 0.22);
+  --light-wash-a: 0.9;
+  --light-shadow-a: 1;
+  --light-shadow-d: 40px;
+  --light-surface-mix: 9%;
+  --light-text-core: #fff1d6;
+}
+.page-light {
+  display: none;
+}
+:root[data-theme='noir'] .page-light {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(var(--light-r1) circle at var(--mx, 30vw) var(--my, 30vh), var(--light-c1), transparent 62%),
+    radial-gradient(var(--light-r2) circle at var(--mx, 30vw) var(--my, 30vh), var(--light-c2), transparent 72%);
+}
+:root[data-theme='noir'] .lit [data-spot] {
+  --near: 0;
+  --dx: 0;
+  --dy: 0;
+  position: relative;
+  /* the surface brightens as the light approaches; the shadow falls away from it */
+  background: color-mix(in oklab, var(--surface), #ffffff calc(var(--near) * var(--light-surface-mix)));
+  box-shadow:
+    inset 0 1px 0 var(--line-top),
+    calc(var(--dx) * var(--light-shadow-d) * var(--near)) calc(var(--dy) * var(--light-shadow-d) * var(--near))
+      calc(20px + 30px * var(--near)) -8px rgba(0, 0, 0, calc(var(--light-shadow-a) * var(--near)));
+  transition:
+    box-shadow 120ms linear,
+    background 120ms linear;
+}
+:root[data-theme='noir'] .lit [data-spot]::before {
+  /* the edge facing the light catches it */
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    var(--light-edge-r) circle at var(--sx, 50%) var(--sy, 50%),
+    var(--light-edge),
+    var(--light-edge-2) 35%,
+    transparent 62%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: calc(0.35 + 0.65 * var(--near));
+  pointer-events: none;
+  z-index: 2;
+}
+:root[data-theme='noir'] .lit [data-spot]::after {
+  /* a faint wash of light on the surface itself */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(420px circle at var(--sx, 50%) var(--sy, 50%), var(--light-wash), transparent 58%);
+  opacity: calc(var(--near) * var(--light-wash-a));
+  pointer-events: none;
+  z-index: 0;
+}
+:root[data-theme='noir'] .lit [data-spot] > * {
+  position: relative;
+  z-index: 1;
+}
+:root[data-theme='light'] .lit [data-spot] {
+  background: color-mix(in oklab, var(--surface), #ffd48a calc(var(--near) * 6%));
+  box-shadow:
+    inset 0 1px 0 var(--line-top),
+    calc(var(--dx) * var(--light-shadow-d) * var(--near)) calc(var(--dy) * var(--light-shadow-d) * var(--near))
+      calc(20px + 30px * var(--near)) -8px rgba(20, 21, 24, calc(0.32 * var(--near)));
+}
+:root[data-theme='light'] :root[data-theme='noir'] .lit [data-spot]::before {
+  background: radial-gradient(
+    var(--light-edge-r) circle at var(--sx, 50%) var(--sy, 50%),
+    var(--light-edge),
+    var(--light-edge-2) 35%,
+    transparent 62%
+  );
+}
+
+/* ---------------------------------------------------------------------------
+   Lights out (data-theme="noir"). Dark tokens, plus a near-black sheet over the
+   home that only the lantern can open. The sheet is masked, not painted, so the
+   page underneath (lit edges, shadows, the sheen) keeps interacting with the light.
+   --------------------------------------------------------------------------- */
+@property --hole {
+  syntax: '<length>';
+  inherits: false;
+  initial-value: 460px;
+}
+.blackout {
+  display: none;
+}
+:root[data-theme='noir'] .lit .blackout {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 35;
+  pointer-events: none;
+  background: #000;
+  --hole: 460px;
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx, 50vw) var(--my, 38vh),
+    transparent 0,
+    transparent calc(var(--hole) * 0.42),
+    rgba(0, 0, 0, 0.5) calc(var(--hole) * 0.68),
+    rgba(0, 0, 0, 0.92) calc(var(--hole) * 0.88),
+    #000 var(--hole)
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx, 50vw) var(--my, 38vh),
+    transparent 0,
+    transparent calc(var(--hole) * 0.42),
+    rgba(0, 0, 0, 0.5) calc(var(--hole) * 0.68),
+    rgba(0, 0, 0, 0.92) calc(var(--hole) * 0.88),
+    #000 var(--hole)
+  );
+  animation: lantern-breathe 5.2s var(--ease-in-out) infinite;
+}
+@keyframes lantern-breathe {
+  0%,
+  100% {
+    --hole: 460px;
+  }
+  50% {
+    --hole: 490px;
+  }
+}
+/* the beam itself gets warmer and tighter when it is the only light in the room */
+:root[data-theme='noir'] {
+  --light-c1: rgba(255, 214, 140, 0.42);
+  --light-c2: rgba(255, 214, 140, 0.1);
+  --light-r1: 520px;
+  --light-r2: 1100px;
+  --light-surface-mix: 12%;
+  --light-shadow-a: 1;
+}
+/* chrome stays findable in the dark, but recedes */
+:root[data-theme='noir'] .lit .header {
+  background: #000;
+  border-bottom-color: rgba(255, 255, 255, 0.05);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  z-index: 45;
+}
+:root[data-theme='noir'] .lit .header .nav,
+:root[data-theme='noir'] .lit .header .mark,
+:root[data-theme='noir'] .lit .header .search,
+:root[data-theme='noir'] .lit .header .lang {
+  opacity: 0.28;
+  transition: opacity var(--t-base) var(--ease-out);
+}
+:root[data-theme='noir'] .lit .header:hover .nav,
+:root[data-theme='noir'] .lit .header:hover .mark,
+:root[data-theme='noir'] .lit .header:hover .search,
+:root[data-theme='noir'] .lit .header:hover .lang {
+  opacity: 1;
+}
+:root[data-theme='noir'] .lit .header .theme {
+  opacity: 0.85;
+}
+:root[data-theme='noir'] .lit .footer {
+  opacity: 0.35;
+  background: #000;
+  border-top-color: rgba(255, 255, 255, 0.05);
+}
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme='noir'] .lit .blackout {
+    animation: none;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  /* no pointer: the lantern rests over the intro */
+  :root[data-theme='noir'] .lit .blackout {
+    --hole: 760px;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Motion
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

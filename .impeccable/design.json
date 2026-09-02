@@ -1,0 +1,489 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-01T00:00:00Z",
+  "title": "Design System: jonathancardoso.com",
+  "extensions": {
+    "colorMeta": {
+      "bg": {
+        "role": "neutral",
+        "displayName": "Ground",
+        "canonical": "#0f1014",
+        "tonalRamp": [
+          "oklch(15% 0.008 275)",
+          "oklch(22% 0.008 275)",
+          "oklch(32% 0.008 275)",
+          "oklch(45% 0.008 275)",
+          "oklch(58% 0.008 275)",
+          "oklch(72% 0.008 275)",
+          "oklch(85% 0.008 275)",
+          "oklch(95% 0.008 275)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "#16181d",
+        "tonalRamp": [
+          "oklch(17% 0.01 265)",
+          "oklch(24% 0.01 265)",
+          "oklch(34% 0.01 265)",
+          "oklch(46% 0.01 265)",
+          "oklch(59% 0.01 265)",
+          "oklch(72% 0.01 265)",
+          "oklch(85% 0.01 265)",
+          "oklch(95% 0.01 265)"
+        ]
+      },
+      "text": {
+        "role": "neutral",
+        "displayName": "Text",
+        "canonical": "#ececf1",
+        "tonalRamp": [
+          "oklch(15% 0.006 285)",
+          "oklch(28% 0.006 285)",
+          "oklch(40% 0.006 285)",
+          "oklch(52% 0.006 285)",
+          "oklch(64% 0.006 285)",
+          "oklch(76% 0.006 285)",
+          "oklch(88% 0.006 285)",
+          "oklch(95% 0.006 285)"
+        ]
+      },
+      "text-2": {
+        "role": "neutral",
+        "displayName": "Text 2",
+        "canonical": "#9a9da8",
+        "tonalRamp": [
+          "oklch(15% 0.012 275)",
+          "oklch(28% 0.012 275)",
+          "oklch(40% 0.012 275)",
+          "oklch(52% 0.012 275)",
+          "oklch(68% 0.012 275)",
+          "oklch(78% 0.012 275)",
+          "oklch(88% 0.012 275)",
+          "oklch(95% 0.012 275)"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Periwinkle",
+        "canonical": "#7c8cff",
+        "tonalRamp": [
+          "oklch(20% 0.12 275)",
+          "oklch(32% 0.16 275)",
+          "oklch(44% 0.19 275)",
+          "oklch(56% 0.19 275)",
+          "oklch(66% 0.17 275)",
+          "oklch(76% 0.13 275)",
+          "oklch(86% 0.08 275)",
+          "oklch(95% 0.03 275)"
+        ]
+      },
+      "accent-strong": {
+        "role": "primary",
+        "displayName": "Periwinkle, lit",
+        "canonical": "#9ba7ff",
+        "tonalRamp": [
+          "oklch(20% 0.12 275)",
+          "oklch(32% 0.16 275)",
+          "oklch(44% 0.19 275)",
+          "oklch(56% 0.19 275)",
+          "oklch(66% 0.17 275)",
+          "oklch(76% 0.13 275)",
+          "oklch(86% 0.08 275)",
+          "oklch(95% 0.03 275)"
+        ]
+      },
+      "ok": {
+        "role": "secondary",
+        "displayName": "Open green",
+        "canonical": "#4ade80",
+        "tonalRamp": [
+          "oklch(20% 0.08 150)",
+          "oklch(32% 0.12 150)",
+          "oklch(45% 0.15 150)",
+          "oklch(58% 0.17 150)",
+          "oklch(70% 0.18 150)",
+          "oklch(80% 0.16 150)",
+          "oklch(89% 0.1 150)",
+          "oklch(95% 0.05 150)"
+        ]
+      },
+      "bg-light": {
+        "role": "neutral",
+        "displayName": "Ground (light twin)",
+        "canonical": "#fafafa",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(28% 0 0)",
+          "oklch(40% 0 0)",
+          "oklch(52% 0 0)",
+          "oklch(64% 0 0)",
+          "oklch(76% 0 0)",
+          "oklch(88% 0 0)",
+          "oklch(98% 0 0)"
+        ]
+      },
+      "text-light": {
+        "role": "neutral",
+        "displayName": "Text (light twin)",
+        "canonical": "#141518",
+        "tonalRamp": [
+          "oklch(15% 0.006 275)",
+          "oklch(28% 0.006 275)",
+          "oklch(40% 0.006 275)",
+          "oklch(52% 0.006 275)",
+          "oklch(64% 0.006 275)",
+          "oklch(76% 0.006 275)",
+          "oklch(88% 0.006 275)",
+          "oklch(95% 0.006 275)"
+        ]
+      },
+      "accent-light": {
+        "role": "primary",
+        "displayName": "Periwinkle (light twin)",
+        "canonical": "#4f5fe8",
+        "tonalRamp": [
+          "oklch(20% 0.12 275)",
+          "oklch(32% 0.16 275)",
+          "oklch(44% 0.19 275)",
+          "oklch(56% 0.19 275)",
+          "oklch(66% 0.17 275)",
+          "oklch(76% 0.13 275)",
+          "oklch(86% 0.08 275)",
+          "oklch(95% 0.03 275)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The home greeting only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Article titles and the 404 title."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "List-page headings (PageHeading)."
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "Home 'Writing' heading and prose h2 with a hairline rule above."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "The home bio, max 44ch, in text-2."
+      },
+      "body-prose": {
+        "displayName": "Body, prose",
+        "purpose": "Article text, measure 68ch."
+      },
+      "body-ui": {
+        "displayName": "Body, UI",
+        "purpose": "Buttons, nav, values, excerpts, notices, palette rows."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Section titles, fact labels, TOC entries, meta, counts, table headers."
+      },
+      "micro": {
+        "displayName": "Micro",
+        "purpose": "Chips, language options, group titles, fine print."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Dates, durations, years, kbd caps, palette dates. Tabular numerals."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Expressive Code blocks; inline code is 0.875em of its context."
+      }
+    },
+    "shadows": [
+      {
+        "name": "line-top",
+        "value": "inset 0 1px 0 var(--line-top)",
+        "purpose": "One-pixel top-edge highlight on every raised surface. The signature of the world."
+      },
+      {
+        "name": "shadow-1",
+        "value": "0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px -12px rgba(0, 0, 0, 0.6)",
+        "purpose": "Panels at rest, timeline entries on hover. Light twin: 0 1px 2px rgba(20,21,24,0.06), 0 8px 24px -12px rgba(20,21,24,0.16)."
+      },
+      {
+        "name": "shadow-2",
+        "value": "0 2px 6px rgba(0, 0, 0, 0.45), 0 24px 48px -16px rgba(0, 0, 0, 0.7)",
+        "purpose": "The command palette only. Light twin: 0 2px 6px rgba(20,21,24,0.08), 0 24px 48px -16px rgba(20,21,24,0.22)."
+      },
+      {
+        "name": "btn-primary",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 1px 2px rgba(0, 0, 0, 0.3)",
+        "purpose": "Brighter edge and tight drop under the one filled button."
+      },
+      {
+        "name": "ring-accent",
+        "value": "0 0 0 3px var(--accent-soft)",
+        "purpose": "Mark dot halo (grows to 5px on hover) and the focused newsletter input."
+      },
+      {
+        "name": "ring-ok",
+        "value": "0 0 0 3px color-mix(in oklab, var(--ok) 22%, transparent)",
+        "purpose": "Availability dot; pulses to 6px at 8% over 2.4s."
+      },
+      {
+        "name": "focus-visible",
+        "value": "outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px",
+        "purpose": "Global keyboard focus."
+      },
+      {
+        "name": "header-backdrop",
+        "value": "backdrop-filter: saturate(160%) blur(14px)",
+        "purpose": "Sticky header over header-bg."
+      },
+      {
+        "name": "palette-backdrop",
+        "value": "rgba(8, 9, 12, 0.55) + blur(6px)",
+        "purpose": "Command palette dim. Light twin: rgba(20, 21, 24, 0.28)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default easing for every transition."
+      },
+      {
+        "name": "ease-in-out",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Looping animation: the status pulse."
+      },
+      {
+        "name": "t-fast",
+        "value": "140ms",
+        "purpose": "Colour, border, and background changes; button transforms."
+      },
+      {
+        "name": "t-base",
+        "value": "240ms",
+        "purpose": "Card lift, arrow reveals, palette entrance, mark halo, theme icon opacity."
+      },
+      {
+        "name": "t-slow",
+        "value": "480ms",
+        "purpose": "Theme icon rotation; hero light opacity."
+      },
+      {
+        "name": "pointer-follow",
+        "value": "lerp 0.11 per rAF frame; only (hover: hover) and (pointer: fine); off under prefers-reduced-motion",
+        "purpose": "Hero light and spot rings on the home."
+      },
+      {
+        "name": "hero-light",
+        "value": "radial-gradient(560px circle, var(--glow), transparent 62%), radial-gradient(900px circle, var(--glow-2), transparent 70%); opacity 0.9",
+        "purpose": "Home hero only."
+      },
+      {
+        "name": "spot-ring",
+        "value": "1px masked ring, radial-gradient(320px|360px circle at --sx --sy, var(--accent-line), transparent 60%)",
+        "purpose": "Facts panel (always, 0.8 opacity) and lit timeline entries (on hover)."
+      },
+      {
+        "name": "cmdk-in",
+        "value": "240ms ease-out from opacity 0, translateY(-6px) scale(0.985)",
+        "purpose": "Command palette entrance."
+      },
+      {
+        "name": "pulse",
+        "value": "2.4s ease-in-out infinite, ring 3px@22% to 6px@8%",
+        "purpose": "Availability dot."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation-duration 0.01ms; transition-duration 0.01ms; iteration-count 1",
+        "purpose": "Global override under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "toc",
+        "value": "1240px"
+      },
+      {
+        "name": "hero-stack",
+        "value": "900px"
+      },
+      {
+        "name": "nav-hide",
+        "value": "760px"
+      },
+      {
+        "name": "newsletter-stack",
+        "value": "720px"
+      },
+      {
+        "name": "rail-horizontal",
+        "value": "640px"
+      },
+      {
+        "name": "post-nav-stack",
+        "value": "600px"
+      },
+      {
+        "name": "social-icon-only-except-x",
+        "value": "480px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button",
+      "kind": "button",
+      "refersTo": "button",
+      "description": "Default edge-lit outlined button; the reach links on the home and pagination.",
+      "html": "<button class=\"ds-btn\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3 7 9 6 9-6\"/></svg>Email</button>",
+      "css": ".ds-btn { display: inline-flex; align-items: center; gap: 0.5rem; height: 2.25rem; padding: 0 0.875rem; border-radius: var(--radius, 10px); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.9375rem; font-weight: 500; line-height: 1; white-space: nowrap; cursor: pointer; border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface, #16181d); color: var(--text, #ececf1); box-shadow: inset 0 1px 0 var(--line-top, rgba(255,255,255,0.05)); transition: background 140ms cubic-bezier(0.16,1,0.3,1), border-color 140ms cubic-bezier(0.16,1,0.3,1), transform 140ms cubic-bezier(0.16,1,0.3,1); } .ds-btn:hover { background: var(--surface-2, #1c1e25); } .ds-btn:active { transform: translateY(1px); } .ds-btn:focus-visible { outline: 2px solid var(--accent, #7c8cff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled button: newsletter submit, 404 home.",
+      "html": "<button class=\"ds-btn-primary\">Subscribe<svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; height: 2.25rem; padding: 0 0.875rem; border-radius: var(--radius, 10px); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.9375rem; font-weight: 500; line-height: 1; cursor: pointer; border: 1px solid transparent; background: var(--accent, #7c8cff); color: var(--accent-ink, #0b0d1c); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 1px 2px rgba(0,0,0,0.3); transition: background 140ms cubic-bezier(0.16,1,0.3,1), transform 140ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-primary:hover { background: var(--accent-strong, #9ba7ff); } .ds-btn-primary:active { transform: translateY(1px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--accent, #7c8cff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Borderless small button for RSS, Edit on GitHub, Discuss on Dev.to.",
+      "html": "<button class=\"ds-btn-ghost\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 11a9 9 0 0 1 9 9\"/><path d=\"M4 4a16 16 0 0 1 16 16\"/><circle cx=\"5\" cy=\"19\" r=\"1\"/></svg>RSS</button>",
+      "css": ".ds-btn-ghost { display: inline-flex; align-items: center; gap: 0.5rem; height: 2rem; padding: 0 0.75rem; border-radius: var(--radius, 10px); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.875rem; font-weight: 500; line-height: 1; cursor: pointer; border: 1px solid transparent; background: transparent; color: var(--text, #ececf1); transition: background 140ms cubic-bezier(0.16,1,0.3,1); } .ds-btn-ghost:hover { background: var(--surface-2, #1c1e25); } .ds-btn-ghost:active { transform: translateY(1px); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--accent, #7c8cff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Tag and category chip; the accent variant marks drafts.",
+      "html": "<span style=\"display:inline-flex;gap:0.35rem\"><a class=\"ds-chip\" href=\"#\">GraphQL</a><a class=\"ds-chip\" href=\"#\">Kubernetes</a><span class=\"ds-chip ds-chip-accent\">Draft</span></span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; height: 1.5rem; padding: 0 0.5rem; border-radius: var(--radius-s, 6px); border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface-2, #1c1e25); color: var(--text-2, #9a9da8); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.75rem; font-weight: 500; line-height: 1; white-space: nowrap; text-decoration: none; transition: color 140ms cubic-bezier(0.16,1,0.3,1), border-color 140ms cubic-bezier(0.16,1,0.3,1), background 140ms cubic-bezier(0.16,1,0.3,1); } a.ds-chip:hover { color: var(--text, #ececf1); border-color: var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-3, #23262f); } .ds-chip-accent { color: var(--accent-strong, #9ba7ff); background: var(--accent-soft, rgba(124,140,255,0.14)); border-color: var(--accent-line, rgba(124,140,255,0.45)); } .ds-chip:focus-visible { outline: 2px solid var(--accent, #7c8cff); outline-offset: 2px; }"
+    },
+    {
+      "name": "Kbd",
+      "kind": "chip",
+      "refersTo": "kbd",
+      "description": "Keyboard cap in the search hint and palette footer.",
+      "html": "<span style=\"display:inline-flex;gap:0.2rem\"><span class=\"ds-kbd\">⌘</span><span class=\"ds-kbd\">K</span></span>",
+      "css": ".ds-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3rem; border-radius: 4px; border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-2, #1c1e25); color: var(--text-2, #9a9da8); font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.6875rem; line-height: 1; }"
+    },
+    {
+      "name": "Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Newsletter email field, sunk into the ground with a mail icon.",
+      "html": "<div class=\"ds-field\"><svg class=\"ds-field-icon\" width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"/><path d=\"m3 7 9 6 9-6\"/></svg><input class=\"ds-input\" type=\"email\" placeholder=\"you@example.com\"></div>",
+      "css": ".ds-field { position: relative; width: 18rem; max-width: 100%; } .ds-field-icon { position: absolute; left: 0.75rem; top: 50%; translate: 0 -50%; color: var(--text-3, #8b8e9a); pointer-events: none; } .ds-input { width: 100%; height: 2.25rem; padding: 0 0.75rem 0 2.25rem; border-radius: var(--radius, 10px); border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); background: var(--bg, #0f1014); color: var(--text, #ececf1); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.9375rem; transition: border-color 140ms cubic-bezier(0.16,1,0.3,1), box-shadow 140ms cubic-bezier(0.16,1,0.3,1); } .ds-input::placeholder { color: var(--text-3, #8b8e9a); } .ds-input:focus { outline: 0; border-color: var(--accent, #7c8cff); box-shadow: 0 0 0 3px var(--accent-soft, rgba(124,140,255,0.14)); }"
+    },
+    {
+      "name": "Header Nav",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Mark with periwinkle dot, nav links with an accent bar under the active one, search field with kbd hint.",
+      "html": "<div class=\"ds-header\"><a class=\"ds-mark\" href=\"#\"><span class=\"ds-mark-dot\"></span>JCM</a><nav class=\"ds-nav\"><a class=\"ds-nav-link ds-active\" href=\"#\">Writing</a><a class=\"ds-nav-link\" href=\"#\">Categories</a><a class=\"ds-nav-link\" href=\"#\">Tags</a></nav><button class=\"ds-search\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg>Search<span class=\"ds-search-keys\"><span class=\"ds-kbd\">⌘</span><span class=\"ds-kbd\">K</span></span></button></div>",
+      "css": ".ds-header { display: flex; align-items: center; gap: 1.5rem; height: 3.5rem; padding: 0 1.25rem; background: var(--header-bg, rgba(15,16,20,0.72)); border-bottom: 1px solid var(--line, rgba(255,255,255,0.08)); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); } .ds-mark { display: inline-flex; align-items: center; gap: 0.6rem; font-weight: 600; letter-spacing: -0.02em; font-size: 1.0625rem; color: var(--text, #ececf1); text-decoration: none; } .ds-mark-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--accent, #7c8cff); box-shadow: 0 0 0 3px var(--accent-soft, rgba(124,140,255,0.14)); transition: box-shadow 240ms cubic-bezier(0.16,1,0.3,1); } .ds-mark:hover .ds-mark-dot { box-shadow: 0 0 0 5px var(--accent-soft, rgba(124,140,255,0.14)); } .ds-nav { display: flex; gap: 0.25rem; margin-left: auto; margin-right: auto; } .ds-nav-link { position: relative; display: inline-flex; align-items: center; height: 2rem; padding: 0 0.7rem; border-radius: var(--radius-s, 6px); font-size: 0.9375rem; color: var(--text-2, #9a9da8); text-decoration: none; transition: color 140ms cubic-bezier(0.16,1,0.3,1), background 140ms cubic-bezier(0.16,1,0.3,1); } .ds-nav-link:hover { color: var(--text, #ececf1); background: var(--surface-2, #1c1e25); } .ds-nav-link.ds-active { color: var(--text, #ececf1); } .ds-nav-link.ds-active::after { content: ''; position: absolute; left: 0.7rem; right: 0.7rem; bottom: -0.72rem; height: 2px; border-radius: 2px; background: var(--accent, #7c8cff); } .ds-search { display: inline-flex; align-items: center; gap: 0.5rem; height: 2rem; padding: 0 0.45rem 0 0.6rem; border-radius: var(--radius, 10px); border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface, #16181d); color: var(--text-2, #9a9da8); font: inherit; font-size: 0.875rem; cursor: pointer; box-shadow: inset 0 1px 0 var(--line-top, rgba(255,255,255,0.05)); transition: color 140ms cubic-bezier(0.16,1,0.3,1), border-color 140ms cubic-bezier(0.16,1,0.3,1), background 140ms cubic-bezier(0.16,1,0.3,1); } .ds-search:hover { color: var(--text, #ececf1); border-color: var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-2, #1c1e25); } .ds-search-keys { display: inline-flex; gap: 0.2rem; } .ds-search .ds-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3rem; border-radius: 4px; border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-2, #1c1e25); color: var(--text-2, #9a9da8); font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.6875rem; line-height: 1; }"
+    },
+    {
+      "name": "Timeline Entry",
+      "kind": "card",
+      "refersTo": "timeline-entry",
+      "description": "One dated ledger entry: mono date and reading time, title with a reveal arrow, excerpt, tags.",
+      "html": "<article class=\"ds-entry\"><a class=\"ds-entry-link\" href=\"#\"><span class=\"ds-entry-date\"><time>Sep 8, 2020</time><span class=\"ds-entry-dot\">·</span><span>12 min read</span></span><span class=\"ds-entry-title\">Automated Deployment of React Native Apps Using Fastlane<svg class=\"ds-entry-arrow\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14\"/><path d=\"m13 6 6 6-6 6\"/></svg></span><span class=\"ds-entry-excerpt\">A step-by-step guide to setting up Fastlane for iOS and Android deployments.</span></a><span class=\"ds-entry-tags\"><span class=\"ds-chip\">React Native</span><span class=\"ds-chip\">fastlane</span></span></article>",
+      "css": ".ds-entry { position: relative; display: flex; flex-direction: column; gap: 0.75rem; padding: 1.1rem 1.25rem; border-radius: var(--radius-l, 14px); border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface, #16181d); box-shadow: inset 0 1px 0 var(--line-top, rgba(255,255,255,0.05)); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); max-width: 40rem; transition: border-color 240ms cubic-bezier(0.16,1,0.3,1), background 240ms cubic-bezier(0.16,1,0.3,1), transform 240ms cubic-bezier(0.16,1,0.3,1), box-shadow 240ms cubic-bezier(0.16,1,0.3,1); } .ds-entry:hover { border-color: var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-2, #1c1e25); transform: translateY(-1px); box-shadow: inset 0 1px 0 var(--line-top, rgba(255,255,255,0.05)), var(--shadow-1, 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px -12px rgba(0,0,0,0.6)); } .ds-entry-link { display: flex; flex-direction: column; gap: 0.35rem; text-decoration: none; color: inherit; } .ds-entry-link::after { content: ''; position: absolute; inset: 0; border-radius: inherit; } .ds-entry-date { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-variant-numeric: tabular-nums; font-size: 0.75rem; color: var(--text-2, #9a9da8); } .ds-entry-dot { color: var(--text-3, #8b8e9a); } .ds-entry-title { display: inline-flex; align-items: baseline; gap: 0.5rem; font-size: 1.0625rem; font-weight: 500; letter-spacing: -0.01em; line-height: 1.35; color: var(--text, #ececf1); } .ds-entry-arrow { align-self: center; color: var(--accent-strong, #9ba7ff); opacity: 0; transform: translateX(-4px); transition: opacity 240ms cubic-bezier(0.16,1,0.3,1), transform 240ms cubic-bezier(0.16,1,0.3,1); } .ds-entry:hover .ds-entry-arrow { opacity: 1; transform: none; } .ds-entry-excerpt { font-size: 0.9375rem; line-height: 1.55; color: var(--text-2, #9a9da8); max-width: 62ch; } .ds-entry-tags { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 0.35rem; } .ds-entry .ds-chip { display: inline-flex; align-items: center; height: 1.5rem; padding: 0 0.5rem; border-radius: var(--radius-s, 6px); border: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface-2, #1c1e25); color: var(--text-2, #9a9da8); font-size: 0.75rem; font-weight: 500; line-height: 1; }"
+    },
+    {
+      "name": "Status",
+      "kind": "custom",
+      "refersTo": "panel",
+      "description": "Availability line with the pulsing green dot; the only green in the system.",
+      "html": "<span class=\"ds-status\"><span class=\"ds-status-dot\"></span>Open to conversations</span>",
+      "css": ".ds-status { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-2, #9a9da8); font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); font-size: 0.9375rem; } .ds-status-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: var(--ok, #4ade80); box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok, #4ade80) 22%, transparent); animation: ds-pulse 2.4s cubic-bezier(0.65,0,0.35,1) infinite; } @keyframes ds-pulse { 0%, 100% { box-shadow: 0 0 0 3px color-mix(in oklab, var(--ok, #4ade80) 22%, transparent); } 50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--ok, #4ade80) 8%, transparent); } }"
+    },
+    {
+      "name": "Command Palette Row",
+      "kind": "custom",
+      "refersTo": "command-palette",
+      "description": "Palette box head, a post row (selected) and a page row, and the kbd footer.",
+      "html": "<div class=\"ds-cmdk\"><div class=\"ds-cmdk-head\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m20 20-3.5-3.5\"/></svg><input class=\"ds-cmdk-input\" placeholder=\"Type to search posts or jump somewhere\"><span class=\"ds-kbd\">esc</span></div><div class=\"ds-cmdk-list\"><div class=\"ds-cmdk-group-title\">Posts</div><a class=\"ds-cmdk-item\" aria-selected=\"true\" href=\"#\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\"/><path d=\"M14 2v5h5M16 13H8M16 17H8M10 9H8\"/></svg><span class=\"ds-cmdk-label\">Introduction to GraphQL Mongo Helpers</span><span class=\"ds-cmdk-meta\">2018-09-30</span></a><a class=\"ds-cmdk-item\" href=\"#\"><svg width=\"15\" height=\"15\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m3 10 9-7 9 7v10a2 2 0 0 1-2 2h-4v-7h-6v7H5a2 2 0 0 1-2-2Z\"/></svg><span class=\"ds-cmdk-label\">Home</span></a></div><div class=\"ds-cmdk-foot\"><span><span class=\"ds-kbd\">↑</span><span class=\"ds-kbd\">↓</span> to navigate</span><span><span class=\"ds-kbd\">↵</span> to open</span></div></div>",
+      "css": ".ds-cmdk { width: min(100%, 36rem); background: var(--surface, #16181d); border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); border-radius: var(--radius-l, 14px); box-shadow: inset 0 1px 0 var(--line-top, rgba(255,255,255,0.05)), var(--shadow-2, 0 2px 6px rgba(0,0,0,0.45), 0 24px 48px -16px rgba(0,0,0,0.7)); overflow: hidden; font-family: var(--font-sans, 'Geist Variable', system-ui, sans-serif); color: var(--text, #ececf1); } .ds-cmdk-head { display: flex; align-items: center; gap: 0.75rem; padding: 0 0.875rem 0 1rem; height: 3.25rem; border-bottom: 1px solid var(--line, rgba(255,255,255,0.08)); color: var(--text-2, #9a9da8); } .ds-cmdk-input { flex: 1; min-width: 0; height: 100%; border: 0; background: transparent; outline: 0; font: inherit; font-size: 1rem; color: var(--text, #ececf1); } .ds-cmdk-input::placeholder { color: var(--text-3, #8b8e9a); } .ds-cmdk-list { padding: 0.4rem; } .ds-cmdk-group-title { padding: 0.55rem 0.6rem 0.3rem; font-size: 0.75rem; font-weight: 500; color: var(--text-3, #8b8e9a); } .ds-cmdk-item { display: flex; align-items: center; gap: 0.7rem; width: 100%; padding: 0 0.6rem; height: 2.4rem; border-radius: var(--radius-s, 6px); color: var(--text, #ececf1); font-size: 0.9375rem; text-decoration: none; transition: background 140ms cubic-bezier(0.16,1,0.3,1); } .ds-cmdk-item svg { color: var(--text-2, #9a9da8); flex: none; } .ds-cmdk-item:hover, .ds-cmdk-item[aria-selected='true'] { background: var(--surface-3, #23262f); } .ds-cmdk-item[aria-selected='true'] svg { color: var(--accent-strong, #9ba7ff); } .ds-cmdk-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .ds-cmdk-meta { font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.75rem; color: var(--text-3, #8b8e9a); } .ds-cmdk-foot { display: flex; gap: 1.25rem; padding: 0.55rem 1rem; border-top: 1px solid var(--line, rgba(255,255,255,0.08)); background: var(--surface-2, #1c1e25); color: var(--text-3, #8b8e9a); font-size: 0.75rem; } .ds-cmdk-foot span { display: inline-flex; align-items: center; gap: 0.3rem; } .ds-cmdk .ds-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: 1.25rem; height: 1.25rem; padding: 0 0.3rem; border-radius: 4px; border: 1px solid var(--line-strong, rgba(255,255,255,0.14)); background: var(--surface-2, #1c1e25); color: var(--text-2, #9a9da8); font-family: var(--font-mono, 'Geist Mono Variable', ui-monospace, monospace); font-size: 0.6875rem; line-height: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Evening Ledger",
+    "overview": "A personal home in the Linear school: one person, one dated ledger of what he wrote. The ground is a cool near-black; everything that sits on it is a hairline panel with a one-pixel lighter top edge, as if lit from above. There is one accent, a periwinkle, and it is spent carefully: the dot beside the JCM mark, the underline under the active nav item, the rail beside the active table-of-contents entry, the focus ring, link underlines in prose, and a single filled button. On the home page only, a soft periwinkle light follows the pointer across the hero and lights the border of whichever panel the cursor is over. Articles are clean and still: no light, no motion beyond hover colour, a quiet table of contents to the right.\n\nDensity is comfortable rather than tight. Type is Geist with tight negative tracking at display sizes, and Geist Mono reserved for metadata that reads like data: dates, reading times, year labels, keyboard caps, and code. The light theme is a fully designed twin, not a derived inversion: every token is redefined, the top-edge highlight becomes a near-white line, and the glow keeps its hue at a lower alpha. Code blocks switch from the Poimandres theme to GitHub Light with the same frame.\n\nConfirmed rejections from the build: no hero-plus-card-grid landing, no eyebrow or kicker labels above headings (the approved comp carried one; the build dropped it), no hard offset shadows, no icon fonts, no system display face.",
+    "keyCharacteristics": [
+      "Cool near-black ground (`bg`) with three surface steps above it, all separated by 8% and 14% white hairlines",
+      "Every raised panel carries an inset one-pixel top highlight (`line-top`); depth is tonal plus that edge, with diffuse shadows only on hover and overlays",
+      "One periwinkle accent used as a status dot, an active indicator, a focus ring, a link underline, and one filled button",
+      "Geist display at weight 600 and negative tracking; Geist Mono for dates, times, years, kbd, and code",
+      "Pointer light on the home hero and timeline only; articles are still",
+      "Light theme as an authored twin with its own token set and its own code theme"
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Periwinkle marks state and one action: a dot, an underline, a rail, a ring, a link, one filled button. It never fills a panel and never colours a heading.",
+        "section": "colors"
+      },
+      {
+        "name": "The Twin Rule",
+        "body": "The light theme is authored, not inverted. Every token is redefined under `:root[data-theme='light']`, including the top-edge highlight, the glow base, the selection colour, and the code theme. Adding a token means adding it twice.",
+        "section": "colors"
+      },
+      {
+        "name": "The Surface Ladder Rule",
+        "body": "Rest is `surface`, hover is `surface-2`, pressed or selected is `surface-3`. No component skips a rung.",
+        "section": "colors"
+      },
+      {
+        "name": "The Mono Is Data Rule",
+        "body": "Geist Mono is used for dates, durations, years, keyboard caps, and code. Never for labels, headings, or eyebrows.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tighter As It Grows Rule",
+        "body": "Tracking scales with size: -0.035em at display, -0.03em at headline, -0.025em at title, -0.02em at section, -0.01em at entry titles, normal at body.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lit Edge Rule",
+        "body": "A surface is raised by a hairline border and a one-pixel lighter top edge, never by a drop shadow alone.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Shadow On Approach Rule",
+        "body": "Drop shadows appear on overlays and on hover. Article surfaces cast none.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do raise a surface with a `line` border and `inset 0 1px 0 var(--line-top)`; step hover to `surface-2` and pressed to `surface-3`.",
+      "Do define every new colour token twice, once on `:root` and once under `:root[data-theme='light']`.",
+      "Do set dates, durations, years, and keyboard caps in Geist Mono with tabular numerals via `.mono` or `.tabular`.",
+      "Do use `--t-fast` (140ms) with `--ease-out` for colour and border changes, `--t-base` (240ms) for transforms and reveals, `--t-slow` (480ms) for the theme icon and the hero light.",
+      "Do keep the accent to indicators and one filled button per page.",
+      "Do use `.wrap` (72rem) for lists and the home and `.wrap-content` (44rem) for anything read.",
+      "Do draw icons through `Icon.astro` on the 24-unit, 1.5px-stroke grid at 12 to 16px.",
+      "Do honour `prefers-reduced-motion`: the global rule zeroes every animation and transition, and the pointer light does not initialise."
+    ],
+    "donts": [
+      "Don't put the pointer light or spot highlights on any surface but the home hero, the facts panel, and the home timeline. Articles are still.",
+      "Don't add drop shadows to surfaces at rest inside an article; `shadow-1` is for panels and hover, `shadow-2` for the palette.",
+      "Don't add an eyebrow or kicker above a heading; the comp's uppercase mono eyebrow was dropped in the build.",
+      "Don't use Geist Mono for labels, headings, or nav.",
+      "Don't fill a panel, chip, or heading with the accent; `chip-accent` at 14% alpha is the ceiling for accent fills.",
+      "Don't introduce a second accent hue. The green `ok` is the availability dot and nothing else.",
+      "Don't hard-code a colour outside the OG renderer; use the tokens so the light twin stays whole."
+    ]
+  }
+}

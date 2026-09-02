@@ -1,0 +1,129 @@
+---
+import Icon from './Icon.astro'
+import { useTranslations, type Locale } from '@/i18n/ui'
+import { SITE } from '@/lib/site'
+
+interface Props {
+  locale: Locale
+  compact?: boolean
+}
+const { locale, compact = false } = Astro.props
+const t = useTranslations(locale)
+const { action, u, id, group } = SITE.newsletter
+---
+
+<section class:list={['newsletter panel', { compact }]} aria-labelledby="newsletter-title" data-spot>
+  <div class="newsletter-text">
+    <h2 id="newsletter-title" class="newsletter-title">{t('newsletter.title')}</h2>
+    <p class="newsletter-body">{t('newsletter.body')}</p>
+  </div>
+  <form class="newsletter-form" action={action} method="post" target="_blank" novalidate>
+    <input type="hidden" name="u" value={u} />
+    <input type="hidden" name="id" value={id} />
+    <input type="hidden" name="MERGE2" value={locale} />
+    <input type="hidden" name={group} value="1" />
+    <div class="field">
+      <label class="visually-hidden" for="newsletter-email">{t('newsletter.email')}</label>
+      <Icon name="mail" size={15} class="field-icon" />
+      <input
+        id="newsletter-email"
+        class="input"
+        type="email"
+        name="MERGE0"
+        placeholder={t('newsletter.placeholder')}
+        autocomplete="email"
+        required
+      />
+    </div>
+    <div class="hp" aria-hidden="true">
+      <input type="text" name={`b_${u}_${id}`} tabindex="-1" value="" />
+    </div>
+    <button class="btn btn-primary" type="submit">{t('newsletter.submit')}<Icon name="arrow-right" size={15} /></button>
+  </form>
+  <p class="newsletter-fine">{t('newsletter.privacy')}</p>
+</section>
+
+<style>
+  .newsletter {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1rem 2rem;
+    align-items: center;
+    padding: 1.5rem 1.75rem;
+  }
+  .newsletter-title {
+    font-size: 1.125rem;
+  }
+  .newsletter-body {
+    margin-top: 0.35rem;
+    color: var(--text-2);
+    font-size: 0.9375rem;
+    text-wrap: pretty;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .field {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+  }
+  .field :global(.field-icon) {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    translate: 0 -50%;
+    color: var(--text-3);
+    pointer-events: none;
+  }
+  .input {
+    width: 100%;
+    height: 2.25rem;
+    padding: 0 0.75rem 0 2.25rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 0.9375rem;
+    transition:
+      border-color var(--t-fast) var(--ease-out),
+      box-shadow var(--t-fast) var(--ease-out);
+  }
+  .input::placeholder {
+    color: var(--text-3);
+  }
+  .input:focus {
+    outline: 0;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .input:user-invalid {
+    border-color: #f87171;
+  }
+  .hp {
+    position: absolute;
+    left: -5000px;
+  }
+  .newsletter-fine {
+    grid-column: 1 / -1;
+    font-size: 0.75rem;
+    color: var(--text-3);
+  }
+  .newsletter.compact {
+    grid-template-columns: 1fr;
+    padding: 1.25rem 1.5rem;
+  }
+  @media (max-width: 720px) {
+    .newsletter {
+      grid-template-columns: 1fr;
+    }
+    .newsletter-form {
+      flex-wrap: wrap;
+    }
+    .newsletter-form .btn {
+      flex: 1;
+      justify-content: center;
+    }
+  }
+</style>

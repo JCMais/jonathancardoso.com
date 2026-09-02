@@ -1,0 +1,438 @@
+---
+import { Image } from 'astro:assets'
+import { render } from 'astro:content'
+
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Icon from '@/components/Icon.astro'
+import Newsletter from '@/components/Newsletter.astro'
+import { DEFAULT_LOCALE, useTranslations, type Locale } from '@/i18n/ui'
+import { blogUrl, categoryUrl, formatDate, tagUrl, postUrl, type Post } from '@/lib/posts'
+import { SITE } from '@/lib/site'
+
+interface Props {
+  post: Post
+  locale: Locale
+  newer?: Post
+  older?: Post
+}
+const { post, locale, newer, older } = Astro.props
+const t = useTranslations(locale)
+const { entry } = post
+const data = entry.data
+const { Content, headings } = await render(entry)
+const toc = headings.filter((h) => h.depth === 2 || h.depth === 3)
+
+const alternates: Partial<Record<Locale, string>> = {}
+for (const l of post.availableLocales) alternates[l] = postUrl(l, post.slug, post.isDraft)
+if (post.isFallback) alternates[locale] = post.url
+if (!alternates[DEFAULT_LOCALE] && post.locale === DEFAULT_LOCALE) alternates[DEFAULT_LOCALE] = postUrl(DEFAULT_LOCALE, post.slug, post.isDraft)
+
+const canonical = data.externalLinks.canonical ?? undefined
+const ogImage = data.socialImageUrl ?? `/og-images/blog/${post.slug}.png`
+const editUrl = `${SITE.contentRepoPath}/${entry.id}.${entry.id.includes('testing') ? 'mdx' : 'md'}`
+const englishUrl = postUrl(DEFAULT_LOCALE, post.slug, post.isDraft)
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: data.title,
+  description: post.excerpt,
+  datePublished: data.date.toISOString(),
+  dateModified: (data.dateModified ?? data.date).toISOString(),
+  inLanguage: locale === 'pt-br' ? 'pt-BR' : 'en',
+  author: { '@type': 'Person', name: SITE.name, url: SITE.url },
+  image: new URL(ogImage, SITE.url).toString(),
+  mainEntityOfPage: new URL(post.url, SITE.url).toString(),
+  keywords: data.tags.join(', '),
+}
+---
+
+<BaseLayout
+  locale={locale}
+  title={data.title}
+  description={post.excerpt}
+  alternates={alternates}
+  ogImage={ogImage}
+  ogType="article"
+  canonical={canonical}
+  noindex={post.isDraft}
+  jsonLd={jsonLd}
+  bodyClass="reading"
+>
+  <article class="post">
+    <header class="post-head wrap-content">
+      <a class="crumb" href={blogUrl(locale)}><Icon name="arrow-left" size={14} />{t('nav.writing')}</a>
+      <h1 class="post-title">{data.title}</h1>
+      <div class="post-meta">
+        <span class="mono meta-item">
+          <Icon name="calendar" size={13} />
+          <time datetime={data.date.toISOString()}>{formatDate(data.date, locale)}</time>
+        </span>
+        <span class="mono meta-item"><Icon name="clock" size={13} />{t('blog.readingTime', { n: post.readingMinutes })}</span>
+        <a class="chip" href={categoryUrl(locale, post.categorySlug)}>{data.category}</a>
+      </div>
+      {
+        data.reviewers.length > 0 && (
+          <p class="reviewers">
+            <Icon name="users" size={13} />
+            <span>{t('blog.reviewers')}</span>
+            {data.reviewers.map((r, i) => (
+              <>
+                {r.url ? (
+                  <a href={r.url} rel="noopener" target="_blank">
+                    {r.name}
+                  </a>
+                ) : (
+                  <span>{r.name}</span>
+                )}
+                {i < data.reviewers.length - 1 ? ', ' : ''}
+              </>
+            ))}
+          </p>
+        )
+      }
+      {
+        post.isFallback && (
+          <p class="notice">
+            <Icon name="globe" />
+            <span>
+              {t('blog.notTranslated')} <a href={englishUrl}>{t('blog.readInEnglish')}</a>
+            </span>
+          </p>
+        )
+      }
+      {
+        post.isDraft && (
+          <p class="notice">
+            <Icon name="info" />
+            <span>{t('blog.draftNotice')}</span>
+          </p>
+        )
+      }
+      {
+        data.publisher && (
+          <p class="notice">
+            <Icon name="external" />
+            <span>
+              {locale === 'pt-br' ? 'Publicado originalmente em' : 'Originally published at'}{' '}
+              <a href={canonical ?? data.publisher.url} rel="noopener" target="_blank">
+                {data.publisher.name}
+              </a>
+            </span>
+          </p>
+        )
+      }
+    </header>
+
+    {
+      data.banner && (
+        <div class:list={['post-banner', data.bannerStyle === 'NORMAL' ? 'wrap-content' : 'wrap-banner']}>
+          <Image src={data.banner} alt="" width={1200} loading="eager" />
+        </div>
+      )
+    }
+
+    <div class="post-body-grid">
+      <div class="post-body wrap-content prose">
+        <Content />
+      </div>
+      {
+        toc.length > 1 && (
+          <aside class="toc" aria-label={t('blog.toc')}>
+            <div class="toc-title">{t('blog.toc')}</div>
+            <ol class="toc-list" data-toc>
+              {toc.map((h) => (
+                <li class:list={['toc-item', `depth-${h.depth}`]}>
+                  <a href={`#${h.slug}`} data-toc-link={h.slug}>
+                    {h.text}
+                  </a>
+                </li>
+              ))}
+            </ol>
+          </aside>
+        )
+      }
+    </div>
+
+    <footer class="post-foot wrap-content">
+      {
+        data.tags.length > 0 && (
+          <div class="post-tags">
+            {data.tags.map((tag, i) => (
+              <a class="chip" href={tagUrl(locale, post.tagSlugs[i])}>
+                {tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+      <div class="post-actions">
+        <a class="btn btn-sm btn-ghost" href={editUrl} rel="noopener" target="_blank"><Icon name="github" size={14} />{t('blog.editOnGitHub')}</a>
+        {
+          data.externalLinks.devto && (
+            <a class="btn btn-sm btn-ghost" href={data.externalLinks.devto} rel="noopener" target="_blank">
+              <Icon name="devto" size={14} />
+              {t('blog.discussDevto')}
+            </a>
+          )
+        }
+      </div>
+
+      {
+        (newer || older) && (
+          <nav class="post-nav" aria-label="Adjacent posts">
+            {older ? (
+              <a class="post-nav-link" href={older.url} rel="prev">
+                <span class="post-nav-label"><Icon name="arrow-left" size={13} />{t('blog.older')}</span>
+                <span class="post-nav-title">{older.entry.data.title}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {newer ? (
+              <a class="post-nav-link post-nav-next" href={newer.url} rel="next">
+                <span class="post-nav-label">{t('blog.newer')}<Icon name="arrow-right" size={13} /></span>
+                <span class="post-nav-title">{newer.entry.data.title}</span>
+              </a>
+            ) : (
+              <span />
+            )}
+          </nav>
+        )
+      }
+
+      <Newsletter locale={locale} />
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .post-head {
+    padding-top: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .crumb {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    align-self: flex-start;
+    font-size: 0.875rem;
+    color: var(--text-2);
+    padding: 0.25rem 0.5rem 0.25rem 0.35rem;
+    margin-left: -0.35rem;
+    border-radius: var(--radius-s);
+    transition:
+      color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .crumb:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+  .post-title {
+    font-size: clamp(1.9rem, 4vw, 2.75rem);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  .post-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    font-size: 0.8125rem;
+    color: var(--text-2);
+  }
+  .meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .meta-item :global(svg) {
+    color: var(--text-3);
+  }
+  .reviewers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.875rem;
+    color: var(--text-2);
+  }
+  .reviewers :global(svg) {
+    color: var(--text-3);
+  }
+  .reviewers a {
+    color: var(--text);
+    text-decoration: underline;
+    text-decoration-color: var(--line-strong);
+  }
+  .reviewers a:hover {
+    text-decoration-color: currentColor;
+  }
+  .post-banner {
+    margin-top: 2rem;
+  }
+  .wrap-banner {
+    width: min(100% - 2.5rem, 56rem);
+    margin-inline: auto;
+  }
+  .post-banner :global(img) {
+    width: 100%;
+    border-radius: var(--radius-l);
+    border: 1px solid var(--line);
+    background: var(--surface);
+  }
+  .post-body-grid {
+    position: relative;
+    margin-top: 2.5rem;
+  }
+  .toc {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(50% + var(--content-w) / 2 + 3rem);
+    width: 15rem;
+    height: 100%;
+  }
+  .toc-title {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-2);
+    margin-bottom: 0.5rem;
+  }
+  .toc-list {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid var(--line);
+    font-size: 0.8125rem;
+  }
+  .toc-title {
+    position: sticky;
+    top: calc(var(--header-h) + 0.5rem);
+  }
+  .toc-item a {
+    display: block;
+    padding: 0.28rem 0 0.28rem 0.85rem;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+    color: var(--text-2);
+    line-height: 1.4;
+    transition:
+      color var(--t-fast) var(--ease-out),
+      border-color var(--t-fast) var(--ease-out);
+  }
+  .toc-item.depth-3 a {
+    padding-left: 1.6rem;
+    font-size: 0.78rem;
+  }
+  .toc-item a:hover {
+    color: var(--text);
+  }
+  .toc-item a.active {
+    color: var(--text);
+    border-left-color: var(--accent);
+  }
+  @media (min-width: 1240px) {
+    .toc {
+      display: block;
+    }
+  }
+  .post-foot {
+    margin-top: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .post-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+    margin-left: -0.75rem;
+  }
+  .post-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .post-nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.9rem 1rem;
+    border-radius: var(--radius-l);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--line-top);
+    transition:
+      border-color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .post-nav-link:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+  }
+  .post-nav-next {
+    text-align: right;
+    align-items: flex-end;
+  }
+  .post-nav-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.75rem;
+    color: var(--text-2);
+  }
+  .post-nav-title {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    line-height: 1.35;
+    text-wrap: pretty;
+  }
+  @media (max-width: 600px) {
+    .post-nav {
+      grid-template-columns: 1fr;
+    }
+    .post-nav-next {
+      text-align: left;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script>
+  // Table of contents scroll-spy
+  const links = [...document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]')]
+  if (links.length) {
+    const byId = new Map(links.map((a) => [a.dataset.tocLink!, a]))
+    const headings = [...byId.keys()].map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[]
+    let active: HTMLAnchorElement | null = null
+    const setActive = (id: string) => {
+      const a = byId.get(id)
+      if (!a || a === active) return
+      active?.classList.remove('active')
+      a.classList.add('active')
+      active = a
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+        if (visible[0]) setActive(visible[0].target.id)
+      },
+      { rootMargin: '-80px 0px -70% 0px', threshold: 0 },
+    )
+    headings.forEach((h) => io.observe(h))
+    if (headings[0]) setActive(headings[0].id)
+  }
+</script>

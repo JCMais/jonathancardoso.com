@@ -1,0 +1,29 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHeading from '@/components/PageHeading.astro'
+import TermList from '@/components/TermList.astro'
+import { LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale, collectCategories, categoriesUrl, categoryUrl } from '@/lib/posts'
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const locale = Astro.params.lang as Locale
+const t = useTranslations(locale)
+const categories = collectCategories(await getPublishedPostsForLocale(locale))
+---
+
+<BaseLayout locale={locale} title={t('categories.title')} alternates={{ en: categoriesUrl('en'), 'pt-br': categoriesUrl('pt-br') }}>
+  <div class="wrap-page">
+    <PageHeading title={t('categories.title')} />
+    <TermList terms={categories} locale={locale} icon="folder" urlFor={(slug) => categoryUrl(locale, slug)} />
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap-page {
+    width: min(100% - 2.5rem, 56rem);
+    margin-inline: auto;
+  }
+</style>

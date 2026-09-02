@@ -1,0 +1,73 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Icon from '@/components/Icon.astro'
+import PageHeading from '@/components/PageHeading.astro'
+import Timeline from '@/components/Timeline.astro'
+import Pagination from '@/components/Pagination.astro'
+import Newsletter from '@/components/Newsletter.astro'
+import { LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale, paginate, blogUrl, categoriesUrl, tagsUrl } from '@/lib/posts'
+import type { Post } from '@/lib/posts'
+
+// Historical scheme: /blog/ is page 1, /blog/1/ is page 2, /blog/2/ is page 3.
+interface Props {
+  items: Post[]
+  current: number
+  total: number
+}
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = []
+  for (const lang of LOCALES) {
+    const posts = await getPublishedPostsForLocale(lang)
+    const pages = paginate(posts)
+    pages.forEach((items, i) => {
+      paths.push({
+        params: { lang, page: i === 0 ? undefined : String(i) },
+        props: { items, current: i + 1, total: pages.length },
+      })
+    })
+  }
+  return paths
+}
+
+const locale = Astro.params.lang as Locale
+const { items, current, total } = Astro.props
+const t = useTranslations(locale)
+const urlFor = (page: number) => blogUrl(locale, page)
+const title = current > 1 ? `${t('blog.title')} · ${t('blog.page', { n: current, total })}` : t('blog.title')
+---
+
+<BaseLayout
+  locale={locale}
+  title={title}
+  description={t('blog.description')}
+  alternates={{ en: blogUrl('en', current), 'pt-br': blogUrl('pt-br', current) }}
+  noindex={false}
+>
+  <div class="wrap-page">
+    <PageHeading title={t('blog.title')} description={t('blog.description')}>
+      <Fragment slot="aside">
+        <a class="btn btn-sm" href={categoriesUrl(locale)}><Icon name="folder" size={14} />{t('nav.categories')}</a>
+        <a class="btn btn-sm" href={tagsUrl(locale)}><Icon name="tag" size={14} />{t('nav.tags')}</a>
+        <a class="btn btn-sm" href={`/${locale}/rss.xml`}><Icon name="rss" size={14} />RSS</a>
+      </Fragment>
+    </PageHeading>
+    <Timeline posts={items} locale={locale} />
+    <Pagination locale={locale} current={current} total={total} urlFor={urlFor} />
+    <div class="news">
+      <Newsletter locale={locale} />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap-page {
+    width: min(100% - 2.5rem, 56rem);
+    margin-inline: auto;
+  }
+  .news {
+    margin-top: 3rem;
+  }
+</style>

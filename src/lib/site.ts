@@ -1,0 +1,38 @@
+export const SITE = {
+  url: 'https://jonathancardoso.com',
+  name: 'Jonathan Cardoso Machado',
+  mark: 'JCM',
+  email: 'me@jonathancardoso.com',
+  repo: 'https://github.com/JCMais/jonathancardoso.com',
+  contentRepoPath: 'https://github.com/JCMais/jonathancardoso.com/blob/master/content/blog',
+  since: 2011,
+  writingSince: 2017,
+  social: {
+    github: { label: 'GitHub', handle: 'JCMais', url: 'https://github.com/JCMais' },
+    linkedin: { label: 'LinkedIn', handle: 'jonathancardoso', url: 'https://www.linkedin.com/in/jonathancardoso/' },
+    x: { label: 'X', handle: '_jonathancardos', url: 'https://x.com/_jonathancardos' },
+    stackoverflow: {
+      label: 'Stack Overflow',
+      handle: 'jonathancardoso',
+      url: 'https://stackoverflow.com/users/710693/jonathancardoso',
+    },
+    instagram: { label: 'Instagram', handle: 'jcm_dev', url: 'https://www.instagram.com/jcm_dev' },
+  },
+  openSource: [{ name: 'node-libcurl', url: 'https://github.com/JCMais/node-libcurl', since: 2016 }],
+  now: { role: 'Staff Software Engineer', company: 'Lindy', url: 'https://www.lindy.ai', since: 2023 },
+  location: 'Foz do Iguaçu, Brazil',
+  previously: [
+    { name: 'Teamflow', url: 'https://www.teamflowhq.com', period: '2021–2025' },
+    { name: 'Croz', period: '2020–2021' },
+    { name: 'HelloMD', period: '2018–2019' },
+    { name: 'Feedback House', period: '2018' },
+    { name: 'Entria', period: '2017–2018' },
+    { name: 'Freelance', period: '2012–2017' },
+  ] as { name: string; url?: string; period: string }[],
+  newsletter: {
+    action: 'https://dev.us10.list-manage.com/subscribe/post',
+    u: '27e5ddadb6630ceca714dd8fa',
+    id: '08b4b87af2',
+    group: 'group[14185][1]',
+  },
+} as const

@@ -1,0 +1,86 @@
+---
+import Icon from './Icon.astro'
+import { useTranslations, type Locale } from '@/i18n/ui'
+import type { Term } from '@/lib/posts'
+
+interface Props {
+  terms: Term[]
+  locale: Locale
+  urlFor: (slug: string) => string
+  icon: 'folder' | 'tag'
+}
+const { terms, locale, urlFor, icon } = Astro.props
+const t = useTranslations(locale)
+---
+
+<ul class="terms">
+  {
+    terms.map((term) => (
+      <li>
+        <a class="term" href={urlFor(term.slug)}>
+          <span class="term-name">
+            <Icon name={icon} size={14} />
+            {term.name}
+          </span>
+          <span class="term-count tabular">{term.count === 1 ? t('blog.postCountOne') : t('blog.postCount', { n: term.count })}</span>
+          <Icon name="arrow-right" size={14} class="term-arrow" />
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .terms {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    gap: 0.5rem;
+  }
+  .term {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--line-top);
+    transition:
+      border-color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .term:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+  }
+  .term-name {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+  .term-name :global(svg) {
+    color: var(--text-3);
+  }
+  .term-count {
+    font-size: 0.75rem;
+    color: var(--text-2);
+  }
+  .term :global(.term-arrow) {
+    color: var(--accent-strong);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--t-fast) var(--ease-out),
+      transform var(--t-fast) var(--ease-out);
+  }
+  .term:hover :global(.term-arrow) {
+    opacity: 1;
+    transform: none;
+  }
+</style>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string
+  description?: string
+}
+const { title, description } = Astro.props
+---
+
+<header class="page-heading">
+  <div class="page-heading-main">
+    <h1 class="page-title">{title}</h1>
+    {description && <p class="page-desc">{description}</p>}
+  </div>
+  {Astro.slots.has('aside') && <div class="page-heading-aside"><slot name="aside" /></div>}
+</header>
+
+<style>
+  .page-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 3rem 0 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .page-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    letter-spacing: -0.025em;
+  }
+  .page-desc {
+    margin-top: 0.5rem;
+    color: var(--text-2);
+    max-width: 52ch;
+    text-wrap: pretty;
+  }
+  .page-heading-aside {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    .page-heading {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 2rem;
+    }
+  }
+</style>

@@ -1,27 +1,55 @@
-# Global settings applied to the whole site.
-#
-# “base” is the directory to change to before starting build. If you set base:
-#        that is where we will look for package.json/.nvmrc/etc, not repo root!
-# “command” is your build command.
-# “publish” is the directory to publish (relative to the root of your repo).
-
 [build]
   base    = "."
-  command = "yarn run build"
-  publish = "public"
+  command = "npm run build"
+  publish = "dist"
 
-# Production context: All deploys from the main
-# repository branch will inherit these settings.
-[context.production]
-  [context.production.environment]
+[build.environment]
+  NODE_VERSION = "26"
 
-# Specific branch context: Deploys from this branch
-# will take these settings and override their
-# current ones.
-[context.develop]
-  [context.develop.environment]
-[context.deploy-preview]
-  [context.deploy-preview.environment]
+# Language-based redirects for the unprefixed root and legacy paths.
+# Netlify evaluates rules in order; the Language-conditioned rule wins for pt browsers.
+[[redirects]]
+  from = "/"
+  to = "/pt-br/"
+  status = 302
+  force = true
+  conditions = { Language = ["pt"] }
 
-[[plugins]]
-  package = "netlify-plugin-gatsby-cache"
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/pt-br/blog/:splat"
+  status = 302
+  conditions = { Language = ["pt"] }
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/en/blog/:splat"
+  status = 302
+
+[[redirects]]
+  from = "/privacy/"
+  to = "/en/privacy/"
+  status = 302
+
+[[redirects]]
+  from = "/pt-br/*"
+  to = "/pt-br/404/"
+  status = 404
+
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404/"
+  status = 404
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000"

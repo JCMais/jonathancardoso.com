@@ -1,0 +1,59 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHeading from '@/components/PageHeading.astro'
+import Timeline from '@/components/Timeline.astro'
+import Pagination from '@/components/Pagination.astro'
+import { LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale, collectCategories, paginate, categoryUrl } from '@/lib/posts'
+import type { Post } from '@/lib/posts'
+
+interface Props {
+  items: Post[]
+  current: number
+  total: number
+  name: string
+  slug: string
+}
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = []
+  for (const lang of LOCALES) {
+    const posts = await getPublishedPostsForLocale(lang)
+    for (const cat of collectCategories(posts)) {
+      const pages = paginate(posts.filter((p) => p.categorySlug === cat.slug))
+      pages.forEach((items, i) => {
+        paths.push({
+          params: { lang, category: cat.slug, page: i === 0 ? undefined : String(i) },
+          props: { items, current: i + 1, total: pages.length, name: cat.name, slug: cat.slug },
+        })
+      })
+    }
+  }
+  return paths
+}
+
+const locale = Astro.params.lang as Locale
+const { items, current, total, name, slug } = Astro.props
+const t = useTranslations(locale)
+---
+
+<BaseLayout
+  locale={locale}
+  title={`${t('blog.category')} · ${name}`}
+  description={t('blog.inCategory', { name })}
+  alternates={{ en: categoryUrl('en', slug, current), 'pt-br': categoryUrl('pt-br', slug, current) }}
+>
+  <div class="wrap-page">
+    <PageHeading title={name} description={t('blog.inCategory', { name })} />
+    <Timeline posts={items} locale={locale} />
+    <Pagination locale={locale} current={current} total={total} urlFor={(page) => categoryUrl(locale, slug, page)} />
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap-page {
+    width: min(100% - 2.5rem, 56rem);
+    margin-inline: auto;
+  }
+</style>

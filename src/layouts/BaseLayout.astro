@@ -1,0 +1,135 @@
+---
+import '@fontsource-variable/geist'
+import '@fontsource-variable/geist-mono'
+import '@/styles/global.css'
+
+import Header from '@/components/Header.astro'
+import Footer from '@/components/Footer.astro'
+import CommandPalette from '@/components/CommandPalette.astro'
+import { HREFLANG, LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { SITE } from '@/lib/site'
+import { getPublishedPostsForLocale } from '@/lib/posts'
+
+export interface Props {
+  locale: Locale
+  title: string
+  description?: string
+  /** Path for this page in every locale it exists in; drives hreflang and the language switch */
+  alternates: Partial<Record<Locale, string>>
+  ogImage?: string
+  ogType?: 'website' | 'article'
+  canonical?: string
+  noindex?: boolean
+  jsonLd?: Record<string, unknown>
+  /** Adds the pointer-reactive light; home only */
+  lit?: boolean
+  bodyClass?: string
+}
+
+const {
+  locale,
+  title,
+  description,
+  alternates,
+  ogImage = `/og-images/home-${locale}.png`,
+  ogType = 'website',
+  canonical,
+  noindex = false,
+  jsonLd,
+  lit = false,
+  bodyClass,
+} = Astro.props
+
+const t = useTranslations(locale)
+const fullTitle = title === SITE.name ? title : `${title} · ${SITE.mark}`
+const desc = description ?? t('site.description')
+const currentPath = Astro.url.pathname
+const canonicalUrl = canonical ?? new URL(currentPath, SITE.url).toString()
+const ogImageUrl = new URL(ogImage, SITE.url).toString()
+const paletteTitles = (await getPublishedPostsForLocale(locale)).map((p) => ({
+  title: p.entry.data.title,
+  url: p.url,
+  date: p.entry.data.date.toISOString().slice(0, 10),
+  tags: p.entry.data.tags,
+}))
+---
+
+<!doctype html>
+<html lang={HREFLANG[locale]} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={desc} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex" />}
+    {
+      (LOCALES as readonly Locale[]).map((l) =>
+        alternates[l] ? (
+          <link rel="alternate" hreflang={HREFLANG[l]} href={new URL(alternates[l]!, SITE.url).toString()} />
+        ) : null,
+      )
+    }
+    {alternates.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, SITE.url).toString()} />}
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} · RSS`} href={`/${locale}/rss.xml`} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#0f1014" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="dark light" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={locale === 'pt-br' ? 'pt_BR' : 'en_US'} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content={`@${SITE.social.x.handle}`} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={desc} />
+    <meta name="twitter:image" content={ogImageUrl} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+    <script is:inline>
+      // Theme before first paint: stored choice, else the system preference.
+      ;(function () {
+        try {
+          var s = localStorage.getItem('theme')
+          var t = s === 'light' || s === 'dark' || s === 'noir' ? s : matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          document.documentElement.dataset.theme = t
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body class:list={[bodyClass, { lit }]}>
+    <!--
+      DIRECTION CONTRACT
+      THESIS: A personal home in the Linear school: one person, one dated ledger of what he wrote, on a dark hairlined ground with a single accent. Refuses the hero-plus-card-grid landing page.
+      OWN-WORLD: near-black cool ground, hairline panels with a lighter top edge, Geist tight display, Geist Mono for dates only, one periwinkle accent for links, the mark, and the one filled button; thin underlines, and one warm lantern light that follows the pointer across the whole home: panels catch it on the facing edge, cast a shadow away from it, and the headline carries its sheen. Articles are clean and still.
+      STORY: a visitor learns who Jonathan is in one glance, sees he is reachable, and scrolls straight into the writing; a reader gets a distraction-free article with a quiet table of contents.
+      FIRST VIEWPORT: two columns, identity left (headline, bio, Email/GitHub/LinkedIn/X), facts panel right; the changelog timeline begins at the fold with a year rail on the left and dated entries on the right.
+      FORM: Changelog (comp B) with the identity column of comp A; approved .impeccable/mocks/home-b.png; seed: user-pinned (Linear, Raycast, Amie, Craft, Arc).
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md
+    -->
+    {lit && <div class="page-light" aria-hidden="true"></div>}
+    {lit && <div class="blackout" aria-hidden="true"></div>}
+    <a class="skip-link" href="#main">{t('nav.skip')}</a>
+    <Header locale={locale} alternates={alternates} currentPath={currentPath} />
+    <main id="main" class="main">
+      <slot />
+    </main>
+    <Footer locale={locale} />
+    <CommandPalette locale={locale} alternates={alternates} posts={paletteTitles} />
+  </body>
+</html>
+
+<style>
+  .main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+  }
+</style>

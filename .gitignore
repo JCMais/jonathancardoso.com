@@ -32,4 +32,10 @@ node_modules
 .cache/
 .DS_Store
 
-public/
+# Astro
+dist/
+.astro/
+
+# design tooling scratch
+.playwright-mcp/
+.impeccable/shots/

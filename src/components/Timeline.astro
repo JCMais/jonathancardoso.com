@@ -1,0 +1,253 @@
+---
+import Icon from './Icon.astro'
+import { useTranslations, type Locale } from '@/i18n/ui'
+import { formatDate, tagUrl, type Post } from '@/lib/posts'
+
+interface Props {
+  posts: Post[]
+  locale: Locale
+  /** pointer spotlight on entries; home only */
+  lit?: boolean
+  /** show the year rail */
+  years?: boolean
+  maxTags?: number
+}
+const { posts, locale, lit = false, years = true, maxTags = 3 } = Astro.props
+const t = useTranslations(locale)
+
+const groups = new Map<number, Post[]>()
+for (const p of posts) {
+  const y = p.entry.data.date.getUTCFullYear()
+  groups.set(y, [...(groups.get(y) ?? []), p])
+}
+---
+
+{
+  posts.length === 0 ? (
+    <p class="timeline-empty">{t('blog.empty')}</p>
+  ) : (
+    <ol class:list={['timeline', { 'timeline-years': years, lit }]}>
+      {[...groups.entries()].map(([year, list]) => (
+        <li class="year">
+          {years && (
+            <div class="year-rail" aria-hidden="true">
+              <span class="year-label mono">{year}</span>
+              <span class="year-line" />
+            </div>
+          )}
+          <ol class="entries">
+            {list.map((p) => (
+              <li class="entry" data-spot={lit ? '' : undefined}>
+                <a class="entry-link" href={p.url} aria-label={p.entry.data.title}>
+                  <span class="entry-date mono">
+                    <time datetime={p.entry.data.date.toISOString()}>{formatDate(p.entry.data.date, locale, 'short')}</time>
+                    <span class="entry-dot" aria-hidden="true">·</span>
+                    <span>{t('blog.readingTime', { n: p.readingMinutes })}</span>
+                    {p.isDraft && <span class="chip chip-accent entry-draft">{t('blog.draft')}</span>}
+                    {p.isFallback && (
+                      <span class="entry-lang" title={t('blog.notTranslated')}>
+                        <Icon name="globe" size={12} /> EN
+                      </span>
+                    )}
+                  </span>
+                  <span class="entry-title">
+                    {p.entry.data.title}
+                    <Icon name="arrow-right" size={16} class="entry-arrow" />
+                  </span>
+                  {p.excerpt && <span class="entry-excerpt">{p.excerpt}</span>}
+                </a>
+                {p.entry.data.tags.length > 0 && (
+                  <span class="entry-tags">
+                    {p.entry.data.tags.slice(0, maxTags).map((tag, i) => (
+                      <a class="chip" href={tagUrl(locale, p.tagSlugs[i])}>
+                        {tag}
+                      </a>
+                    ))}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  )
+}
+
+<style>
+  .timeline,
+  .entries {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .timeline-empty {
+    color: var(--text-2);
+  }
+  .year {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 0 1.25rem;
+  }
+  .timeline:not(.timeline-years) .year {
+    grid-template-columns: 1fr;
+  }
+  .year-rail {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1.35rem;
+  }
+  .year-label {
+    position: sticky;
+    top: calc(var(--header-h) + 1rem);
+    font-size: 0.8125rem;
+    color: var(--text-2);
+    padding: 0.15rem 0;
+    z-index: 1;
+  }
+  .year-line {
+    flex: 1;
+    width: 1px;
+    margin-top: 0.6rem;
+    background: linear-gradient(to bottom, var(--line-strong), var(--line) 60%, transparent);
+  }
+  .year:last-child .year-line {
+    background: linear-gradient(to bottom, var(--line-strong), transparent 85%);
+  }
+  .entries {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-bottom: 2rem;
+  }
+  .entry {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem 1.1rem;
+    border-radius: var(--radius-l);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--line-top);
+    transition:
+      border-color var(--t-base) var(--ease-out),
+      background var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out),
+      box-shadow var(--t-base) var(--ease-out);
+  }
+  .entry:hover {
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+    transform: translateY(-1px);
+  }
+  .timeline:not(.lit) .entry:hover {
+    box-shadow:
+      inset 0 1px 0 var(--line-top),
+      var(--shadow-1);
+  }
+  .entry-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .entry-link::after {
+    /* whole card is the link target */
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+  .entry-date {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-2);
+  }
+  .entry-dot {
+    color: var(--text-3);
+  }
+  .entry-draft {
+    height: 1.25rem;
+    font-size: 0.6875rem;
+  }
+  .entry-lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-3);
+  }
+  .entry-title {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: var(--text);
+    text-wrap: pretty;
+  }
+  .entry-title :global(.entry-arrow) {
+    align-self: center;
+    color: var(--accent-strong);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out);
+  }
+  .entry:hover .entry-title :global(.entry-arrow) {
+    opacity: 1;
+    transform: none;
+  }
+  .entry-excerpt {
+    font-size: 0.9375rem;
+    line-height: 1.55;
+    color: var(--text-2);
+    max-width: 70ch;
+    text-wrap: pretty;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+  }
+  .entry-tags {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+
+  @media (max-width: 640px) {
+    .year {
+      grid-template-columns: 1fr;
+    }
+    .year-rail {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0 0 0.75rem;
+    }
+    .year-label {
+      position: static;
+      background: none;
+    }
+    .year-line {
+      height: 1px;
+      width: auto;
+      margin: 0;
+      background: linear-gradient(to right, var(--line-strong), transparent);
+    }
+    .entry {
+      padding: 1rem;
+    }
+  }
+</style>

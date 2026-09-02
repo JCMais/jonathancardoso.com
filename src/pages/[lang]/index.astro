@@ -1,0 +1,472 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import Icon from '@/components/Icon.astro'
+import Timeline from '@/components/Timeline.astro'
+import Newsletter from '@/components/Newsletter.astro'
+import { LOCALES, useTranslations, isLocale, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale, blogUrl } from '@/lib/posts'
+import { SITE } from '@/lib/site'
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const lang = Astro.params.lang
+if (!isLocale(lang)) return Astro.redirect('/en/')
+const locale: Locale = lang
+const t = useTranslations(locale)
+const posts = await getPublishedPostsForLocale(locale)
+const years = new Date().getUTCFullYear() - SITE.since
+
+const pt = locale === 'pt-br'
+const facts: { label: string; value: string; href?: string; icon: 'clock' | 'pen' | 'git-branch' | 'globe' | 'hash' | 'home' | 'users' }[] = [
+  {
+    icon: 'users',
+    label: pt ? 'Agora' : 'Now',
+    value: pt ? `${SITE.now.role} na ${SITE.now.company}` : `${SITE.now.role} at ${SITE.now.company}`,
+    href: SITE.now.url,
+  },
+  {
+    icon: 'clock',
+    label: pt ? 'Escrevendo software' : 'Writing software',
+    value: pt ? `desde ${SITE.since}, ${years} anos` : `since ${SITE.since}, ${years} years`,
+  },
+  {
+    icon: 'hash',
+    label: pt ? 'Foco' : 'Focus',
+    value: pt ? 'Agentes de IA e seus frameworks; engenharia de produto e de plataforma' : 'AI agents and agent frameworks; product and platform engineering',
+  },
+  {
+    icon: 'git-branch',
+    label: 'Open source',
+    value: `${SITE.openSource[0].name}, ${pt ? 'desde' : 'since'} ${SITE.openSource[0].since}`,
+    href: SITE.openSource[0].url,
+  },
+  {
+    icon: 'pen',
+    label: pt ? 'Também escrevi para' : 'Also wrote for',
+    value: 'DigitalOcean, CircleCI',
+  },
+  {
+    icon: 'home',
+    label: pt ? 'Base' : 'Based in',
+    value: pt ? 'Foz do Iguaçu, Brasil' : SITE.location,
+  },
+  {
+    icon: 'globe',
+    label: pt ? 'Idiomas' : 'Languages',
+    value: 'Português, English',
+  },
+]
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: SITE.name,
+  url: SITE.url,
+  email: `mailto:${SITE.email}`,
+  jobTitle: 'Software Engineer',
+  sameAs: Object.values(SITE.social).map((s) => s.url),
+}
+---
+
+<BaseLayout
+  locale={locale}
+  title={SITE.name}
+  description={t('site.description')}
+  alternates={{ en: '/en/', 'pt-br': '/pt-br/' }}
+  jsonLd={jsonLd}
+  lit
+>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="identity">
+        <h1 class="display" data-shine>{t('home.hello')}</h1>
+        <p class="lead">{t('home.intro')}</p>
+        <p class="lead lead-2">{t('home.introTeam')}</p>
+        <p class="lead lead-2">{t('home.introRecent')}</p>
+        <p class="lead lead-2">{t('home.intro2')}</p>
+        <p class="lead lead-2">{t('home.intro3')}</p>
+      </div>
+
+      <div class="side">
+      <aside class="facts panel" data-spot aria-label={locale === 'pt-br' ? 'Sobre mim' : 'About me'}>
+        <ul class="facts-list">
+          {
+            facts.map((f) => (
+              <li class="fact">
+                <span class="fact-label">
+                  <Icon name={f.icon} size={14} />
+                  {f.label}
+                </span>
+                {f.href ? (
+                  <a class="fact-value fact-link" href={f.href} rel="noopener" target="_blank">
+                    {f.value}<Icon name="arrow-up-right" size={13} class="fact-arrow" />
+                  </a>
+                ) : (
+                  <span class="fact-value">{f.value}</span>
+                )}
+              </li>
+            ))
+          }
+        </ul>
+      </aside>
+        <div class="previously">
+          <span class="previously-label">{t('home.previously')}</span>
+          <ul class="previously-list">
+            {
+              SITE.previously.map((job) => (
+                <li>
+                  {job.url ? (
+                    <a class="chip" href={job.url} rel="noopener" target="_blank">
+                      {job.name}
+                      <span class="chip-period tabular">{job.period}</span>
+                    </a>
+                  ) : (
+                    <span class="chip">
+                      {job.name}
+                      <span class="chip-period tabular">{job.period}</span>
+                    </span>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="reach">
+          <div class="reach-links">
+            <a class="btn" data-spot href={`mailto:${SITE.email}`}><Icon name="mail" />Email</a>
+            <a class="btn social" data-spot href={SITE.social.github.url} rel="me noopener" target="_blank" aria-label="GitHub"><Icon name="github" /><span class="btn-label">GitHub</span></a>
+            <a class="btn social" data-spot href={SITE.social.linkedin.url} rel="me noopener" target="_blank" aria-label="LinkedIn"><Icon name="linkedin" /><span class="btn-label">LinkedIn</span></a>
+            <a class="btn social social-x" data-spot href={SITE.social.x.url} rel="me noopener" target="_blank" aria-label="X (Twitter)"><Icon name="x" /><span class="btn-label">X / Twitter</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="writing wrap" id="writing" aria-labelledby="writing-title">
+    <div class="writing-head">
+      <div class="writing-lead">
+        <h2 id="writing-title" class="writing-title">{t('home.latest')}</h2>
+        <p class="writing-sub">{t('home.latestSub')}</p>
+      </div>
+      <div class="writing-tools">
+        <span class="writing-count tabular">{posts.length === 1 ? t('blog.postCountOne') : t('blog.postCount', { n: posts.length })}</span>
+        <a class="btn btn-sm btn-ghost" href={`/${locale}/rss.xml`}><Icon name="rss" size={14} />RSS</a>
+        <a class="btn btn-sm" href={blogUrl(locale)}>{t('home.allPosts')}<Icon name="arrow-right" size={14} /></a>
+      </div>
+    </div>
+    <Timeline posts={posts} locale={locale} lit />
+  </section>
+
+  <div class="wrap" data-newsletter>
+    <Newsletter locale={locale} />
+  </div>
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    /* top-anchored and short: the first ledger entries sit inside a 900px viewport */
+    display: flex;
+    flex-direction: column;
+    padding: 4.5rem 0 3rem;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    gap: 3rem 4rem;
+    align-items: start;
+  }
+  .identity {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .display {
+    font-size: clamp(2.6rem, 6vw, 4.5rem);
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  /* the letters carry the light: a sheen where it falls, a soft shadow away from it */
+  :global([data-theme='noir'] .lit) .display {
+    --near: 0;
+    --dx: 0;
+    --dy: 0;
+    background-image: radial-gradient(
+      340px circle at var(--sx, 30%) var(--sy, 50%),
+      var(--light-text-core) 0%,
+      color-mix(in oklab, var(--light-text-core) 45%, var(--text)) 30%,
+      var(--text) 62%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: calc(var(--dx) * 10px * var(--near)) calc(var(--dy) * 10px * var(--near)) calc(14px * var(--near))
+      rgba(0, 0, 0, calc(0.5 * var(--near)));
+  }
+  .lead {
+    font-size: clamp(1rem, 1.25vw, 1.0625rem);
+    line-height: 1.6;
+    color: var(--text-2);
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+  .lead-2 {
+    margin-top: -0.5rem;
+  }
+  .previously {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+  }
+  .previously-label {
+    font-size: 0.8125rem;
+    color: var(--text-3);
+  }
+  .previously-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .chip-period {
+    margin-left: 0.4rem;
+    color: var(--text-3);
+    font-weight: 400;
+  }
+  .reach {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .reach-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    justify-self: end;
+    width: 100%;
+    max-width: 27.5rem;
+    margin-top: 0.5rem;
+  }
+  .side .reach-links .btn {
+    height: 2rem;
+    padding: 0 0.7rem;
+    font-size: 0.875rem;
+  }
+  .facts {
+    position: relative;
+    padding: 0.5rem;
+  }
+  .facts-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .fact {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 0.7rem 0.875rem;
+    border-radius: var(--radius);
+    transition: background var(--t-fast) var(--ease-out);
+  }
+  .fact + .fact {
+    border-top: 1px solid var(--line);
+    border-radius: 0;
+  }
+  .fact:hover {
+    background: var(--surface-2);
+  }
+  .fact-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8125rem;
+    color: var(--text-2);
+  }
+  .fact-label :global(svg) {
+    color: var(--text-3);
+  }
+  .fact-value {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text);
+    text-wrap: pretty;
+  }
+  .fact-link {
+    display: inline;
+    gap: 0.25rem;
+    color: var(--accent-strong);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-line);
+  }
+  .fact-link:hover {
+    text-decoration-color: currentColor;
+  }
+  .fact-link :global(.fact-arrow) {
+    display: inline;
+    vertical-align: -1px;
+    margin-left: 0.2rem;
+  }
+  .writing {
+    padding-top: 1.5rem;
+  }
+  .writing-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .writing-title {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .writing-sub {
+    margin-top: 0.4rem;
+    font-size: 0.9375rem;
+    color: var(--text-2);
+    max-width: 58ch;
+    text-wrap: pretty;
+  }
+  .writing-tools {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .writing-count {
+    font-size: 0.8125rem;
+    color: var(--text-3);
+    margin-right: 0.25rem;
+  }
+  .wrap > :global(.newsletter) {
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero {
+      padding: 3rem 0 3rem;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .side {
+      justify-self: stretch;
+      max-width: none;
+    }
+  }
+  @media (max-width: 480px) {
+    .social:not(.social-x) .btn-label {
+      display: none;
+    }
+    .social:not(.social-x) {
+      width: 2.25rem;
+      padding: 0;
+      justify-content: center;
+    }
+    .fact {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .writing-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .writing-count {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  // One light for the whole home. The eased follower drives the fixed page layer;
+  // every [data-spot] / [data-shine] element gets the light in its own coordinates,
+  // the direction the light throws its shadow, and how near the light is.
+  const light = document.querySelector<HTMLElement>('.page-light')
+  const fine = matchMedia('(hover: hover) and (pointer: fine)').matches
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  const isNoir = () => document.documentElement.dataset.theme === 'noir'
+
+  if (light && fine && !reduce) {
+    const spots = [...document.querySelectorAll<HTMLElement>('[data-spot], [data-shine]')]
+    const REACH = 720
+    let tx = window.innerWidth * 0.32
+    let ty = window.innerHeight * 0.3
+    let cx = tx
+    let cy = ty
+    let raf = 0
+    let dirty = true
+
+    const paint = () => {
+      document.documentElement.style.setProperty('--mx', `${cx}px`)
+      document.documentElement.style.setProperty('--my', `${cy}px`)
+      const vh = window.innerHeight
+      for (const el of spots) {
+        const r = el.getBoundingClientRect()
+        if (r.bottom < -REACH || r.top > vh + REACH) continue
+        const ex = r.left + r.width / 2
+        const ey = r.top + r.height / 2
+        const dx = ex - cx
+        const dy = ey - cy
+        const d = Math.hypot(dx, dy) || 1
+        // distance measured from the element's edge, not its center, so wide cards react evenly
+        const edge = Math.max(0, d - Math.min(r.width, r.height) / 2)
+        const near = Math.max(0, 1 - edge / REACH)
+        el.style.setProperty('--sx', `${cx - r.left}px`)
+        el.style.setProperty('--sy', `${cy - r.top}px`)
+        el.style.setProperty('--dx', (dx / d).toFixed(3))
+        el.style.setProperty('--dy', (dy / d).toFixed(3))
+        el.style.setProperty('--near', near.toFixed(3))
+      }
+    }
+
+    const tick = () => {
+      cx += (tx - cx) * 0.12
+      cy += (ty - cy) * 0.12
+      paint()
+      if (dirty || Math.abs(tx - cx) > 0.3 || Math.abs(ty - cy) > 0.3) {
+        dirty = false
+        raf = requestAnimationFrame(tick)
+      } else raf = 0
+    }
+    const wake = () => {
+      if (!isNoir()) return
+      dirty = true
+      if (!raf) raf = requestAnimationFrame(tick)
+    }
+    // Entering lights out: snap to where the pointer is now instead of gliding from the old spot.
+    document.addEventListener('themechange', () => {
+      cx = tx
+      cy = ty
+      wake()
+    })
+
+    window.addEventListener(
+      'pointermove',
+      (e) => {
+        tx = e.clientX
+        ty = e.clientY
+        wake()
+      },
+      { passive: true },
+    )
+    window.addEventListener('scroll', wake, { passive: true })
+    window.addEventListener('resize', wake, { passive: true })
+    wake()
+  }
+</script>

@@ -1,0 +1,26 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import PostLayout from '@/layouts/PostLayout.astro'
+import { LOCALES, type Locale } from '@/i18n/ui'
+import { getPostsForLocale } from '@/lib/posts'
+import type { Post } from '@/lib/posts'
+
+// Drafts only exist in development builds; getAllPosts filters them out in production.
+interface Props {
+  post: Post
+}
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = []
+  for (const lang of LOCALES) {
+    const drafts = (await getPostsForLocale(lang)).filter((p) => p.isDraft)
+    for (const post of drafts) paths.push({ params: { lang, slug: post.slug }, props: { post } })
+  }
+  return paths
+}
+
+const locale = Astro.params.lang as Locale
+const { post } = Astro.props
+---
+
+<PostLayout post={post} locale={locale} />

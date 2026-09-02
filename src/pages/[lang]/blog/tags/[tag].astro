@@ -1,0 +1,52 @@
+---
+import type { GetStaticPathsResult } from 'astro'
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHeading from '@/components/PageHeading.astro'
+import Timeline from '@/components/Timeline.astro'
+import { LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { getPublishedPostsForLocale, collectTags, tagUrl } from '@/lib/posts'
+import type { Post } from '@/lib/posts'
+
+interface Props {
+  items: Post[]
+  name: string
+  slug: string
+}
+
+export async function getStaticPaths() {
+  const paths: GetStaticPathsResult = []
+  for (const lang of LOCALES) {
+    const posts = await getPublishedPostsForLocale(lang)
+    for (const tag of collectTags(posts)) {
+      paths.push({
+        params: { lang, tag: tag.slug },
+        props: { items: posts.filter((p) => p.tagSlugs.includes(tag.slug)), name: tag.name, slug: tag.slug },
+      })
+    }
+  }
+  return paths
+}
+
+const locale = Astro.params.lang as Locale
+const { items, name, slug } = Astro.props
+const t = useTranslations(locale)
+---
+
+<BaseLayout
+  locale={locale}
+  title={`#${name}`}
+  description={t('blog.withTag', { name })}
+  alternates={{ en: tagUrl('en', slug), 'pt-br': tagUrl('pt-br', slug) }}
+>
+  <div class="wrap-page">
+    <PageHeading title={`#${name}`} description={t('blog.withTag', { name })} />
+    <Timeline posts={items} locale={locale} />
+  </div>
+</BaseLayout>
+
+<style>
+  .wrap-page {
+    width: min(100% - 2.5rem, 56rem);
+    margin-inline: auto;
+  }
+</style>

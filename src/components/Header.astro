@@ -1,0 +1,344 @@
+---
+import Icon from './Icon.astro'
+import { LOCALES, LOCALE_SHORT, HREFLANG, otherLocale, useTranslations, type Locale } from '@/i18n/ui'
+import { blogUrl, categoriesUrl, tagsUrl } from '@/lib/posts'
+import { SITE } from '@/lib/site'
+
+interface Props {
+  locale: Locale
+  alternates: Partial<Record<Locale, string>>
+  currentPath: string
+}
+const { locale, alternates, currentPath } = Astro.props
+const t = useTranslations(locale)
+const other = otherLocale(locale)
+
+const nav = [
+  { href: blogUrl(locale), label: t('nav.writing'), match: `/${locale}/blog/` },
+  { href: categoriesUrl(locale), label: t('nav.categories'), match: `/${locale}/blog/categories/` },
+  { href: tagsUrl(locale), label: t('nav.tags'), match: `/${locale}/blog/tags/` },
+]
+const isActive = (match: string) => {
+  if (match.endsWith('/blog/')) {
+    return currentPath.startsWith(match) && !currentPath.startsWith(`${match}categories/`) && !currentPath.startsWith(`${match}tags/`)
+  }
+  return currentPath.startsWith(match)
+}
+const isMac = true
+---
+
+<header class="header">
+  <div class="header-inner wrap">
+    <a class="mark" href={`/${locale}/`} aria-label={SITE.name}>
+      <span class="mark-dot" aria-hidden="true"></span>
+      <span class="mark-text">{SITE.mark}</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      {
+        nav.map((item) => (
+          <a href={item.href} class:list={['nav-link', { active: isActive(item.match) }]} aria-current={isActive(item.match) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="tools">
+      <button type="button" class="search" data-cmdk-open aria-label={t('nav.searchHint')}>
+        <Icon name="search" size={15} />
+        <span class="search-label">{t('nav.search')}</span>
+        <span class="search-keys" aria-hidden="true">
+          <span class="kbd">{isMac ? '⌘' : 'Ctrl'}</span><span class="kbd">K</span>
+        </span>
+      </button>
+
+      <a
+        class="lang"
+        href={alternates[other] ?? `/${other}/`}
+        hreflang={HREFLANG[other]}
+        lang={HREFLANG[other]}
+        aria-label={t('nav.switchLang')}
+        title={t('nav.switchLang')}
+      >
+        {
+          (LOCALES as readonly Locale[]).map((l) => (
+            <span class:list={['lang-opt', { active: l === locale }]} aria-hidden="true">
+              {LOCALE_SHORT[l]}
+            </span>
+          ))
+        }
+      </a>
+
+      <button type="button" class="theme" data-theme-toggle aria-label={t('nav.theme')} title={t('nav.theme')}>
+        <Icon name="sun" size={16} class="theme-sun" />
+        <Icon name="moon" size={16} class="theme-moon" />
+        <Icon name="lamp" size={16} class="theme-lamp" />
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    height: var(--header-h);
+    background: var(--header-bg);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 1rem;
+  }
+  .mark {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: 1.0625rem;
+    padding: 0.25rem 0.25rem 0.25rem 0;
+  }
+  .mark-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    transition: box-shadow var(--t-base) var(--ease-out);
+  }
+  .mark:hover .mark-dot {
+    box-shadow: 0 0 0 5px var(--accent-soft);
+  }
+  .nav {
+    display: flex;
+    gap: 0.25rem;
+  }
+  .nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0 0.7rem;
+    border-radius: var(--radius-s);
+    font-size: 0.9375rem;
+    color: var(--text-2);
+    transition:
+      color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .nav-link:hover {
+    color: var(--text);
+    background: var(--surface-2);
+  }
+  .nav-link.active {
+    color: var(--text);
+  }
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 0.7rem;
+    right: 0.7rem;
+    bottom: -0.72rem;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+  .tools {
+    justify-self: end;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .search {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2rem;
+    padding: 0 0.45rem 0 0.6rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text-2);
+    font-size: 0.875rem;
+    box-shadow: inset 0 1px 0 var(--line-top);
+    transition:
+      border-color var(--t-fast) var(--ease-out),
+      color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .search:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+  }
+  .search-keys {
+    display: inline-flex;
+    gap: 0.2rem;
+  }
+  .lang {
+    display: inline-flex;
+    height: 2rem;
+    padding: 0.2rem;
+    gap: 0.15rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    box-shadow: inset 0 1px 0 var(--line-top);
+    cursor: pointer;
+    transition:
+      border-color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .lang:hover {
+    border-color: var(--line-strong);
+  }
+  /* a switch: hovering previews the other side taking over */
+  .lang:hover .lang-opt.active {
+    background: transparent;
+    box-shadow: none;
+    color: var(--text-2);
+  }
+  .lang:hover .lang-opt:not(.active) {
+    color: var(--text);
+    background: var(--surface-3);
+    box-shadow: inset 0 1px 0 var(--line-top);
+  }
+  .lang-opt {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 0.5rem;
+    border-radius: 7px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--text-2);
+    transition:
+      color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .lang-opt.active {
+    color: var(--text);
+    background: var(--surface-3);
+    box-shadow: inset 0 1px 0 var(--line-top);
+  }
+  .theme {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text-2);
+    box-shadow: inset 0 1px 0 var(--line-top);
+    transition:
+      color var(--t-fast) var(--ease-out),
+      border-color var(--t-fast) var(--ease-out),
+      background var(--t-fast) var(--ease-out);
+  }
+  .theme:hover {
+    color: var(--text);
+    border-color: var(--line-strong);
+    background: var(--surface-2);
+  }
+  .theme :global(svg) {
+    position: absolute;
+    transition:
+      opacity var(--t-base) var(--ease-out),
+      transform var(--t-slow) var(--ease-out);
+  }
+  .theme :global(.theme-sun),
+  .theme :global(.theme-lamp) {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
+  :global([data-theme='light']) .theme :global(.theme-sun) {
+    opacity: 1;
+    transform: none;
+  }
+  :global([data-theme='light']) .theme :global(.theme-moon),
+  :global([data-theme='noir']) .theme :global(.theme-moon) {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.6);
+  }
+  :global([data-theme='noir']) .theme :global(.theme-lamp) {
+    opacity: 1;
+    transform: none;
+    color: #ffd68c;
+  }
+
+  @media (max-width: 760px) {
+    .header-inner {
+      grid-template-columns: auto 1fr;
+    }
+    .nav {
+      display: none;
+    }
+    .search-label,
+    .search-keys {
+      display: none;
+    }
+    .search {
+      width: 2rem;
+      padding: 0;
+      justify-content: center;
+    }
+  }
+</style>
+
+<script>
+  // Themes: light, dark, and "lights out" (noir). The toggle cycles all three.
+  // Shift+F flips lights out on and off; turning it off restores the previous theme.
+  const root = document.documentElement
+  const order = ['light', 'dark', 'noir']
+  const store = (k: string, v: string | null) => {
+    try {
+      v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v)
+    } catch {}
+  }
+  const read = (k: string) => {
+    try {
+      return localStorage.getItem(k)
+    } catch {
+      return null
+    }
+  }
+  const systemTheme = () => (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+  const apply = (next: string) => {
+    const current = root.dataset.theme ?? 'dark'
+    if (next === 'noir' && current !== 'noir') store('theme-prev', current)
+    root.dataset.theme = next
+    store('theme', next)
+    document.dispatchEvent(new CustomEvent('themechange', { detail: next }))
+  }
+  const toggleLightsOut = () => {
+    if (root.dataset.theme === 'noir') {
+      const prev = read('theme-prev')
+      apply(prev === 'light' || prev === 'dark' ? prev : systemTheme())
+    } else apply('noir')
+  }
+
+  document.querySelector<HTMLButtonElement>('[data-theme-toggle]')?.addEventListener('click', () => {
+    const i = order.indexOf(root.dataset.theme ?? 'dark')
+    apply(order[(i + 1) % order.length])
+  })
+  document.addEventListener('keydown', (e) => {
+    if (!e.shiftKey || e.key.toLowerCase() !== 'f' || e.metaKey || e.ctrlKey || e.altKey) return
+    const t = e.target as HTMLElement | null
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return
+    if (document.querySelector('dialog[open]')) return
+    e.preventDefault()
+    toggleLightsOut()
+  })
+</script>

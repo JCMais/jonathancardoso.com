@@ -1,0 +1,11 @@
+---
+import NotFound from '@/components/NotFound.astro'
+import { LOCALES, type Locale } from '@/i18n/ui'
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }))
+}
+const locale = Astro.params.lang as Locale
+---
+
+<NotFound locale={locale} />

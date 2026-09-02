@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro'
+import PageHeading from '@/components/PageHeading.astro'
+import { LOCALES, useTranslations, type Locale } from '@/i18n/ui'
+import { SITE } from '@/lib/site'
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }))
+}
+
+const locale = Astro.params.lang as Locale
+const t = useTranslations(locale)
+const pt = locale === 'pt-br'
+---
+
+<BaseLayout locale={locale} title={t('privacy.title')} alternates={{ en: '/en/privacy/', 'pt-br': '/pt-br/privacy/' }} noindex>
+  <div class="wrap-content">
+    <PageHeading title={t('privacy.title')} />
+    <div class="prose">
+      {
+        pt ? (
+          <>
+            <p>Este site não usa cookies nem ferramentas de analytics. Nenhum dado de navegação é coletado.</p>
+            <p>
+              Se você assinar a newsletter, seu email é enviado diretamente ao Mailchimp, que cuida da lista. Você pode cancelar a qualquer momento pelo
+              link presente em cada email.
+            </p>
+            <p>
+              Dúvidas? Escreva para <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            </p>
+          </>
+        ) : (
+          <>
+            <p>This site sets no cookies and runs no analytics. No browsing data is collected.</p>
+            <p>
+              If you subscribe to the newsletter, your email goes straight to Mailchimp, which manages the list. You can unsubscribe at any time with
+              the link in every email.
+            </p>
+            <p>
+              Questions? Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+            </p>
+          </>
+        )
+      }
+    </div>
+  </div>
+</BaseLayout>
