@@ -16,7 +16,7 @@ externalLinks:
   canonical: 'https://www.digitalocean.com/community/tutorial-series/how-to-code-in-typescript'
 ---
 
-Between March 2021 and February 2022 I wrote a TypeScript series for DigitalOcean's community tutorials, and did I say that I love TypeScript? It starts from the basic types and walks up to generics, namespaces, and modules, one tutorial per concept, each with runnable examples and the compiler errors you will actually see along the way.
+Between March 2021 and February 2022 I wrote a TypeScript series for DigitalOcean's community tutorials. It starts from the basic types and walks up to generics, namespaces, and modules, one tutorial per concept, each with runnable examples and the compiler errors you will actually see along the way.
 
 The series lives on DigitalOcean, so this post is just the index. Read it there: [How To Code in TypeScript](https://www.digitalocean.com/community/tutorial-series/how-to-code-in-typescript).
 
