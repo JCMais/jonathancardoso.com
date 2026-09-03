@@ -26,7 +26,7 @@ First-person, hands-on engineering writing from someone who runs the pipelines h
 
 ## Operating Context
 
-- Content lives in `content/blog/<YYYY-MM-DD>_<slug>/index.<lang>.mdx` with co-located `images/`. 11 published English posts from 2017 to 2020, one bilingual draft used as a component testing ground.
+- Content lives in `content/blog/<YYYY-MM-DD>_<slug>/index.<lang>.mdx` with co-located `images/`. 12 published English posts from 2017 to 2021 (one of them a pointer to the DigitalOcean TypeScript series), one bilingual draft used as a component testing ground.
 - Frontmatter fields in use: `date`, `title`, `description`, `category`, `tags`, `reviewers` (name + url), `externalLinks` (devto, github), `banner`, `bannerStyle`, `socialImageUrl`, `isDraft`, `dateModified`, `slug`, `publisher`.
 - Prose conventions: `Figure:` / `Table:` / `Source:` caption lines after images, tables, and blockquotes; `*[ABBR]: definition` abbreviation blocks; definition lists in one draft; code fences with titles and inline code.
 - Existing public URLs must survive: `/en/blog/<slug>/`, `/pt-br/...`, `/en/blog/category/<cat>/`, `/en/blog/tag/<tag>/`, `/en/`, `/en/blog/`, `/en/privacy/`. Root `/` redirects by Accept-Language, defaulting to `/en/`.
