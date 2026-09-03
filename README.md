@@ -6,10 +6,10 @@ Personal site and blog. Astro 7, static output, deployed on Netlify.
 
 ```bash
 nvm use            # Node 26 (see .nvmrc)
-npm install
-npm run dev        # http://localhost:4321
-npm run build      # writes dist/
-npm run preview    # serves dist/
+pnpm install
+pnpm dev           # http://localhost:4321
+pnpm build         # writes dist/
+pnpm preview       # serves dist/
 ```
 
 ## Content
