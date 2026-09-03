@@ -92,12 +92,18 @@ const paletteTitles = (await getPublishedPostsForLocale(locale)).map((p) => ({
     <meta name="twitter:description" content={desc} />
     <meta name="twitter:image" content={ogImageUrl} />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
-    <script is:inline>
+    <script is:inline define:vars={{ lit }}>
       // Theme before first paint: stored choice, else the system preference.
+      // "noir" (lights out) only exists on the home; elsewhere it renders as the theme it was entered from.
       ;(function () {
         try {
+          var system = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
           var s = localStorage.getItem('theme')
-          var t = s === 'light' || s === 'dark' || s === 'noir' ? s : matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+          var t = s === 'light' || s === 'dark' || s === 'noir' ? s : system
+          if (t === 'noir' && !lit) {
+            var p = localStorage.getItem('theme-prev')
+            t = p === 'light' || p === 'dark' ? p : system
+          }
           document.documentElement.dataset.theme = t
         } catch (e) {}
       })()

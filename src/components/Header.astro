@@ -301,7 +301,9 @@ const isMac = true
   // Themes: light, dark, and "lights out" (noir). The toggle cycles all three.
   // Shift+F flips lights out on and off; turning it off restores the previous theme.
   const root = document.documentElement
-  const order = ['light', 'dark', 'noir']
+  // lights out is a home-only state; other pages only cycle light and dark
+  const canNoir = document.body.classList.contains('lit')
+  const order = canNoir ? ['light', 'dark', 'noir'] : ['light', 'dark']
   const store = (k: string, v: string | null) => {
     try {
       v === null ? localStorage.removeItem(k) : localStorage.setItem(k, v)
@@ -334,6 +336,7 @@ const isMac = true
     apply(order[(i + 1) % order.length])
   })
   document.addEventListener('keydown', (e) => {
+    if (!canNoir) return
     if (!e.shiftKey || e.key.toLowerCase() !== 'f' || e.metaKey || e.ctrlKey || e.altKey) return
     const t = e.target as HTMLElement | null
     if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return
